@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="dir_0c0631cddfb91ddd67fec5ff33cfad50" kind="dir">
+    <compoundname>docstrings</compoundname>
+    <innerfile refid="build_2test__modules_2gnuradio_2sfcwRadar_2bindings_2docstrings_2bladerfEchoTimer__cc__pydoc__template_8h">build/test_modules/gnuradio/sfcwRadar/bindings/docstrings/bladerfEchoTimer_cc_pydoc_template.h</innerfile>
+    <innerfile refid="build_2test__modules_2gnuradio_2sfcwRadar_2bindings_2docstrings_2bladerfRadar__cc__pydoc__template_8h">build/test_modules/gnuradio/sfcwRadar/bindings/docstrings/bladerfRadar_cc_pydoc_template.h</innerfile>
+    <innerfile refid="build_2test__modules_2gnuradio_2sfcwRadar_2bindings_2docstrings_2bladerfRadarBurst__cc__pydoc__template_8h">build/test_modules/gnuradio/sfcwRadar/bindings/docstrings/bladerfRadarBurst_cc_pydoc_template.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/hui/gr-sfcwRadar/build/test_modules/gnuradio/sfcwRadar/bindings/docstrings/"/>
+  </compounddef>
+</doxygen>

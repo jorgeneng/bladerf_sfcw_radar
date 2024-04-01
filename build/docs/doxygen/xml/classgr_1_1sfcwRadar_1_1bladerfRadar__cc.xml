@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classgr_1_1sfcwRadar_1_1bladerfRadar__cc" kind="class" language="C++" prot="public">
+    <compoundname>gr::sfcwRadar::bladerfRadar_cc</compoundname>
+    <basecompoundref prot="public" virt="virtual">sync_block</basecompoundref>
+    <derivedcompoundref refid="classgr_1_1sfcwRadar_1_1bladerfRadar__cc__impl" prot="public" virt="non-virtual">gr::sfcwRadar::bladerfRadar_cc_impl</derivedcompoundref>
+    <includes refid="bladerfRadar__cc_8h" local="no">bladerfRadar_cc.h</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classgr_1_1sfcwRadar_1_1bladerfRadar__cc_1aa48acd3b1b62eb0c974d571f19b3444b" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classgr_1_1sfcwRadar_1_1bladerfRadar__cc" kindref="compound">bladerfRadar_cc</ref> &gt;</type>
+        <definition>typedef std::shared_ptr&lt;bladerfRadar_cc&gt; gr::sfcwRadar::bladerfRadar_cc::sptr</definition>
+        <argsstring></argsstring>
+        <name>sptr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/bladerfRadar_cc.h" line="26" column="29" bodyfile="/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/bladerfRadar_cc.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadar__cc_1a4a289c5dbe92d908029236833fbdcff9" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classgr_1_1sfcwRadar_1_1bladerfRadar__cc_1aa48acd3b1b62eb0c974d571f19b3444b" kindref="member">sptr</ref></type>
+        <definition>static sptr gr::sfcwRadar::bladerfRadar_cc::make</definition>
+        <argsstring>(bladerf_frequency start_freq, int num_steps, bladerf_frequency freq_step, int samp_rate, float rx_gain, float tx_gain, int tune_th)</argsstring>
+        <name>make</name>
+        <param>
+          <type>bladerf_frequency</type>
+          <declname>start_freq</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>num_steps</declname>
+        </param>
+        <param>
+          <type>bladerf_frequency</type>
+          <declname>freq_step</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>samp_rate</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>rx_gain</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>tx_gain</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>tune_th</declname>
+        </param>
+        <briefdescription>
+<para>Return a shared_ptr to a new instance of <ref refid="classgr_1_1sfcwRadar_1_1bladerfRadar__cc" kindref="compound">sfcwRadar::bladerfRadar_cc</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>To avoid accidental use of raw pointers, <ref refid="classgr_1_1sfcwRadar_1_1bladerfRadar__cc" kindref="compound">sfcwRadar::bladerfRadar_cc</ref>&apos;s constructor is in a private implementation class. <ref refid="classgr_1_1sfcwRadar_1_1bladerfRadar__cc_1a4a289c5dbe92d908029236833fbdcff9" kindref="member">sfcwRadar::bladerfRadar_cc::make</ref> is the public interface for creating new instances. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/bladerfRadar_cc.h" line="36" column="17"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>&lt;+description of block+&gt; </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>gr::sfcwRadar::bladerfRadar_cc</label>
+        <link refid="classgr_1_1sfcwRadar_1_1bladerfRadar__cc"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>sync_block</label>
+      </node>
+      <node id="3">
+        <label>gr::sfcwRadar::bladerfRadar_cc_impl</label>
+        <link refid="classgr_1_1sfcwRadar_1_1bladerfRadar__cc__impl"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>gr::sfcwRadar::bladerfRadar_cc</label>
+        <link refid="classgr_1_1sfcwRadar_1_1bladerfRadar__cc"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>sync_block</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/bladerfRadar_cc.h" line="24" column="1" bodyfile="/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/bladerfRadar_cc.h" bodystart="23" bodyend="43"/>
+    <listofallmembers>
+      <member refid="classgr_1_1sfcwRadar_1_1bladerfRadar__cc_1a4a289c5dbe92d908029236833fbdcff9" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadar_cc</scope><name>make</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1bladerfRadar__cc_1aa48acd3b1b62eb0c974d571f19b3444b" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadar_cc</scope><name>sptr</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

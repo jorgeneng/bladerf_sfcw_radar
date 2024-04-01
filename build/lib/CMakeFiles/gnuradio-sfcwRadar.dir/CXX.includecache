@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/gnuradio/sfcwRadar/api.h
+gnuradio/attributes.h
+-
+
+../include/gnuradio/sfcwRadar/bladerfRadarBurst_cc.h
+gnuradio/sfcwRadar/api.h
+-
+gnuradio/tagged_stream_block.h
+-
+libbladeRF.h
+-
+
+/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.cc
+bladerfRadarBurst_cc_impl.h
+/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h
+gnuradio/io_signature.h
+-
+volk/volk.h
+-
+
+/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h
+gnuradio/sfcwRadar/bladerfRadarBurst_cc.h
+-
+libbladeRF.h
+-
+chrono
+-
+

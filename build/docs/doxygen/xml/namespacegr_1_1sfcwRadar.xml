@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="namespacegr_1_1sfcwRadar" kind="namespace" language="C++">
+    <compoundname>gr::sfcwRadar</compoundname>
+    <innerclass refid="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc" prot="public">gr::sfcwRadar::bladerfEchoTimer_cc</innerclass>
+    <innerclass refid="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl" prot="public">gr::sfcwRadar::bladerfEchoTimer_cc_impl</innerclass>
+    <innerclass refid="classgr_1_1sfcwRadar_1_1bladerfRadar__cc" prot="public">gr::sfcwRadar::bladerfRadar_cc</innerclass>
+    <innerclass refid="classgr_1_1sfcwRadar_1_1bladerfRadar__cc__impl" prot="public">gr::sfcwRadar::bladerfRadar_cc_impl</innerclass>
+    <innerclass refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc" prot="public">gr::sfcwRadar::bladerfRadarBurst_cc</innerclass>
+    <innerclass refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl" prot="public">gr::sfcwRadar::bladerfRadarBurst_cc_impl</innerclass>
+    <innerclass refid="structgr_1_1sfcwRadar_1_1channel__config" prot="public">gr::sfcwRadar::channel_config</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/bladerfEchoTimer_cc.h" line="16" column="19"/>
+  </compounddef>
+</doxygen>

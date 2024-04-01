@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="bladerfEchoTimer__cc__pydoc_8h" kind="file" language="C++">
+    <compoundname>bladerfEchoTimer_cc_pydoc.h</compoundname>
+    <includes refid="build_2python_2sfcwRadar_2bindings_2pydoc__macros_8h" local="yes">pydoc_macros.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>bladerfEchoTimer_cc_pydoc.h</label>
+        <link refid="bladerfEchoTimer__cc__pydoc_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>pydoc_macros.h</label>
+        <link refid="build_2python_2sfcwRadar_2bindings_2pydoc__macros_8h"/>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="bladerfEchoTimer__cc__pydoc_8h_1a74021f021dcdfbb22891787b79c5529d" prot="public" static="no">
+        <name>D</name>
+        <param><defname>...</defname></param>
+        <initializer><ref refid="docs_2doxygen_2pydoc__macros_8h_1a4e578031ec998eaeb933d5caa6a7d28a" kindref="member">DOC</ref>(gr, sfcwRadar, __VA_ARGS__)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/build/python/sfcwRadar/bindings/bladerfEchoTimer_cc_pydoc.h" line="10" column="11" bodyfile="/home/hui/gr-sfcwRadar/build/python/sfcwRadar/bindings/bladerfEchoTimer_cc_pydoc.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="bladerfEchoTimer__cc__pydoc_8h_1afbcb09a92a772cf18276d4e4ae122dac" prot="public" static="yes" mutable="no">
+        <type>const char *</type>
+        <definition>const char* __doc_gr_sfcwRadar_bladerfEchoTimer_cc</definition>
+        <argsstring></argsstring>
+        <name>__doc_gr_sfcwRadar_bladerfEchoTimer_cc</name>
+        <initializer>= R&quot;doc(&lt;+description of block+&gt;
+
+Constructor Specific Documentation:
+
+Return a shared_ptr to a new instance of sfcwRadar::bladerfEchoTimer_cc.
+
+To avoid accidental use of raw pointers, sfcwRadar::bladerfEchoTimer_cc&apos;s constructor is in a private implementation class. sfcwRadar::bladerfEchoTimer_cc::make is the public interface for creating new instances.
+
+Args:
+    start_freq : 
+    num_steps : 
+    freq_step : 
+    samp_rate : 
+    rx_gain : 
+    tx_gain : 
+    ref_gain : 
+    burst_len : 
+    num_buffers : 
+    buffer_size : 
+    num_transfers : )doc&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/build/python/sfcwRadar/bindings/bladerfEchoTimer_cc_pydoc.h" line="19" column="20" bodyfile="/home/hui/gr-sfcwRadar/build/python/sfcwRadar/bindings/bladerfEchoTimer_cc_pydoc.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="bladerfEchoTimer__cc__pydoc_8h_1af6e83c453d5d2a518764d003b746872d" prot="public" static="yes" mutable="no">
+        <type>const char *</type>
+        <definition>const char* __doc_gr_sfcwRadar_bladerfEchoTimer_cc_bladerfEchoTimer_cc</definition>
+        <argsstring></argsstring>
+        <name>__doc_gr_sfcwRadar_bladerfEchoTimer_cc_bladerfEchoTimer_cc</name>
+        <initializer>= R&quot;doc()doc&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/build/python/sfcwRadar/bindings/bladerfEchoTimer_cc_pydoc.h" line="41" column="20" bodyfile="/home/hui/gr-sfcwRadar/build/python/sfcwRadar/bindings/bladerfEchoTimer_cc_pydoc.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="bladerfEchoTimer__cc__pydoc_8h_1a4167441c0c793dcb044aebd29cf65e18" prot="public" static="yes" mutable="no">
+        <type>const char *</type>
+        <definition>const char* __doc_gr_sfcwRadar_bladerfEchoTimer_cc_make</definition>
+        <argsstring></argsstring>
+        <name>__doc_gr_sfcwRadar_bladerfEchoTimer_cc_make</name>
+        <initializer>= R&quot;doc(&lt;+description of block+&gt;
+
+Constructor Specific Documentation:
+
+Return a shared_ptr to a new instance of sfcwRadar::bladerfEchoTimer_cc.
+
+To avoid accidental use of raw pointers, sfcwRadar::bladerfEchoTimer_cc&apos;s constructor is in a private implementation class. sfcwRadar::bladerfEchoTimer_cc::make is the public interface for creating new instances.
+
+Args:
+    start_freq : 
+    num_steps : 
+    freq_step : 
+    samp_rate : 
+    rx_gain : 
+    tx_gain : 
+    ref_gain : 
+    burst_len : 
+    num_buffers : 
+    buffer_size : 
+    num_transfers : )doc&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/build/python/sfcwRadar/bindings/bladerfEchoTimer_cc_pydoc.h" line="44" column="20" bodyfile="/home/hui/gr-sfcwRadar/build/python/sfcwRadar/bindings/bladerfEchoTimer_cc_pydoc.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/hui/gr-sfcwRadar/build/python/sfcwRadar/bindings/bladerfEchoTimer_cc_pydoc.h"/>
+  </compounddef>
+</doxygen>

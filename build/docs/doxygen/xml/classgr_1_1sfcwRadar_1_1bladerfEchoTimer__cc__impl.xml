@@ -1,0 +1,223 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl" kind="class" language="C++" prot="public">
+    <compoundname>gr::sfcwRadar::bladerfEchoTimer_cc_impl</compoundname>
+    <basecompoundref refid="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc" prot="public" virt="non-virtual">gr::sfcwRadar::bladerfEchoTimer_cc</basecompoundref>
+    <includes refid="bladerfEchoTimer__cc__impl_8h" local="no">bladerfEchoTimer_cc_impl.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl_1a9c0849f8c1df5048e7d7a42e02443867" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float gr::sfcwRadar::bladerfEchoTimer_cc_impl::d_amplitude</definition>
+        <argsstring></argsstring>
+        <name>d_amplitude</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfEchoTimer_cc_impl.h" line="22" column="11" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfEchoTimer_cc_impl.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl_1ad42760af1f38cb4c02fb28d5cdb844a9" prot="private" static="no" mutable="no">
+        <type>gr_complex</type>
+        <definition>gr_complex gr::sfcwRadar::bladerfEchoTimer_cc_impl::d_phase</definition>
+        <argsstring></argsstring>
+        <name>d_phase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfEchoTimer_cc_impl.h" line="23" column="16" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfEchoTimer_cc_impl.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl_1a85aced7742060e5264275785a2a21933" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t gr::sfcwRadar::bladerfEchoTimer_cc_impl::d_burst_len</definition>
+        <argsstring></argsstring>
+        <name>d_burst_len</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfEchoTimer_cc_impl.h" line="24" column="12" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfEchoTimer_cc_impl.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl_1a24418580d197d7eaccd6e76ff088951e" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float gr::sfcwRadar::bladerfEchoTimer_cc_impl::d_frequency</definition>
+        <argsstring></argsstring>
+        <name>d_frequency</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfEchoTimer_cc_impl.h" line="25" column="11" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfEchoTimer_cc_impl.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl_1aea1079a6f1a65c02405c6d3caf366478" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int gr::sfcwRadar::bladerfEchoTimer_cc_impl::d_samp_rate</definition>
+        <argsstring></argsstring>
+        <name>d_samp_rate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfEchoTimer_cc_impl.h" line="27" column="9" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfEchoTimer_cc_impl.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl_1ab378a8434fe89d183f2c7f518e2d5e13" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>gr::sfcwRadar::bladerfEchoTimer_cc_impl::bladerfEchoTimer_cc_impl</definition>
+        <argsstring>(bladerf_frequency start_freq, int num_steps, bladerf_frequency freq_step, int samp_rate, bladerf_gain rx_gain, bladerf_gain tx_gain, bladerf_gain ref_gain, size_t burst_len, size_t num_buffers, size_t buffer_size, size_t num_transfers)</argsstring>
+        <name>bladerfEchoTimer_cc_impl</name>
+        <param>
+          <type>bladerf_frequency</type>
+          <declname>start_freq</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>num_steps</declname>
+        </param>
+        <param>
+          <type>bladerf_frequency</type>
+          <declname>freq_step</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>samp_rate</declname>
+        </param>
+        <param>
+          <type>bladerf_gain</type>
+          <declname>rx_gain</declname>
+        </param>
+        <param>
+          <type>bladerf_gain</type>
+          <declname>tx_gain</declname>
+        </param>
+        <param>
+          <type>bladerf_gain</type>
+          <declname>ref_gain</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>burst_len</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>num_buffers</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>buffer_size</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>num_transfers</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfEchoTimer_cc_impl.h" line="30" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl_1a6aa877656429e60622143c029b3405c7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>gr::sfcwRadar::bladerfEchoTimer_cc_impl::~bladerfEchoTimer_cc_impl</definition>
+        <argsstring>()</argsstring>
+        <name>~bladerfEchoTimer_cc_impl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfEchoTimer_cc_impl.h" line="41" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl_1a2ea2b5f62ec490bd37a206755fffabcf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int gr::sfcwRadar::bladerfEchoTimer_cc_impl::work</definition>
+        <argsstring>(int noutput_items, gr_vector_const_void_star &amp;input_items, gr_vector_void_star &amp;output_items)</argsstring>
+        <name>work</name>
+        <param>
+          <type>int</type>
+          <declname>noutput_items</declname>
+        </param>
+        <param>
+          <type>gr_vector_const_void_star &amp;</type>
+          <declname>input_items</declname>
+        </param>
+        <param>
+          <type>gr_vector_void_star &amp;</type>
+          <declname>output_items</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfEchoTimer_cc_impl.h" line="44" column="9"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>gr::sync_block</label>
+      </node>
+      <node id="1">
+        <label>gr::sfcwRadar::bladerfEchoTimer_cc_impl</label>
+        <link refid="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>gr::sfcwRadar::bladerfEchoTimer_cc</label>
+        <link refid="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>gr::sync_block</label>
+      </node>
+      <node id="1">
+        <label>gr::sfcwRadar::bladerfEchoTimer_cc_impl</label>
+        <link refid="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>gr::sfcwRadar::bladerfEchoTimer_cc</label>
+        <link refid="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/hui/gr-sfcwRadar/lib/bladerfEchoTimer_cc_impl.h" line="19" column="1" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfEchoTimer_cc_impl.h" bodystart="18" bodyend="47"/>
+    <listofallmembers>
+      <member refid="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl_1ab378a8434fe89d183f2c7f518e2d5e13" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::bladerfEchoTimer_cc_impl</scope><name>bladerfEchoTimer_cc_impl</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl_1a9c0849f8c1df5048e7d7a42e02443867" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfEchoTimer_cc_impl</scope><name>d_amplitude</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl_1a85aced7742060e5264275785a2a21933" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfEchoTimer_cc_impl</scope><name>d_burst_len</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl_1a24418580d197d7eaccd6e76ff088951e" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfEchoTimer_cc_impl</scope><name>d_frequency</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl_1ad42760af1f38cb4c02fb28d5cdb844a9" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfEchoTimer_cc_impl</scope><name>d_phase</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl_1aea1079a6f1a65c02405c6d3caf366478" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfEchoTimer_cc_impl</scope><name>d_samp_rate</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc_1ac12e5b71f5a0f53ba64302f90b7c46bf" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::bladerfEchoTimer_cc_impl</scope><name>make</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc_1a4c3f670c639fb34a1f9839d8bd8d2906" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::bladerfEchoTimer_cc_impl</scope><name>sptr</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl_1a2ea2b5f62ec490bd37a206755fffabcf" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::bladerfEchoTimer_cc_impl</scope><name>work</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl_1a6aa877656429e60622143c029b3405c7" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::bladerfEchoTimer_cc_impl</scope><name>~bladerfEchoTimer_cc_impl</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

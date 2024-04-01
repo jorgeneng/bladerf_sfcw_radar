@@ -1,0 +1,258 @@
+options:
+  parameters:
+    author: ''
+    catch_exceptions: 'True'
+    category: '[GRC Hier Blocks]'
+    cmake_opt: ''
+    comment: ''
+    copyright: ''
+    description: ''
+    gen_cmake: 'On'
+    gen_linking: dynamic
+    generate_options: hb_qt_gui
+    hier_block_src_path: '.:'
+    id: test_obj_simulation
+    max_nouts: '0'
+    output_language: python
+    placement: (0,0)
+    qt_qss_theme: ''
+    realtime_scheduling: ''
+    run: 'True'
+    run_command: '{python} -u {filename}'
+    run_options: prompt
+    sizing_mode: fixed
+    thread_safe_setters: ''
+    title: Not titled yet
+    window_size: (1000,1000)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 8]
+    rotation: 0
+    state: enabled
+
+blocks:
+- name: tone_freq
+  id: variable
+  parameters:
+    comment: ''
+    value: '[-5e6,5e6]'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [616, 12.0]
+    rotation: 0
+    state: enabled
+- name: LO_freq
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: LO_freq
+    short_id: ''
+    type: eng_float
+    value: 1e9
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [384, 108.0]
+    rotation: 0
+    state: true
+- name: blocks_add_xx_0
+  id: blocks_add_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '2'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [560, 464.0]
+    rotation: 0
+    state: true
+- name: blocks_add_xx_0_0
+  id: blocks_add_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '2'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [552, 216.0]
+    rotation: 0
+    state: true
+- name: blocks_phase_shift_0
+  id: blocks_phase_shift
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    is_radians: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    shift: 4*3.1415926*(LO_freq+tone_freq[0])*ob_range/3e8
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [320, 392.0]
+    rotation: 0
+    state: true
+- name: blocks_phase_shift_1
+  id: blocks_phase_shift
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    is_radians: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    shift: 4*3.1415926*(LO_freq+tone_freq[1])*ob_range/3e8
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [320, 552.0]
+    rotation: 0
+    state: true
+- name: ob_range
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: ob_range
+    short_id: ''
+    type: eng_float
+    value: '1.5'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [656, 100.0]
+    rotation: 0
+    state: true
+- name: pad_sink_0
+  id: pad_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    label: out
+    num_streams: '1'
+    optional: 'False'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [728, 476.0]
+    rotation: 0
+    state: true
+- name: pad_sink_1
+  id: pad_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    label: ref
+    num_streams: '1'
+    optional: 'False'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [720, 228.0]
+    rotation: 0
+    state: true
+- name: pad_source_0
+  id: pad_source
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    label: in1
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_streams: '1'
+    optional: 'False'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [128, 220.0]
+    rotation: 0
+    state: true
+- name: pad_source_0_0
+  id: pad_source
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    label: in2
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_streams: '1'
+    optional: 'False'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [120, 436.0]
+    rotation: 0
+    state: true
+- name: samp_rate
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: samp_rate
+    short_id: ''
+    type: intx
+    value: int(15e6)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [272, 44.0]
+    rotation: 0
+    state: true
+
+connections:
+- [blocks_add_xx_0, '0', pad_sink_0, '0']
+- [blocks_add_xx_0_0, '0', pad_sink_1, '0']
+- [blocks_phase_shift_0, '0', blocks_add_xx_0, '0']
+- [blocks_phase_shift_1, '0', blocks_add_xx_0, '1']
+- [pad_source_0, '0', blocks_add_xx_0_0, '0']
+- [pad_source_0, '0', blocks_phase_shift_0, '0']
+- [pad_source_0_0, '0', blocks_add_xx_0_0, '1']
+- [pad_source_0_0, '0', blocks_phase_shift_1, '0']
+
+metadata:
+  file_format: 1
+  grc_version: 3.10.7.0
