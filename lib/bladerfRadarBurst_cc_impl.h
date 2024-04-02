@@ -24,6 +24,11 @@ struct channel_config {
     bladerf_gain gain;
 };
 
+struct bladerf_quick_tune_info{
+    bladerf_frequency freq;
+    bladerf_quick_tune quick_tune;
+};
+
 class bladerfRadarBurst_cc_impl : public bladerfRadarBurst_cc
 {
 private:
@@ -52,10 +57,13 @@ private:
     bladerf_frequency d_currrent_freq;
     bladerf_frequency d_max_freq;
     int d_freq_index;
-    struct bladerf_quick_tune *d_quick_tunes_tx;
-    struct bladerf_quick_tune *d_quick_tunes_rx;
+    //struct bladerf_quick_tune *d_quick_tunes_tx;
+    struct bladerf_quick_tune_info *d_quick_tunes_tx;
+    //struct bladerf_quick_tune *d_quick_tunes_rx;
+    struct bladerf_quick_tune_info *d_quick_tunes_rx;
 
     bool d_scan = false;
+    bool d_continuous_scan_flag = false;
 
     // Sample-handling buffers
     unsigned int d_num_samples_to_send;

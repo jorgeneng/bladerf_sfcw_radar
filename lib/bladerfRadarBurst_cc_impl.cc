@@ -79,8 +79,8 @@ bladerfRadarBurst_cc_impl::bladerfRadarBurst_cc_impl(bladerf_frequency start_fre
     /**
      * variables to save the quick retune parameters of each frequency step 
      * */
-    d_quick_tunes_tx = new bladerf_quick_tune[d_num_steps];
-    d_quick_tunes_rx = new bladerf_quick_tune[d_num_steps];
+    d_quick_tunes_tx = new bladerf_quick_tune_info[d_num_steps];
+    d_quick_tunes_rx = new bladerf_quick_tune_info[d_num_steps];
 
     d_burst_len = burst_len;
     std::cout << "burst_len: " << d_burst_len << std::endl;
@@ -379,8 +379,8 @@ int bladerfRadarBurst_cc_impl::set_quick_tune(){
             std::cerr << "set TX frequency to: "<< d_currrent_freq << " failed" << std::endl;
             return status;
         }
-
-        status = bladerf_get_quick_tune(dev, BLADERF_MODULE_TX, &d_quick_tunes_tx[i]);
+        d_quick_tunes_tx[i].freq = d_currrent_freq;
+        status = bladerf_get_quick_tune(dev, BLADERF_MODULE_TX, &d_quick_tunes_tx[i].quick_tune);
         if(status != 0){
             std::cerr << "failed to get quick tune for TX" << std::endl;
             return status;
@@ -391,8 +391,8 @@ int bladerfRadarBurst_cc_impl::set_quick_tune(){
             std::cerr << "set RX frequency to: "<< d_currrent_freq << " failed" << std::endl;
             return status;
         }
-
-        status = bladerf_get_quick_tune(dev, BLADERF_MODULE_RX, &d_quick_tunes_rx[i]);
+        d_quick_tunes_rx[i].freq = d_currrent_freq;
+        status = bladerf_get_quick_tune(dev, BLADERF_MODULE_RX, &d_quick_tunes_rx[i].quick_tune);
         if(status != 0){
             std::cerr << "failed to get quick tune for RX" << std::endl;
             return status;
@@ -443,13 +443,16 @@ int bladerfRadarBurst_cc_impl::quick_tune(int index){
         std::cerr << "invalid index" << std::endl;
         return -1;
     }
-    int status = bladerf_schedule_retune(dev, BLADERF_MODULE_TX, BLADERF_RETUNE_NOW, 0, &d_quick_tunes_tx[index]);
+
+    //std::cout<<"tunning tx to: " << d_quick_tunes_tx[index].freq << std::endl;
+    int status = bladerf_schedule_retune(dev, BLADERF_MODULE_TX, BLADERF_RETUNE_NOW, 0, &d_quick_tunes_tx[index].quick_tune);
     if(status != 0){
         std::cerr << "failed to tune TX: " << bladerf_strerror(status) << std::endl;
         return status;
     }
 
-    status = bladerf_schedule_retune(dev, BLADERF_MODULE_RX, BLADERF_RETUNE_NOW, 0, &d_quick_tunes_rx[index]);
+    //std::cout<<"tunning rx to: " << d_quick_tunes_rx[index].freq << std::endl;
+    status = bladerf_schedule_retune(dev, BLADERF_MODULE_RX, BLADERF_RETUNE_NOW, 0, &d_quick_tunes_rx[index].quick_tune);
     if(status != 0){
         std::cerr << "failed to tune RX: " << bladerf_strerror(status) << std::endl;
         return status;
@@ -494,7 +497,14 @@ void bladerfRadarBurst_cc_impl::send(){
 
 void bladerfRadarBurst_cc_impl::handle_scan_msg(const pmt::pmt_t& msg){
     std::cout << "received scan cmd" << std::endl;
-    d_scan = true;
+    std::cout << pmt::cdr(msg) << std::endl;
+    if ((pmt::to_long(pmt::cdr(msg)) == 1)){
+        d_scan = true;
+        d_continuous_scan_flag = false;
+    }else if ((pmt::to_long(pmt::cdr(msg)) == 2)){
+        d_scan = true;
+        d_continuous_scan_flag = true;
+    }
 }
 
 int bladerfRadarBurst_cc_impl::set_rx_gain(bladerf_gain gain){
@@ -543,7 +553,6 @@ int bladerfRadarBurst_cc_impl::work(int noutput_items,
 {
     if (d_scan == true){
     //std::cout << "tune to next freq:" << d_currrent_freq << std::endl;
-        //begin = std::chrono::steady_clock::now();
         //std::cout << "start scanning... current_freq: " << d_currrent_freq << std::endl;
         if(d_currrent_freq > d_max_freq){
             end = std::chrono::steady_clock::now();
@@ -551,8 +560,12 @@ int bladerfRadarBurst_cc_impl::work(int noutput_items,
             std::cout << "reach max freq, tune back to :" << d_start_freq << std::endl;
             d_currrent_freq = d_start_freq;
             d_freq_index = 0;
+            if(d_continuous_scan_flag == false){
+                d_scan = false;
+            }
             //d_scan = false;
             begin = std::chrono::steady_clock::now();
+            return 0;
         }
 
         /*int status = bladerf_set_frequency(dev, BLADERF_MODULE_TX, d_currrent_freq);
@@ -569,17 +582,10 @@ int bladerfRadarBurst_cc_impl::work(int noutput_items,
 
         }*/
         
-        //std::cout << "prepare to send cw in frequency: " << d_currrent_freq << ", freq_index = " << d_freq_index << std::endl;
+        //std::cout << "prepare to send cw in frequency: " << d_quick_tunes_tx[d_freq_index].freq << ", freq_index = " << d_freq_index << std::endl;
+        //std::cout << "prepare to recv cw in frequency: " << d_quick_tunes_rx[d_freq_index].freq << ", freq_index = " << d_freq_index << std::endl;
         quick_tune(d_freq_index);
         
-        //add a frequency tag
-        pmt::pmt_t current_freq_tag_key = pmt::string_to_symbol("c_freq");
-        pmt::pmt_t current_freq_tag_value = pmt::from_uint64(d_currrent_freq);
-        add_item_tag(0,nitems_written(0),current_freq_tag_key,current_freq_tag_value);
-
-        //jump to the next frequency when the work function is called again
-        d_currrent_freq = d_currrent_freq + d_freq_step;
-        d_freq_index ++;
     }else{
         //do nothing is no "scan" message received
         return 0;
@@ -590,6 +596,11 @@ int bladerfRadarBurst_cc_impl::work(int noutput_items,
     noutput_items = ninput_items[0];
     d_num_samples_to_send = ninput_items[0];
     d_num_samples_to_recv = ninput_items[0]*2;
+    
+    //add a frequency tag
+    pmt::pmt_t current_freq_tag_key = pmt::string_to_symbol("c_freq");
+    pmt::pmt_t current_freq_tag_value = pmt::from_uint64(d_currrent_freq);
+    add_item_tag(0,nitems_written(0),current_freq_tag_key,current_freq_tag_value);
     
     /**
      * process input_items
@@ -607,6 +618,7 @@ int bladerfRadarBurst_cc_impl::work(int noutput_items,
     /**
      * create sending and receiving threads
      * */
+    //std::cout << "sending cw in frequency: " << d_currrent_freq << ", freq_index = " << d_freq_index << std::endl;
     d_thread_recv = gr::thread::thread(boost::bind(&bladerfRadarBurst_cc_impl::recv, this)); 
     d_thread_send = gr::thread::thread(boost::bind(&bladerfRadarBurst_cc_impl::send, this));
     
@@ -633,6 +645,10 @@ int bladerfRadarBurst_cc_impl::work(int noutput_items,
            memcpy(out[n]++, deint_in++, sizeof(gr_complex));
         }
     }
+    
+    //jump to the next frequency when the work function is called again
+    d_currrent_freq = d_currrent_freq + d_freq_step;
+    d_freq_index ++;
     
     return d_num_samples_to_recv/2;
 }
