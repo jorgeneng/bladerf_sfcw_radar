@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="namespacegr_1_1sfcwRadar" kind="namespace" language="C++">
     <compoundname>gr::sfcwRadar</compoundname>
+    <innerclass refid="structgr_1_1sfcwRadar_1_1bladerf__quick__tune__info" prot="public">gr::sfcwRadar::bladerf_quick_tune_info</innerclass>
     <innerclass refid="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc" prot="public">gr::sfcwRadar::bladerfEchoTimer_cc</innerclass>
     <innerclass refid="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl" prot="public">gr::sfcwRadar::bladerfEchoTimer_cc_impl</innerclass>
     <innerclass refid="classgr_1_1sfcwRadar_1_1bladerfRadar__cc" prot="public">gr::sfcwRadar::bladerfRadar_cc</innerclass>

@@ -1,5 +1,6 @@
 var namespacegr_1_1sfcwRadar =
 [
+    [ "bladerf_quick_tune_info", "structgr_1_1sfcwRadar_1_1bladerf__quick__tune__info.html", "structgr_1_1sfcwRadar_1_1bladerf__quick__tune__info" ],
     [ "bladerfEchoTimer_cc", "classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc.html", "classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc" ],
     [ "bladerfEchoTimer_cc_impl", "classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl.html", "classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl" ],
     [ "bladerfRadar_cc", "classgr_1_1sfcwRadar_1_1bladerfRadar__cc.html", "classgr_1_1sfcwRadar_1_1bladerfRadar__cc" ],

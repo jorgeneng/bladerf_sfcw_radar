@@ -70,50 +70,124 @@ $(document).ready(function(){initNavTree('bladerfEchoTimer__cc__impl_8h_source.h
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacegr.html">gr</a> {</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">namespace </span>sfcwRadar {</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl.html">   18</a></span>&#160;<span class="keyword">class </span><a class="code" href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl.html">bladerfEchoTimer_cc_impl</a> : <span class="keyword">public</span> <a class="code" href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc.html">bladerfEchoTimer_cc</a></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="comment">// Nothing to declare in this block.</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordtype">float</span> d_amplitude;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    gr_complex d_phase;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">size_t</span> d_burst_len;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordtype">float</span> d_frequency;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordtype">int</span> d_samp_rate;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <a class="code" href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl.html#ab378a8434fe89d183f2c7f518e2d5e13">bladerfEchoTimer_cc_impl</a>(bladerf_frequency start_freq,</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                             <span class="keywordtype">int</span> num_steps,</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                             bladerf_frequency freq_step,</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                             <span class="keywordtype">int</span> samp_rate,</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                             bladerf_gain rx_gain,</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                             bladerf_gain tx_gain,</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                             bladerf_gain ref_gain,</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                             <span class="keywordtype">size_t</span> burst_len,</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                             <span class="keywordtype">size_t</span> num_buffers,</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                             <span class="keywordtype">size_t</span> buffer_size,</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                             <span class="keywordtype">size_t</span> num_transfers);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl.html#a6aa877656429e60622143c029b3405c7">~bladerfEchoTimer_cc_impl</a>();</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="comment">// Where all the action really happens</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl.html#a2ea2b5f62ec490bd37a206755fffabcf">work</a>(<span class="keywordtype">int</span> noutput_items,</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;             gr_vector_const_void_star&amp; input_items,</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;             gr_vector_void_star&amp; output_items);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;};</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;} <span class="comment">// namespace sfcwRadar</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;} <span class="comment">// namespace gr</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* INCLUDED_SFCWRADAR_BLADERFECHOTIMER_CC_IMPL_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="structgr_1_1sfcwRadar_1_1channel__config.html">   18</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structgr_1_1sfcwRadar_1_1channel__config.html">channel_config</a> {</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="structgr_1_1sfcwRadar_1_1channel__config.html#a6830782bb94ef83adad81f53fd96a4b9">   19</a></span>&#160;    bladerf_channel <a class="code" href="structgr_1_1sfcwRadar_1_1channel__config.html#a6830782bb94ef83adad81f53fd96a4b9">channel</a>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="structgr_1_1sfcwRadar_1_1channel__config.html#a431d818923a9840ebe609792d86afdfe">   20</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="structgr_1_1sfcwRadar_1_1channel__config.html#a431d818923a9840ebe609792d86afdfe">frequency</a>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="structgr_1_1sfcwRadar_1_1channel__config.html#a9af74c208e57cc787cd547c801c7e5e5">   21</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="structgr_1_1sfcwRadar_1_1channel__config.html#a9af74c208e57cc787cd547c801c7e5e5">bandwidth</a>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="structgr_1_1sfcwRadar_1_1channel__config.html#a9d6712af092385ff5300f15df17f10c6">   22</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="structgr_1_1sfcwRadar_1_1channel__config.html#a9d6712af092385ff5300f15df17f10c6">samplerate</a>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="structgr_1_1sfcwRadar_1_1channel__config.html#a83a3552d336def7afd4b73b24b95f822">   23</a></span>&#160;    bladerf_gain <a class="code" href="structgr_1_1sfcwRadar_1_1channel__config.html#a83a3552d336def7afd4b73b24b95f822">gain</a>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;};</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl.html">   26</a></span>&#160;<span class="keyword">class </span><a class="code" href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl.html">bladerfEchoTimer_cc_impl</a> : <span class="keyword">public</span> <a class="code" href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc.html">bladerfEchoTimer_cc</a></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;{</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">float</span> d_amplitude;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    gr_complex d_phase;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">size_t</span> d_burst_len;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">float</span> d_frequency;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="comment"></span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">    /**</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">     * bladerf device related </span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">     * */</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">struct </span><a class="code" href="structgr_1_1sfcwRadar_1_1channel__config.html">channel_config</a> config;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keyword">struct </span>bladerf *dev = NULL;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">struct </span>bladerf_devinfo dev_info;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">size_t</span> d_num_buffers;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">size_t</span> d_buffer_size;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">size_t</span> d_num_transfers;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> timeout_ms = 2000;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">int</span> d_samp_rate;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="comment"></span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">    /**</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">     * Stepped frequency radar parameters</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">     * */</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">int</span> d_num_steps;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    bladerf_frequency d_start_freq;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    bladerf_frequency d_freq_step;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    bladerf_frequency d_currrent_freq;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    bladerf_frequency d_max_freq;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">int</span> d_freq_index;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">struct </span>bladerf_quick_tune *d_quick_tunes_tx;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">struct </span>bladerf_quick_tune *d_quick_tunes_rx;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="comment">// Sample-handling buffers</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    int16_t *_16icbuf_in;              <span class="comment">/**&lt; raw samples to bladeRF */</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    gr_complex *_32fcbuf_in;           <span class="comment">/**&lt; intermediate buffer from upstream block */</span> </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    int16_t *_16icbuf_out;              <span class="comment">/**&lt; raw samples from bladeRF */</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    gr_complex *_32fcbuf_out;           <span class="comment">/**&lt; intermediate buffer to downstream block*/</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="comment">/* Scaling factor used when converting from int16_t to float */</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">float</span> SCALING_FACTOR = 2048.0f;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">int</span> configure_channel(<span class="keyword">struct</span> bladerf *dev, <span class="keyword">struct</span> <a class="code" href="structgr_1_1sfcwRadar_1_1channel__config.html">channel_config</a> *c);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordtype">int</span> init_sync(<span class="keyword">struct</span> bladerf *dev); </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordtype">void</span> recv();</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordtype">int</span> wait_for_timestamp(<span class="keyword">struct</span> bladerf *dev, bladerf_direction dir, uint64_t timestamp, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> timeout_ms);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordtype">void</span> send(); </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordtype">void</span> set_tx_freq();</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">void</span> set_rx_freq();</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">int</span> set_quick_tune();</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordtype">int</span> quick_tune(<span class="keywordtype">int</span> index);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <a class="code" href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl.html#ab378a8434fe89d183f2c7f518e2d5e13">bladerfEchoTimer_cc_impl</a>(bladerf_frequency start_freq,</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                             <span class="keywordtype">int</span> num_steps,</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                             bladerf_frequency freq_step,</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                             <span class="keywordtype">int</span> samp_rate,</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                             bladerf_gain rx_gain,</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                             bladerf_gain tx_gain,</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                             bladerf_gain ref_gain,</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                             <span class="keywordtype">size_t</span> burst_len,</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                             <span class="keywordtype">size_t</span> num_buffers,</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                             <span class="keywordtype">size_t</span> buffer_size,</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                             <span class="keywordtype">size_t</span> num_transfers);</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <a class="code" href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl.html#a6aa877656429e60622143c029b3405c7">~bladerfEchoTimer_cc_impl</a>();</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    </div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl.html#afc9a0ec551db30c5bd3ae6c5a5a735f3">   96</a></span>&#160;    gr::thread::thread <a class="code" href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl.html#afc9a0ec551db30c5bd3ae6c5a5a735f3">d_thread_send</a>; </div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl.html#a2834e50a049486bb8ab8b08df007e71b">   97</a></span>&#160;    gr::thread::thread <a class="code" href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl.html#a2834e50a049486bb8ab8b08df007e71b">d_thread_recv</a>; </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl.html#a5e07d65286f4a62255b8291a1c2b2450">   99</a></span>&#160;    gr::thread::thread <a class="code" href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl.html#a5e07d65286f4a62255b8291a1c2b2450">d_thread_setTxFreq</a>;</div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl.html#af71d61bc970c2b7421af85b63d68fb7c">  100</a></span>&#160;    gr::thread::thread <a class="code" href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl.html#af71d61bc970c2b7421af85b63d68fb7c">d_thread_setRxFreq</a>;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl.html#a710d9986e3b753809ad63e74ca675fcf">  102</a></span>&#160;    std::chrono::steady_clock::time_point <a class="code" href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl.html#a710d9986e3b753809ad63e74ca675fcf">begin</a> = std::chrono::steady_clock::now();</div>
+<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl.html#acc994884acc5dcaa48e84cd591c6d814">  103</a></span>&#160;    std::chrono::steady_clock::time_point <a class="code" href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl.html#acc994884acc5dcaa48e84cd591c6d814">end</a> = std::chrono::steady_clock::now();</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="comment">// Where all the action really happens</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl.html#a2ea2b5f62ec490bd37a206755fffabcf">work</a>(<span class="keywordtype">int</span> noutput_items,</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;             gr_vector_const_void_star&amp; input_items,</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;             gr_vector_void_star&amp; output_items);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;};</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;} <span class="comment">// namespace sfcwRadar</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;} <span class="comment">// namespace gr</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* INCLUDED_SFCWRADAR_BLADERFECHOTIMER_CC_IMPL_H */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="aclassgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl_html_af71d61bc970c2b7421af85b63d68fb7c"><div class="ttname"><a href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl.html#af71d61bc970c2b7421af85b63d68fb7c">gr::sfcwRadar::bladerfEchoTimer_cc_impl::d_thread_setRxFreq</a></div><div class="ttdeci">gr::thread::thread d_thread_setRxFreq</div><div class="ttdef"><b>Definition:</b> bladerfEchoTimer_cc_impl.h:100</div></div>
 <div class="ttc" id="aclassgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl_html_a2ea2b5f62ec490bd37a206755fffabcf"><div class="ttname"><a href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl.html#a2ea2b5f62ec490bd37a206755fffabcf">gr::sfcwRadar::bladerfEchoTimer_cc_impl::work</a></div><div class="ttdeci">int work(int noutput_items, gr_vector_const_void_star &amp;input_items, gr_vector_void_star &amp;output_items)</div></div>
 <div class="ttc" id="abladerfEchoTimer__cc_8h_html"><div class="ttname"><a href="bladerfEchoTimer__cc_8h.html">bladerfEchoTimer_cc.h</a></div></div>
 <div class="ttc" id="aclassgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl_html_a6aa877656429e60622143c029b3405c7"><div class="ttname"><a href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl.html#a6aa877656429e60622143c029b3405c7">gr::sfcwRadar::bladerfEchoTimer_cc_impl::~bladerfEchoTimer_cc_impl</a></div><div class="ttdeci">~bladerfEchoTimer_cc_impl()</div></div>
 <div class="ttc" id="aclassgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl_html_ab378a8434fe89d183f2c7f518e2d5e13"><div class="ttname"><a href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl.html#ab378a8434fe89d183f2c7f518e2d5e13">gr::sfcwRadar::bladerfEchoTimer_cc_impl::bladerfEchoTimer_cc_impl</a></div><div class="ttdeci">bladerfEchoTimer_cc_impl(bladerf_frequency start_freq, int num_steps, bladerf_frequency freq_step, int samp_rate, bladerf_gain rx_gain, bladerf_gain tx_gain, bladerf_gain ref_gain, size_t burst_len, size_t num_buffers, size_t buffer_size, size_t num_transfers)</div></div>
-<div class="ttc" id="aclassgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl_html"><div class="ttname"><a href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl.html">gr::sfcwRadar::bladerfEchoTimer_cc_impl</a></div><div class="ttdef"><b>Definition:</b> bladerfEchoTimer_cc_impl.h:18</div></div>
+<div class="ttc" id="aclassgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl_html"><div class="ttname"><a href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl.html">gr::sfcwRadar::bladerfEchoTimer_cc_impl</a></div><div class="ttdef"><b>Definition:</b> bladerfEchoTimer_cc_impl.h:26</div></div>
+<div class="ttc" id="astructgr_1_1sfcwRadar_1_1channel__config_html_a6830782bb94ef83adad81f53fd96a4b9"><div class="ttname"><a href="structgr_1_1sfcwRadar_1_1channel__config.html#a6830782bb94ef83adad81f53fd96a4b9">gr::sfcwRadar::channel_config::channel</a></div><div class="ttdeci">bladerf_channel channel</div><div class="ttdef"><b>Definition:</b> bladerfEchoTimer_cc_impl.h:19</div></div>
+<div class="ttc" id="astructgr_1_1sfcwRadar_1_1channel__config_html_a9d6712af092385ff5300f15df17f10c6"><div class="ttname"><a href="structgr_1_1sfcwRadar_1_1channel__config.html#a9d6712af092385ff5300f15df17f10c6">gr::sfcwRadar::channel_config::samplerate</a></div><div class="ttdeci">unsigned int samplerate</div><div class="ttdef"><b>Definition:</b> bladerfEchoTimer_cc_impl.h:22</div></div>
+<div class="ttc" id="astructgr_1_1sfcwRadar_1_1channel__config_html_a431d818923a9840ebe609792d86afdfe"><div class="ttname"><a href="structgr_1_1sfcwRadar_1_1channel__config.html#a431d818923a9840ebe609792d86afdfe">gr::sfcwRadar::channel_config::frequency</a></div><div class="ttdeci">unsigned int frequency</div><div class="ttdef"><b>Definition:</b> bladerfEchoTimer_cc_impl.h:20</div></div>
+<div class="ttc" id="aclassgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl_html_afc9a0ec551db30c5bd3ae6c5a5a735f3"><div class="ttname"><a href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl.html#afc9a0ec551db30c5bd3ae6c5a5a735f3">gr::sfcwRadar::bladerfEchoTimer_cc_impl::d_thread_send</a></div><div class="ttdeci">gr::thread::thread d_thread_send</div><div class="ttdef"><b>Definition:</b> bladerfEchoTimer_cc_impl.h:96</div></div>
+<div class="ttc" id="astructgr_1_1sfcwRadar_1_1channel__config_html_a9af74c208e57cc787cd547c801c7e5e5"><div class="ttname"><a href="structgr_1_1sfcwRadar_1_1channel__config.html#a9af74c208e57cc787cd547c801c7e5e5">gr::sfcwRadar::channel_config::bandwidth</a></div><div class="ttdeci">unsigned int bandwidth</div><div class="ttdef"><b>Definition:</b> bladerfEchoTimer_cc_impl.h:21</div></div>
+<div class="ttc" id="aclassgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl_html_a710d9986e3b753809ad63e74ca675fcf"><div class="ttname"><a href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl.html#a710d9986e3b753809ad63e74ca675fcf">gr::sfcwRadar::bladerfEchoTimer_cc_impl::begin</a></div><div class="ttdeci">std::chrono::steady_clock::time_point begin</div><div class="ttdef"><b>Definition:</b> bladerfEchoTimer_cc_impl.h:102</div></div>
+<div class="ttc" id="astructgr_1_1sfcwRadar_1_1channel__config_html"><div class="ttname"><a href="structgr_1_1sfcwRadar_1_1channel__config.html">gr::sfcwRadar::channel_config</a></div><div class="ttdef"><b>Definition:</b> bladerfEchoTimer_cc_impl.h:18</div></div>
+<div class="ttc" id="aclassgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl_html_acc994884acc5dcaa48e84cd591c6d814"><div class="ttname"><a href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl.html#acc994884acc5dcaa48e84cd591c6d814">gr::sfcwRadar::bladerfEchoTimer_cc_impl::end</a></div><div class="ttdeci">std::chrono::steady_clock::time_point end</div><div class="ttdef"><b>Definition:</b> bladerfEchoTimer_cc_impl.h:103</div></div>
 <div class="ttc" id="anamespacegr_html"><div class="ttname"><a href="namespacegr.html">gr</a></div><div class="ttdef"><b>Definition:</b> bladerfEchoTimer_cc.h:15</div></div>
 <div class="ttc" id="aclassgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc_html"><div class="ttname"><a href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc.html">gr::sfcwRadar::bladerfEchoTimer_cc</a></div><div class="ttdoc">&lt;+description of block+&gt;</div><div class="ttdef"><b>Definition:</b> bladerfEchoTimer_cc.h:23</div></div>
+<div class="ttc" id="aclassgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl_html_a5e07d65286f4a62255b8291a1c2b2450"><div class="ttname"><a href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl.html#a5e07d65286f4a62255b8291a1c2b2450">gr::sfcwRadar::bladerfEchoTimer_cc_impl::d_thread_setTxFreq</a></div><div class="ttdeci">gr::thread::thread d_thread_setTxFreq</div><div class="ttdef"><b>Definition:</b> bladerfEchoTimer_cc_impl.h:99</div></div>
+<div class="ttc" id="aclassgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl_html_a2834e50a049486bb8ab8b08df007e71b"><div class="ttname"><a href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl.html#a2834e50a049486bb8ab8b08df007e71b">gr::sfcwRadar::bladerfEchoTimer_cc_impl::d_thread_recv</a></div><div class="ttdeci">gr::thread::thread d_thread_recv</div><div class="ttdef"><b>Definition:</b> bladerfEchoTimer_cc_impl.h:97</div></div>
+<div class="ttc" id="astructgr_1_1sfcwRadar_1_1channel__config_html_a83a3552d336def7afd4b73b24b95f822"><div class="ttname"><a href="structgr_1_1sfcwRadar_1_1channel__config.html#a83a3552d336def7afd4b73b24b95f822">gr::sfcwRadar::channel_config::gain</a></div><div class="ttdeci">bladerf_gain gain</div><div class="ttdef"><b>Definition:</b> bladerfEchoTimer_cc_impl.h:23</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

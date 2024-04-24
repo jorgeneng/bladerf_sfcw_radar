@@ -1,9 +1,6 @@
 <map id="pydoc_macros.h" name="pydoc_macros.h">
-<area shape="rect" id="node1" title=" " alt="" coords="457,5,576,32"/>
-<area shape="rect" id="node2" href="$build_2test__modules_2gnuradio_2sfcwRadar_2bindings_2docstrings_2bladerfEchoTimer__cc__pydoc__template_8h.html" title=" " alt="" coords="5,80,151,121"/>
-<area shape="rect" id="node3" href="$build_2test__modules_2gnuradio_2sfcwRadar_2bindings_2docstrings_2bladerfRadar__cc__pydoc__template_8h.html" title=" " alt="" coords="175,80,333,121"/>
-<area shape="rect" id="node4" href="$build_2test__modules_2gnuradio_2sfcwRadar_2bindings_2docstrings_2bladerfRadarBurst__cc__pydoc__template_8h.html" title=" " alt="" coords="357,80,505,121"/>
-<area shape="rect" id="node5" href="$python_2sfcwRadar_2bindings_2docstrings_2bladerfEchoTimer__cc__pydoc__template_8h.html" title=" " alt="" coords="529,80,675,121"/>
-<area shape="rect" id="node6" href="$python_2sfcwRadar_2bindings_2docstrings_2bladerfRadar__cc__pydoc__template_8h.html" title=" " alt="" coords="699,80,857,121"/>
-<area shape="rect" id="node7" href="$python_2sfcwRadar_2bindings_2docstrings_2bladerfRadarBurst__cc__pydoc__template_8h.html" title=" " alt="" coords="881,80,1029,121"/>
+<area shape="rect" id="node1" title=" " alt="" coords="195,5,313,32"/>
+<area shape="rect" id="node2" href="$bladerfEchoTimer__cc__pydoc__template_8h.html" title=" " alt="" coords="5,80,151,121"/>
+<area shape="rect" id="node3" href="$bladerfRadar__cc__pydoc__template_8h.html" title=" " alt="" coords="175,80,333,121"/>
+<area shape="rect" id="node4" href="$bladerfRadarBurst__cc__pydoc__template_8h.html" title=" " alt="" coords="357,80,505,121"/>
 </map>

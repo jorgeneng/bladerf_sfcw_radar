@@ -45,6 +45,7 @@
         <label>libbladeRF.h</label>
       </node>
     </incdepgraph>
+    <innerclass refid="structgr_1_1sfcwRadar_1_1channel__config" prot="public">gr::sfcwRadar::channel_config</innerclass>
     <innerclass refid="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl" prot="public">gr::sfcwRadar::bladerfEchoTimer_cc_impl</innerclass>
     <innernamespace refid="namespacegr">gr</innernamespace>
     <innernamespace refid="namespacegr_1_1sfcwRadar">gr::sfcwRadar</innernamespace>

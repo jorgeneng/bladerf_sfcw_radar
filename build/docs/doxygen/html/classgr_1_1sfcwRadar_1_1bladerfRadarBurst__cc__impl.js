@@ -3,6 +3,7 @@ var classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl =
     [ "bladerfRadarBurst_cc_impl", "classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl.html#a7bd69757f9fdaac6deca2b46bb955596", null ],
     [ "~bladerfRadarBurst_cc_impl", "classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl.html#a9caebe2fb53ca4442f1b6d525151a486", null ],
     [ "calculate_output_stream_length", "classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl.html#a35a0ba35a13b1726b944fc417c7eb896", null ],
+    [ "get_current_gps", "classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl.html#ae975b9d7d9e2a3ce854608019019a19e", null ],
     [ "set_ref_gain", "classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl.html#a7c7828e1057af42964cec2515db58680", null ],
     [ "set_rx_gain", "classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl.html#af06fc46dcf3a37a070ace69c9fae46b8", null ],
     [ "set_tx_gain", "classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl.html#a45f8341fd9dd87138efc037d243e04f5", null ],

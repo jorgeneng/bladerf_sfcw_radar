@@ -46,6 +46,7 @@
       </node>
     </incdepgraph>
     <innerclass refid="structgr_1_1sfcwRadar_1_1channel__config" prot="public">gr::sfcwRadar::channel_config</innerclass>
+    <innerclass refid="structgr_1_1sfcwRadar_1_1bladerf__quick__tune__info" prot="public">gr::sfcwRadar::bladerf_quick_tune_info</innerclass>
     <innerclass refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl" prot="public">gr::sfcwRadar::bladerfRadarBurst_cc_impl</innerclass>
     <innernamespace refid="namespacegr">gr</innernamespace>
     <innernamespace refid="namespacegr_1_1sfcwRadar">gr::sfcwRadar</innernamespace>

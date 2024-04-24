@@ -51,6 +51,7 @@ $(document).ready(function(){initNavTree('classgr_1_1sfcwRadar_1_1bladerfEchoTim
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">gr::sfcwRadar::bladerfEchoTimer_cc_impl Class Reference</div>  </div>
@@ -73,6 +74,21 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a6aa877656429e60622143c029b3405c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ea2b5f62ec490bd37a206755fffabcf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl.html#a2ea2b5f62ec490bd37a206755fffabcf">work</a> (int noutput_items, gr_vector_const_void_star &amp;input_items, gr_vector_void_star &amp;output_items)</td></tr>
 <tr class="separator:a2ea2b5f62ec490bd37a206755fffabcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:afc9a0ec551db30c5bd3ae6c5a5a735f3"><td class="memItemLeft" align="right" valign="top">gr::thread::thread&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl.html#afc9a0ec551db30c5bd3ae6c5a5a735f3">d_thread_send</a></td></tr>
+<tr class="separator:afc9a0ec551db30c5bd3ae6c5a5a735f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2834e50a049486bb8ab8b08df007e71b"><td class="memItemLeft" align="right" valign="top">gr::thread::thread&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl.html#a2834e50a049486bb8ab8b08df007e71b">d_thread_recv</a></td></tr>
+<tr class="separator:a2834e50a049486bb8ab8b08df007e71b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e07d65286f4a62255b8291a1c2b2450"><td class="memItemLeft" align="right" valign="top">gr::thread::thread&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl.html#a5e07d65286f4a62255b8291a1c2b2450">d_thread_setTxFreq</a></td></tr>
+<tr class="separator:a5e07d65286f4a62255b8291a1c2b2450"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af71d61bc970c2b7421af85b63d68fb7c"><td class="memItemLeft" align="right" valign="top">gr::thread::thread&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl.html#af71d61bc970c2b7421af85b63d68fb7c">d_thread_setRxFreq</a></td></tr>
+<tr class="separator:af71d61bc970c2b7421af85b63d68fb7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a710d9986e3b753809ad63e74ca675fcf"><td class="memItemLeft" align="right" valign="top">std::chrono::steady_clock::time_point&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl.html#a710d9986e3b753809ad63e74ca675fcf">begin</a> = std::chrono::steady_clock::now()</td></tr>
+<tr class="separator:a710d9986e3b753809ad63e74ca675fcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc994884acc5dcaa48e84cd591c6d814"><td class="memItemLeft" align="right" valign="top">std::chrono::steady_clock::time_point&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl.html#acc994884acc5dcaa48e84cd591c6d814">end</a> = std::chrono::steady_clock::now()</td></tr>
+<tr class="separator:acc994884acc5dcaa48e84cd591c6d814"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -213,6 +229,91 @@ Additional Inherited Members</h2></td></tr>
           <td></td>
           <td>)</td>
           <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a710d9986e3b753809ad63e74ca675fcf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a710d9986e3b753809ad63e74ca675fcf">&#9670;&nbsp;</a></span>begin</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::chrono::steady_clock::time_point gr::sfcwRadar::bladerfEchoTimer_cc_impl::begin = std::chrono::steady_clock::now()</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2834e50a049486bb8ab8b08df007e71b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2834e50a049486bb8ab8b08df007e71b">&#9670;&nbsp;</a></span>d_thread_recv</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">gr::thread::thread gr::sfcwRadar::bladerfEchoTimer_cc_impl::d_thread_recv</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afc9a0ec551db30c5bd3ae6c5a5a735f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc9a0ec551db30c5bd3ae6c5a5a735f3">&#9670;&nbsp;</a></span>d_thread_send</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">gr::thread::thread gr::sfcwRadar::bladerfEchoTimer_cc_impl::d_thread_send</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af71d61bc970c2b7421af85b63d68fb7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af71d61bc970c2b7421af85b63d68fb7c">&#9670;&nbsp;</a></span>d_thread_setRxFreq</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">gr::thread::thread gr::sfcwRadar::bladerfEchoTimer_cc_impl::d_thread_setRxFreq</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5e07d65286f4a62255b8291a1c2b2450"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e07d65286f4a62255b8291a1c2b2450">&#9670;&nbsp;</a></span>d_thread_setTxFreq</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">gr::thread::thread gr::sfcwRadar::bladerfEchoTimer_cc_impl::d_thread_setTxFreq</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acc994884acc5dcaa48e84cd591c6d814"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc994884acc5dcaa48e84cd591c6d814">&#9670;&nbsp;</a></span>end</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::chrono::steady_clock::time_point gr::sfcwRadar::bladerfEchoTimer_cc_impl::end = std::chrono::steady_clock::now()</td>
         </tr>
       </table>
 </div><div class="memdoc">

@@ -63,10 +63,10 @@ class cw_radar_simulation(gr.top_block, Qt.QWidget):
         ##################################################
         # Variables
         ##################################################
-        self.burst_len = burst_len = 2**14
-        self.tone_freq = tone_freq = [-5e6,5e6]
+        self.burst_len = burst_len = 2**13
+        self.tone_freq = tone_freq = [-300e3,300e6]
         self.samp_rate = samp_rate = 15e6
-        self.fft_size_cor = fft_size_cor = int(burst_len/2)
+        self.fft_size_cor = fft_size_cor = burst_len
         self.tone_fft_indices = tone_fft_indices = [int(((samp_rate/2)+tone_freq[0])/(samp_rate/fft_size_cor)),int(tone_freq[1]/(samp_rate/fft_size_cor)+fft_size_cor/2)]
         self.ob_range_ = ob_range_ = 1
         self.ob_range = ob_range = 1
@@ -319,7 +319,7 @@ class cw_radar_simulation(gr.top_block, Qt.QWidget):
 
     def set_burst_len(self, burst_len):
         self.burst_len = burst_len
-        self.set_fft_size_cor(int(self.burst_len/2))
+        self.set_fft_size_cor(self.burst_len)
 
     def get_tone_freq(self):
         return self.tone_freq

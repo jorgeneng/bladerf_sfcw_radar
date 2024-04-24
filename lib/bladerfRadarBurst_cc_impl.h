@@ -46,24 +46,32 @@ private:
     size_t d_buffer_size;
     size_t d_num_transfers;
     const unsigned int timeout_ms = 2000;
-    size_t d_burst_len;
 
     /**
      * Stepped frequency radar parameters
      * */
-    int d_num_steps;
-    bladerf_frequency d_start_freq;
-    bladerf_frequency d_freq_step;
-    bladerf_frequency d_currrent_freq;
-    bladerf_frequency d_max_freq;
+    size_t d_burst_len;
+    int d_num_steps; // number of frequency steps
+    bladerf_frequency d_start_freq; //the radar starts from this frequency
+    bladerf_frequency d_freq_step;  //the bandwidth of each frequency step
+    bladerf_frequency d_currrent_freq;  //current frequency of the radar
+    bladerf_frequency d_max_freq; //the radar goes back to d_start_freq until it reaches here
     int d_freq_index;
     //struct bladerf_quick_tune *d_quick_tunes_tx;
     struct bladerf_quick_tune_info *d_quick_tunes_tx;
     //struct bladerf_quick_tune *d_quick_tunes_rx;
     struct bladerf_quick_tune_info *d_quick_tunes_rx;
 
+    /**
+     * Change these flags upon reception of messages
+     * d_scan = true && d_continuous_scan_flag = true. scan continousely
+     * d_scan = true && d_continuous_scan_flag = false. scan only once
+     * otherwise standby
+     * */
     bool d_scan = false;
     bool d_continuous_scan_flag = false;
+    float d_gps_x = 0;
+    float d_gps_y = 0;
 
     // Sample-handling buffers
     unsigned int d_num_samples_to_send;
@@ -161,6 +169,8 @@ public:
     int set_rx_gain(bladerf_gain gain);
     int set_ref_gain(bladerf_gain gain);
     int set_tx_gain(bladerf_gain gain);
+
+    void update_gps();
 
     // Where all the action really happens
     int work(int noutput_items,

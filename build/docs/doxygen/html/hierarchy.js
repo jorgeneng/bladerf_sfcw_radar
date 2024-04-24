@@ -1,5 +1,6 @@
 var hierarchy =
 [
+    [ "gr::sfcwRadar::bladerf_quick_tune_info", "structgr_1_1sfcwRadar_1_1bladerf__quick__tune__info.html", null ],
     [ "gr::sfcwRadar::channel_config", "structgr_1_1sfcwRadar_1_1channel__config.html", null ],
     [ "sync_block", null, [
       [ "gr::sfcwRadar::bladerfEchoTimer_cc", "classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc.html", [

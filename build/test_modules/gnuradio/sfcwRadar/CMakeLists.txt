@@ -24,7 +24,9 @@ gr_python_install(FILES
     frequencyTunner.py
     radarTxRx.py
     responseCollector.py
-    radarTxRxSimulator.py DESTINATION ${GR_PYTHON_DIR}/gnuradio/sfcwRadar)
+    radarTxRxSimulator.py
+    rangeProfileSink.py
+    DESTINATION ${GR_PYTHON_DIR}/gnuradio/sfcwRadar)
 
 ########################################################################
 # Handle the unit tests

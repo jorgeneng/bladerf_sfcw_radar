@@ -144,7 +144,7 @@ bladerfRadarBurst_cc_impl::bladerfRadarBurst_cc_impl(bladerf_frequency start_fre
         config.frequency = start_freq;
         config.bandwidth = samp_rate/2;
         config.samplerate = samp_rate;
-        config.gain = 10;
+        config.gain = ref_gain;
         status = configure_channel(dev, &config);
         if (status !=0){
             std::cerr << "RX Channel " << config.channel << ": configure_channel failed" << std::endl;
@@ -546,6 +546,10 @@ int bladerfRadarBurst_cc_impl::set_tx_gain(bladerf_gain gain){
     return status;
 }
 
+void bladerfRadarBurst_cc_impl::update_gps(){
+    d_gps_x = d_gps_x + 1.0;
+}
+
 int bladerfRadarBurst_cc_impl::work(int noutput_items,
                                     gr_vector_int& ninput_items,
                                     gr_vector_const_void_star& input_items,
@@ -587,7 +591,7 @@ int bladerfRadarBurst_cc_impl::work(int noutput_items,
         quick_tune(d_freq_index);
         
     }else{
-        //do nothing is no "scan" message received
+        //do nothing if no "scan" message received
         return 0;
     }
 
@@ -598,9 +602,19 @@ int bladerfRadarBurst_cc_impl::work(int noutput_items,
     d_num_samples_to_recv = ninput_items[0]*2;
     
     //add a frequency tag
-    pmt::pmt_t current_freq_tag_key = pmt::string_to_symbol("c_freq");
-    pmt::pmt_t current_freq_tag_value = pmt::from_uint64(d_currrent_freq);
-    add_item_tag(0,nitems_written(0),current_freq_tag_key,current_freq_tag_value);
+    //pmt::pmt_t current_freq_tag_key = pmt::string_to_symbol("c_freq");
+    //pmt::pmt_t current_freq_tag_value = pmt::from_uint64(d_currrent_freq);
+    //add_item_tag(0,nitems_written(0),current_freq_tag_key,current_freq_tag_value);
+
+    //add gps tag
+    if(d_freq_index == 0){
+        update_gps();
+        pmt::pmt_t current_gps_tag_key = pmt::string_to_symbol("c_gps");
+        pmt::pmt_t gps_x = pmt::from_double(d_gps_x);
+        pmt::pmt_t gps_y = pmt::from_double(d_gps_y);
+        pmt::pmt_t current_gps_tag_value = pmt::make_tuple(gps_x,gps_y);
+        add_item_tag(0,nitems_written(0),current_gps_tag_key, current_gps_tag_value);
+    }
     
     /**
      * process input_items
