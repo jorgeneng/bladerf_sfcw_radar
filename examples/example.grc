@@ -37,7 +37,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: 2**13
+    value: 2**12
   states:
     bus_sink: false
     bus_source: false
@@ -49,7 +49,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: '64'
+    value: '128'
   states:
     bus_sink: false
     bus_source: false
@@ -61,7 +61,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: '20'
+    value: '10'
   states:
     bus_sink: false
     bus_source: false
@@ -97,7 +97,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: '40'
+    value: '30'
   states:
     bus_sink: false
     bus_source: false
@@ -201,6 +201,22 @@ blocks:
     coordinate: [768, 528.0]
     rotation: 0
     state: enabled
+- name: blocks_complex_to_mag_0
+  id: blocks_complex_to_mag
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [992, 632.0]
+    rotation: 0
+    state: enabled
 - name: blocks_complex_to_mag_squared_0
   id: blocks_complex_to_mag_squared
   parameters:
@@ -216,7 +232,7 @@ blocks:
     bus_structure: null
     coordinate: [992, 672.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: blocks_integrate_xx_0
   id: blocks_integrate_xx
   parameters:
@@ -575,8 +591,8 @@ blocks:
     y_end_value: '0.0'
     y_label: '""'
     y_start_value: '0.0'
-    zmax: 1e7
-    zmin: 1e6
+    zmax: '200'
+    zmin: '0'
   states:
     bus_sink: false
     bus_source: false
@@ -865,7 +881,7 @@ blocks:
     width8: '1'
     width9: '1'
     ylabel: Amplitude
-    ymax: '300'
+    ymax: '2'
     ymin: '-1'
     yunit: '""'
   states:
@@ -1057,6 +1073,8 @@ connections:
 - [blocks_add_xx_0, '0', blocks_stream_to_tagged_stream_0, '0']
 - [blocks_complex_to_arg_0, '0', qtgui_time_sink_x_0, '0']
 - [blocks_complex_to_arg_1, '0', qtgui_time_sink_x_2, '0']
+- [blocks_complex_to_mag_0, '0', qtgui_time_raster_sink_x_0, '0']
+- [blocks_complex_to_mag_0, '0', qtgui_time_sink_x_1_0_0, '0']
 - [blocks_complex_to_mag_squared_0, '0', blocks_nlog10_ff_0, '0']
 - [blocks_complex_to_mag_squared_0, '0', qtgui_time_raster_sink_x_0, '0']
 - [blocks_complex_to_mag_squared_0, '0', qtgui_time_sink_x_1_0_0, '0']
@@ -1076,6 +1094,7 @@ connections:
 - [blocks_tag_gate_0_0, '0', qtgui_freq_sink_x_0, '0']
 - [blocks_tag_gate_0_0, '0', qtgui_time_sink_x_1, '0']
 - [blocks_throttle2_0, '0', sfcwRadar_bladerfRadarBurst_cc_0, '0']
+- [blocks_vector_to_stream_0, '0', blocks_complex_to_mag_0, '0']
 - [blocks_vector_to_stream_0, '0', blocks_complex_to_mag_squared_0, '0']
 - [blocks_vector_to_stream_0, '0', blocks_multiply_const_xx_0, '0']
 - [blocks_vector_to_stream_0, '0', sfcwRadar_rangeProfileSink_0, '0']

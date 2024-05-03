@@ -32,13 +32,13 @@ class rangeProfileSink(gr.sync_block):
         tagTuple = self.get_tags_in_window(0,0,len(input_items[0]))
         for tag in tagTuple:
             if(pmt.to_python(tag.key) == "c_gps"):
-                print("received a new scan")
+                #print("received a new scan")
                 gps = pmt.to_python(tag.value)
-                print(gps)
-                print(type(in0[0]))
-                print(in0.shape)
-                newScan = {"gps":gps,"rangProfile_real":numpy.real(in0).tolist(),"rangProfile_imag":numpy.imag(in0).tolist()}
-                print(newScan)
+                #print(gps)
+                #print(type(in0[0]))
+                #print(in0.shape)
+                newScan = {"gps":gps,"rangeProfile_real":numpy.real(in0).tolist(),"rangeProfile_imag":numpy.imag(in0).tolist()}
+                #print(newScan)
                 with open(self.dir+'/scan_'+str(self.numScanReceived)+'.json','w') as f:
                     json.dump(newScan,f)
                 self.numScanReceived = self.numScanReceived + 1
