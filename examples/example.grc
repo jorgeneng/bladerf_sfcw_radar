@@ -73,7 +73,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: '30'
+    value: '10'
   states:
     bus_sink: false
     bus_source: false
@@ -97,7 +97,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: '30'
+    value: '10'
   states:
     bus_sink: false
     bus_source: false
@@ -230,7 +230,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [992, 672.0]
+    coordinate: [1056, 688.0]
     rotation: 0
     state: disabled
 - name: blocks_integrate_xx_0
@@ -282,7 +282,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [912, 740.0]
+    coordinate: [1024, 756.0]
     rotation: 0
     state: disabled
 - name: blocks_multiply_const_xx_0_0
@@ -591,8 +591,8 @@ blocks:
     y_end_value: '0.0'
     y_label: '""'
     y_start_value: '0.0'
-    zmax: '200'
-    zmin: '0'
+    zmax: '5000'
+    zmin: '2000'
   states:
     bus_sink: false
     bus_source: false
@@ -1062,7 +1062,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1120, 828.0]
+    coordinate: [1024, 836.0]
     rotation: 0
     state: disabled
 

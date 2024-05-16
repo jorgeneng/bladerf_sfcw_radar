@@ -220,8 +220,8 @@ int bladerfRadarBurst_cc_impl::configure_channel(struct bladerf *dev, struct cha
         std::cout << "Set chennel" << c->channel << ", samplerate: " << actual_value << std::endl;
     }
 
-    status = bladerf_set_gain_mode(dev, c->channel, BLADERF_GAIN_MANUAL);
-    //status = bladerf_set_gain_mode(dev, c->channel, BLADERF_GAIN_HYBRID_AGC);
+    //status = bladerf_set_gain_mode(dev, c->channel, BLADERF_GAIN_MANUAL);
+    status = bladerf_set_gain_mode(dev, c->channel, BLADERF_GAIN_HYBRID_AGC);
     if (status != 0) {
         fprintf(stderr, "Failed to set gain mode = %u: %s\n", c->channel,
         bladerf_strerror(status));

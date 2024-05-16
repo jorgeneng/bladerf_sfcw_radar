@@ -260,7 +260,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [40, 484.0]
+    coordinate: [40, 396.0]
     rotation: 0
     state: true
 - name: blocks_add_xx_2
@@ -613,7 +613,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [256, 316.0]
+    coordinate: [248, 388.0]
     rotation: 0
     state: enabled
 - name: blocks_var_to_msg_0

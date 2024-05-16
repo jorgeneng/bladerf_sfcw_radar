@@ -62,9 +62,9 @@ class example(gr.top_block, Qt.QWidget):
         ##################################################
         # Variables
         ##################################################
-        self.tx_gain = tx_gain = 30
+        self.tx_gain = tx_gain = 10
         self.samp_rate = samp_rate = 2e6
-        self.rx_gain = rx_gain = 30
+        self.rx_gain = rx_gain = 10
         self.ref_gain = ref_gain = 10
         self.num_steps = num_steps = 128
         self.burst_len = burst_len = 2**12
@@ -254,7 +254,7 @@ class example(gr.top_block, Qt.QWidget):
         )
 
         self.qtgui_time_raster_sink_x_0.set_update_time(0.1)
-        self.qtgui_time_raster_sink_x_0.set_intensity_range(0, 200)
+        self.qtgui_time_raster_sink_x_0.set_intensity_range(2000, 5000)
         self.qtgui_time_raster_sink_x_0.enable_grid(True)
         self.qtgui_time_raster_sink_x_0.enable_axis_labels(True)
         self.qtgui_time_raster_sink_x_0.set_x_label("")
