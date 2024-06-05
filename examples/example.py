@@ -10,12 +10,14 @@
 
 from PyQt5 import Qt
 from gnuradio import qtgui
+from PyQt5 import QtCore
 from gnuradio import analog
 from gnuradio import blocks
 from gnuradio import fft
 from gnuradio.fft import window
-from gnuradio import gr
+from gnuradio import filter
 from gnuradio.filter import firdes
+from gnuradio import gr
 import sys
 import signal
 from PyQt5 import Qt
@@ -62,10 +64,11 @@ class example(gr.top_block, Qt.QWidget):
         ##################################################
         # Variables
         ##################################################
-        self.tx_gain = tx_gain = 10
-        self.samp_rate = samp_rate = 2e6
-        self.rx_gain = rx_gain = 10
-        self.ref_gain = ref_gain = 10
+        self.y_max = y_max = 15
+        self.tx_gain = tx_gain = 30
+        self.samp_rate = samp_rate = 10e6
+        self.rx_gain = rx_gain = 20
+        self.ref_gain = ref_gain = 30
         self.num_steps = num_steps = 128
         self.burst_len = burst_len = 2**12
 
@@ -73,6 +76,9 @@ class example(gr.top_block, Qt.QWidget):
         # Blocks
         ##################################################
 
+        self._y_max_range = qtgui.Range(10, 400, 1, 15, 200)
+        self._y_max_win = qtgui.RangeWidget(self._y_max_range, self.set_y_max, "'y_max'", "counter_slider", float, QtCore.Qt.Horizontal)
+        self.top_layout.addWidget(self._y_max_win)
         self.sfcwRadar_bladerfRadarBurst_cc_0 = sfcwRadar.bladerfRadarBurst_cc(int(1e9), num_steps, int(20e6), int(samp_rate), rx_gain, tx_gain, ref_gain, burst_len, 8, 1024, 4)
         self.sfcwRadar_bladerfRadarBurst_cc_0.set_min_output_buffer((burst_len*2))
         self.scan_once = _scan_once_toggle_button = qtgui.MsgPushButton('scan_once', '',1,"default","default")
@@ -130,8 +136,8 @@ class example(gr.top_block, Qt.QWidget):
             self.qtgui_time_sink_x_2.set_line_alpha(i, alphas[i])
 
         self._qtgui_time_sink_x_2_win = sip.wrapinstance(self.qtgui_time_sink_x_2.qwidget(), Qt.QWidget)
-        self.top_grid_layout.addWidget(self._qtgui_time_sink_x_2_win, 0, 2, 2, 2)
-        for r in range(0, 2):
+        self.top_grid_layout.addWidget(self._qtgui_time_sink_x_2_win, 0, 2, 1, 2)
+        for r in range(0, 1):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(2, 4):
             self.top_grid_layout.setColumnStretch(c, 1)
@@ -143,13 +149,13 @@ class example(gr.top_block, Qt.QWidget):
             None # parent
         )
         self.qtgui_time_sink_x_1_0_0.set_update_time(0.10)
-        self.qtgui_time_sink_x_1_0_0.set_y_axis(-1, 2)
+        self.qtgui_time_sink_x_1_0_0.set_y_axis(0, y_max)
 
         self.qtgui_time_sink_x_1_0_0.set_y_label('Amplitude', "")
 
         self.qtgui_time_sink_x_1_0_0.enable_tags(True)
         self.qtgui_time_sink_x_1_0_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, qtgui.TRIG_SLOPE_POS, 0.0, 0, 0, "")
-        self.qtgui_time_sink_x_1_0_0.enable_autoscale(True)
+        self.qtgui_time_sink_x_1_0_0.enable_autoscale(False)
         self.qtgui_time_sink_x_1_0_0.enable_grid(True)
         self.qtgui_time_sink_x_1_0_0.enable_axis_labels(True)
         self.qtgui_time_sink_x_1_0_0.enable_control_panel(False)
@@ -182,8 +188,8 @@ class example(gr.top_block, Qt.QWidget):
             self.qtgui_time_sink_x_1_0_0.set_line_alpha(i, alphas[i])
 
         self._qtgui_time_sink_x_1_0_0_win = sip.wrapinstance(self.qtgui_time_sink_x_1_0_0.qwidget(), Qt.QWidget)
-        self.top_grid_layout.addWidget(self._qtgui_time_sink_x_1_0_0_win, 2, 0, 4, 2)
-        for r in range(2, 6):
+        self.top_grid_layout.addWidget(self._qtgui_time_sink_x_1_0_0_win, 2, 0, 5, 2)
+        for r in range(2, 7):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(0, 2):
             self.top_grid_layout.setColumnStretch(c, 1)
@@ -237,8 +243,8 @@ class example(gr.top_block, Qt.QWidget):
             self.qtgui_time_sink_x_1.set_line_alpha(i, alphas[i])
 
         self._qtgui_time_sink_x_1_win = sip.wrapinstance(self.qtgui_time_sink_x_1.qwidget(), Qt.QWidget)
-        self.top_grid_layout.addWidget(self._qtgui_time_sink_x_1_win, 0, 0, 2, 2)
-        for r in range(0, 2):
+        self.top_grid_layout.addWidget(self._qtgui_time_sink_x_1_win, 0, 0, 1, 2)
+        for r in range(0, 1):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(0, 2):
             self.top_grid_layout.setColumnStretch(c, 1)
@@ -254,7 +260,7 @@ class example(gr.top_block, Qt.QWidget):
         )
 
         self.qtgui_time_raster_sink_x_0.set_update_time(0.1)
-        self.qtgui_time_raster_sink_x_0.set_intensity_range(2000, 5000)
+        self.qtgui_time_raster_sink_x_0.set_intensity_range(0, y_max)
         self.qtgui_time_raster_sink_x_0.enable_grid(True)
         self.qtgui_time_raster_sink_x_0.enable_axis_labels(True)
         self.qtgui_time_raster_sink_x_0.set_x_label("")
@@ -278,12 +284,30 @@ class example(gr.top_block, Qt.QWidget):
             self.qtgui_time_raster_sink_x_0.set_line_alpha(i, alphas[i])
 
         self._qtgui_time_raster_sink_x_0_win = sip.wrapinstance(self.qtgui_time_raster_sink_x_0.qwidget(), Qt.QWidget)
-        self.top_grid_layout.addWidget(self._qtgui_time_raster_sink_x_0_win, 2, 2, 4, 2)
-        for r in range(2, 6):
+        self.top_grid_layout.addWidget(self._qtgui_time_raster_sink_x_0_win, 2, 2, 5, 2)
+        for r in range(2, 7):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(2, 4):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self.fft_vxx_0 = fft.fft_vcc(num_steps, False, window.blackmanharris(num_steps), True, 4)
+        self.low_pass_filter_0_0 = filter.fir_filter_ccf(
+            1,
+            firdes.low_pass(
+                1,
+                samp_rate,
+                300e3,
+                100e3,
+                window.WIN_HAMMING,
+                6.76))
+        self.low_pass_filter_0 = filter.fir_filter_ccf(
+            1,
+            firdes.low_pass(
+                1,
+                samp_rate,
+                300e3,
+                100e3,
+                window.WIN_HAMMING,
+                6.76))
+        self.fft_vxx_0 = fft.fft_vcc(num_steps, False, window.blackmanharris(num_steps), True, 1)
         self.blocks_vector_to_stream_0 = blocks.vector_to_stream(gr.sizeof_gr_complex*1, num_steps)
         self.blocks_throttle2_0 = blocks.throttle( gr.sizeof_gr_complex*1, samp_rate, True, 0 if "auto" == "auto" else max( int(float(0.1) * samp_rate) if "auto" == "time" else int(0.1), 1) )
         self.blocks_throttle2_0.set_min_output_buffer((burst_len*2))
@@ -294,8 +318,9 @@ class example(gr.top_block, Qt.QWidget):
         self.blocks_stream_to_vector_0 = blocks.stream_to_vector(gr.sizeof_gr_complex*1, num_steps)
         self.blocks_stream_to_tagged_stream_0 = blocks.stream_to_tagged_stream(gr.sizeof_gr_complex, 1, burst_len, "burst")
         self.blocks_stream_to_tagged_stream_0.set_min_output_buffer((burst_len*2))
+        self.blocks_multiply_const_xx_0_0 = blocks.multiply_const_cc(1/burst_len, 1)
         self.blocks_multiply_conjugate_cc_0 = blocks.multiply_conjugate_cc(1)
-        self.blocks_integrate_xx_0 = blocks.integrate_cc(burst_len, 1)
+        self.blocks_integrate_xx_0 = blocks.integrate_cc(int(burst_len), 1)
         self.blocks_complex_to_mag_0 = blocks.complex_to_mag(1)
         self.blocks_complex_to_arg_1 = blocks.complex_to_arg(1)
         self.analog_sig_source_x_0 = analog.sig_source_c(samp_rate, analog.GR_COS_WAVE, 100e3, 1, 0, 0)
@@ -312,8 +337,9 @@ class example(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_complex_to_mag_0, 0), (self.qtgui_time_raster_sink_x_0, 0))
         self.connect((self.blocks_complex_to_mag_0, 0), (self.qtgui_time_sink_x_1_0_0, 0))
         self.connect((self.blocks_integrate_xx_0, 0), (self.blocks_complex_to_arg_1, 0))
-        self.connect((self.blocks_integrate_xx_0, 0), (self.blocks_stream_to_vector_0, 0))
+        self.connect((self.blocks_integrate_xx_0, 0), (self.blocks_multiply_const_xx_0_0, 0))
         self.connect((self.blocks_multiply_conjugate_cc_0, 0), (self.blocks_integrate_xx_0, 0))
+        self.connect((self.blocks_multiply_const_xx_0_0, 0), (self.blocks_stream_to_vector_0, 0))
         self.connect((self.blocks_stream_to_tagged_stream_0, 0), (self.blocks_throttle2_0, 0))
         self.connect((self.blocks_stream_to_vector_0, 0), (self.fft_vxx_0, 0))
         self.connect((self.blocks_tag_gate_0, 0), (self.blocks_multiply_conjugate_cc_0, 1))
@@ -323,8 +349,10 @@ class example(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_throttle2_0, 0), (self.sfcwRadar_bladerfRadarBurst_cc_0, 0))
         self.connect((self.blocks_vector_to_stream_0, 0), (self.blocks_complex_to_mag_0, 0))
         self.connect((self.fft_vxx_0, 0), (self.blocks_vector_to_stream_0, 0))
-        self.connect((self.sfcwRadar_bladerfRadarBurst_cc_0, 1), (self.blocks_tag_gate_0, 0))
-        self.connect((self.sfcwRadar_bladerfRadarBurst_cc_0, 0), (self.blocks_tag_gate_0_0, 0))
+        self.connect((self.low_pass_filter_0, 0), (self.blocks_tag_gate_0_0, 0))
+        self.connect((self.low_pass_filter_0_0, 0), (self.blocks_tag_gate_0, 0))
+        self.connect((self.sfcwRadar_bladerfRadarBurst_cc_0, 1), (self.low_pass_filter_0, 0))
+        self.connect((self.sfcwRadar_bladerfRadarBurst_cc_0, 0), (self.low_pass_filter_0_0, 0))
 
 
     def closeEvent(self, event):
@@ -334,6 +362,13 @@ class example(gr.top_block, Qt.QWidget):
         self.wait()
 
         event.accept()
+
+    def get_y_max(self):
+        return self.y_max
+
+    def set_y_max(self, y_max):
+        self.y_max = y_max
+        self.qtgui_time_sink_x_1_0_0.set_y_axis(0, self.y_max)
 
     def get_tx_gain(self):
         return self.tx_gain
@@ -349,6 +384,8 @@ class example(gr.top_block, Qt.QWidget):
         self.samp_rate = samp_rate
         self.analog_sig_source_x_0.set_sampling_freq(self.samp_rate)
         self.blocks_throttle2_0.set_sample_rate(self.samp_rate)
+        self.low_pass_filter_0.set_taps(firdes.low_pass(1, self.samp_rate, 300e3, 100e3, window.WIN_HAMMING, 6.76))
+        self.low_pass_filter_0_0.set_taps(firdes.low_pass(1, self.samp_rate, 300e3, 100e3, window.WIN_HAMMING, 6.76))
         self.qtgui_time_sink_x_1.set_samp_rate(self.samp_rate)
         self.qtgui_time_sink_x_2.set_samp_rate(self.samp_rate)
 

@@ -72,10 +72,10 @@ inputs:
   domain: message
 
 outputs:
-- label: rx
+- label: ref
   domain: stream
   dtype: complex
-- label: ref
+- label: rx
   domain: stream
   dtype: complex
 #  vlen: ...
