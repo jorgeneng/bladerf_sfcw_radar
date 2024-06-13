@@ -61,24 +61,66 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: '30'
+    value: '60'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
     coordinate: [392, 12.0]
     rotation: 0
+    state: disabled
+- name: ref_gain
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: ''
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: int
+    start: '1'
+    step: '1'
+    stop: '60'
+    value: '50'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [224, 84.0]
+    rotation: 0
     state: enabled
 - name: rx_gain
   id: variable
   parameters:
     comment: ''
-    value: '20'
+    value: '60'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
     coordinate: [568, 12.0]
+    rotation: 0
+    state: disabled
+- name: rx_gain
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: ''
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: int
+    start: '1'
+    step: '1'
+    stop: '60'
+    value: '30'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [488, 84.0]
     rotation: 0
     state: enabled
 - name: samp_rate
@@ -97,12 +139,33 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: '30'
+    value: '40'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
     coordinate: [480, 12.0]
+    rotation: 0
+    state: disabled
+- name: tx_gain
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: ''
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: int
+    start: '1'
+    step: '1'
+    stop: '150'
+    value: '100'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [352, 84.0]
     rotation: 0
     state: enabled
 - name: y_max
@@ -114,7 +177,7 @@ blocks:
     min_len: '200'
     orient: QtCore.Qt.Horizontal
     rangeType: float
-    start: '10'
+    start: '0'
     step: '1'
     stop: '400'
     value: '15'
@@ -133,7 +196,7 @@ blocks:
     alias: ''
     amp: '1'
     comment: ''
-    freq: 100e3
+    freq: 50e3
     maxoutbuf: '0'
     minoutbuf: burst_len*2
     offset: '0'
@@ -285,7 +348,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1024, 248.0]
+    coordinate: [1032, 232.0]
     rotation: 0
     state: enabled
 - name: blocks_multiply_const_xx_0
@@ -484,7 +547,7 @@ blocks:
     alias: ''
     beta: '6.76'
     comment: ''
-    cutoff_freq: 300e3
+    cutoff_freq: 100e3
     decim: '1'
     gain: '1'
     interp: '1'
@@ -492,7 +555,7 @@ blocks:
     minoutbuf: '0'
     samp_rate: samp_rate
     type: fir_filter_ccf
-    width: 100e3
+    width: 10e3
     win: window.WIN_HAMMING
   states:
     bus_sink: false
@@ -508,7 +571,7 @@ blocks:
     alias: ''
     beta: '6.76'
     comment: ''
-    cutoff_freq: 300e3
+    cutoff_freq: 100e3
     decim: '1'
     gain: '1'
     interp: '1'
@@ -516,7 +579,7 @@ blocks:
     minoutbuf: '0'
     samp_rate: samp_rate
     type: fir_filter_ccf
-    width: 100e3
+    width: 10e3
     win: window.WIN_HAMMING
   states:
     bus_sink: false
@@ -798,11 +861,11 @@ blocks:
     entags: 'True'
     grid: 'False'
     gui_hint: 0,0,1,2
-    label1: rx_real
+    label1: rx_real_ref
     label10: Signal 10
-    label2: rx_img
-    label3: ref_real
-    label4: ref_imag
+    label2: rx_img_ref
+    label3: rx_real_echo
+    label4: rx_imag_echo
     label5: Signal 5
     label6: Signal 6
     label7: Signal 7
@@ -828,7 +891,7 @@ blocks:
     style10: '1'
     style2: '1'
     style3: '1'
-    style4: '1'
+    style4: '2'
     style5: '1'
     style6: '1'
     style7: '1'
@@ -860,7 +923,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1352, 116.0]
+    coordinate: [1296, 76.0]
     rotation: 0
     state: enabled
 - name: qtgui_time_sink_x_1_0_0
@@ -1157,10 +1220,10 @@ connections:
 - [blocks_stream_to_vector_0, '0', fft_vxx_0, '0']
 - [blocks_tag_gate_0, '0', blocks_multiply_conjugate_cc_0, '1']
 - [blocks_tag_gate_0, '0', qtgui_freq_sink_x_0, '1']
-- [blocks_tag_gate_0, '0', qtgui_time_sink_x_1, '1']
+- [blocks_tag_gate_0, '0', qtgui_time_sink_x_1, '0']
 - [blocks_tag_gate_0_0, '0', blocks_multiply_conjugate_cc_0, '0']
 - [blocks_tag_gate_0_0, '0', qtgui_freq_sink_x_0, '0']
-- [blocks_tag_gate_0_0, '0', qtgui_time_sink_x_1, '0']
+- [blocks_tag_gate_0_0, '0', qtgui_time_sink_x_1, '1']
 - [blocks_throttle2_0, '0', sfcwRadar_bladerfRadarBurst_cc_0, '0']
 - [blocks_vector_to_stream_0, '0', blocks_complex_to_mag_0, '0']
 - [blocks_vector_to_stream_0, '0', blocks_complex_to_mag_squared_0, '0']

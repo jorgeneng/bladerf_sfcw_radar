@@ -65,10 +65,10 @@ class example(gr.top_block, Qt.QWidget):
         # Variables
         ##################################################
         self.y_max = y_max = 15
-        self.tx_gain = tx_gain = 30
+        self.tx_gain = tx_gain = 100
         self.samp_rate = samp_rate = 10e6
-        self.rx_gain = rx_gain = 20
-        self.ref_gain = ref_gain = 30
+        self.rx_gain = rx_gain = 30
+        self.ref_gain = ref_gain = 50
         self.num_steps = num_steps = 128
         self.burst_len = burst_len = 2**12
 
@@ -76,9 +76,18 @@ class example(gr.top_block, Qt.QWidget):
         # Blocks
         ##################################################
 
-        self._y_max_range = qtgui.Range(10, 400, 1, 15, 200)
+        self._y_max_range = qtgui.Range(0, 400, 1, 15, 200)
         self._y_max_win = qtgui.RangeWidget(self._y_max_range, self.set_y_max, "'y_max'", "counter_slider", float, QtCore.Qt.Horizontal)
         self.top_layout.addWidget(self._y_max_win)
+        self._tx_gain_range = qtgui.Range(1, 150, 1, 100, 200)
+        self._tx_gain_win = qtgui.RangeWidget(self._tx_gain_range, self.set_tx_gain, "'tx_gain'", "counter_slider", int, QtCore.Qt.Horizontal)
+        self.top_layout.addWidget(self._tx_gain_win)
+        self._rx_gain_range = qtgui.Range(1, 60, 1, 30, 200)
+        self._rx_gain_win = qtgui.RangeWidget(self._rx_gain_range, self.set_rx_gain, "'rx_gain'", "counter_slider", int, QtCore.Qt.Horizontal)
+        self.top_layout.addWidget(self._rx_gain_win)
+        self._ref_gain_range = qtgui.Range(1, 60, 1, 50, 200)
+        self._ref_gain_win = qtgui.RangeWidget(self._ref_gain_range, self.set_ref_gain, "'ref_gain'", "counter_slider", int, QtCore.Qt.Horizontal)
+        self.top_layout.addWidget(self._ref_gain_win)
         self.sfcwRadar_bladerfRadarBurst_cc_0 = sfcwRadar.bladerfRadarBurst_cc(int(1e9), num_steps, int(20e6), int(samp_rate), rx_gain, tx_gain, ref_gain, burst_len, 8, 1024, 4)
         self.sfcwRadar_bladerfRadarBurst_cc_0.set_min_output_buffer((burst_len*2))
         self.scan_once = _scan_once_toggle_button = qtgui.MsgPushButton('scan_once', '',1,"default","default")
@@ -214,7 +223,7 @@ class example(gr.top_block, Qt.QWidget):
         self.qtgui_time_sink_x_1.enable_stem_plot(False)
 
 
-        labels = ['rx_real', 'rx_img', 'ref_real', 'ref_imag', 'Signal 5',
+        labels = ['rx_real_ref', 'rx_img_ref', 'rx_real_echo', 'rx_imag_echo', 'Signal 5',
             'Signal 6', 'Signal 7', 'Signal 8', 'Signal 9', 'Signal 10']
         widths = [1, 1, 1, 1, 1,
             1, 1, 1, 1, 1]
@@ -222,7 +231,7 @@ class example(gr.top_block, Qt.QWidget):
             'magenta', 'yellow', 'dark red', 'dark green', 'dark blue']
         alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
             1.0, 1.0, 1.0, 1.0, 1.0]
-        styles = [1, 1, 1, 1, 1,
+        styles = [1, 1, 1, 2, 1,
             1, 1, 1, 1, 1]
         markers = [-1, -1, -1, -1, -1,
             -1, -1, -1, -1, -1]
@@ -294,8 +303,8 @@ class example(gr.top_block, Qt.QWidget):
             firdes.low_pass(
                 1,
                 samp_rate,
-                300e3,
                 100e3,
+                10e3,
                 window.WIN_HAMMING,
                 6.76))
         self.low_pass_filter_0 = filter.fir_filter_ccf(
@@ -303,8 +312,8 @@ class example(gr.top_block, Qt.QWidget):
             firdes.low_pass(
                 1,
                 samp_rate,
-                300e3,
                 100e3,
+                10e3,
                 window.WIN_HAMMING,
                 6.76))
         self.fft_vxx_0 = fft.fft_vcc(num_steps, False, window.blackmanharris(num_steps), True, 1)
@@ -323,7 +332,7 @@ class example(gr.top_block, Qt.QWidget):
         self.blocks_integrate_xx_0 = blocks.integrate_cc(int(burst_len), 1)
         self.blocks_complex_to_mag_0 = blocks.complex_to_mag(1)
         self.blocks_complex_to_arg_1 = blocks.complex_to_arg(1)
-        self.analog_sig_source_x_0 = analog.sig_source_c(samp_rate, analog.GR_COS_WAVE, 100e3, 1, 0, 0)
+        self.analog_sig_source_x_0 = analog.sig_source_c(samp_rate, analog.GR_COS_WAVE, 50e3, 1, 0, 0)
         self.analog_sig_source_x_0.set_min_output_buffer((burst_len*2))
 
 
@@ -343,9 +352,9 @@ class example(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_stream_to_tagged_stream_0, 0), (self.blocks_throttle2_0, 0))
         self.connect((self.blocks_stream_to_vector_0, 0), (self.fft_vxx_0, 0))
         self.connect((self.blocks_tag_gate_0, 0), (self.blocks_multiply_conjugate_cc_0, 1))
-        self.connect((self.blocks_tag_gate_0, 0), (self.qtgui_time_sink_x_1, 1))
+        self.connect((self.blocks_tag_gate_0, 0), (self.qtgui_time_sink_x_1, 0))
         self.connect((self.blocks_tag_gate_0_0, 0), (self.blocks_multiply_conjugate_cc_0, 0))
-        self.connect((self.blocks_tag_gate_0_0, 0), (self.qtgui_time_sink_x_1, 0))
+        self.connect((self.blocks_tag_gate_0_0, 0), (self.qtgui_time_sink_x_1, 1))
         self.connect((self.blocks_throttle2_0, 0), (self.sfcwRadar_bladerfRadarBurst_cc_0, 0))
         self.connect((self.blocks_vector_to_stream_0, 0), (self.blocks_complex_to_mag_0, 0))
         self.connect((self.fft_vxx_0, 0), (self.blocks_vector_to_stream_0, 0))
@@ -384,8 +393,8 @@ class example(gr.top_block, Qt.QWidget):
         self.samp_rate = samp_rate
         self.analog_sig_source_x_0.set_sampling_freq(self.samp_rate)
         self.blocks_throttle2_0.set_sample_rate(self.samp_rate)
-        self.low_pass_filter_0.set_taps(firdes.low_pass(1, self.samp_rate, 300e3, 100e3, window.WIN_HAMMING, 6.76))
-        self.low_pass_filter_0_0.set_taps(firdes.low_pass(1, self.samp_rate, 300e3, 100e3, window.WIN_HAMMING, 6.76))
+        self.low_pass_filter_0.set_taps(firdes.low_pass(1, self.samp_rate, 100e3, 10e3, window.WIN_HAMMING, 6.76))
+        self.low_pass_filter_0_0.set_taps(firdes.low_pass(1, self.samp_rate, 100e3, 10e3, window.WIN_HAMMING, 6.76))
         self.qtgui_time_sink_x_1.set_samp_rate(self.samp_rate)
         self.qtgui_time_sink_x_2.set_samp_rate(self.samp_rate)
 
