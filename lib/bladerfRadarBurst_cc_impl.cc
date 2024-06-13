@@ -227,8 +227,9 @@ int bladerfRadarBurst_cc_impl::configure_channel(struct bladerf *dev, struct cha
         std::cout << "Set chennel" << c->channel << ", samplerate: " << actual_value << std::endl;
     }
 
-    /*status = bladerf_set_gain_mode(dev, c->channel, BLADERF_GAIN_MANUAL);
-    //status = bladerf_set_gain_mode(dev, c->channel, BLADERF_GAIN_HYBRID_AGC);
+    //status = bladerf_set_gain_mode(dev, c->channel, BLADERF_GAIN_MANUAL);
+    status = bladerf_set_gain_mode(dev, c->channel, BLADERF_GAIN_HYBRID_AGC);
+    //status = bladerf_set_gain_mode(dev, c->channel, BLADERF_GAIN_SLOWATTACK_AGC);
     if (status != 0) {
         fprintf(stderr, "Failed to set gain mode = %u: %s\n", c->channel,
         bladerf_strerror(status));
@@ -243,7 +244,7 @@ int bladerfRadarBurst_cc_impl::configure_channel(struct bladerf *dev, struct cha
         std::cerr << "Falied to read gain mode from channel: " << c->channel << std::endl;
     }else{
         std::cout << "Channel: " << c->channel << ", gain mode: " << current_gain_mode << std::endl;
-    }*/
+    }
 
     /*const bladerf_range *range;
     status = bladerf_get_gain_range(dev, c->channel, &range);
@@ -320,8 +321,8 @@ int bladerfRadarBurst_cc_impl::init_sync(struct bladerf *dev){
     /**
      * Set AGC of RX_0 (ref)
      * */
-    //status = bladerf_set_gain_mode(dev, BLADERF_CHANNEL_RX(0), BLADERF_GAIN_MANUAL);
-    status = bladerf_set_gain_mode(dev, BLADERF_CHANNEL_RX(0), BLADERF_GAIN_HYBRID_AGC);
+    /*status = bladerf_set_gain_mode(dev, BLADERF_CHANNEL_RX(0), BLADERF_GAIN_MANUAL);
+    //status = bladerf_set_gain_mode(dev, BLADERF_CHANNEL_RX(0), BLADERF_GAIN_HYBRID_AGC);
     if (status != 0) {
         fprintf(stderr, "Failed to set gain mode = %u: %s\n", BLADERF_CHANNEL_RX(0),
         bladerf_strerror(status));
@@ -336,15 +337,15 @@ int bladerfRadarBurst_cc_impl::init_sync(struct bladerf *dev){
         std::cerr << "Falied to read gain mode from channel: " << BLADERF_CHANNEL_RX(0) << std::endl;
     }else{
         std::cout << "Channel: " << BLADERF_CHANNEL_RX(0) << ", gain mode: " << current_gain_mode << std::endl;
-    } 
+    }*/ 
     
     /**
      * Set AGC for RX_1 (echo)
      * */
-    //status = bladerf_set_gain_mode(dev, BLADERF_CHANNEL_RX(1), BLADERF_GAIN_MANUAL);
-    status = bladerf_set_gain_mode(dev, BLADERF_CHANNEL_RX(1), BLADERF_GAIN_HYBRID_AGC);
+    /*status = bladerf_set_gain_mode(dev, BLADERF_CHANNEL_RX(1), BLADERF_GAIN_MANUAL);
+    //status = bladerf_set_gain_mode(dev, BLADERF_CHANNEL_RX(1), BLADERF_GAIN_HYBRID_AGC);
     if (status != 0) {
-        fprintf(stderr, "Failed to set gain mode = %u: %s\n", BLADERF_CHANNEL_RX(0),
+        fprintf(stderr, "Failed to set gain mode = %u: %s\n", BLADERF_CHANNEL_RX(1),
         bladerf_strerror(status));
         return status;
     }else{
@@ -356,7 +357,7 @@ int bladerfRadarBurst_cc_impl::init_sync(struct bladerf *dev){
         std::cerr << "Falied to read gain mode from channel: " << BLADERF_CHANNEL_RX(1) << std::endl;
     }else{
         std::cout << "Channel: " << BLADERF_CHANNEL_RX(1) << ", gain mode: " << current_gain_mode << std::endl;
-    }  
+    }*/  
 
     /**
      * Enable bias tee for TX
@@ -576,11 +577,11 @@ void bladerfRadarBurst_cc_impl::handle_scan_msg(const pmt::pmt_t& msg){
 int bladerfRadarBurst_cc_impl::set_rx_gain(bladerf_gain gain){
     int status = -1;
     bladerf_gain current_gain = -1;
-    status = bladerf_set_gain(dev, BLADERF_CHANNEL_RX(0),gain);
+    status = bladerf_set_gain(dev, BLADERF_CHANNEL_RX(1),gain);
     if(status != 0){
         std::cerr << "Set gain for RX 0 failed" << std::endl;
     }else{
-        bladerf_get_gain(dev, BLADERF_CHANNEL_RX(0), &current_gain);
+        bladerf_get_gain(dev, BLADERF_CHANNEL_RX(1), &current_gain);
         std::cout << "RX 0 gain is: " << current_gain << std::endl;
     }
     return status;
@@ -589,11 +590,11 @@ int bladerfRadarBurst_cc_impl::set_rx_gain(bladerf_gain gain){
 int bladerfRadarBurst_cc_impl::set_ref_gain(bladerf_gain gain){
     int status = -1;
     bladerf_gain current_gain = -1;
-    status = bladerf_set_gain(dev, BLADERF_CHANNEL_RX(1),gain);
+    status = bladerf_set_gain(dev, BLADERF_CHANNEL_RX(0),gain);
     if(status != 0){
         std::cerr << "Set gain for RX 1 failed" << std::endl;
     }else{
-        bladerf_get_gain(dev, BLADERF_CHANNEL_RX(1), &current_gain);
+        bladerf_get_gain(dev, BLADERF_CHANNEL_RX(0), &current_gain);
         std::cout << "RX 0 gain is: " << current_gain << std::endl;
     }
     return status;
