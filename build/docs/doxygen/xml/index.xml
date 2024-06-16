@@ -121,7 +121,8 @@
     <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a744f3fd7f35aafd2a18716a7526a67d9" kind="variable"><name>d_quick_tunes_rx</name></member>
     <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a6088fa2be66122d8f34a55c5340bd907" kind="variable"><name>d_scan</name></member>
     <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a9f4fd7ced9d31839f68b61f0d75fea53" kind="variable"><name>d_continuous_scan_flag</name></member>
-    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1aa7ba8b6a8ea0013a181b5411225eec06" kind="variable"><name>d_gps</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a5fedc96250307861d3617077c562d087" kind="variable"><name>d_gps_x</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1aa5c64e1c4481349b80c00785cef9a081" kind="variable"><name>d_gps_y</name></member>
     <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a070dd770363c3afa011fba66518ae3f2" kind="variable"><name>d_num_samples_to_send</name></member>
     <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1aea8005e691a8fc38d340cedfc24f6214" kind="variable"><name>d_num_samples_to_recv</name></member>
     <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a7b81fc3135c4c72693c68d39264b185e" kind="variable"><name>_16icbuf_in</name></member>
@@ -147,7 +148,7 @@
     <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1af06fc46dcf3a37a070ace69c9fae46b8" kind="function"><name>set_rx_gain</name></member>
     <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a7c7828e1057af42964cec2515db58680" kind="function"><name>set_ref_gain</name></member>
     <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a45f8341fd9dd87138efc037d243e04f5" kind="function"><name>set_tx_gain</name></member>
-    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1ae975b9d7d9e2a3ce854608019019a19e" kind="function"><name>get_current_gps</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a11b78ace27fee2da526d854e6a016dec" kind="function"><name>update_gps</name></member>
     <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a4d9566d218555194daa25eb548d08543" kind="function"><name>work</name></member>
   </compound>
   <compound refid="structgr_1_1sfcwRadar_1_1channel__config" kind="struct"><name>gr::sfcwRadar::channel_config</name>
