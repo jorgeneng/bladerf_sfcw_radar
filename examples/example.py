@@ -65,7 +65,7 @@ class example(gr.top_block, Qt.QWidget):
         # Variables
         ##################################################
         self.y_max = y_max = 15
-        self.tx_gain = tx_gain = 100
+        self.tx_gain = tx_gain = 50
         self.samp_rate = samp_rate = 10e6
         self.rx_gain = rx_gain = 30
         self.ref_gain = ref_gain = 50
@@ -79,7 +79,7 @@ class example(gr.top_block, Qt.QWidget):
         self._y_max_range = qtgui.Range(0, 400, 1, 15, 200)
         self._y_max_win = qtgui.RangeWidget(self._y_max_range, self.set_y_max, "'y_max'", "counter_slider", float, QtCore.Qt.Horizontal)
         self.top_layout.addWidget(self._y_max_win)
-        self._tx_gain_range = qtgui.Range(1, 150, 1, 100, 200)
+        self._tx_gain_range = qtgui.Range(1, 150, 1, 50, 200)
         self._tx_gain_win = qtgui.RangeWidget(self._tx_gain_range, self.set_tx_gain, "'tx_gain'", "counter_slider", int, QtCore.Qt.Horizontal)
         self.top_layout.addWidget(self._tx_gain_win)
         self._rx_gain_range = qtgui.Range(1, 60, 1, 30, 200)
@@ -88,6 +88,7 @@ class example(gr.top_block, Qt.QWidget):
         self._ref_gain_range = qtgui.Range(1, 60, 1, 50, 200)
         self._ref_gain_win = qtgui.RangeWidget(self._ref_gain_range, self.set_ref_gain, "'ref_gain'", "counter_slider", int, QtCore.Qt.Horizontal)
         self.top_layout.addWidget(self._ref_gain_win)
+        self.sfcwRadar_rangeProfileSink_0 = sfcwRadar.rangeProfileSink(num_steps,'/tmp/')
         self.sfcwRadar_bladerfRadarBurst_cc_0 = sfcwRadar.bladerfRadarBurst_cc(int(1e9), num_steps, int(20e6), int(samp_rate), rx_gain, tx_gain, ref_gain, burst_len, 8, 1024, 4)
         self.sfcwRadar_bladerfRadarBurst_cc_0.set_min_output_buffer((burst_len*2))
         self.scan_once = _scan_once_toggle_button = qtgui.MsgPushButton('scan_once', '',1,"default","default")
@@ -357,6 +358,7 @@ class example(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_tag_gate_0_0, 0), (self.qtgui_time_sink_x_1, 1))
         self.connect((self.blocks_throttle2_0, 0), (self.sfcwRadar_bladerfRadarBurst_cc_0, 0))
         self.connect((self.blocks_vector_to_stream_0, 0), (self.blocks_complex_to_mag_0, 0))
+        self.connect((self.blocks_vector_to_stream_0, 0), (self.sfcwRadar_rangeProfileSink_0, 0))
         self.connect((self.fft_vxx_0, 0), (self.blocks_vector_to_stream_0, 0))
         self.connect((self.low_pass_filter_0, 0), (self.blocks_tag_gate_0_0, 0))
         self.connect((self.low_pass_filter_0_0, 0), (self.blocks_tag_gate_0, 0))

@@ -159,7 +159,7 @@ blocks:
     start: '1'
     step: '1'
     stop: '150'
-    value: '100'
+    value: '50'
     widget: counter_slider
   states:
     bus_sink: false
@@ -1188,15 +1188,15 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    dir: /tmp
+    dir: /tmp/
     numSteps: num_steps
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1024, 836.0]
+    coordinate: [1048, 884.0]
     rotation: 0
-    state: disabled
+    state: enabled
 
 connections:
 - [analog_sig_source_x_0, '0', blocks_add_xx_0, '0']

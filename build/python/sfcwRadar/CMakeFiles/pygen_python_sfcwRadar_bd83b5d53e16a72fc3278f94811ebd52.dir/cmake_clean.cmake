@@ -1,8 +1,7 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/pygen_python_sfcwRadar_be0e04e1c7fff710a3fac6e28340c16c"
+  "CMakeFiles/pygen_python_sfcwRadar_bd83b5d53e16a72fc3278f94811ebd52"
   "__init__.pyc"
   "frequencyTunner.pyc"
-  "radarTxRx.pyc"
   "radarTxRxSimulator.pyc"
   "rangeProfileSink.pyc"
   "responseCollector.pyc"
@@ -10,5 +9,5 @@ file(REMOVE_RECURSE
 
 # Per-language clean rules from dependency scanning.
 foreach(lang )
-  include(CMakeFiles/pygen_python_sfcwRadar_be0e04e1c7fff710a3fac6e28340c16c.dir/cmake_clean_${lang}.cmake OPTIONAL)
+  include(CMakeFiles/pygen_python_sfcwRadar_bd83b5d53e16a72fc3278f94811ebd52.dir/cmake_clean_${lang}.cmake OPTIONAL)
 endforeach()

@@ -49,7 +49,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xpythonapix" OR NOT CMAKE_INSTALL_CO
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/python3.8/dist-packages/gnuradio/sfcwRadar/sfcwRadar_python.cpython-38-x86_64-linux-gnu.so")
     file(RPATH_CHANGE
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/python3.8/dist-packages/gnuradio/sfcwRadar/sfcwRadar_python.cpython-38-x86_64-linux-gnu.so"
-         OLD_RPATH "/usr/local/lib:/home/hui/gr-sfcwRadar/build/lib:"
+         OLD_RPATH "/home/hui/gr-sfcwRadar/build/lib:/usr/local/lib:"
          NEW_RPATH "")
     if(CMAKE_INSTALL_DO_STRIP)
       execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/python3.8/dist-packages/gnuradio/sfcwRadar/sfcwRadar_python.cpython-38-x86_64-linux-gnu.so")

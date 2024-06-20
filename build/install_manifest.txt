@@ -261,6 +261,7 @@
 /usr/local/lib/python3.8/dist-packages/gnuradio/sfcwRadar/frequencyTunner.py
 /usr/local/lib/python3.8/dist-packages/gnuradio/sfcwRadar/responseCollector.py
 /usr/local/lib/python3.8/dist-packages/gnuradio/sfcwRadar/radarTxRxSimulator.py
+/usr/local/lib/python3.8/dist-packages/gnuradio/sfcwRadar/rangeProfileSink.py
 /usr/local/lib/python3.8/dist-packages/gnuradio/sfcwRadar/sfcwRadar_python.cpython-38-x86_64-linux-gnu.so
 /usr/local/share/gnuradio/grc/blocks/sfcwRadar_radarTxRxSimulator.block.yml
 /usr/local/share/gnuradio/grc/blocks/sfcwRadar_frequencyTunner.block.yml
@@ -268,3 +269,4 @@
 /usr/local/share/gnuradio/grc/blocks/sfcwRadar_bladerfRadar_cc.block.yml
 /usr/local/share/gnuradio/grc/blocks/sfcwRadar_bladerfRadarBurst_cc.block.yml
 /usr/local/share/gnuradio/grc/blocks/sfcwRadar_bladerfEchoTimer_cc.block.yml
+/usr/local/share/gnuradio/grc/blocks/sfcwRadar_rangeProfileSink.block.yml
