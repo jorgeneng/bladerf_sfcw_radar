@@ -65,7 +65,7 @@ class example(gr.top_block, Qt.QWidget):
         # Variables
         ##################################################
         self.y_max = y_max = 15
-        self.tx_gain = tx_gain = 60
+        self.tx_gain = tx_gain = 50
         self.samp_rate = samp_rate = 10e6
         self.rx_gain = rx_gain = 30
         self.ref_gain = ref_gain = 50
@@ -79,7 +79,7 @@ class example(gr.top_block, Qt.QWidget):
         self._y_max_range = qtgui.Range(0, 400, 1, 15, 200)
         self._y_max_win = qtgui.RangeWidget(self._y_max_range, self.set_y_max, "'y_max'", "counter_slider", float, QtCore.Qt.Horizontal)
         self.top_layout.addWidget(self._y_max_win)
-        self._tx_gain_range = qtgui.Range(1, 150, 1, 60, 200)
+        self._tx_gain_range = qtgui.Range(1, 150, 1, 50, 200)
         self._tx_gain_win = qtgui.RangeWidget(self._tx_gain_range, self.set_tx_gain, "'tx_gain'", "counter_slider", int, QtCore.Qt.Horizontal)
         self.top_layout.addWidget(self._tx_gain_win)
         self._rx_gain_range = qtgui.Range(1, 60, 1, 30, 200)
@@ -380,6 +380,7 @@ class example(gr.top_block, Qt.QWidget):
     def set_y_max(self, y_max):
         self.y_max = y_max
         self.qtgui_time_sink_x_1_0_0.set_y_axis(0, self.y_max)
+        self.qtgui_time_raster_sink_x_0.set_intensity_range(0, y_max)
 
     def get_tx_gain(self):
         return self.tx_gain

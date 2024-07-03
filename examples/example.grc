@@ -159,7 +159,7 @@ blocks:
     start: '1'
     step: '1'
     stop: '150'
-    value: '50'
+    value: '60'
     widget: counter_slider
   states:
     bus_sink: false
