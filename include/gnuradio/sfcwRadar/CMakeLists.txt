@@ -12,4 +12,5 @@
 install(FILES api.h
     bladerfRadar_cc.h
     bladerfRadarBurst_cc.h
-    bladerfEchoTimer_cc.h DESTINATION include/gnuradio/sfcwRadar)
+    bladerfEchoTimer_cc.h
+    rawSignalSink_cc.h DESTINATION include/gnuradio/sfcwRadar)

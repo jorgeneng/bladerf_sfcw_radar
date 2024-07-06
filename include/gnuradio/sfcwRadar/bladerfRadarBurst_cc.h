@@ -48,6 +48,11 @@ public:
     virtual int set_rx_gain(bladerf_gain gain) = 0;
     virtual int set_ref_gain(bladerf_gain gain) = 0;
     virtual int set_tx_gain(bladerf_gain gain) = 0;
+
+    virtual int set_start_freq(bladerf_frequency start_freq) = 0;
+    virtual int set_freq_step(bladerf_frequency freq_step) = 0;
+    virtual int set_num_steps(int num_steps) = 0;
+    virtual int set_burst_len(int burst_len) = 0;
 };
 
 } // namespace sfcwRadar

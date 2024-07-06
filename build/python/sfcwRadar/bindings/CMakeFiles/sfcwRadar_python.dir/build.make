@@ -96,9 +96,22 @@ python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/bladerfEchoTimer_cc_py
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfcwRadar_python.dir/bladerfEchoTimer_cc_python.cc.s"
 	cd /home/hui/gr-sfcwRadar/build/python/sfcwRadar/bindings && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hui/gr-sfcwRadar/python/sfcwRadar/bindings/bladerfEchoTimer_cc_python.cc -o CMakeFiles/sfcwRadar_python.dir/bladerfEchoTimer_cc_python.cc.s
 
+python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/rawSignalSink_cc_python.cc.o: python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/flags.make
+python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/rawSignalSink_cc_python.cc.o: ../python/sfcwRadar/bindings/rawSignalSink_cc_python.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hui/gr-sfcwRadar/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/rawSignalSink_cc_python.cc.o"
+	cd /home/hui/gr-sfcwRadar/build/python/sfcwRadar/bindings && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfcwRadar_python.dir/rawSignalSink_cc_python.cc.o -c /home/hui/gr-sfcwRadar/python/sfcwRadar/bindings/rawSignalSink_cc_python.cc
+
+python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/rawSignalSink_cc_python.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfcwRadar_python.dir/rawSignalSink_cc_python.cc.i"
+	cd /home/hui/gr-sfcwRadar/build/python/sfcwRadar/bindings && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hui/gr-sfcwRadar/python/sfcwRadar/bindings/rawSignalSink_cc_python.cc > CMakeFiles/sfcwRadar_python.dir/rawSignalSink_cc_python.cc.i
+
+python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/rawSignalSink_cc_python.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfcwRadar_python.dir/rawSignalSink_cc_python.cc.s"
+	cd /home/hui/gr-sfcwRadar/build/python/sfcwRadar/bindings && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hui/gr-sfcwRadar/python/sfcwRadar/bindings/rawSignalSink_cc_python.cc -o CMakeFiles/sfcwRadar_python.dir/rawSignalSink_cc_python.cc.s
+
 python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/python_bindings.cc.o: python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/flags.make
 python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/python_bindings.cc.o: ../python/sfcwRadar/bindings/python_bindings.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hui/gr-sfcwRadar/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/python_bindings.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hui/gr-sfcwRadar/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/python_bindings.cc.o"
 	cd /home/hui/gr-sfcwRadar/build/python/sfcwRadar/bindings && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfcwRadar_python.dir/python_bindings.cc.o -c /home/hui/gr-sfcwRadar/python/sfcwRadar/bindings/python_bindings.cc
 
 python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/python_bindings.cc.i: cmake_force
@@ -114,6 +127,7 @@ sfcwRadar_python_OBJECTS = \
 "CMakeFiles/sfcwRadar_python.dir/bladerfRadar_cc_python.cc.o" \
 "CMakeFiles/sfcwRadar_python.dir/bladerfRadarBurst_cc_python.cc.o" \
 "CMakeFiles/sfcwRadar_python.dir/bladerfEchoTimer_cc_python.cc.o" \
+"CMakeFiles/sfcwRadar_python.dir/rawSignalSink_cc_python.cc.o" \
 "CMakeFiles/sfcwRadar_python.dir/python_bindings.cc.o"
 
 # External object files for target sfcwRadar_python
@@ -122,6 +136,7 @@ sfcwRadar_python_EXTERNAL_OBJECTS =
 python/sfcwRadar/bindings/sfcwRadar_python.cpython-38-x86_64-linux-gnu.so: python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/bladerfRadar_cc_python.cc.o
 python/sfcwRadar/bindings/sfcwRadar_python.cpython-38-x86_64-linux-gnu.so: python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/bladerfRadarBurst_cc_python.cc.o
 python/sfcwRadar/bindings/sfcwRadar_python.cpython-38-x86_64-linux-gnu.so: python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/bladerfEchoTimer_cc_python.cc.o
+python/sfcwRadar/bindings/sfcwRadar_python.cpython-38-x86_64-linux-gnu.so: python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/rawSignalSink_cc_python.cc.o
 python/sfcwRadar/bindings/sfcwRadar_python.cpython-38-x86_64-linux-gnu.so: python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/python_bindings.cc.o
 python/sfcwRadar/bindings/sfcwRadar_python.cpython-38-x86_64-linux-gnu.so: python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/build.make
 python/sfcwRadar/bindings/sfcwRadar_python.cpython-38-x86_64-linux-gnu.so: /usr/local/lib/libboost_date_time.so.1.73.0
@@ -138,7 +153,7 @@ python/sfcwRadar/bindings/sfcwRadar_python.cpython-38-x86_64-linux-gnu.so: /usr/
 python/sfcwRadar/bindings/sfcwRadar_python.cpython-38-x86_64-linux-gnu.so: /usr/lib/x86_64-linux-gnu/libgmpxx.so
 python/sfcwRadar/bindings/sfcwRadar_python.cpython-38-x86_64-linux-gnu.so: /usr/lib/x86_64-linux-gnu/libgmp.so
 python/sfcwRadar/bindings/sfcwRadar_python.cpython-38-x86_64-linux-gnu.so: python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/hui/gr-sfcwRadar/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX shared module sfcwRadar_python.cpython-38-x86_64-linux-gnu.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/hui/gr-sfcwRadar/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX shared module sfcwRadar_python.cpython-38-x86_64-linux-gnu.so"
 	cd /home/hui/gr-sfcwRadar/build/python/sfcwRadar/bindings && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/sfcwRadar_python.dir/link.txt --verbose=$(VERBOSE)
 	cd /home/hui/gr-sfcwRadar/build/python/sfcwRadar/bindings && /usr/bin/strip /home/hui/gr-sfcwRadar/build/python/sfcwRadar/bindings/sfcwRadar_python.cpython-38-x86_64-linux-gnu.so
 	cd /home/hui/gr-sfcwRadar/build/python/sfcwRadar/bindings && /usr/bin/cmake -E copy /home/hui/gr-sfcwRadar/build/python/sfcwRadar/bindings/sfcwRadar_python.cpython-38-x86_64-linux-gnu.so /home/hui/gr-sfcwRadar/build/test_modules/gnuradio/sfcwRadar/

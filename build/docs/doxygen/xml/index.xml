@@ -101,6 +101,10 @@
     <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc_1a76548ea302b148e90d3a04407230fc33" kind="function"><name>set_rx_gain</name></member>
     <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc_1a84d3982670e7d6f4261fbffb9d9e693a" kind="function"><name>set_ref_gain</name></member>
     <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc_1a86188256ed507ad7fdb22974135953a6" kind="function"><name>set_tx_gain</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc_1ad6c51c16dd2dc1b3fee25959c997900a" kind="function"><name>set_start_freq</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc_1a8c48a57b8269026e4ad5127af84bc9e9" kind="function"><name>set_freq_step</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc_1af57197592ec1957826b88ebc86106536" kind="function"><name>set_num_steps</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc_1a00cac1a8fdc3ce4ba9829f6e1ad75ce2" kind="function"><name>set_burst_len</name></member>
   </compound>
   <compound refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl" kind="class"><name>gr::sfcwRadar::bladerfRadarBurst_cc_impl</name>
     <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1ab3f50b09db11b0ac0c7ebb5bbe488d33" kind="variable"><name>config</name></member>
@@ -112,6 +116,10 @@
     <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a24083ab23e30fe0337fbe34f607229b1" kind="variable"><name>timeout_ms</name></member>
     <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1ae679542e4c9483dfb1db400547a10967" kind="variable"><name>d_burst_len</name></member>
     <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a19115b97444a8fa5089fa894b594bee8" kind="variable"><name>d_num_steps</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1ad3443f303be7b198a6ec08bb15870dde" kind="variable"><name>d_samp_rate</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1aa44d81de351a8a80a3bef759a2512972" kind="variable"><name>d_rx_gain</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a85f55732a3f28f568047b836bdffc050" kind="variable"><name>d_tx_gain</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a1516f425c7d63667e0d42fa6b5bc645f" kind="variable"><name>d_ref_gain</name></member>
     <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a4fcea60fcb5bbb697a5d1902b5cec60e" kind="variable"><name>d_start_freq</name></member>
     <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1af54bd0838e834343270166e801abf600" kind="variable"><name>d_freq_step</name></member>
     <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a727510333b245bafdc1d1f1f4d33939a" kind="variable"><name>d_currrent_freq</name></member>
@@ -134,6 +142,7 @@
     <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a6037a607499dba0a5423292af6c111c5" kind="variable"><name>d_thread_recv</name></member>
     <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1aeae387c5d1e7020466125b72f9613756" kind="variable"><name>begin</name></member>
     <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a237c49e6366a5976b16e2e53ada63271" kind="variable"><name>end</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1af56d5f202800bf88d5117b9749556295" kind="function"><name>init_device</name></member>
     <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1aa0b1fadd82df2fa950f0bf34719f1920" kind="function"><name>configure_channel</name></member>
     <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a97d844d63153e3eda9aa900b76e81107" kind="function"><name>init_sync</name></member>
     <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a9855fde62d6de5055d42613d9afd46f4" kind="function"><name>set_quick_tune</name></member>
@@ -148,6 +157,10 @@
     <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1af06fc46dcf3a37a070ace69c9fae46b8" kind="function"><name>set_rx_gain</name></member>
     <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a7c7828e1057af42964cec2515db58680" kind="function"><name>set_ref_gain</name></member>
     <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a45f8341fd9dd87138efc037d243e04f5" kind="function"><name>set_tx_gain</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1abe4d92df2f42601023fe83fed0b6ea57" kind="function"><name>set_start_freq</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1ac82b6bd78d544c875990439a21d99441" kind="function"><name>set_freq_step</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a97f02a9dbe948aaf04549a0802bfb6ff" kind="function"><name>set_num_steps</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1ac98c2ce2fa1381f0983eb44e340461a5" kind="function"><name>set_burst_len</name></member>
     <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a11b78ace27fee2da526d854e6a016dec" kind="function"><name>update_gps</name></member>
     <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a4d9566d218555194daa25eb548d08543" kind="function"><name>work</name></member>
   </compound>
@@ -158,6 +171,15 @@
     <member refid="structgr_1_1sfcwRadar_1_1channel__config_1a9d6712af092385ff5300f15df17f10c6" kind="variable"><name>samplerate</name></member>
     <member refid="structgr_1_1sfcwRadar_1_1channel__config_1a83a3552d336def7afd4b73b24b95f822" kind="variable"><name>gain</name></member>
     <member refid="structgr_1_1sfcwRadar_1_1channel__config_1aea74ba05441b9f6982bd3ce6710a39da" kind="variable"><name>gain</name></member>
+  </compound>
+  <compound refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc" kind="class"><name>gr::sfcwRadar::rawSignalSink_cc</name>
+    <member refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc_1a40f02373088297a2f876a529d9ea3f82" kind="typedef"><name>sptr</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc_1ac095cd194821f812f3f742c405a79ff6" kind="function"><name>make</name></member>
+  </compound>
+  <compound refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl" kind="class"><name>gr::sfcwRadar::rawSignalSink_cc_impl</name>
+    <member refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1a546f84e82756d1b82550e8e9eba98ea3" kind="function"><name>rawSignalSink_cc_impl</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1a6f9689fb47be8caaca47bc12dec4b394" kind="function"><name>~rawSignalSink_cc_impl</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1a003a78d6325ff810b47dad1590ce1a45" kind="function"><name>work</name></member>
   </compound>
   <compound refid="namespacegr" kind="namespace"><name>gr</name>
   </compound>
@@ -172,34 +194,88 @@
   </compound>
   <compound refid="bladerfEchoTimer__cc__impl_8h" kind="file"><name>bladerfEchoTimer_cc_impl.h</name>
   </compound>
-  <compound refid="bladerfEchoTimer__cc__pydoc__template_8h" kind="file"><name>bladerfEchoTimer_cc_pydoc_template.h</name>
-    <member refid="bladerfEchoTimer__cc__pydoc__template_8h_1a74021f021dcdfbb22891787b79c5529d" kind="define"><name>D</name></member>
-    <member refid="bladerfEchoTimer__cc__pydoc__template_8h_1afbcb09a92a772cf18276d4e4ae122dac" kind="variable"><name>__doc_gr_sfcwRadar_bladerfEchoTimer_cc</name></member>
-    <member refid="bladerfEchoTimer__cc__pydoc__template_8h_1af6e83c453d5d2a518764d003b746872d" kind="variable"><name>__doc_gr_sfcwRadar_bladerfEchoTimer_cc_bladerfEchoTimer_cc</name></member>
-    <member refid="bladerfEchoTimer__cc__pydoc__template_8h_1a4167441c0c793dcb044aebd29cf65e18" kind="variable"><name>__doc_gr_sfcwRadar_bladerfEchoTimer_cc_make</name></member>
+  <compound refid="bladerfEchoTimer__cc__pydoc_8h" kind="file"><name>bladerfEchoTimer_cc_pydoc.h</name>
+    <member refid="bladerfEchoTimer__cc__pydoc_8h_1a74021f021dcdfbb22891787b79c5529d" kind="define"><name>D</name></member>
+    <member refid="bladerfEchoTimer__cc__pydoc_8h_1afbcb09a92a772cf18276d4e4ae122dac" kind="variable"><name>__doc_gr_sfcwRadar_bladerfEchoTimer_cc</name></member>
+    <member refid="bladerfEchoTimer__cc__pydoc_8h_1af6e83c453d5d2a518764d003b746872d" kind="variable"><name>__doc_gr_sfcwRadar_bladerfEchoTimer_cc_bladerfEchoTimer_cc</name></member>
+    <member refid="bladerfEchoTimer__cc__pydoc_8h_1a4167441c0c793dcb044aebd29cf65e18" kind="variable"><name>__doc_gr_sfcwRadar_bladerfEchoTimer_cc_make</name></member>
+  </compound>
+  <compound refid="build_2test__modules_2gnuradio_2sfcwRadar_2bindings_2docstrings_2bladerfEchoTimer__cc__pydoc__template_8h" kind="file"><name>build/test_modules/gnuradio/sfcwRadar/bindings/docstrings/bladerfEchoTimer_cc_pydoc_template.h</name>
+    <member refid="build_2test__modules_2gnuradio_2sfcwRadar_2bindings_2docstrings_2bladerfEchoTimer__cc__pydoc__template_8h_1a74021f021dcdfbb22891787b79c5529d" kind="define"><name>D</name></member>
+    <member refid="build_2test__modules_2gnuradio_2sfcwRadar_2bindings_2docstrings_2bladerfEchoTimer__cc__pydoc__template_8h_1afbcb09a92a772cf18276d4e4ae122dac" kind="variable"><name>__doc_gr_sfcwRadar_bladerfEchoTimer_cc</name></member>
+    <member refid="build_2test__modules_2gnuradio_2sfcwRadar_2bindings_2docstrings_2bladerfEchoTimer__cc__pydoc__template_8h_1af6e83c453d5d2a518764d003b746872d" kind="variable"><name>__doc_gr_sfcwRadar_bladerfEchoTimer_cc_bladerfEchoTimer_cc</name></member>
+    <member refid="build_2test__modules_2gnuradio_2sfcwRadar_2bindings_2docstrings_2bladerfEchoTimer__cc__pydoc__template_8h_1a4167441c0c793dcb044aebd29cf65e18" kind="variable"><name>__doc_gr_sfcwRadar_bladerfEchoTimer_cc_make</name></member>
+  </compound>
+  <compound refid="python_2sfcwRadar_2bindings_2docstrings_2bladerfEchoTimer__cc__pydoc__template_8h" kind="file"><name>python/sfcwRadar/bindings/docstrings/bladerfEchoTimer_cc_pydoc_template.h</name>
+    <member refid="python_2sfcwRadar_2bindings_2docstrings_2bladerfEchoTimer__cc__pydoc__template_8h_1a74021f021dcdfbb22891787b79c5529d" kind="define"><name>D</name></member>
+    <member refid="python_2sfcwRadar_2bindings_2docstrings_2bladerfEchoTimer__cc__pydoc__template_8h_1afbcb09a92a772cf18276d4e4ae122dac" kind="variable"><name>__doc_gr_sfcwRadar_bladerfEchoTimer_cc</name></member>
+    <member refid="python_2sfcwRadar_2bindings_2docstrings_2bladerfEchoTimer__cc__pydoc__template_8h_1af6e83c453d5d2a518764d003b746872d" kind="variable"><name>__doc_gr_sfcwRadar_bladerfEchoTimer_cc_bladerfEchoTimer_cc</name></member>
+    <member refid="python_2sfcwRadar_2bindings_2docstrings_2bladerfEchoTimer__cc__pydoc__template_8h_1a4167441c0c793dcb044aebd29cf65e18" kind="variable"><name>__doc_gr_sfcwRadar_bladerfEchoTimer_cc_make</name></member>
   </compound>
   <compound refid="bladerfRadar__cc_8h" kind="file"><name>bladerfRadar_cc.h</name>
   </compound>
   <compound refid="bladerfRadar__cc__impl_8h" kind="file"><name>bladerfRadar_cc_impl.h</name>
   </compound>
-  <compound refid="bladerfRadar__cc__pydoc__template_8h" kind="file"><name>bladerfRadar_cc_pydoc_template.h</name>
-    <member refid="bladerfRadar__cc__pydoc__template_8h_1a74021f021dcdfbb22891787b79c5529d" kind="define"><name>D</name></member>
-    <member refid="bladerfRadar__cc__pydoc__template_8h_1a7cdf91b47d8275867f3be9ba987c604f" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadar_cc</name></member>
-    <member refid="bladerfRadar__cc__pydoc__template_8h_1a01a90b763b7f1d280e702e2c6d6eb9ba" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadar_cc_bladerfRadar_cc</name></member>
-    <member refid="bladerfRadar__cc__pydoc__template_8h_1a969b6f74e398aeeada25dff3d53dd6a5" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadar_cc_make</name></member>
+  <compound refid="bladerfRadar__cc__pydoc_8h" kind="file"><name>bladerfRadar_cc_pydoc.h</name>
+    <member refid="bladerfRadar__cc__pydoc_8h_1a74021f021dcdfbb22891787b79c5529d" kind="define"><name>D</name></member>
+    <member refid="bladerfRadar__cc__pydoc_8h_1a7cdf91b47d8275867f3be9ba987c604f" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadar_cc</name></member>
+    <member refid="bladerfRadar__cc__pydoc_8h_1a01a90b763b7f1d280e702e2c6d6eb9ba" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadar_cc_bladerfRadar_cc</name></member>
+    <member refid="bladerfRadar__cc__pydoc_8h_1a969b6f74e398aeeada25dff3d53dd6a5" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadar_cc_make</name></member>
+  </compound>
+  <compound refid="build_2test__modules_2gnuradio_2sfcwRadar_2bindings_2docstrings_2bladerfRadar__cc__pydoc__template_8h" kind="file"><name>build/test_modules/gnuradio/sfcwRadar/bindings/docstrings/bladerfRadar_cc_pydoc_template.h</name>
+    <member refid="build_2test__modules_2gnuradio_2sfcwRadar_2bindings_2docstrings_2bladerfRadar__cc__pydoc__template_8h_1a74021f021dcdfbb22891787b79c5529d" kind="define"><name>D</name></member>
+    <member refid="build_2test__modules_2gnuradio_2sfcwRadar_2bindings_2docstrings_2bladerfRadar__cc__pydoc__template_8h_1a7cdf91b47d8275867f3be9ba987c604f" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadar_cc</name></member>
+    <member refid="build_2test__modules_2gnuradio_2sfcwRadar_2bindings_2docstrings_2bladerfRadar__cc__pydoc__template_8h_1a01a90b763b7f1d280e702e2c6d6eb9ba" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadar_cc_bladerfRadar_cc</name></member>
+    <member refid="build_2test__modules_2gnuradio_2sfcwRadar_2bindings_2docstrings_2bladerfRadar__cc__pydoc__template_8h_1a969b6f74e398aeeada25dff3d53dd6a5" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadar_cc_make</name></member>
+  </compound>
+  <compound refid="python_2sfcwRadar_2bindings_2docstrings_2bladerfRadar__cc__pydoc__template_8h" kind="file"><name>python/sfcwRadar/bindings/docstrings/bladerfRadar_cc_pydoc_template.h</name>
+    <member refid="python_2sfcwRadar_2bindings_2docstrings_2bladerfRadar__cc__pydoc__template_8h_1a74021f021dcdfbb22891787b79c5529d" kind="define"><name>D</name></member>
+    <member refid="python_2sfcwRadar_2bindings_2docstrings_2bladerfRadar__cc__pydoc__template_8h_1a7cdf91b47d8275867f3be9ba987c604f" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadar_cc</name></member>
+    <member refid="python_2sfcwRadar_2bindings_2docstrings_2bladerfRadar__cc__pydoc__template_8h_1a01a90b763b7f1d280e702e2c6d6eb9ba" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadar_cc_bladerfRadar_cc</name></member>
+    <member refid="python_2sfcwRadar_2bindings_2docstrings_2bladerfRadar__cc__pydoc__template_8h_1a969b6f74e398aeeada25dff3d53dd6a5" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadar_cc_make</name></member>
   </compound>
   <compound refid="bladerfRadarBurst__cc_8h" kind="file"><name>bladerfRadarBurst_cc.h</name>
   </compound>
   <compound refid="bladerfRadarBurst__cc__impl_8h" kind="file"><name>bladerfRadarBurst_cc_impl.h</name>
   </compound>
-  <compound refid="bladerfRadarBurst__cc__pydoc__template_8h" kind="file"><name>bladerfRadarBurst_cc_pydoc_template.h</name>
-    <member refid="bladerfRadarBurst__cc__pydoc__template_8h_1a74021f021dcdfbb22891787b79c5529d" kind="define"><name>D</name></member>
-    <member refid="bladerfRadarBurst__cc__pydoc__template_8h_1af7b81c624e0e56b5b2f8920c336048a2" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarBurst_cc</name></member>
-    <member refid="bladerfRadarBurst__cc__pydoc__template_8h_1a0a21c3b053ee93577e79fd012121788c" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarBurst_cc_bladerfRadarBurst_cc</name></member>
-    <member refid="bladerfRadarBurst__cc__pydoc__template_8h_1a973ca16c1cbbf54c32d3f4db848c8a59" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarBurst_cc_make</name></member>
-    <member refid="bladerfRadarBurst__cc__pydoc__template_8h_1ad2e99ddd35fff40d9ccc160cfedf8085" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarBurst_cc_set_rx_gain</name></member>
-    <member refid="bladerfRadarBurst__cc__pydoc__template_8h_1a019fcb7e753ea4e353f77b8afabf09d3" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarBurst_cc_set_ref_gain</name></member>
-    <member refid="bladerfRadarBurst__cc__pydoc__template_8h_1a88c4a1d939d8a007453e4d35db52c80f" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarBurst_cc_set_tx_gain</name></member>
+  <compound refid="bladerfRadarBurst__cc__pydoc_8h" kind="file"><name>bladerfRadarBurst_cc_pydoc.h</name>
+    <member refid="bladerfRadarBurst__cc__pydoc_8h_1a74021f021dcdfbb22891787b79c5529d" kind="define"><name>D</name></member>
+    <member refid="bladerfRadarBurst__cc__pydoc_8h_1af7b81c624e0e56b5b2f8920c336048a2" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarBurst_cc</name></member>
+    <member refid="bladerfRadarBurst__cc__pydoc_8h_1a0a21c3b053ee93577e79fd012121788c" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarBurst_cc_bladerfRadarBurst_cc</name></member>
+    <member refid="bladerfRadarBurst__cc__pydoc_8h_1a973ca16c1cbbf54c32d3f4db848c8a59" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarBurst_cc_make</name></member>
+    <member refid="bladerfRadarBurst__cc__pydoc_8h_1ad2e99ddd35fff40d9ccc160cfedf8085" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarBurst_cc_set_rx_gain</name></member>
+    <member refid="bladerfRadarBurst__cc__pydoc_8h_1a019fcb7e753ea4e353f77b8afabf09d3" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarBurst_cc_set_ref_gain</name></member>
+    <member refid="bladerfRadarBurst__cc__pydoc_8h_1a88c4a1d939d8a007453e4d35db52c80f" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarBurst_cc_set_tx_gain</name></member>
+    <member refid="bladerfRadarBurst__cc__pydoc_8h_1a9cd423c86c8be96accb831916dedc156" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarBurst_cc_set_start_freq</name></member>
+    <member refid="bladerfRadarBurst__cc__pydoc_8h_1a84a40e663a37eca538de515594b0cbf6" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarBurst_cc_set_freq_step</name></member>
+    <member refid="bladerfRadarBurst__cc__pydoc_8h_1a51bae55d84bc4dcd0f959afc4d1b3204" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarBurst_cc_set_num_steps</name></member>
+    <member refid="bladerfRadarBurst__cc__pydoc_8h_1a1d82b0437946c009f400b46723b80ee8" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarBurst_cc_set_burst_len</name></member>
+  </compound>
+  <compound refid="build_2test__modules_2gnuradio_2sfcwRadar_2bindings_2docstrings_2bladerfRadarBurst__cc__pydoc__template_8h" kind="file"><name>build/test_modules/gnuradio/sfcwRadar/bindings/docstrings/bladerfRadarBurst_cc_pydoc_template.h</name>
+    <member refid="build_2test__modules_2gnuradio_2sfcwRadar_2bindings_2docstrings_2bladerfRadarBurst__cc__pydoc__template_8h_1a74021f021dcdfbb22891787b79c5529d" kind="define"><name>D</name></member>
+    <member refid="build_2test__modules_2gnuradio_2sfcwRadar_2bindings_2docstrings_2bladerfRadarBurst__cc__pydoc__template_8h_1af7b81c624e0e56b5b2f8920c336048a2" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarBurst_cc</name></member>
+    <member refid="build_2test__modules_2gnuradio_2sfcwRadar_2bindings_2docstrings_2bladerfRadarBurst__cc__pydoc__template_8h_1a0a21c3b053ee93577e79fd012121788c" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarBurst_cc_bladerfRadarBurst_cc</name></member>
+    <member refid="build_2test__modules_2gnuradio_2sfcwRadar_2bindings_2docstrings_2bladerfRadarBurst__cc__pydoc__template_8h_1a973ca16c1cbbf54c32d3f4db848c8a59" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarBurst_cc_make</name></member>
+    <member refid="build_2test__modules_2gnuradio_2sfcwRadar_2bindings_2docstrings_2bladerfRadarBurst__cc__pydoc__template_8h_1ad2e99ddd35fff40d9ccc160cfedf8085" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarBurst_cc_set_rx_gain</name></member>
+    <member refid="build_2test__modules_2gnuradio_2sfcwRadar_2bindings_2docstrings_2bladerfRadarBurst__cc__pydoc__template_8h_1a019fcb7e753ea4e353f77b8afabf09d3" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarBurst_cc_set_ref_gain</name></member>
+    <member refid="build_2test__modules_2gnuradio_2sfcwRadar_2bindings_2docstrings_2bladerfRadarBurst__cc__pydoc__template_8h_1a88c4a1d939d8a007453e4d35db52c80f" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarBurst_cc_set_tx_gain</name></member>
+    <member refid="build_2test__modules_2gnuradio_2sfcwRadar_2bindings_2docstrings_2bladerfRadarBurst__cc__pydoc__template_8h_1a9cd423c86c8be96accb831916dedc156" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarBurst_cc_set_start_freq</name></member>
+    <member refid="build_2test__modules_2gnuradio_2sfcwRadar_2bindings_2docstrings_2bladerfRadarBurst__cc__pydoc__template_8h_1a84a40e663a37eca538de515594b0cbf6" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarBurst_cc_set_freq_step</name></member>
+    <member refid="build_2test__modules_2gnuradio_2sfcwRadar_2bindings_2docstrings_2bladerfRadarBurst__cc__pydoc__template_8h_1a51bae55d84bc4dcd0f959afc4d1b3204" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarBurst_cc_set_num_steps</name></member>
+    <member refid="build_2test__modules_2gnuradio_2sfcwRadar_2bindings_2docstrings_2bladerfRadarBurst__cc__pydoc__template_8h_1a1d82b0437946c009f400b46723b80ee8" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarBurst_cc_set_burst_len</name></member>
+  </compound>
+  <compound refid="python_2sfcwRadar_2bindings_2docstrings_2bladerfRadarBurst__cc__pydoc__template_8h" kind="file"><name>python/sfcwRadar/bindings/docstrings/bladerfRadarBurst_cc_pydoc_template.h</name>
+    <member refid="python_2sfcwRadar_2bindings_2docstrings_2bladerfRadarBurst__cc__pydoc__template_8h_1a74021f021dcdfbb22891787b79c5529d" kind="define"><name>D</name></member>
+    <member refid="python_2sfcwRadar_2bindings_2docstrings_2bladerfRadarBurst__cc__pydoc__template_8h_1af7b81c624e0e56b5b2f8920c336048a2" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarBurst_cc</name></member>
+    <member refid="python_2sfcwRadar_2bindings_2docstrings_2bladerfRadarBurst__cc__pydoc__template_8h_1a0a21c3b053ee93577e79fd012121788c" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarBurst_cc_bladerfRadarBurst_cc</name></member>
+    <member refid="python_2sfcwRadar_2bindings_2docstrings_2bladerfRadarBurst__cc__pydoc__template_8h_1a973ca16c1cbbf54c32d3f4db848c8a59" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarBurst_cc_make</name></member>
+    <member refid="python_2sfcwRadar_2bindings_2docstrings_2bladerfRadarBurst__cc__pydoc__template_8h_1ad2e99ddd35fff40d9ccc160cfedf8085" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarBurst_cc_set_rx_gain</name></member>
+    <member refid="python_2sfcwRadar_2bindings_2docstrings_2bladerfRadarBurst__cc__pydoc__template_8h_1a019fcb7e753ea4e353f77b8afabf09d3" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarBurst_cc_set_ref_gain</name></member>
+    <member refid="python_2sfcwRadar_2bindings_2docstrings_2bladerfRadarBurst__cc__pydoc__template_8h_1a88c4a1d939d8a007453e4d35db52c80f" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarBurst_cc_set_tx_gain</name></member>
+    <member refid="python_2sfcwRadar_2bindings_2docstrings_2bladerfRadarBurst__cc__pydoc__template_8h_1a9cd423c86c8be96accb831916dedc156" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarBurst_cc_set_start_freq</name></member>
+    <member refid="python_2sfcwRadar_2bindings_2docstrings_2bladerfRadarBurst__cc__pydoc__template_8h_1a84a40e663a37eca538de515594b0cbf6" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarBurst_cc_set_freq_step</name></member>
+    <member refid="python_2sfcwRadar_2bindings_2docstrings_2bladerfRadarBurst__cc__pydoc__template_8h_1a51bae55d84bc4dcd0f959afc4d1b3204" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarBurst_cc_set_num_steps</name></member>
+    <member refid="python_2sfcwRadar_2bindings_2docstrings_2bladerfRadarBurst__cc__pydoc__template_8h_1a1d82b0437946c009f400b46723b80ee8" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarBurst_cc_set_burst_len</name></member>
   </compound>
   <compound refid="group__defs_8dox" kind="file"><name>group_defs.dox</name>
   </compound>
@@ -235,17 +311,45 @@
     <member refid="docs_2doxygen_2pydoc__macros_8h_1a6f1e731f1c6d2893ff1bf98582a7de6e" kind="define"><name>__DOC7</name></member>
     <member refid="docs_2doxygen_2pydoc__macros_8h_1a4e578031ec998eaeb933d5caa6a7d28a" kind="define"><name>DOC</name></member>
   </compound>
+  <compound refid="rawSignalSink__cc_8h" kind="file"><name>rawSignalSink_cc.h</name>
+  </compound>
+  <compound refid="rawSignalSink__cc__impl_8h" kind="file"><name>rawSignalSink_cc_impl.h</name>
+  </compound>
+  <compound refid="rawSignalSink__cc__pydoc_8h" kind="file"><name>rawSignalSink_cc_pydoc.h</name>
+    <member refid="rawSignalSink__cc__pydoc_8h_1a74021f021dcdfbb22891787b79c5529d" kind="define"><name>D</name></member>
+    <member refid="rawSignalSink__cc__pydoc_8h_1a771bc97b0a931afec17c023856a7ad0a" kind="variable"><name>__doc_gr_sfcwRadar_rawSignalSink_cc</name></member>
+    <member refid="rawSignalSink__cc__pydoc_8h_1ac61a8392ae1a772ea34e0515ad06b087" kind="variable"><name>__doc_gr_sfcwRadar_rawSignalSink_cc_rawSignalSink_cc</name></member>
+    <member refid="rawSignalSink__cc__pydoc_8h_1a9387ce198a2ddfb5437d7a41634a28a4" kind="variable"><name>__doc_gr_sfcwRadar_rawSignalSink_cc_make</name></member>
+  </compound>
+  <compound refid="build_2test__modules_2gnuradio_2sfcwRadar_2bindings_2docstrings_2rawSignalSink__cc__pydoc__template_8h" kind="file"><name>build/test_modules/gnuradio/sfcwRadar/bindings/docstrings/rawSignalSink_cc_pydoc_template.h</name>
+    <member refid="build_2test__modules_2gnuradio_2sfcwRadar_2bindings_2docstrings_2rawSignalSink__cc__pydoc__template_8h_1a74021f021dcdfbb22891787b79c5529d" kind="define"><name>D</name></member>
+    <member refid="build_2test__modules_2gnuradio_2sfcwRadar_2bindings_2docstrings_2rawSignalSink__cc__pydoc__template_8h_1a771bc97b0a931afec17c023856a7ad0a" kind="variable"><name>__doc_gr_sfcwRadar_rawSignalSink_cc</name></member>
+    <member refid="build_2test__modules_2gnuradio_2sfcwRadar_2bindings_2docstrings_2rawSignalSink__cc__pydoc__template_8h_1ac61a8392ae1a772ea34e0515ad06b087" kind="variable"><name>__doc_gr_sfcwRadar_rawSignalSink_cc_rawSignalSink_cc</name></member>
+    <member refid="build_2test__modules_2gnuradio_2sfcwRadar_2bindings_2docstrings_2rawSignalSink__cc__pydoc__template_8h_1a9387ce198a2ddfb5437d7a41634a28a4" kind="variable"><name>__doc_gr_sfcwRadar_rawSignalSink_cc_make</name></member>
+  </compound>
+  <compound refid="python_2sfcwRadar_2bindings_2docstrings_2rawSignalSink__cc__pydoc__template_8h" kind="file"><name>python/sfcwRadar/bindings/docstrings/rawSignalSink_cc_pydoc_template.h</name>
+    <member refid="python_2sfcwRadar_2bindings_2docstrings_2rawSignalSink__cc__pydoc__template_8h_1a74021f021dcdfbb22891787b79c5529d" kind="define"><name>D</name></member>
+    <member refid="python_2sfcwRadar_2bindings_2docstrings_2rawSignalSink__cc__pydoc__template_8h_1a771bc97b0a931afec17c023856a7ad0a" kind="variable"><name>__doc_gr_sfcwRadar_rawSignalSink_cc</name></member>
+    <member refid="python_2sfcwRadar_2bindings_2docstrings_2rawSignalSink__cc__pydoc__template_8h_1ac61a8392ae1a772ea34e0515ad06b087" kind="variable"><name>__doc_gr_sfcwRadar_rawSignalSink_cc_rawSignalSink_cc</name></member>
+    <member refid="python_2sfcwRadar_2bindings_2docstrings_2rawSignalSink__cc__pydoc__template_8h_1a9387ce198a2ddfb5437d7a41634a28a4" kind="variable"><name>__doc_gr_sfcwRadar_rawSignalSink_cc_make</name></member>
+  </compound>
   <compound refid="group__block" kind="group"><name>block</name>
   </compound>
-  <compound refid="dir_09c4c514c1cf0edfd53e35a09fcd19d8" kind="dir"><name>bindings</name>
-  </compound>
   <compound refid="dir_b6be37e54b311340ea309d9c54111508" kind="dir"><name>bindings</name>
+  </compound>
+  <compound refid="dir_1a1ae34702dc708862141e32b21c1161" kind="dir"><name>bindings</name>
+  </compound>
+  <compound refid="dir_09c4c514c1cf0edfd53e35a09fcd19d8" kind="dir"><name>bindings</name>
   </compound>
   <compound refid="dir_49e56c817e5e54854c35e136979f97ca" kind="dir"><name>docs</name>
   </compound>
   <compound refid="dir_f877d2106622a249c42c89971a10b9c7" kind="dir"><name>docstrings</name>
   </compound>
+  <compound refid="dir_0c0631cddfb91ddd67fec5ff33cfad50" kind="dir"><name>docstrings</name>
+  </compound>
   <compound refid="dir_359d2bec989c9a8deeeb9aee335c1c76" kind="dir"><name>doxygen</name>
+  </compound>
+  <compound refid="dir_d5646a4d2acea6cd94665cfd9ba3943c" kind="dir"><name>gnuradio</name>
   </compound>
   <compound refid="dir_902d6fe55786be073ae6681293cdb979" kind="dir"><name>gnuradio</name>
   </compound>
@@ -259,11 +363,15 @@
   </compound>
   <compound refid="dir_7837fde3ab9c1fb2fc5be7b717af8d79" kind="dir"><name>python</name>
   </compound>
-  <compound refid="dir_4e0b6bc00917f6e1f75d0811ab27d32a" kind="dir"><name>sfcwRadar</name>
+  <compound refid="dir_d1b8ef77ef9863e77c08dc1a502ce908" kind="dir"><name>sfcwRadar</name>
+  </compound>
+  <compound refid="dir_e59fc4185131949da80fc63bf6705596" kind="dir"><name>sfcwRadar</name>
   </compound>
   <compound refid="dir_b086c8a255c3d0dff23c3bce3b215051" kind="dir"><name>sfcwRadar</name>
   </compound>
-  <compound refid="dir_e59fc4185131949da80fc63bf6705596" kind="dir"><name>sfcwRadar</name>
+  <compound refid="dir_4e0b6bc00917f6e1f75d0811ab27d32a" kind="dir"><name>sfcwRadar</name>
+  </compound>
+  <compound refid="dir_245958930b01a1821dcae9c9162c97e5" kind="dir"><name>test_modules</name>
   </compound>
   <compound refid="indexpage" kind="page"><name>index</name>
   </compound>

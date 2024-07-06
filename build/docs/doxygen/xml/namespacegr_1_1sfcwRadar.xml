@@ -10,6 +10,8 @@
     <innerclass refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc" prot="public">gr::sfcwRadar::bladerfRadarBurst_cc</innerclass>
     <innerclass refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl" prot="public">gr::sfcwRadar::bladerfRadarBurst_cc_impl</innerclass>
     <innerclass refid="structgr_1_1sfcwRadar_1_1channel__config" prot="public">gr::sfcwRadar::channel_config</innerclass>
+    <innerclass refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc" prot="public">gr::sfcwRadar::rawSignalSink_cc</innerclass>
+    <innerclass refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl" prot="public">gr::sfcwRadar::rawSignalSink_cc_impl</innerclass>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

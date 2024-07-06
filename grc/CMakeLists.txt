@@ -12,4 +12,5 @@ install(FILES
     sfcwRadar_bladerfRadar_cc.block.yml
     sfcwRadar_bladerfRadarBurst_cc.block.yml
     sfcwRadar_bladerfEchoTimer_cc.block.yml
-    sfcwRadar_rangeProfileSink.block.yml DESTINATION share/gnuradio/grc/blocks)
+    sfcwRadar_rangeProfileSink.block.yml
+    sfcwRadar_rawSignalSink_cc.block.yml DESTINATION share/gnuradio/grc/blocks)

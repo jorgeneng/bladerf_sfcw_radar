@@ -8,6 +8,9 @@ var hierarchy =
       ] ],
       [ "gr::sfcwRadar::bladerfRadar_cc", "classgr_1_1sfcwRadar_1_1bladerfRadar__cc.html", [
         [ "gr::sfcwRadar::bladerfRadar_cc_impl", "classgr_1_1sfcwRadar_1_1bladerfRadar__cc__impl.html", null ]
+      ] ],
+      [ "gr::sfcwRadar::rawSignalSink_cc", "classgr_1_1sfcwRadar_1_1rawSignalSink__cc.html", [
+        [ "gr::sfcwRadar::rawSignalSink_cc_impl", "classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl.html", null ]
       ] ]
     ] ],
     [ "tagged_stream_block", null, [

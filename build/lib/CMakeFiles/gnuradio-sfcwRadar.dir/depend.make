@@ -16,3 +16,8 @@ lib/CMakeFiles/gnuradio-sfcwRadar.dir/bladerfRadar_cc_impl.cc.o: ../include/gnur
 lib/CMakeFiles/gnuradio-sfcwRadar.dir/bladerfRadar_cc_impl.cc.o: ../lib/bladerfRadar_cc_impl.cc
 lib/CMakeFiles/gnuradio-sfcwRadar.dir/bladerfRadar_cc_impl.cc.o: ../lib/bladerfRadar_cc_impl.h
 
+lib/CMakeFiles/gnuradio-sfcwRadar.dir/rawSignalSink_cc_impl.cc.o: ../include/gnuradio/sfcwRadar/api.h
+lib/CMakeFiles/gnuradio-sfcwRadar.dir/rawSignalSink_cc_impl.cc.o: ../include/gnuradio/sfcwRadar/rawSignalSink_cc.h
+lib/CMakeFiles/gnuradio-sfcwRadar.dir/rawSignalSink_cc_impl.cc.o: ../lib/rawSignalSink_cc_impl.cc
+lib/CMakeFiles/gnuradio-sfcwRadar.dir/rawSignalSink_cc_impl.cc.o: ../lib/rawSignalSink_cc_impl.h
+

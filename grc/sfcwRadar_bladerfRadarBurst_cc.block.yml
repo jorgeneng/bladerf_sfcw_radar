@@ -10,6 +10,10 @@ templates:
         - set_rx_gain(${rx_gain})
         - set_ref_gain(${ref_gain})
         - set_tx_gain(${tx_gain})
+        - set_start_freq(${start_freq})
+        - set_freq_step(${freq_step})
+        - set_num_steps(${num_steps})
+        - set_burst_len(${burst_len})
 
 #  Make one 'parameters' list entry for every parameter you want settable from the GUI.
 #     Keys include:

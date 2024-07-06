@@ -87,14 +87,14 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="2">
-        <label>gr::sync_block</label>
-      </node>
       <node id="3">
         <label>gr::sfcwRadar::bladerfEchoTimer_cc_impl</label>
         <link refid="classgr_1_1sfcwRadar_1_1bladerfEchoTimer__cc__impl"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="2">
+        <label>sync_block</label>
       </node>
       <node id="1">
         <label>gr::sfcwRadar::bladerfEchoTimer_cc</label>
@@ -105,7 +105,7 @@
     </inheritancegraph>
     <collaborationgraph>
       <node id="2">
-        <label>gr::sync_block</label>
+        <label>sync_block</label>
       </node>
       <node id="1">
         <label>gr::sfcwRadar::bladerfEchoTimer_cc</label>

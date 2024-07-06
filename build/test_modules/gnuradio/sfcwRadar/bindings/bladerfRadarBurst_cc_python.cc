@@ -14,7 +14,7 @@
 /* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
 /* BINDTOOL_USE_PYGCCXML(0)                                                        */
 /* BINDTOOL_HEADER_FILE(bladerfRadarBurst_cc.h)                                        */
-/* BINDTOOL_HEADER_FILE_HASH(7298d1f653c97ab2a592dbc23eaef83a)                     */
+/* BINDTOOL_HEADER_FILE_HASH(5cd759de0aaefdbce6bff5bfd8ae7579)                     */
 /***********************************************************************************/
 
 #include <pybind11/complex.h>
@@ -52,6 +52,22 @@ void bind_bladerfRadarBurst_cc(py::module& m)
         .def("set_tx_gain", &bladerfRadarBurst_cc::set_tx_gain,
                 py::arg("gain"),
                 D(bladerfRadarBurst_cc,set_tx_gain)
+        )
+        .def("set_start_freq", &bladerfRadarBurst_cc::set_start_freq,
+                py::arg("start_freq"),
+                D(bladerfRadarBurst_cc,set_start_freq)
+        )
+        .def("set_freq_step", &bladerfRadarBurst_cc::set_freq_step,
+                py::arg("freq_step"),
+                D(bladerfRadarBurst_cc,set_freq_step)
+        )
+        .def("set_num_steps", &bladerfRadarBurst_cc::set_num_steps,
+                py::arg("num_steps"),
+                D(bladerfRadarBurst_cc,set_num_steps)
+        )
+        .def("set_burst_len", &bladerfRadarBurst_cc::set_burst_len,
+                py::arg("burst_len"),
+                D(bladerfRadarBurst_cc,set_burst_len)
         )
 
         ;

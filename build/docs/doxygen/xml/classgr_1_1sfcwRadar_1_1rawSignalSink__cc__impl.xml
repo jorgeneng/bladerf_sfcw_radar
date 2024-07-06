@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl" kind="class" language="C++" prot="public">
+    <compoundname>gr::sfcwRadar::rawSignalSink_cc_impl</compoundname>
+    <basecompoundref refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc" prot="public" virt="non-virtual">gr::sfcwRadar::rawSignalSink_cc</basecompoundref>
+    <includes refid="rawSignalSink__cc__impl_8h" local="no">rawSignalSink_cc_impl.h</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1a546f84e82756d1b82550e8e9eba98ea3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>gr::sfcwRadar::rawSignalSink_cc_impl::rawSignalSink_cc_impl</definition>
+        <argsstring>()</argsstring>
+        <name>rawSignalSink_cc_impl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" line="22" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1a6f9689fb47be8caaca47bc12dec4b394" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>gr::sfcwRadar::rawSignalSink_cc_impl::~rawSignalSink_cc_impl</definition>
+        <argsstring>()</argsstring>
+        <name>~rawSignalSink_cc_impl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" line="23" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1a003a78d6325ff810b47dad1590ce1a45" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int gr::sfcwRadar::rawSignalSink_cc_impl::work</definition>
+        <argsstring>(int noutput_items, gr_vector_const_void_star &amp;input_items, gr_vector_void_star &amp;output_items)</argsstring>
+        <name>work</name>
+        <param>
+          <type>int</type>
+          <declname>noutput_items</declname>
+        </param>
+        <param>
+          <type>gr_vector_const_void_star &amp;</type>
+          <declname>input_items</declname>
+        </param>
+        <param>
+          <type>gr_vector_void_star &amp;</type>
+          <declname>output_items</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" line="26" column="9"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>gr::sync_block</label>
+      </node>
+      <node id="1">
+        <label>gr::sfcwRadar::rawSignalSink_cc_impl</label>
+        <link refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>gr::sfcwRadar::rawSignalSink_cc</label>
+        <link refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>gr::sync_block</label>
+      </node>
+      <node id="1">
+        <label>gr::sfcwRadar::rawSignalSink_cc_impl</label>
+        <link refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>gr::sfcwRadar::rawSignalSink_cc</label>
+        <link refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" line="17" column="1" bodyfile="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" bodystart="16" bodyend="29"/>
+    <listofallmembers>
+      <member refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc_1ac095cd194821f812f3f742c405a79ff6" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::rawSignalSink_cc_impl</scope><name>make</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1a546f84e82756d1b82550e8e9eba98ea3" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::rawSignalSink_cc_impl</scope><name>rawSignalSink_cc_impl</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc_1a40f02373088297a2f876a529d9ea3f82" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::rawSignalSink_cc_impl</scope><name>sptr</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1a003a78d6325ff810b47dad1590ce1a45" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::rawSignalSink_cc_impl</scope><name>work</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1a6f9689fb47be8caaca47bc12dec4b394" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::rawSignalSink_cc_impl</scope><name>~rawSignalSink_cc_impl</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

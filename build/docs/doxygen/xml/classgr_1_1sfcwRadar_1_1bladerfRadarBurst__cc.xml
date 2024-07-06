@@ -136,6 +136,78 @@
         </inbodydescription>
         <location file="/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/bladerfRadarBurst_cc.h" line="50" column="17"/>
       </memberdef>
+      <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc_1ad6c51c16dd2dc1b3fee25959c997900a" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>int</type>
+        <definition>virtual int gr::sfcwRadar::bladerfRadarBurst_cc::set_start_freq</definition>
+        <argsstring>(bladerf_frequency start_freq)=0</argsstring>
+        <name>set_start_freq</name>
+        <reimplementedby refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1abe4d92df2f42601023fe83fed0b6ea57">set_start_freq</reimplementedby>
+        <param>
+          <type>bladerf_frequency</type>
+          <declname>start_freq</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/bladerfRadarBurst_cc.h" line="52" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc_1a8c48a57b8269026e4ad5127af84bc9e9" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>int</type>
+        <definition>virtual int gr::sfcwRadar::bladerfRadarBurst_cc::set_freq_step</definition>
+        <argsstring>(bladerf_frequency freq_step)=0</argsstring>
+        <name>set_freq_step</name>
+        <reimplementedby refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1ac82b6bd78d544c875990439a21d99441">set_freq_step</reimplementedby>
+        <param>
+          <type>bladerf_frequency</type>
+          <declname>freq_step</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/bladerfRadarBurst_cc.h" line="53" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc_1af57197592ec1957826b88ebc86106536" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>int</type>
+        <definition>virtual int gr::sfcwRadar::bladerfRadarBurst_cc::set_num_steps</definition>
+        <argsstring>(int num_steps)=0</argsstring>
+        <name>set_num_steps</name>
+        <reimplementedby refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a97f02a9dbe948aaf04549a0802bfb6ff">set_num_steps</reimplementedby>
+        <param>
+          <type>int</type>
+          <declname>num_steps</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/bladerfRadarBurst_cc.h" line="54" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc_1a00cac1a8fdc3ce4ba9829f6e1ad75ce2" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>int</type>
+        <definition>virtual int gr::sfcwRadar::bladerfRadarBurst_cc::set_burst_len</definition>
+        <argsstring>(int burst_len)=0</argsstring>
+        <name>set_burst_len</name>
+        <reimplementedby refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1ac98c2ce2fa1381f0983eb44e340461a5">set_burst_len</reimplementedby>
+        <param>
+          <type>int</type>
+          <declname>burst_len</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/bladerfRadarBurst_cc.h" line="55" column="17"/>
+      </memberdef>
       </sectiondef>
     <briefdescription>
 <para>&lt;+description of block+&gt; </para>
@@ -170,11 +242,15 @@
         <label>gr::tagged_stream_block</label>
       </node>
     </collaborationgraph>
-    <location file="/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/bladerfRadarBurst_cc.h" line="24" column="1" bodyfile="/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/bladerfRadarBurst_cc.h" bodystart="23" bodyend="51"/>
+    <location file="/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/bladerfRadarBurst_cc.h" line="24" column="1" bodyfile="/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/bladerfRadarBurst_cc.h" bodystart="23" bodyend="56"/>
     <listofallmembers>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc_1a75f349795cd70a066e256519a509947c" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc</scope><name>make</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc_1a00cac1a8fdc3ce4ba9829f6e1ad75ce2" prot="public" virt="pure-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc</scope><name>set_burst_len</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc_1a8c48a57b8269026e4ad5127af84bc9e9" prot="public" virt="pure-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc</scope><name>set_freq_step</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc_1af57197592ec1957826b88ebc86106536" prot="public" virt="pure-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc</scope><name>set_num_steps</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc_1a84d3982670e7d6f4261fbffb9d9e693a" prot="public" virt="pure-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc</scope><name>set_ref_gain</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc_1a76548ea302b148e90d3a04407230fc33" prot="public" virt="pure-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc</scope><name>set_rx_gain</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc_1ad6c51c16dd2dc1b3fee25959c997900a" prot="public" virt="pure-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc</scope><name>set_start_freq</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc_1a86188256ed507ad7fdb22974135953a6" prot="public" virt="pure-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc</scope><name>set_tx_gain</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc_1a03721339c2ecef668d255bcd33863427" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc</scope><name>sptr</name></member>
     </listofallmembers>

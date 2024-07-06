@@ -13,6 +13,7 @@ from gnuradio import qtgui
 from PyQt5 import QtCore
 from gnuradio import analog
 from gnuradio import blocks
+from gnuradio import eng_notation
 from gnuradio import fft
 from gnuradio.fft import window
 from gnuradio import filter
@@ -23,7 +24,6 @@ import signal
 from PyQt5 import Qt
 from argparse import ArgumentParser
 from gnuradio.eng_arg import eng_float, intx
-from gnuradio import eng_notation
 from gnuradio import sfcwRadar
 import sip
 
@@ -65,12 +65,14 @@ class example(gr.top_block, Qt.QWidget):
         # Variables
         ##################################################
         self.y_max = y_max = 15
-        self.tx_gain = tx_gain = 60
+        self.tx_gain = tx_gain = 40
+        self.start_freq = start_freq = 1e9
         self.samp_rate = samp_rate = 10e6
-        self.rx_gain = rx_gain = 30
-        self.ref_gain = ref_gain = 50
+        self.rx_gain = rx_gain = 60
+        self.ref_gain = ref_gain = 60
         self.num_steps = num_steps = 128
-        self.burst_len = burst_len = 2**12
+        self.freq_step = freq_step = 20e6
+        self.burst_len = burst_len = (2**12)
 
         ##################################################
         # Blocks
@@ -79,17 +81,43 @@ class example(gr.top_block, Qt.QWidget):
         self._y_max_range = qtgui.Range(0, 400, 1, 15, 200)
         self._y_max_win = qtgui.RangeWidget(self._y_max_range, self.set_y_max, "'y_max'", "counter_slider", float, QtCore.Qt.Horizontal)
         self.top_layout.addWidget(self._y_max_win)
-        self._tx_gain_range = qtgui.Range(1, 150, 1, 60, 200)
-        self._tx_gain_win = qtgui.RangeWidget(self._tx_gain_range, self.set_tx_gain, "'tx_gain'", "counter_slider", int, QtCore.Qt.Horizontal)
-        self.top_layout.addWidget(self._tx_gain_win)
-        self._rx_gain_range = qtgui.Range(1, 60, 1, 30, 200)
-        self._rx_gain_win = qtgui.RangeWidget(self._rx_gain_range, self.set_rx_gain, "'rx_gain'", "counter_slider", int, QtCore.Qt.Horizontal)
-        self.top_layout.addWidget(self._rx_gain_win)
-        self._ref_gain_range = qtgui.Range(1, 60, 1, 50, 200)
-        self._ref_gain_win = qtgui.RangeWidget(self._ref_gain_range, self.set_ref_gain, "'ref_gain'", "counter_slider", int, QtCore.Qt.Horizontal)
-        self.top_layout.addWidget(self._ref_gain_win)
+        self._tx_gain_tool_bar = Qt.QToolBar(self)
+        self._tx_gain_tool_bar.addWidget(Qt.QLabel("TX gain" + ": "))
+        self._tx_gain_line_edit = Qt.QLineEdit(str(self.tx_gain))
+        self._tx_gain_tool_bar.addWidget(self._tx_gain_line_edit)
+        self._tx_gain_line_edit.editingFinished.connect(
+            lambda: self.set_tx_gain(int(str(self._tx_gain_line_edit.text()))))
+        self.top_layout.addWidget(self._tx_gain_tool_bar)
+        self._start_freq_tool_bar = Qt.QToolBar(self)
+        self._start_freq_tool_bar.addWidget(Qt.QLabel("starting frequency" + ": "))
+        self._start_freq_line_edit = Qt.QLineEdit(str(self.start_freq))
+        self._start_freq_tool_bar.addWidget(self._start_freq_line_edit)
+        self._start_freq_line_edit.editingFinished.connect(
+            lambda: self.set_start_freq(eng_notation.str_to_num(str(self._start_freq_line_edit.text()))))
+        self.top_layout.addWidget(self._start_freq_tool_bar)
+        self._num_steps_tool_bar = Qt.QToolBar(self)
+        self._num_steps_tool_bar.addWidget(Qt.QLabel("number of frequency steps" + ": "))
+        self._num_steps_line_edit = Qt.QLineEdit(str(self.num_steps))
+        self._num_steps_tool_bar.addWidget(self._num_steps_line_edit)
+        self._num_steps_line_edit.editingFinished.connect(
+            lambda: self.set_num_steps(int(str(self._num_steps_line_edit.text()))))
+        self.top_layout.addWidget(self._num_steps_tool_bar)
+        self._freq_step_tool_bar = Qt.QToolBar(self)
+        self._freq_step_tool_bar.addWidget(Qt.QLabel("Bandwidth of each frequency step" + ": "))
+        self._freq_step_line_edit = Qt.QLineEdit(str(self.freq_step))
+        self._freq_step_tool_bar.addWidget(self._freq_step_line_edit)
+        self._freq_step_line_edit.editingFinished.connect(
+            lambda: self.set_freq_step(eng_notation.str_to_num(str(self._freq_step_line_edit.text()))))
+        self.top_layout.addWidget(self._freq_step_tool_bar)
+        self._burst_len_tool_bar = Qt.QToolBar(self)
+        self._burst_len_tool_bar.addWidget(Qt.QLabel("length of each frequency burst" + ": "))
+        self._burst_len_line_edit = Qt.QLineEdit(str(self.burst_len))
+        self._burst_len_tool_bar.addWidget(self._burst_len_line_edit)
+        self._burst_len_line_edit.editingFinished.connect(
+            lambda: self.set_burst_len(int(str(self._burst_len_line_edit.text()))))
+        self.top_layout.addWidget(self._burst_len_tool_bar)
         self.sfcwRadar_rangeProfileSink_0 = sfcwRadar.rangeProfileSink(num_steps,'/tmp/')
-        self.sfcwRadar_bladerfRadarBurst_cc_0 = sfcwRadar.bladerfRadarBurst_cc(int(1e9), num_steps, int(20e6), int(samp_rate), rx_gain, tx_gain, ref_gain, burst_len, 8, 1024, 4)
+        self.sfcwRadar_bladerfRadarBurst_cc_0 = sfcwRadar.bladerfRadarBurst_cc(int(start_freq), num_steps, int(freq_step), int(samp_rate), rx_gain, tx_gain, ref_gain, burst_len, 8, 1024, 4)
         self.sfcwRadar_bladerfRadarBurst_cc_0.set_min_output_buffer((burst_len*2))
         self.scan_once = _scan_once_toggle_button = qtgui.MsgPushButton('scan_once', '',1,"default","default")
         self.scan_once = _scan_once_toggle_button
@@ -386,7 +414,16 @@ class example(gr.top_block, Qt.QWidget):
 
     def set_tx_gain(self, tx_gain):
         self.tx_gain = tx_gain
+        Qt.QMetaObject.invokeMethod(self._tx_gain_line_edit, "setText", Qt.Q_ARG("QString", str(self.tx_gain)))
         self.sfcwRadar_bladerfRadarBurst_cc_0.set_tx_gain(self.tx_gain)
+
+    def get_start_freq(self):
+        return self.start_freq
+
+    def set_start_freq(self, start_freq):
+        self.start_freq = start_freq
+        Qt.QMetaObject.invokeMethod(self._start_freq_line_edit, "setText", Qt.Q_ARG("QString", eng_notation.num_to_str(self.start_freq)))
+        self.sfcwRadar_bladerfRadarBurst_cc_0.set_start_freq(int(self.start_freq))
 
     def get_samp_rate(self):
         return self.samp_rate
@@ -419,13 +456,22 @@ class example(gr.top_block, Qt.QWidget):
 
     def set_num_steps(self, num_steps):
         self.num_steps = num_steps
+        Qt.QMetaObject.invokeMethod(self._num_steps_line_edit, "setText", Qt.Q_ARG("QString", str(self.num_steps)))
         self.qtgui_time_raster_sink_x_0.set_num_cols(self.num_steps)
+
+    def get_freq_step(self):
+        return self.freq_step
+
+    def set_freq_step(self, freq_step):
+        self.freq_step = freq_step
+        Qt.QMetaObject.invokeMethod(self._freq_step_line_edit, "setText", Qt.Q_ARG("QString", eng_notation.num_to_str(self.freq_step)))
 
     def get_burst_len(self):
         return self.burst_len
 
     def set_burst_len(self, burst_len):
         self.burst_len = burst_len
+        Qt.QMetaObject.invokeMethod(self._burst_len_line_edit, "setText", Qt.Q_ARG("QString", str(self.burst_len)))
         self.blocks_multiply_const_xx_0_0.set_k(1/self.burst_len)
         self.blocks_stream_to_tagged_stream_0.set_packet_len(self.burst_len)
         self.blocks_stream_to_tagged_stream_0.set_packet_len_pmt(self.burst_len)

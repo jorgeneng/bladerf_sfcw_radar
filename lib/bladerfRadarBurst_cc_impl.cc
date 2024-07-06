@@ -70,17 +70,15 @@ bladerfRadarBurst_cc_impl::bladerfRadarBurst_cc_impl(bladerf_frequency start_fre
     d_num_steps = num_steps;
     d_max_freq = d_start_freq + d_freq_step * (num_steps-1);
     d_freq_index = 0;
+    d_samp_rate = samp_rate;
+    d_tx_gain = tx_gain;
+    d_rx_gain = rx_gain;
+    d_ref_gain = ref_gain;
     std::cout << "start_freq: " << d_start_freq << std::endl;
     std::cout << "freq_step: " << d_freq_step << std::endl;
     std::cout << "num_steps: " << d_num_steps << std::endl;
     std::cout << "max_freq: " << d_max_freq << std::endl; 
     std::cout << "samp_rate: " << samp_rate << std::endl; 
-
-    /**
-     * variables to save the quick retune parameters of each frequency step 
-     * */
-    d_quick_tunes_tx = new bladerf_quick_tune_info[d_num_steps];
-    d_quick_tunes_rx = new bladerf_quick_tune_info[d_num_steps];
 
     d_burst_len = burst_len;
     std::cout << "burst_len: " << d_burst_len << std::endl;
@@ -90,6 +88,31 @@ bladerfRadarBurst_cc_impl::bladerfRadarBurst_cc_impl(bladerf_frequency start_fre
     d_num_transfers = num_transfers;
     std::cout << "buffer setup. num_buffers: " << d_num_buffers << " buffer_size: " << buffer_size << " num_transfers: " << num_transfers << std::endl;
 
+    int status = init_device();
+
+    /**
+     * Set input/ouput contrains based on the burst_len
+     * */
+    // two RXs
+    set_output_multiple(2);
+    // each RX output d_burst_len number of samples every time the work function is called
+    set_min_noutput_items(d_burst_len);
+    set_min_output_buffer(d_burst_len*2);
+}
+
+int bladerfRadarBurst_cc_impl::init_device(){
+
+    d_scan = false;
+    d_continuous_scan_flag = false;
+    d_currrent_freq = d_start_freq;
+    d_max_freq = d_start_freq + d_freq_step * (d_num_steps-1);
+
+    /**
+     * variables to save the quick retune parameters of each frequency step 
+     * */
+    d_quick_tunes_tx = new bladerf_quick_tune_info[d_num_steps];
+    d_quick_tunes_rx = new bladerf_quick_tune_info[d_num_steps]; 
+    d_freq_index = 0;
     
     /**
      * Initialize the information used to identify the desired device
@@ -125,10 +148,10 @@ bladerfRadarBurst_cc_impl::bladerfRadarBurst_cc_impl(bladerf_frequency start_fre
          * Configure RX channel 0. This channel is used for receiving ref signal (from a spliter or ditectional coupler)
          * */
         config.channel = BLADERF_CHANNEL_RX(0);
-        config.frequency = start_freq;
-        config.bandwidth = samp_rate/2;
-        config.samplerate = samp_rate;
-        config.gain = ref_gain;
+        config.frequency = d_start_freq;
+        config.bandwidth = d_samp_rate/2;
+        config.samplerate = d_samp_rate;
+        config.gain = d_ref_gain;
         status = configure_channel(dev, &config);
         if (status !=0){
             std::cerr << "RX Channel " << config.channel << ": configure_channel failed" << std::endl;
@@ -141,10 +164,10 @@ bladerfRadarBurst_cc_impl::bladerfRadarBurst_cc_impl(bladerf_frequency start_fre
          * RX channel 1 is used for receiving echo signals
          * */
         config.channel = BLADERF_CHANNEL_RX(1);
-        config.frequency = start_freq;
-        config.bandwidth = samp_rate/2;
-        config.samplerate = samp_rate;
-        config.gain = rx_gain;
+        config.frequency = d_start_freq;
+        config.bandwidth = d_samp_rate/2;
+        config.samplerate = d_samp_rate;
+        config.gain = d_rx_gain;
         status = configure_channel(dev, &config);
         if (status !=0){
             std::cerr << "RX Channel " << config.channel << ": configure_channel failed" << std::endl;
@@ -155,10 +178,10 @@ bladerfRadarBurst_cc_impl::bladerfRadarBurst_cc_impl(bladerf_frequency start_fre
          * Configure TX channel 0
          * */
         config.channel = BLADERF_CHANNEL_TX(0);
-        config.frequency = start_freq;
-        config.bandwidth = samp_rate/2;
-        config.samplerate = samp_rate;
-        config.gain = tx_gain;
+        config.frequency = d_start_freq;
+        config.bandwidth = d_samp_rate/2;
+        config.samplerate = d_samp_rate;
+        config.gain = d_tx_gain;
         status = configure_channel(dev, &config);
         if (status !=0){
             std::cerr << "TX Channel " << config.channel << ": configure_channel failed" << std::endl;
@@ -184,15 +207,7 @@ bladerfRadarBurst_cc_impl::bladerfRadarBurst_cc_impl(bladerf_frequency start_fre
             std::cout << "set quick tune finished" << std::endl;
         }
     }
-
-    /**
-     * Set input/ouput contrains based on the burst_len
-     * */
-    // two RXs
-    set_output_multiple(2);
-    // each RX output d_burst_len number of samples every time the work function is called
-    set_min_noutput_items(d_burst_len);
-    set_min_output_buffer(d_burst_len*2);
+    return status;
 }
 
 int bladerfRadarBurst_cc_impl::configure_channel(struct bladerf *dev, struct channel_config *c){
@@ -601,16 +616,44 @@ int bladerfRadarBurst_cc_impl::set_ref_gain(bladerf_gain gain){
 }
 
 int bladerfRadarBurst_cc_impl::set_tx_gain(bladerf_gain gain){
-    int status = -1;
-    bladerf_gain current_gain = -1;
-    status = bladerf_set_gain(dev, BLADERF_CHANNEL_TX(0),gain);
-    if(status != 0){
-        std::cerr << "Set gain for TX 0 failed" << std::endl;
-    }else{
-        bladerf_get_gain(dev, BLADERF_CHANNEL_TX(0), &current_gain);
-        std::cout << "TX 0 gain is: " << current_gain << std::endl;
-    }
+    d_tx_gain = gain;
+    bladerf_close(dev);
+    return init_device();
+}
+
+int bladerfRadarBurst_cc_impl::set_start_freq(bladerf_frequency start_freq){
+    d_start_freq = start_freq;
+    bladerf_close(dev);
+    int status = init_device();
     return status;
+}
+
+int bladerfRadarBurst_cc_impl::set_freq_step(bladerf_frequency freq_step){
+    d_freq_step = freq_step;
+    bladerf_close(dev);
+    int status = init_device();
+    return status;
+}
+
+int bladerfRadarBurst_cc_impl::set_num_steps(int num_steps){
+    d_num_steps = num_steps;
+    bladerf_close(dev);
+    int status = init_device();
+    return status;
+}
+
+int bladerfRadarBurst_cc_impl::set_burst_len(int burst_len){
+    d_burst_len = burst_len;
+    bladerf_close(dev);
+    /**
+     * Set input/ouput contrains based on the burst_len
+     * */
+    // two RXs
+    set_output_multiple(2);
+    // each RX output d_burst_len number of samples every time the work function is called
+    set_min_noutput_items(d_burst_len);
+    set_min_output_buffer(d_burst_len*2);
+    return init_device();
 }
 
 void bladerfRadarBurst_cc_impl::update_gps(){
@@ -681,6 +724,13 @@ int bladerfRadarBurst_cc_impl::work(int noutput_items,
         pmt::pmt_t gps_y = pmt::from_double(d_gps_y);
         pmt::pmt_t current_gps_tag_value = pmt::make_tuple(gps_x,gps_y);
         add_item_tag(0,nitems_written(0),current_gps_tag_key, current_gps_tag_value);
+        //add a new scan tag
+        pmt::pmt_t new_scan_tag_key = pmt::string_to_symbol("newScan");
+        pmt::pmt_t new_scan_tag_value = pmt::PMT_T;
+        add_item_tag(0,nitems_written(0),new_scan_tag_key,new_scan_tag_value);
+        //pmt::pmt_t current_freq_tag_key = pmt::string_to_symbol("c_freq");
+        //pmt::pmt_t current_freq_tag_value = pmt::from_uint64(d_currrent_freq);
+        //add_item_tag(0,nitems_written(0),current_freq_tag_key,current_freq_tag_value);
     }
     
     /**

@@ -96,11 +96,25 @@ lib/CMakeFiles/gnuradio-sfcwRadar.dir/bladerfEchoTimer_cc_impl.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gnuradio-sfcwRadar.dir/bladerfEchoTimer_cc_impl.cc.s"
 	cd /home/hui/gr-sfcwRadar/build/lib && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hui/gr-sfcwRadar/lib/bladerfEchoTimer_cc_impl.cc -o CMakeFiles/gnuradio-sfcwRadar.dir/bladerfEchoTimer_cc_impl.cc.s
 
+lib/CMakeFiles/gnuradio-sfcwRadar.dir/rawSignalSink_cc_impl.cc.o: lib/CMakeFiles/gnuradio-sfcwRadar.dir/flags.make
+lib/CMakeFiles/gnuradio-sfcwRadar.dir/rawSignalSink_cc_impl.cc.o: ../lib/rawSignalSink_cc_impl.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hui/gr-sfcwRadar/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object lib/CMakeFiles/gnuradio-sfcwRadar.dir/rawSignalSink_cc_impl.cc.o"
+	cd /home/hui/gr-sfcwRadar/build/lib && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gnuradio-sfcwRadar.dir/rawSignalSink_cc_impl.cc.o -c /home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.cc
+
+lib/CMakeFiles/gnuradio-sfcwRadar.dir/rawSignalSink_cc_impl.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gnuradio-sfcwRadar.dir/rawSignalSink_cc_impl.cc.i"
+	cd /home/hui/gr-sfcwRadar/build/lib && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.cc > CMakeFiles/gnuradio-sfcwRadar.dir/rawSignalSink_cc_impl.cc.i
+
+lib/CMakeFiles/gnuradio-sfcwRadar.dir/rawSignalSink_cc_impl.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gnuradio-sfcwRadar.dir/rawSignalSink_cc_impl.cc.s"
+	cd /home/hui/gr-sfcwRadar/build/lib && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.cc -o CMakeFiles/gnuradio-sfcwRadar.dir/rawSignalSink_cc_impl.cc.s
+
 # Object files for target gnuradio-sfcwRadar
 gnuradio__sfcwRadar_OBJECTS = \
 "CMakeFiles/gnuradio-sfcwRadar.dir/bladerfRadar_cc_impl.cc.o" \
 "CMakeFiles/gnuradio-sfcwRadar.dir/bladerfRadarBurst_cc_impl.cc.o" \
-"CMakeFiles/gnuradio-sfcwRadar.dir/bladerfEchoTimer_cc_impl.cc.o"
+"CMakeFiles/gnuradio-sfcwRadar.dir/bladerfEchoTimer_cc_impl.cc.o" \
+"CMakeFiles/gnuradio-sfcwRadar.dir/rawSignalSink_cc_impl.cc.o"
 
 # External object files for target gnuradio-sfcwRadar
 gnuradio__sfcwRadar_EXTERNAL_OBJECTS =
@@ -108,6 +122,7 @@ gnuradio__sfcwRadar_EXTERNAL_OBJECTS =
 lib/libgnuradio-sfcwRadar.so.1.0.0.0: lib/CMakeFiles/gnuradio-sfcwRadar.dir/bladerfRadar_cc_impl.cc.o
 lib/libgnuradio-sfcwRadar.so.1.0.0.0: lib/CMakeFiles/gnuradio-sfcwRadar.dir/bladerfRadarBurst_cc_impl.cc.o
 lib/libgnuradio-sfcwRadar.so.1.0.0.0: lib/CMakeFiles/gnuradio-sfcwRadar.dir/bladerfEchoTimer_cc_impl.cc.o
+lib/libgnuradio-sfcwRadar.so.1.0.0.0: lib/CMakeFiles/gnuradio-sfcwRadar.dir/rawSignalSink_cc_impl.cc.o
 lib/libgnuradio-sfcwRadar.so.1.0.0.0: lib/CMakeFiles/gnuradio-sfcwRadar.dir/build.make
 lib/libgnuradio-sfcwRadar.so.1.0.0.0: /usr/local/lib/libgnuradio-runtime.so.v3.10.9.2-39-gcf065ee5
 lib/libgnuradio-sfcwRadar.so.1.0.0.0: /usr/local/lib/libgnuradio-pmt.so.v3.10.9.2-39-gcf065ee5
@@ -117,7 +132,7 @@ lib/libgnuradio-sfcwRadar.so.1.0.0.0: /usr/lib/x86_64-linux-gnu/libspdlog.so.1.5
 lib/libgnuradio-sfcwRadar.so.1.0.0.0: /usr/lib/x86_64-linux-gnu/libgmpxx.so
 lib/libgnuradio-sfcwRadar.so.1.0.0.0: /usr/lib/x86_64-linux-gnu/libgmp.so
 lib/libgnuradio-sfcwRadar.so.1.0.0.0: lib/CMakeFiles/gnuradio-sfcwRadar.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/hui/gr-sfcwRadar/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX shared library libgnuradio-sfcwRadar.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/hui/gr-sfcwRadar/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX shared library libgnuradio-sfcwRadar.so"
 	cd /home/hui/gr-sfcwRadar/build/lib && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/gnuradio-sfcwRadar.dir/link.txt --verbose=$(VERBOSE)
 	cd /home/hui/gr-sfcwRadar/build/lib && $(CMAKE_COMMAND) -E cmake_symlink_library libgnuradio-sfcwRadar.so.1.0.0.0 libgnuradio-sfcwRadar.so.1.0.0 libgnuradio-sfcwRadar.so
 

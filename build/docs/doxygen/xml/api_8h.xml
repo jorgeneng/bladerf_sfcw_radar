@@ -6,6 +6,7 @@
     <includedby refid="bladerfEchoTimer__cc_8h" local="no">bladerfEchoTimer_cc.h</includedby>
     <includedby refid="bladerfRadar__cc_8h" local="no">bladerfRadar_cc.h</includedby>
     <includedby refid="bladerfRadarBurst__cc_8h" local="no">bladerfRadarBurst_cc.h</includedby>
+    <includedby refid="rawSignalSink__cc_8h" local="no">rawSignalSink_cc.h</includedby>
     <incdepgraph>
       <node id="2">
         <label>gnuradio/attributes.h</label>
@@ -32,6 +33,12 @@
         <label>bladerfRadar_cc_impl.h</label>
         <link refid="bladerfRadar__cc__impl_8h"/>
       </node>
+      <node id="8">
+        <label>rawSignalSink_cc.h</label>
+        <link refid="rawSignalSink__cc_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
       <node id="4">
         <label>bladerfRadar_cc.h</label>
         <link refid="bladerfRadar__cc_8h"/>
@@ -51,12 +58,18 @@
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
       </node>
       <node id="6">
         <label>bladerfRadarBurst_cc.h</label>
         <link refid="bladerfRadarBurst__cc_8h"/>
         <childnode refid="7" relation="include">
         </childnode>
+      </node>
+      <node id="9">
+        <label>rawSignalSink_cc_impl.h</label>
+        <link refid="rawSignalSink__cc__impl_8h"/>
       </node>
     </invincdepgraph>
       <sectiondef kind="define">

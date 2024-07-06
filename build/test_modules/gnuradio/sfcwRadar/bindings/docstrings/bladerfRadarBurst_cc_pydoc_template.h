@@ -29,5 +29,13 @@
  static const char *__doc_gr_sfcwRadar_bladerfRadarBurst_cc_set_ref_gain = R"doc()doc";
  
  static const char *__doc_gr_sfcwRadar_bladerfRadarBurst_cc_set_tx_gain = R"doc()doc";
+ 
+ static const char *__doc_gr_sfcwRadar_bladerfRadarBurst_cc_set_start_freq = R"doc()doc";
+ 
+ static const char *__doc_gr_sfcwRadar_bladerfRadarBurst_cc_set_freq_step = R"doc()doc";
+ 
+ static const char *__doc_gr_sfcwRadar_bladerfRadarBurst_cc_set_num_steps = R"doc()doc";
+ 
+ static const char *__doc_gr_sfcwRadar_bladerfRadarBurst_cc_set_burst_len = R"doc()doc";
 
   

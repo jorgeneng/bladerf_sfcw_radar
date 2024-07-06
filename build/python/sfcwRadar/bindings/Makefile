@@ -320,6 +320,33 @@ python_bindings.cc.s:
 	cd /home/hui/gr-sfcwRadar/build && $(MAKE) -f python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/build.make python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/python_bindings.cc.s
 .PHONY : python_bindings.cc.s
 
+rawSignalSink_cc_python.o: rawSignalSink_cc_python.cc.o
+
+.PHONY : rawSignalSink_cc_python.o
+
+# target to build an object file
+rawSignalSink_cc_python.cc.o:
+	cd /home/hui/gr-sfcwRadar/build && $(MAKE) -f python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/build.make python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/rawSignalSink_cc_python.cc.o
+.PHONY : rawSignalSink_cc_python.cc.o
+
+rawSignalSink_cc_python.i: rawSignalSink_cc_python.cc.i
+
+.PHONY : rawSignalSink_cc_python.i
+
+# target to preprocess a source file
+rawSignalSink_cc_python.cc.i:
+	cd /home/hui/gr-sfcwRadar/build && $(MAKE) -f python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/build.make python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/rawSignalSink_cc_python.cc.i
+.PHONY : rawSignalSink_cc_python.cc.i
+
+rawSignalSink_cc_python.s: rawSignalSink_cc_python.cc.s
+
+.PHONY : rawSignalSink_cc_python.s
+
+# target to generate assembly for a file
+rawSignalSink_cc_python.cc.s:
+	cd /home/hui/gr-sfcwRadar/build && $(MAKE) -f python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/build.make python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/rawSignalSink_cc_python.cc.s
+.PHONY : rawSignalSink_cc_python.cc.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -348,6 +375,9 @@ help:
 	@echo "... python_bindings.o"
 	@echo "... python_bindings.i"
 	@echo "... python_bindings.s"
+	@echo "... rawSignalSink_cc_python.o"
+	@echo "... rawSignalSink_cc_python.i"
+	@echo "... rawSignalSink_cc_python.s"
 .PHONY : help
 
 

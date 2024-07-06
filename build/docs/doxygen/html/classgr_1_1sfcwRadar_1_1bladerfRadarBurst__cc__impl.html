@@ -79,6 +79,14 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a7c7828e1057af42964cec2515db58680"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a45f8341fd9dd87138efc037d243e04f5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl.html#a45f8341fd9dd87138efc037d243e04f5">set_tx_gain</a> (bladerf_gain gain)</td></tr>
 <tr class="separator:a45f8341fd9dd87138efc037d243e04f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe4d92df2f42601023fe83fed0b6ea57"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl.html#abe4d92df2f42601023fe83fed0b6ea57">set_start_freq</a> (bladerf_frequency start_freq)</td></tr>
+<tr class="separator:abe4d92df2f42601023fe83fed0b6ea57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac82b6bd78d544c875990439a21d99441"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl.html#ac82b6bd78d544c875990439a21d99441">set_freq_step</a> (bladerf_frequency freq_step)</td></tr>
+<tr class="separator:ac82b6bd78d544c875990439a21d99441"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97f02a9dbe948aaf04549a0802bfb6ff"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl.html#a97f02a9dbe948aaf04549a0802bfb6ff">set_num_steps</a> (int num_steps)</td></tr>
+<tr class="separator:a97f02a9dbe948aaf04549a0802bfb6ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac98c2ce2fa1381f0983eb44e340461a5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl.html#ac98c2ce2fa1381f0983eb44e340461a5">set_burst_len</a> (int burst_len)</td></tr>
+<tr class="separator:ac98c2ce2fa1381f0983eb44e340461a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a11b78ace27fee2da526d854e6a016dec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl.html#a11b78ace27fee2da526d854e6a016dec">update_gps</a> ()</td></tr>
 <tr class="separator:a11b78ace27fee2da526d854e6a016dec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4d9566d218555194daa25eb548d08543"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl.html#a4d9566d218555194daa25eb548d08543">work</a> (int noutput_items, gr_vector_int &amp;ninput_items, gr_vector_const_void_star &amp;input_items, gr_vector_void_star &amp;output_items)</td></tr>
@@ -237,6 +245,90 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="ac98c2ce2fa1381f0983eb44e340461a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac98c2ce2fa1381f0983eb44e340461a5">&#9670;&nbsp;</a></span>set_burst_len()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int gr::sfcwRadar::bladerfRadarBurst_cc_impl::set_burst_len </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>burst_len</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc.html#a00cac1a8fdc3ce4ba9829f6e1ad75ce2">gr::sfcwRadar::bladerfRadarBurst_cc</a>.</p>
+
+</div>
+</div>
+<a id="ac82b6bd78d544c875990439a21d99441"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac82b6bd78d544c875990439a21d99441">&#9670;&nbsp;</a></span>set_freq_step()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int gr::sfcwRadar::bladerfRadarBurst_cc_impl::set_freq_step </td>
+          <td>(</td>
+          <td class="paramtype">bladerf_frequency&#160;</td>
+          <td class="paramname"><em>freq_step</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc.html#a8c48a57b8269026e4ad5127af84bc9e9">gr::sfcwRadar::bladerfRadarBurst_cc</a>.</p>
+
+</div>
+</div>
+<a id="a97f02a9dbe948aaf04549a0802bfb6ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97f02a9dbe948aaf04549a0802bfb6ff">&#9670;&nbsp;</a></span>set_num_steps()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int gr::sfcwRadar::bladerfRadarBurst_cc_impl::set_num_steps </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>num_steps</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc.html#af57197592ec1957826b88ebc86106536">gr::sfcwRadar::bladerfRadarBurst_cc</a>.</p>
+
+</div>
+</div>
 <a id="a7c7828e1057af42964cec2515db58680"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7c7828e1057af42964cec2515db58680">&#9670;&nbsp;</a></span>set_ref_gain()</h2>
 
@@ -291,6 +383,35 @@ Additional Inherited Members</h2></td></tr>
 <p>callback functions for setting gains of the TX and two RX channels </p>
 
 <p>Implements <a class="el" href="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc.html#a76548ea302b148e90d3a04407230fc33">gr::sfcwRadar::bladerfRadarBurst_cc</a>.</p>
+
+</div>
+</div>
+<a id="abe4d92df2f42601023fe83fed0b6ea57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe4d92df2f42601023fe83fed0b6ea57">&#9670;&nbsp;</a></span>set_start_freq()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int gr::sfcwRadar::bladerfRadarBurst_cc_impl::set_start_freq </td>
+          <td>(</td>
+          <td class="paramtype">bladerf_frequency&#160;</td>
+          <td class="paramname"><em>start_freq</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>callback functions for setting radar frequencies </p>
+
+<p>Implements <a class="el" href="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc.html#ad6c51c16dd2dc1b3fee25959c997900a">gr::sfcwRadar::bladerfRadarBurst_cc</a>.</p>
 
 </div>
 </div>

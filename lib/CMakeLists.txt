@@ -14,7 +14,8 @@ include(GrPlatform) #define LIB_SUFFIX
 list(APPEND sfcwRadar_sources
     bladerfRadar_cc_impl.cc
     bladerfRadarBurst_cc_impl.cc
-    bladerfEchoTimer_cc_impl.cc)
+    bladerfEchoTimer_cc_impl.cc
+    rawSignalSink_cc_impl.cc)
 
 set(sfcwRadar_sources
     "${sfcwRadar_sources}"

@@ -5,6 +5,7 @@
     <innerfile refid="bladerfEchoTimer__cc__impl_8h">bladerfEchoTimer_cc_impl.h</innerfile>
     <innerfile refid="bladerfRadar__cc__impl_8h">bladerfRadar_cc_impl.h</innerfile>
     <innerfile refid="bladerfRadarBurst__cc__impl_8h">bladerfRadarBurst_cc_impl.h</innerfile>
+    <innerfile refid="rawSignalSink__cc__impl_8h">rawSignalSink_cc_impl.h</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

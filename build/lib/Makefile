@@ -263,6 +263,33 @@ bladerfRadar_cc_impl.cc.s:
 	cd /home/hui/gr-sfcwRadar/build && $(MAKE) -f lib/CMakeFiles/gnuradio-sfcwRadar.dir/build.make lib/CMakeFiles/gnuradio-sfcwRadar.dir/bladerfRadar_cc_impl.cc.s
 .PHONY : bladerfRadar_cc_impl.cc.s
 
+rawSignalSink_cc_impl.o: rawSignalSink_cc_impl.cc.o
+
+.PHONY : rawSignalSink_cc_impl.o
+
+# target to build an object file
+rawSignalSink_cc_impl.cc.o:
+	cd /home/hui/gr-sfcwRadar/build && $(MAKE) -f lib/CMakeFiles/gnuradio-sfcwRadar.dir/build.make lib/CMakeFiles/gnuradio-sfcwRadar.dir/rawSignalSink_cc_impl.cc.o
+.PHONY : rawSignalSink_cc_impl.cc.o
+
+rawSignalSink_cc_impl.i: rawSignalSink_cc_impl.cc.i
+
+.PHONY : rawSignalSink_cc_impl.i
+
+# target to preprocess a source file
+rawSignalSink_cc_impl.cc.i:
+	cd /home/hui/gr-sfcwRadar/build && $(MAKE) -f lib/CMakeFiles/gnuradio-sfcwRadar.dir/build.make lib/CMakeFiles/gnuradio-sfcwRadar.dir/rawSignalSink_cc_impl.cc.i
+.PHONY : rawSignalSink_cc_impl.cc.i
+
+rawSignalSink_cc_impl.s: rawSignalSink_cc_impl.cc.s
+
+.PHONY : rawSignalSink_cc_impl.s
+
+# target to generate assembly for a file
+rawSignalSink_cc_impl.cc.s:
+	cd /home/hui/gr-sfcwRadar/build && $(MAKE) -f lib/CMakeFiles/gnuradio-sfcwRadar.dir/build.make lib/CMakeFiles/gnuradio-sfcwRadar.dir/rawSignalSink_cc_impl.cc.s
+.PHONY : rawSignalSink_cc_impl.cc.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -286,6 +313,9 @@ help:
 	@echo "... bladerfRadar_cc_impl.o"
 	@echo "... bladerfRadar_cc_impl.i"
 	@echo "... bladerfRadar_cc_impl.s"
+	@echo "... rawSignalSink_cc_impl.o"
+	@echo "... rawSignalSink_cc_impl.i"
+	@echo "... rawSignalSink_cc_impl.s"
 .PHONY : help
 
 

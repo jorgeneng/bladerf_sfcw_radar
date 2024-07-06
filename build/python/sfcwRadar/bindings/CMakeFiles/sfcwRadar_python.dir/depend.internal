@@ -123,3 +123,7 @@ python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/python_bindings.cc.o
  /usr/include/python3.8/unicodeobject.h
  /usr/include/python3.8/warnings.h
  /usr/include/python3.8/weakrefobject.h
+python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/rawSignalSink_cc_python.cc.o
+ ../include/gnuradio/sfcwRadar/api.h
+ ../include/gnuradio/sfcwRadar/rawSignalSink_cc.h
+ /home/hui/gr-sfcwRadar/python/sfcwRadar/bindings/rawSignalSink_cc_python.cc

@@ -52,6 +52,10 @@ private:
      * */
     size_t d_burst_len;
     int d_num_steps; // number of frequency steps
+    int d_samp_rate;
+    bladerf_gain d_rx_gain;
+    bladerf_gain d_tx_gain;
+    bladerf_gain d_ref_gain;
     bladerf_frequency d_start_freq; //the radar starts from this frequency
     bladerf_frequency d_freq_step;  //the bandwidth of each frequency step
     bladerf_frequency d_currrent_freq;  //current frequency of the radar
@@ -85,6 +89,8 @@ private:
 
     /* Scaling factor used when converting from int16_t to float */
     const float SCALING_FACTOR = 2048.0f; 
+
+    int init_device();
     
     /**
      * Setup given channel
@@ -169,6 +175,14 @@ public:
     int set_rx_gain(bladerf_gain gain);
     int set_ref_gain(bladerf_gain gain);
     int set_tx_gain(bladerf_gain gain);
+
+    /**
+     * callback functions for setting radar frequencies
+     * */
+    int set_start_freq(bladerf_frequency start_freq);
+    int set_freq_step(bladerf_frequency freq_step);
+    int set_num_steps(int num_steps);
+    int set_burst_len(int burst_len);
 
     void update_gps();
 
