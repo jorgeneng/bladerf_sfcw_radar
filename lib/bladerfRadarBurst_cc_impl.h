@@ -87,6 +87,8 @@ private:
     int16_t *_16icbuf_out;              /**< raw samples from bladeRF */
     gr_complex *_32fcbuf_out;           /**< intermediate buffer to downstream block*/
 
+    gr_complex *d_cw_buf;
+
     /* Scaling factor used when converting from int16_t to float */
     const float SCALING_FACTOR = 2048.0f; 
 
@@ -142,6 +144,11 @@ private:
      * set d_scan to true when a "scan" message is received
      * */
     void handle_scan_msg(const pmt::pmt_t& msg);
+
+    /**
+     * generate cw samples
+     * */
+    void generate_cw_samples();
 
 protected:
     int calculate_output_stream_length(const gr_vector_int& ninput_items);

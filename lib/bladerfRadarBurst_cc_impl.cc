@@ -8,6 +8,7 @@
 #include "bladerfRadarBurst_cc_impl.h"
 #include <gnuradio/io_signature.h>
 #include <volk/volk.h>
+#include <gnuradio/math.h>
 
 namespace gr {
 namespace sfcwRadar {
@@ -449,6 +450,8 @@ int bladerfRadarBurst_cc_impl::init_sync(struct bladerf *dev){
     _16icbuf_out = reinterpret_cast<int16_t *>(volk_malloc(2*2*d_burst_len*sizeof(int16_t), alignment));
     _32fcbuf_out = reinterpret_cast<gr_complex *>(volk_malloc(2*d_burst_len*sizeof(gr_complex), alignment)); 
 
+    d_cw_buf = reinterpret_cast<gr_complex *>(volk_malloc(d_burst_len*sizeof(gr_complex), alignment));
+
     return status;
 }
 
@@ -660,6 +663,19 @@ void bladerfRadarBurst_cc_impl::update_gps(){
     d_gps_x = d_gps_x + 1.0;
 }
 
+void bladerfRadarBurst_cc_impl::generate_cw_samples(){
+    float d_amplitude = 1.0;
+    float d_frequency = 50000;
+    gr_complex d_phase = 0;
+
+    memset(d_cw_buf,0,d_burst_len*sizeof(gr_complex));
+    for (int i=0;i<d_burst_len;i++){
+        d_cw_buf[i] += d_amplitude*exp(d_phase);
+        //std::cout << d_cw_buf[i] << std::endl;
+        d_phase = gr_complex(0,std::fmod(imag(d_phase) + 2 * GR_M_PI * d_frequency / (float)d_samp_rate,2*GR_M_PI));
+    }
+}
+
 int bladerfRadarBurst_cc_impl::work(int noutput_items,
                                     gr_vector_int& ninput_items,
                                     gr_vector_const_void_star& input_items,
@@ -737,9 +753,13 @@ int bladerfRadarBurst_cc_impl::work(int noutput_items,
      * process input_items
      *
      * */
-    gr_complex const **in = reinterpret_cast<gr_complex const **>(&input_items[0]); 
+    //gr_complex const **in = reinterpret_cast<gr_complex const **>(&input_items[0]); 
     
-    memcpy(_32fcbuf_in, in[0], noutput_items * sizeof(gr_complex)); 
+    //memcpy(_32fcbuf_in, in[0], noutput_items * sizeof(gr_complex));
+
+    generate_cw_samples();
+
+    memcpy(_32fcbuf_in, d_cw_buf, noutput_items * sizeof(gr_complex));
 
     // convert floating point to fixed point and scale
     // input_items is gr_complex (2x float), so num_points is 2*noutput_items
