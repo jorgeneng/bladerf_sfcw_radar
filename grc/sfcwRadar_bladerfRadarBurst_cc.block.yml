@@ -4,7 +4,7 @@ category: '[sfcwRadar]'
 
 templates:
   imports: from gnuradio import sfcwRadar
-  make: sfcwRadar.bladerfRadarBurst_cc(${start_freq}, ${num_steps}, ${freq_step}, ${samp_rate}, ${rx_gain}, ${tx_gain}, ${ref_gain}, ${burst_len}, ${num_buffers}, ${buffer_size}, ${num_transfers})
+  make: sfcwRadar.bladerfRadarBurst_cc(${start_freq}, ${num_steps}, ${freq_step}, ${samp_rate}, ${rx_gain}, ${tx_gain}, ${ref_gain}, ${burst_len}, ${num_buffers}, ${buffer_size}, ${num_transfers}, ${cw_amplitude}, ${cw_frequency})
 
   callbacks:
         - set_rx_gain(${rx_gain})
@@ -31,6 +31,12 @@ parameters:
 - id: freq_step
   label: freq_step
   dtype: int
+- id: cw_amplitude
+  label: amplitude of cw
+  dtype: float
+- id: cw_frequency
+  label: frequency of cw
+  dtype: float
 - id: samp_rate
   label: samp_rate
   dtype: int

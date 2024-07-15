@@ -43,7 +43,9 @@ public:
                      size_t burst_len,
                      size_t num_buffers,
                      size_t buffer_size,
-                     size_t num_transfers);
+                     size_t num_transfers,
+                     float cw_amplitude,
+                     float cw_frequency);
 
     virtual int set_rx_gain(bladerf_gain gain) = 0;
     virtual int set_ref_gain(bladerf_gain gain) = 0;

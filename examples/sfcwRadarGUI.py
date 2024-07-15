@@ -66,12 +66,12 @@ class sfcwRadarGUI(gr.top_block, Qt.QWidget):
         ##################################################
         self.y_max = y_max = 15
         self.tx_gain = tx_gain = 60
-        self.start_freq = start_freq = 800e6
+        self.start_freq = start_freq = 1e9
         self.samp_rate = samp_rate = 5e6
         self.rx_gain = rx_gain = 60
         self.ref_gain = ref_gain = 60
         self.num_steps = num_steps = 128
-        self.freq_step = freq_step = 10e6
+        self.freq_step = freq_step = 20e6
         self.burst_len = burst_len = 2**12
 
         ##################################################
@@ -81,8 +81,9 @@ class sfcwRadarGUI(gr.top_block, Qt.QWidget):
         self._y_max_range = qtgui.Range(0, 400, 1, 15, 200)
         self._y_max_win = qtgui.RangeWidget(self._y_max_range, self.set_y_max, "'y_max'", "counter_slider", float, QtCore.Qt.Horizontal)
         self.top_layout.addWidget(self._y_max_win)
+        self.sfcwRadar_rawSignalSink_cc_0 = sfcwRadar.rawSignalSink_cc()
         self.sfcwRadar_rangeProfileSink_0 = sfcwRadar.rangeProfileSink(num_steps,'/tmp/')
-        self.sfcwRadar_bladerfRadarBurst_cc_0 = sfcwRadar.bladerfRadarBurst_cc(int(start_freq), num_steps, int(freq_step), int(samp_rate), rx_gain, tx_gain, ref_gain, burst_len, 8, 1024, 4)
+        self.sfcwRadar_bladerfRadarBurst_cc_0 = sfcwRadar.bladerfRadarBurst_cc(int(start_freq), num_steps, int(freq_step), int(samp_rate), rx_gain, tx_gain, ref_gain, burst_len, 8, 1024, 4, 1.0, 50e3)
         self.sfcwRadar_bladerfRadarBurst_cc_0.set_min_output_buffer((burst_len*2))
         self.scan_once = _scan_once_toggle_button = qtgui.MsgPushButton('scan_once', '',1,"default","default")
         self.scan_once = _scan_once_toggle_button
@@ -310,7 +311,7 @@ class sfcwRadarGUI(gr.top_block, Qt.QWidget):
                 10e3,
                 window.WIN_HAMMING,
                 6.76))
-        self.fft_vxx_0 = fft.fft_vcc(num_steps, False, window.blackmanharris(num_steps), True, 1)
+        self.fft_vxx_0 = fft.fft_vcc(num_steps, False, window.hamming(num_steps), True, 1)
         self.blocks_vector_to_stream_0 = blocks.vector_to_stream(gr.sizeof_gr_complex*1, num_steps)
         self.blocks_throttle2_0 = blocks.throttle( gr.sizeof_gr_complex*1, samp_rate, True, 0 if "auto" == "auto" else max( int(float(0.1) * samp_rate) if "auto" == "time" else int(0.1), 1) )
         self.blocks_throttle2_0.set_min_output_buffer((burst_len*2))
@@ -354,7 +355,9 @@ class sfcwRadarGUI(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_vector_to_stream_0, 0), (self.sfcwRadar_rangeProfileSink_0, 0))
         self.connect((self.fft_vxx_0, 0), (self.blocks_vector_to_stream_0, 0))
         self.connect((self.low_pass_filter_0, 0), (self.blocks_tag_gate_0_0, 0))
+        self.connect((self.low_pass_filter_0, 0), (self.sfcwRadar_rawSignalSink_cc_0, 1))
         self.connect((self.low_pass_filter_0_0, 0), (self.blocks_tag_gate_0, 0))
+        self.connect((self.low_pass_filter_0_0, 0), (self.sfcwRadar_rawSignalSink_cc_0, 0))
         self.connect((self.sfcwRadar_bladerfRadarBurst_cc_0, 1), (self.low_pass_filter_0, 0))
         self.connect((self.sfcwRadar_bladerfRadarBurst_cc_0, 0), (self.low_pass_filter_0_0, 0))
 

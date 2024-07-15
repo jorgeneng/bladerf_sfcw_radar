@@ -61,6 +61,9 @@ private:
     bladerf_frequency d_currrent_freq;  //current frequency of the radar
     bladerf_frequency d_max_freq; //the radar goes back to d_start_freq until it reaches here
     int d_freq_index;
+
+    float d_cw_amplitude;
+    float d_cw_frequency;
     //struct bladerf_quick_tune *d_quick_tunes_tx;
     struct bladerf_quick_tune_info *d_quick_tunes_tx;
     //struct bladerf_quick_tune *d_quick_tunes_rx;
@@ -86,8 +89,6 @@ private:
     
     int16_t *_16icbuf_out;              /**< raw samples from bladeRF */
     gr_complex *_32fcbuf_out;           /**< intermediate buffer to downstream block*/
-
-    gr_complex *d_cw_buf;
 
     /* Scaling factor used when converting from int16_t to float */
     const float SCALING_FACTOR = 2048.0f; 
@@ -164,7 +165,9 @@ public:
                               size_t burst_len,
                               size_t num_buffers,
                               size_t buffer_size,
-                              size_t num_transfers);
+                              size_t num_transfers,
+                              float cw_amplitude,
+                              float cw_frequency);
     ~bladerfRadarBurst_cc_impl();
     
     /**

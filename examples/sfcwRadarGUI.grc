@@ -81,7 +81,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: 10e6
+    value: 20e6
   states:
     bus_sink: false
     bus_source: false
@@ -215,7 +215,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: 800e6
+    value: 1e9
   states:
     bus_sink: false
     bus_source: false
@@ -558,7 +558,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1080, 156.0]
+    coordinate: [1080, 92.0]
     rotation: 0
     state: enabled
 - name: blocks_tag_gate_0_0
@@ -577,7 +577,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1080, 220.0]
+    coordinate: [1088, 204.0]
     rotation: 0
     state: enabled
 - name: blocks_throttle2_0
@@ -632,7 +632,7 @@ blocks:
     nthreads: '1'
     shift: 'True'
     type: complex
-    window: window.blackmanharris(num_steps)
+    window: window.hamming(num_steps)
   states:
     bus_sink: false
     bus_source: false
@@ -1086,6 +1086,8 @@ blocks:
     buffer_size: '1024'
     burst_len: burst_len
     comment: ''
+    cw_amplitude: '1.0'
+    cw_frequency: 50e3
     freq_step: int(freq_step)
     maxoutbuf: '0'
     minoutbuf: burst_len*2
@@ -1129,9 +1131,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1320, 352.0]
+    coordinate: [1312, 312.0]
     rotation: 0
-    state: disabled
+    state: enabled
 
 connections:
 - [analog_sig_source_x_0, '0', blocks_add_xx_0, '0']
