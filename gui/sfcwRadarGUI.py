@@ -64,21 +64,22 @@ class sfcwRadarGUI(gr.top_block, Qt.QWidget):
         ##################################################
         # Variables
         ##################################################
-        self.y_max = y_max = 15
-        self.tx_gain = tx_gain = 60
+        self.y_max = y_max = 4
+        self.tx_gain = tx_gain = 40
         self.start_freq = start_freq = 1e9
-        self.samp_rate = samp_rate = 5e6
-        self.rx_gain = rx_gain = 60
-        self.ref_gain = ref_gain = 60
+        self.samp_rate = samp_rate = 10e6
+        self.rx_gain = rx_gain = 30
+        self.ref_gain = ref_gain = 30
         self.num_steps = num_steps = 128
-        self.freq_step = freq_step = 20e6
+        self.freq_step = freq_step = 15e6
         self.burst_len = burst_len = 2**12
+        self.LP_dec = LP_dec = 8
 
         ##################################################
         # Blocks
         ##################################################
 
-        self._y_max_range = qtgui.Range(0, 400, 1, 15, 200)
+        self._y_max_range = qtgui.Range(0, 400, 1, 4, 200)
         self._y_max_win = qtgui.RangeWidget(self._y_max_range, self.set_y_max, "'y_max'", "counter_slider", float, QtCore.Qt.Horizontal)
         self.top_layout.addWidget(self._y_max_win)
         self.sfcwRadar_rawSignalSink_cc_0 = sfcwRadar.rawSignalSink_cc()
@@ -96,7 +97,7 @@ class sfcwRadarGUI(gr.top_block, Qt.QWidget):
         self.qtgui_time_sink_x_2 = qtgui.time_sink_f(
             num_steps, #size
             samp_rate, #samp_rate
-            "", #name
+            "Phase of each frequency step", #name
             1, #number of inputs
             None # parent
         )
@@ -147,8 +148,8 @@ class sfcwRadarGUI(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setColumnStretch(c, 1)
         self.qtgui_time_sink_x_1_0_0 = qtgui.time_sink_f(
             num_steps, #size
-            1, #samp_rate
-            "", #name
+            samp_rate, #samp_rate
+            "Range profile(A-Scan)", #name
             1, #number of inputs
             None # parent
         )
@@ -200,7 +201,7 @@ class sfcwRadarGUI(gr.top_block, Qt.QWidget):
         self.qtgui_time_sink_x_1 = qtgui.time_sink_c(
             burst_len, #size
             samp_rate, #samp_rate
-            "", #name
+            "Reference/Echo signals in time domain", #name
             2, #number of inputs
             None # parent
         )
@@ -258,7 +259,7 @@ class sfcwRadarGUI(gr.top_block, Qt.QWidget):
             num_steps,
             [],
             [],
-            "",
+            "B-Scan",
             1,
             None
         )
@@ -294,21 +295,21 @@ class sfcwRadarGUI(gr.top_block, Qt.QWidget):
         for c in range(2, 4):
             self.top_grid_layout.setColumnStretch(c, 1)
         self.low_pass_filter_0_0 = filter.fir_filter_ccf(
-            1,
+            LP_dec,
             firdes.low_pass(
                 1,
                 samp_rate,
+                1e6,
                 100e3,
-                10e3,
                 window.WIN_HAMMING,
                 6.76))
         self.low_pass_filter_0 = filter.fir_filter_ccf(
-            1,
+            LP_dec,
             firdes.low_pass(
                 1,
                 samp_rate,
+                1e6,
                 100e3,
-                10e3,
                 window.WIN_HAMMING,
                 6.76))
         self.fft_vxx_0 = fft.fft_vcc(num_steps, False, window.hamming(num_steps), True, 1)
@@ -324,10 +325,10 @@ class sfcwRadarGUI(gr.top_block, Qt.QWidget):
         self.blocks_stream_to_tagged_stream_0.set_min_output_buffer((burst_len*2))
         self.blocks_multiply_const_xx_0_0 = blocks.multiply_const_cc(1/burst_len, 1)
         self.blocks_multiply_conjugate_cc_0 = blocks.multiply_conjugate_cc(1)
-        self.blocks_integrate_xx_0 = blocks.integrate_cc(int(burst_len), 1)
+        self.blocks_integrate_xx_0 = blocks.integrate_cc((int(burst_len/LP_dec)), 1)
         self.blocks_complex_to_mag_0 = blocks.complex_to_mag(1)
         self.blocks_complex_to_arg_1 = blocks.complex_to_arg(1)
-        self.analog_sig_source_x_0 = analog.sig_source_c(samp_rate, analog.GR_COS_WAVE, 50e3, 1, 0, 0)
+        self.analog_sig_source_x_0 = analog.sig_source_c(samp_rate, analog.GR_COS_WAVE, 500e3, 1, 0, 0)
         self.analog_sig_source_x_0.set_min_output_buffer((burst_len*2))
 
 
@@ -398,9 +399,10 @@ class sfcwRadarGUI(gr.top_block, Qt.QWidget):
         self.samp_rate = samp_rate
         self.analog_sig_source_x_0.set_sampling_freq(self.samp_rate)
         self.blocks_throttle2_0.set_sample_rate(self.samp_rate)
-        self.low_pass_filter_0.set_taps(firdes.low_pass(1, self.samp_rate, 100e3, 10e3, window.WIN_HAMMING, 6.76))
-        self.low_pass_filter_0_0.set_taps(firdes.low_pass(1, self.samp_rate, 100e3, 10e3, window.WIN_HAMMING, 6.76))
+        self.low_pass_filter_0.set_taps(firdes.low_pass(1, self.samp_rate, 1e6, 100e3, window.WIN_HAMMING, 6.76))
+        self.low_pass_filter_0_0.set_taps(firdes.low_pass(1, self.samp_rate, 1e6, 100e3, window.WIN_HAMMING, 6.76))
         self.qtgui_time_sink_x_1.set_samp_rate(self.samp_rate)
+        self.qtgui_time_sink_x_1_0_0.set_samp_rate(self.samp_rate)
         self.qtgui_time_sink_x_2.set_samp_rate(self.samp_rate)
 
     def get_rx_gain(self):
@@ -441,6 +443,12 @@ class sfcwRadarGUI(gr.top_block, Qt.QWidget):
         self.blocks_stream_to_tagged_stream_0.set_packet_len(self.burst_len)
         self.blocks_stream_to_tagged_stream_0.set_packet_len_pmt(self.burst_len)
         self.sfcwRadar_bladerfRadarBurst_cc_0.set_burst_len(self.burst_len)
+
+    def get_LP_dec(self):
+        return self.LP_dec
+
+    def set_LP_dec(self, LP_dec):
+        self.LP_dec = LP_dec
 
 
 

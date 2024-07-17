@@ -33,6 +33,18 @@ options:
     state: enabled
 
 blocks:
+- name: LP_dec
+  id: variable
+  parameters:
+    comment: ''
+    value: '8'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [184, 76.0]
+    rotation: 0
+    state: enabled
 - name: burst_len
   id: variable
   parameters:
@@ -81,7 +93,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: 20e6
+    value: 15e6
   states:
     bus_sink: false
     bus_source: false
@@ -121,7 +133,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: '60'
+    value: '30'
   states:
     bus_sink: false
     bus_source: false
@@ -154,7 +166,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: '60'
+    value: '30'
   states:
     bus_sink: false
     bus_source: false
@@ -187,7 +199,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: 5e6
+    value: 10e6
   states:
     bus_sink: false
     bus_source: false
@@ -276,7 +288,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: '60'
+    value: '40'
   states:
     bus_sink: false
     bus_source: false
@@ -296,13 +308,13 @@ blocks:
     start: '0'
     step: '1'
     stop: '400'
-    value: '15'
+    value: '4'
     widget: counter_slider
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [280, 196.0]
+    coordinate: [272, 84.0]
     rotation: 0
     state: enabled
 - name: analog_sig_source_x_0
@@ -312,7 +324,7 @@ blocks:
     alias: ''
     amp: '1'
     comment: ''
-    freq: 50e3
+    freq: 500e3
     maxoutbuf: '0'
     minoutbuf: burst_len*2
     offset: '0'
@@ -423,7 +435,7 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    decim: int(burst_len)
+    decim: int(burst_len/LP_dec)
     maxoutbuf: '0'
     minoutbuf: '0'
     type: complex
@@ -647,15 +659,15 @@ blocks:
     alias: ''
     beta: '6.76'
     comment: ''
-    cutoff_freq: 100e3
-    decim: '1'
+    cutoff_freq: 1e6
+    decim: LP_dec
     gain: '1'
     interp: '1'
     maxoutbuf: '0'
     minoutbuf: '0'
     samp_rate: samp_rate
     type: fir_filter_ccf
-    width: 10e3
+    width: 100e3
     win: window.WIN_HAMMING
   states:
     bus_sink: false
@@ -671,15 +683,15 @@ blocks:
     alias: ''
     beta: '6.76'
     comment: ''
-    cutoff_freq: 100e3
-    decim: '1'
+    cutoff_freq: 1e6
+    decim: LP_dec
     gain: '1'
     interp: '1'
     maxoutbuf: '0'
     minoutbuf: '0'
     samp_rate: samp_rate
     type: fir_filter_ccf
-    width: 10e3
+    width: 100e3
     win: window.WIN_HAMMING
   states:
     bus_sink: false
@@ -728,7 +740,7 @@ blocks:
     label8: ''
     label9: ''
     mult: '[]'
-    name: '""'
+    name: '"B-Scan"'
     ncols: num_steps
     nconnections: '1'
     nrows: '256'
@@ -804,7 +816,7 @@ blocks:
     marker7: '-1'
     marker8: '-1'
     marker9: '-1'
-    name: '""'
+    name: '"Reference/Echo signals in time domain"'
     nconnections: '2'
     size: burst_len
     srate: samp_rate
@@ -901,10 +913,10 @@ blocks:
     marker7: '-1'
     marker8: '-1'
     marker9: '-1'
-    name: '""'
+    name: '"Range profile(A-Scan)"'
     nconnections: '1'
     size: num_steps
-    srate: '1'
+    srate: samp_rate
     stemplot: 'False'
     style1: '1'
     style10: '1'
@@ -998,7 +1010,7 @@ blocks:
     marker7: '-1'
     marker8: '-1'
     marker9: '-1'
-    name: '""'
+    name: '"Phase of each frequency step"'
     nconnections: '1'
     size: num_steps
     srate: samp_rate
