@@ -126,4 +126,6 @@ python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/python_bindings.cc.o: 
 python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/rawSignalSink_cc_python.cc.o: ../include/gnuradio/sfcwRadar/api.h
 python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/rawSignalSink_cc_python.cc.o: ../include/gnuradio/sfcwRadar/rawSignalSink_cc.h
 python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/rawSignalSink_cc_python.cc.o: ../python/sfcwRadar/bindings/rawSignalSink_cc_python.cc
+python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/rawSignalSink_cc_python.cc.o: python/sfcwRadar/bindings/pydoc_macros.h
+python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/rawSignalSink_cc_python.cc.o: python/sfcwRadar/bindings/rawSignalSink_cc_pydoc.h
 

@@ -252,8 +252,8 @@ int bladerfRadarBurst_cc_impl::configure_channel(struct bladerf *dev, struct cha
         std::cout << "Set chennel" << c->channel << ", samplerate: " << actual_value << std::endl;
     }
 
-    //status = bladerf_set_gain_mode(dev, c->channel, BLADERF_GAIN_MANUAL);
-    status = bladerf_set_gain_mode(dev, c->channel, BLADERF_GAIN_HYBRID_AGC);
+    status = bladerf_set_gain_mode(dev, c->channel, BLADERF_GAIN_MANUAL);
+    //status = bladerf_set_gain_mode(dev, c->channel, BLADERF_GAIN_HYBRID_AGC);
     //status = bladerf_set_gain_mode(dev, c->channel, BLADERF_GAIN_SLOWATTACK_AGC);
     if (status != 0) {
         fprintf(stderr, "Failed to set gain mode = %u: %s\n", c->channel,
@@ -671,7 +671,7 @@ void bladerfRadarBurst_cc_impl::update_gps(){
 }
 
 void bladerfRadarBurst_cc_impl::generate_cw_samples(){
-    gr_complex d_phase = 0;
+    //gr_complex d_phase = 0;
 
     memset(_32fcbuf_in,0,d_burst_len*sizeof(gr_complex));
     for (int i=0;i<d_burst_len;i++){

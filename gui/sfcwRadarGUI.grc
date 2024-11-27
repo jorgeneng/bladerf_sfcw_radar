@@ -37,7 +37,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: '8'
+    value: '1'
   states:
     bus_sink: false
     bus_source: false
@@ -49,7 +49,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: 2**12
+    value: 2**11
   states:
     bus_sink: false
     bus_source: false
@@ -73,6 +73,30 @@ blocks:
     coordinate: [104, 196.0]
     rotation: 0
     state: disabled
+- name: cw_amp
+  id: variable
+  parameters:
+    comment: ''
+    value: '0.8'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [496, 84.0]
+    rotation: 0
+    state: enabled
+- name: cw_freq
+  id: variable
+  parameters:
+    comment: ''
+    value: 1e6
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [400, 84.0]
+    rotation: 0
+    state: enabled
 - name: freq_step
   id: variable_qtgui_entry
   parameters:
@@ -133,7 +157,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: '30'
+    value: '20'
   states:
     bus_sink: false
     bus_source: false
@@ -199,7 +223,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: 10e6
+    value: 5e6
   states:
     bus_sink: false
     bus_source: false
@@ -288,7 +312,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: '40'
+    value: '50'
   states:
     bus_sink: false
     bus_source: false
@@ -308,7 +332,7 @@ blocks:
     start: '0'
     step: '1'
     stop: '400'
-    value: '4'
+    value: '12'
     widget: counter_slider
   states:
     bus_sink: false
@@ -324,7 +348,7 @@ blocks:
     alias: ''
     amp: '1'
     comment: ''
-    freq: 500e3
+    freq: 50e3
     maxoutbuf: '0'
     minoutbuf: burst_len*2
     offset: '0'
@@ -378,7 +402,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [304, 480.0]
+    coordinate: [296, 576.0]
     rotation: 0
     state: disabled
 - name: blocks_complex_to_arg_1
@@ -410,7 +434,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1000, 632.0]
+    coordinate: [992, 648.0]
     rotation: 0
     state: enabled
 - name: blocks_complex_to_mag_squared_0
@@ -426,7 +450,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1056, 688.0]
+    coordinate: [968, 744.0]
     rotation: 0
     state: disabled
 - name: blocks_integrate_xx_0
@@ -435,7 +459,7 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    decim: int(burst_len/LP_dec)
+    decim: int(burst_len)
     maxoutbuf: '0'
     minoutbuf: '0'
     type: complex
@@ -478,7 +502,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1024, 756.0]
+    coordinate: [976, 796.0]
     rotation: 0
     state: disabled
 - name: blocks_multiply_const_xx_0_0
@@ -514,7 +538,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1184, 548.0]
+    coordinate: [1120, 708.0]
     rotation: 0
     state: disabled
 - name: blocks_stream_to_tagged_stream_0
@@ -544,14 +568,14 @@ blocks:
     comment: ''
     maxoutbuf: '0'
     minoutbuf: '0'
-    num_items: num_steps
+    num_items: num_steps*LP_dec
     type: complex
     vlen: '1'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [360, 672.0]
+    coordinate: [392, 648.0]
     rotation: 0
     state: enabled
 - name: blocks_tag_gate_0
@@ -621,7 +645,7 @@ blocks:
     comment: ''
     maxoutbuf: '0'
     minoutbuf: '0'
-    num_items: num_steps
+    num_items: num_steps*LP_dec
     type: complex
     vlen: '1'
   states:
@@ -637,19 +661,67 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    fft_size: num_steps
+    fft_size: num_steps*LP_dec
     forward: 'False'
     maxoutbuf: '0'
     minoutbuf: '0'
     nthreads: '1'
     shift: 'True'
     type: complex
-    window: window.hamming(num_steps)
+    window: window.hamming(num_steps*LP_dec)
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
     coordinate: [552, 636.0]
+    rotation: 0
+    state: enabled
+- name: filter_fft_low_pass_filter_0
+  id: filter_fft_low_pass_filter
+  parameters:
+    affinity: ''
+    alias: ''
+    beta: '6.76'
+    comment: ''
+    cutoff_freq: cw_freq*1.2
+    decim: '1'
+    gain: '1'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    nthreads: '1'
+    samp_rate: samp_rate
+    type: ccc
+    width: cw_freq/2
+    win: window.WIN_HAMMING
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [872, 156.0]
+    rotation: 0
+    state: enabled
+- name: filter_fft_low_pass_filter_0_0
+  id: filter_fft_low_pass_filter
+  parameters:
+    affinity: ''
+    alias: ''
+    beta: '6.76'
+    comment: ''
+    cutoff_freq: cw_freq*1.2
+    decim: '1'
+    gain: '1'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    nthreads: '1'
+    samp_rate: samp_rate
+    type: ccc
+    width: cw_freq/2
+    win: window.WIN_HAMMING
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [864, 340.0]
     rotation: 0
     state: enabled
 - name: low_pass_filter_0
@@ -659,23 +731,23 @@ blocks:
     alias: ''
     beta: '6.76'
     comment: ''
-    cutoff_freq: 1e6
-    decim: LP_dec
+    cutoff_freq: cw_freq*2
+    decim: '1'
     gain: '1'
     interp: '1'
     maxoutbuf: '0'
     minoutbuf: '0'
     samp_rate: samp_rate
     type: fir_filter_ccf
-    width: 100e3
+    width: cw_freq
     win: window.WIN_HAMMING
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [880, 356.0]
+    coordinate: [960, 388.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: low_pass_filter_0_0
   id: low_pass_filter
   parameters:
@@ -683,23 +755,23 @@ blocks:
     alias: ''
     beta: '6.76'
     comment: ''
-    cutoff_freq: 1e6
-    decim: LP_dec
+    cutoff_freq: cw_freq*2
+    decim: '1'
     gain: '1'
     interp: '1'
     maxoutbuf: '0'
     minoutbuf: '0'
     samp_rate: samp_rate
     type: fir_filter_ccf
-    width: 100e3
+    width: cw_freq
     win: window.WIN_HAMMING
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [880, 212.0]
+    coordinate: [1000, 228.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: qtgui_time_raster_sink_x_0
   id: qtgui_time_raster_sink_x
   parameters:
@@ -716,7 +788,7 @@ blocks:
     alpha8: '1.0'
     alpha9: '1.0'
     axislabels: 'True'
-    color1: '0'
+    color1: '2'
     color10: '0'
     color2: '0'
     color3: '0'
@@ -741,9 +813,9 @@ blocks:
     label9: ''
     mult: '[]'
     name: '"B-Scan"'
-    ncols: num_steps
+    ncols: num_steps*LP_dec
     nconnections: '1'
-    nrows: '256'
+    nrows: '15'
     offset: '[]'
     samp_rate: samp_rate
     type: float
@@ -760,7 +832,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1184, 676.0]
+    coordinate: [1280, 668.0]
     rotation: 0
     state: enabled
 - name: qtgui_time_sink_x_1
@@ -818,7 +890,7 @@ blocks:
     marker9: '-1'
     name: '"Reference/Echo signals in time domain"'
     nconnections: '2'
-    size: burst_len
+    size: burst_len*num_steps
     srate: samp_rate
     stemplot: 'False'
     style1: '1'
@@ -859,7 +931,7 @@ blocks:
     bus_structure: null
     coordinate: [1296, 140.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: qtgui_time_sink_x_1_0_0
   id: qtgui_time_sink_x
   parameters:
@@ -888,7 +960,7 @@ blocks:
     color8: dark red
     color9: dark green
     comment: ''
-    ctrlpanel: 'False'
+    ctrlpanel: 'True'
     entags: 'True'
     grid: 'True'
     gui_hint: 2,0,5,2
@@ -915,9 +987,9 @@ blocks:
     marker9: '-1'
     name: '"Range profile(A-Scan)"'
     nconnections: '1'
-    size: num_steps
+    size: num_steps*LP_dec
     srate: samp_rate
-    stemplot: 'False'
+    stemplot: 'True'
     style1: '1'
     style10: '1'
     style2: '1'
@@ -954,7 +1026,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1184, 540.0]
+    coordinate: [1232, 564.0]
     rotation: 0
     state: enabled
 - name: qtgui_time_sink_x_2
@@ -1098,8 +1170,8 @@ blocks:
     buffer_size: '1024'
     burst_len: burst_len
     comment: ''
-    cw_amplitude: '1.0'
-    cw_frequency: 50e3
+    cw_amplitude: cw_amp
+    cw_frequency: cw_freq
     freq_step: int(freq_step)
     maxoutbuf: '0'
     minoutbuf: burst_len*2
@@ -1130,20 +1202,47 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [960, 732.0]
+    coordinate: [800, 924.0]
     rotation: 0
-    state: enabled
+    state: disabled
+- name: sfcwRadar_rangeProfileSink_1
+  id: sfcwRadar_rangeProfileSink
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    dir: '"ex_tree"'
+    numSteps: num_steps
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1160, 788.0]
+    rotation: 0
+    state: disabled
 - name: sfcwRadar_rawSignalSink_cc_0
   id: sfcwRadar_rawSignalSink_cc
   parameters:
     affinity: ''
     alias: ''
+    burst_len: burst_len
     comment: ''
+    cw_amplitude: cw_amp
+    cw_frequency: cw_freq
+    dir: /home/hui/gr-sfcwRadar/gui/throughWall/
+    freq_step: int(freq_step)
+    num_steps: num_steps
+    prefix: scan_raw
+    ref_gain: ref_gain
+    rx_gain: rx_gain
+    samp_rate: int(samp_rate)
+    start_freq: int(start_freq)
+    tx_gain: tx_gain
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1312, 312.0]
+    coordinate: [1336, 276.0]
     rotation: 0
     state: enabled
 
@@ -1174,14 +1273,21 @@ connections:
 - [blocks_vector_to_stream_0, '0', blocks_complex_to_mag_squared_0, '0']
 - [blocks_vector_to_stream_0, '0', blocks_multiply_const_xx_0, '0']
 - [blocks_vector_to_stream_0, '0', sfcwRadar_rangeProfileSink_0, '0']
+- [blocks_vector_to_stream_0, '0', sfcwRadar_rangeProfileSink_1, '0']
 - [fft_vxx_0, '0', blocks_vector_to_stream_0, '0']
+- [filter_fft_low_pass_filter_0, '0', blocks_tag_gate_0, '0']
+- [filter_fft_low_pass_filter_0, '0', sfcwRadar_rawSignalSink_cc_0, '0']
+- [filter_fft_low_pass_filter_0_0, '0', blocks_tag_gate_0_0, '0']
+- [filter_fft_low_pass_filter_0_0, '0', sfcwRadar_rawSignalSink_cc_0, '1']
 - [low_pass_filter_0, '0', blocks_tag_gate_0_0, '0']
 - [low_pass_filter_0, '0', sfcwRadar_rawSignalSink_cc_0, '1']
 - [low_pass_filter_0_0, '0', blocks_tag_gate_0, '0']
 - [low_pass_filter_0_0, '0', sfcwRadar_rawSignalSink_cc_0, '0']
 - [scan_cont, pressed, sfcwRadar_bladerfRadarBurst_cc_0, scan]
 - [scan_once, pressed, sfcwRadar_bladerfRadarBurst_cc_0, scan]
+- [sfcwRadar_bladerfRadarBurst_cc_0, '0', filter_fft_low_pass_filter_0, '0']
 - [sfcwRadar_bladerfRadarBurst_cc_0, '0', low_pass_filter_0_0, '0']
+- [sfcwRadar_bladerfRadarBurst_cc_0, '1', filter_fft_low_pass_filter_0_0, '0']
 - [sfcwRadar_bladerfRadarBurst_cc_0, '1', low_pass_filter_0, '0']
 
 metadata:

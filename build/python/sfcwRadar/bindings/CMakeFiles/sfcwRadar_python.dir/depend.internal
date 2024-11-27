@@ -127,3 +127,5 @@ python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/rawSignalSink_cc_pytho
  ../include/gnuradio/sfcwRadar/api.h
  ../include/gnuradio/sfcwRadar/rawSignalSink_cc.h
  /home/hui/gr-sfcwRadar/python/sfcwRadar/bindings/rawSignalSink_cc_python.cc
+ python/sfcwRadar/bindings/pydoc_macros.h
+ python/sfcwRadar/bindings/rawSignalSink_cc_pydoc.h

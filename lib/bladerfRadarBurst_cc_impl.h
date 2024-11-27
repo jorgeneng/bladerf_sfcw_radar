@@ -64,6 +64,7 @@ private:
 
     float d_cw_amplitude;
     float d_cw_frequency;
+    gr_complex d_phase = 0;
     //struct bladerf_quick_tune *d_quick_tunes_tx;
     struct bladerf_quick_tune_info *d_quick_tunes_tx;
     //struct bladerf_quick_tune *d_quick_tunes_rx;

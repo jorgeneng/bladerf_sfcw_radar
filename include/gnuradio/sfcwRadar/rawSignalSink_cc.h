@@ -10,6 +10,7 @@
 
 #include <gnuradio/sfcwRadar/api.h>
 #include <gnuradio/sync_block.h>
+#include <libbladeRF.h>
 
 namespace gr {
 namespace sfcwRadar {
@@ -32,7 +33,18 @@ public:
      * class. sfcwRadar::rawSignalSink_cc::make is the public interface for
      * creating new instances.
      */
-    static sptr make();
+    static sptr make(std::string dir, 
+                    std::string prefix, 
+                    int num_steps,
+                    bladerf_frequency start_freq,
+                    bladerf_frequency freq_step,
+                    bladerf_gain tx_gain,
+                    bladerf_gain rx_gain,
+                    bladerf_gain ref_gain,
+                    int samp_rate,
+                    size_t burst_len,
+                    float cw_frequency,
+                    float cw_amplitude);
 };
 
 } // namespace sfcwRadar

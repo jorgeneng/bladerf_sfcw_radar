@@ -64,27 +64,27 @@ class sfcwRadarGUI(gr.top_block, Qt.QWidget):
         ##################################################
         # Variables
         ##################################################
-        self.y_max = y_max = 4
-        self.tx_gain = tx_gain = 40
+        self.y_max = y_max = 12
+        self.tx_gain = tx_gain = 50
         self.start_freq = start_freq = 1e9
-        self.samp_rate = samp_rate = 10e6
+        self.samp_rate = samp_rate = 5e6
         self.rx_gain = rx_gain = 30
-        self.ref_gain = ref_gain = 30
+        self.ref_gain = ref_gain = 20
         self.num_steps = num_steps = 128
         self.freq_step = freq_step = 15e6
-        self.burst_len = burst_len = 2**12
-        self.LP_dec = LP_dec = 8
+        self.cw_freq = cw_freq = 1e6
+        self.cw_amp = cw_amp = 0.8
+        self.burst_len = burst_len = 2**11
+        self.LP_dec = LP_dec = 1
 
         ##################################################
         # Blocks
         ##################################################
 
-        self._y_max_range = qtgui.Range(0, 400, 1, 4, 200)
+        self._y_max_range = qtgui.Range(0, 400, 1, 12, 200)
         self._y_max_win = qtgui.RangeWidget(self._y_max_range, self.set_y_max, "'y_max'", "counter_slider", float, QtCore.Qt.Horizontal)
         self.top_layout.addWidget(self._y_max_win)
-        self.sfcwRadar_rawSignalSink_cc_0 = sfcwRadar.rawSignalSink_cc()
-        self.sfcwRadar_rangeProfileSink_0 = sfcwRadar.rangeProfileSink(num_steps,'/tmp/')
-        self.sfcwRadar_bladerfRadarBurst_cc_0 = sfcwRadar.bladerfRadarBurst_cc(int(start_freq), num_steps, int(freq_step), int(samp_rate), rx_gain, tx_gain, ref_gain, burst_len, 8, 1024, 4, 1.0, 50e3)
+        self.sfcwRadar_bladerfRadarBurst_cc_0 = sfcwRadar.bladerfRadarBurst_cc(int(start_freq), num_steps, int(freq_step), int(samp_rate), rx_gain, tx_gain, ref_gain, burst_len, 8, 1024, 4, cw_amp, cw_freq)
         self.sfcwRadar_bladerfRadarBurst_cc_0.set_min_output_buffer((burst_len*2))
         self.scan_once = _scan_once_toggle_button = qtgui.MsgPushButton('scan_once', '',1,"default","default")
         self.scan_once = _scan_once_toggle_button
@@ -147,7 +147,7 @@ class sfcwRadarGUI(gr.top_block, Qt.QWidget):
         for c in range(2, 4):
             self.top_grid_layout.setColumnStretch(c, 1)
         self.qtgui_time_sink_x_1_0_0 = qtgui.time_sink_f(
-            num_steps, #size
+            (num_steps*LP_dec), #size
             samp_rate, #samp_rate
             "Range profile(A-Scan)", #name
             1, #number of inputs
@@ -163,8 +163,8 @@ class sfcwRadarGUI(gr.top_block, Qt.QWidget):
         self.qtgui_time_sink_x_1_0_0.enable_autoscale(False)
         self.qtgui_time_sink_x_1_0_0.enable_grid(True)
         self.qtgui_time_sink_x_1_0_0.enable_axis_labels(True)
-        self.qtgui_time_sink_x_1_0_0.enable_control_panel(False)
-        self.qtgui_time_sink_x_1_0_0.enable_stem_plot(False)
+        self.qtgui_time_sink_x_1_0_0.enable_control_panel(True)
+        self.qtgui_time_sink_x_1_0_0.enable_stem_plot(True)
 
 
         labels = ['Signal 1', 'Signal 2', 'Signal 3', 'Signal 4', 'Signal 5',
@@ -198,65 +198,10 @@ class sfcwRadarGUI(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(0, 2):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self.qtgui_time_sink_x_1 = qtgui.time_sink_c(
-            burst_len, #size
-            samp_rate, #samp_rate
-            "Reference/Echo signals in time domain", #name
-            2, #number of inputs
-            None # parent
-        )
-        self.qtgui_time_sink_x_1.set_update_time(0.10)
-        self.qtgui_time_sink_x_1.set_y_axis(-1, 1)
-
-        self.qtgui_time_sink_x_1.set_y_label('Amplitude', "")
-
-        self.qtgui_time_sink_x_1.enable_tags(True)
-        self.qtgui_time_sink_x_1.set_trigger_mode(qtgui.TRIG_MODE_FREE, qtgui.TRIG_SLOPE_POS, 0.0, 0, 0, "")
-        self.qtgui_time_sink_x_1.enable_autoscale(False)
-        self.qtgui_time_sink_x_1.enable_grid(False)
-        self.qtgui_time_sink_x_1.enable_axis_labels(True)
-        self.qtgui_time_sink_x_1.enable_control_panel(False)
-        self.qtgui_time_sink_x_1.enable_stem_plot(False)
-
-
-        labels = ['rx_real_ref', 'rx_img_ref', 'rx_real_echo', 'rx_imag_echo', 'Signal 5',
-            'Signal 6', 'Signal 7', 'Signal 8', 'Signal 9', 'Signal 10']
-        widths = [1, 1, 1, 1, 1,
-            1, 1, 1, 1, 1]
-        colors = ['blue', 'red', 'green', 'black', 'cyan',
-            'magenta', 'yellow', 'dark red', 'dark green', 'dark blue']
-        alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
-            1.0, 1.0, 1.0, 1.0, 1.0]
-        styles = [1, 1, 1, 2, 1,
-            1, 1, 1, 1, 1]
-        markers = [-1, -1, -1, -1, -1,
-            -1, -1, -1, -1, -1]
-
-
-        for i in range(4):
-            if len(labels[i]) == 0:
-                if (i % 2 == 0):
-                    self.qtgui_time_sink_x_1.set_line_label(i, "Re{{Data {0}}}".format(i/2))
-                else:
-                    self.qtgui_time_sink_x_1.set_line_label(i, "Im{{Data {0}}}".format(i/2))
-            else:
-                self.qtgui_time_sink_x_1.set_line_label(i, labels[i])
-            self.qtgui_time_sink_x_1.set_line_width(i, widths[i])
-            self.qtgui_time_sink_x_1.set_line_color(i, colors[i])
-            self.qtgui_time_sink_x_1.set_line_style(i, styles[i])
-            self.qtgui_time_sink_x_1.set_line_marker(i, markers[i])
-            self.qtgui_time_sink_x_1.set_line_alpha(i, alphas[i])
-
-        self._qtgui_time_sink_x_1_win = sip.wrapinstance(self.qtgui_time_sink_x_1.qwidget(), Qt.QWidget)
-        self.top_grid_layout.addWidget(self._qtgui_time_sink_x_1_win, 0, 0, 1, 2)
-        for r in range(0, 1):
-            self.top_grid_layout.setRowStretch(r, 1)
-        for c in range(0, 2):
-            self.top_grid_layout.setColumnStretch(c, 1)
         self.qtgui_time_raster_sink_x_0 = qtgui.time_raster_sink_f(
             samp_rate,
-            256,
-            num_steps,
+            15,
+            (num_steps*LP_dec),
             [],
             [],
             "B-Scan",
@@ -275,7 +220,7 @@ class sfcwRadarGUI(gr.top_block, Qt.QWidget):
 
         labels = ['', '', '', '', '',
             '', '', '', '', '']
-        colors = [0, 0, 0, 0, 0,
+        colors = [2, 0, 0, 0, 0,
             0, 0, 0, 0, 0]
         alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
             1.0, 1.0, 1.0, 1.0, 1.0]
@@ -294,41 +239,25 @@ class sfcwRadarGUI(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(2, 4):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self.low_pass_filter_0_0 = filter.fir_filter_ccf(
-            LP_dec,
-            firdes.low_pass(
-                1,
-                samp_rate,
-                1e6,
-                100e3,
-                window.WIN_HAMMING,
-                6.76))
-        self.low_pass_filter_0 = filter.fir_filter_ccf(
-            LP_dec,
-            firdes.low_pass(
-                1,
-                samp_rate,
-                1e6,
-                100e3,
-                window.WIN_HAMMING,
-                6.76))
-        self.fft_vxx_0 = fft.fft_vcc(num_steps, False, window.hamming(num_steps), True, 1)
-        self.blocks_vector_to_stream_0 = blocks.vector_to_stream(gr.sizeof_gr_complex*1, num_steps)
+        self.filter_fft_low_pass_filter_0_0 = filter.fft_filter_ccc(1, firdes.low_pass(1, samp_rate, (cw_freq*1.2), (cw_freq/2), window.WIN_HAMMING, 6.76), 1)
+        self.filter_fft_low_pass_filter_0 = filter.fft_filter_ccc(1, firdes.low_pass(1, samp_rate, (cw_freq*1.2), (cw_freq/2), window.WIN_HAMMING, 6.76), 1)
+        self.fft_vxx_0 = fft.fft_vcc((num_steps*LP_dec), False, window.hamming(num_steps*LP_dec), True, 1)
+        self.blocks_vector_to_stream_0 = blocks.vector_to_stream(gr.sizeof_gr_complex*1, (num_steps*LP_dec))
         self.blocks_throttle2_0 = blocks.throttle( gr.sizeof_gr_complex*1, samp_rate, True, 0 if "auto" == "auto" else max( int(float(0.1) * samp_rate) if "auto" == "time" else int(0.1), 1) )
         self.blocks_throttle2_0.set_min_output_buffer((burst_len*2))
         self.blocks_tag_gate_0_0 = blocks.tag_gate(gr.sizeof_gr_complex * 1, False)
         self.blocks_tag_gate_0_0.set_single_key("burst")
         self.blocks_tag_gate_0 = blocks.tag_gate(gr.sizeof_gr_complex * 1, False)
         self.blocks_tag_gate_0.set_single_key("burst")
-        self.blocks_stream_to_vector_0 = blocks.stream_to_vector(gr.sizeof_gr_complex*1, num_steps)
+        self.blocks_stream_to_vector_0 = blocks.stream_to_vector(gr.sizeof_gr_complex*1, (num_steps*LP_dec))
         self.blocks_stream_to_tagged_stream_0 = blocks.stream_to_tagged_stream(gr.sizeof_gr_complex, 1, burst_len, "burst")
         self.blocks_stream_to_tagged_stream_0.set_min_output_buffer((burst_len*2))
         self.blocks_multiply_const_xx_0_0 = blocks.multiply_const_cc(1/burst_len, 1)
         self.blocks_multiply_conjugate_cc_0 = blocks.multiply_conjugate_cc(1)
-        self.blocks_integrate_xx_0 = blocks.integrate_cc((int(burst_len/LP_dec)), 1)
+        self.blocks_integrate_xx_0 = blocks.integrate_cc(int(burst_len), 1)
         self.blocks_complex_to_mag_0 = blocks.complex_to_mag(1)
         self.blocks_complex_to_arg_1 = blocks.complex_to_arg(1)
-        self.analog_sig_source_x_0 = analog.sig_source_c(samp_rate, analog.GR_COS_WAVE, 500e3, 1, 0, 0)
+        self.analog_sig_source_x_0 = analog.sig_source_c(samp_rate, analog.GR_COS_WAVE, 50e3, 1, 0, 0)
         self.analog_sig_source_x_0.set_min_output_buffer((burst_len*2))
 
 
@@ -348,19 +277,14 @@ class sfcwRadarGUI(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_stream_to_tagged_stream_0, 0), (self.blocks_throttle2_0, 0))
         self.connect((self.blocks_stream_to_vector_0, 0), (self.fft_vxx_0, 0))
         self.connect((self.blocks_tag_gate_0, 0), (self.blocks_multiply_conjugate_cc_0, 1))
-        self.connect((self.blocks_tag_gate_0, 0), (self.qtgui_time_sink_x_1, 0))
         self.connect((self.blocks_tag_gate_0_0, 0), (self.blocks_multiply_conjugate_cc_0, 0))
-        self.connect((self.blocks_tag_gate_0_0, 0), (self.qtgui_time_sink_x_1, 1))
         self.connect((self.blocks_throttle2_0, 0), (self.sfcwRadar_bladerfRadarBurst_cc_0, 0))
         self.connect((self.blocks_vector_to_stream_0, 0), (self.blocks_complex_to_mag_0, 0))
-        self.connect((self.blocks_vector_to_stream_0, 0), (self.sfcwRadar_rangeProfileSink_0, 0))
         self.connect((self.fft_vxx_0, 0), (self.blocks_vector_to_stream_0, 0))
-        self.connect((self.low_pass_filter_0, 0), (self.blocks_tag_gate_0_0, 0))
-        self.connect((self.low_pass_filter_0, 0), (self.sfcwRadar_rawSignalSink_cc_0, 1))
-        self.connect((self.low_pass_filter_0_0, 0), (self.blocks_tag_gate_0, 0))
-        self.connect((self.low_pass_filter_0_0, 0), (self.sfcwRadar_rawSignalSink_cc_0, 0))
-        self.connect((self.sfcwRadar_bladerfRadarBurst_cc_0, 1), (self.low_pass_filter_0, 0))
-        self.connect((self.sfcwRadar_bladerfRadarBurst_cc_0, 0), (self.low_pass_filter_0_0, 0))
+        self.connect((self.filter_fft_low_pass_filter_0, 0), (self.blocks_tag_gate_0, 0))
+        self.connect((self.filter_fft_low_pass_filter_0_0, 0), (self.blocks_tag_gate_0_0, 0))
+        self.connect((self.sfcwRadar_bladerfRadarBurst_cc_0, 0), (self.filter_fft_low_pass_filter_0, 0))
+        self.connect((self.sfcwRadar_bladerfRadarBurst_cc_0, 1), (self.filter_fft_low_pass_filter_0_0, 0))
 
 
     def closeEvent(self, event):
@@ -399,9 +323,8 @@ class sfcwRadarGUI(gr.top_block, Qt.QWidget):
         self.samp_rate = samp_rate
         self.analog_sig_source_x_0.set_sampling_freq(self.samp_rate)
         self.blocks_throttle2_0.set_sample_rate(self.samp_rate)
-        self.low_pass_filter_0.set_taps(firdes.low_pass(1, self.samp_rate, 1e6, 100e3, window.WIN_HAMMING, 6.76))
-        self.low_pass_filter_0_0.set_taps(firdes.low_pass(1, self.samp_rate, 1e6, 100e3, window.WIN_HAMMING, 6.76))
-        self.qtgui_time_sink_x_1.set_samp_rate(self.samp_rate)
+        self.filter_fft_low_pass_filter_0.set_taps(firdes.low_pass(1, self.samp_rate, (self.cw_freq*1.2), (self.cw_freq/2), window.WIN_HAMMING, 6.76))
+        self.filter_fft_low_pass_filter_0_0.set_taps(firdes.low_pass(1, self.samp_rate, (self.cw_freq*1.2), (self.cw_freq/2), window.WIN_HAMMING, 6.76))
         self.qtgui_time_sink_x_1_0_0.set_samp_rate(self.samp_rate)
         self.qtgui_time_sink_x_2.set_samp_rate(self.samp_rate)
 
@@ -424,7 +347,7 @@ class sfcwRadarGUI(gr.top_block, Qt.QWidget):
 
     def set_num_steps(self, num_steps):
         self.num_steps = num_steps
-        self.qtgui_time_raster_sink_x_0.set_num_cols(self.num_steps)
+        self.qtgui_time_raster_sink_x_0.set_num_cols((self.num_steps*self.LP_dec))
         self.sfcwRadar_bladerfRadarBurst_cc_0.set_num_steps(self.num_steps)
 
     def get_freq_step(self):
@@ -433,6 +356,20 @@ class sfcwRadarGUI(gr.top_block, Qt.QWidget):
     def set_freq_step(self, freq_step):
         self.freq_step = freq_step
         self.sfcwRadar_bladerfRadarBurst_cc_0.set_freq_step(int(self.freq_step))
+
+    def get_cw_freq(self):
+        return self.cw_freq
+
+    def set_cw_freq(self, cw_freq):
+        self.cw_freq = cw_freq
+        self.filter_fft_low_pass_filter_0.set_taps(firdes.low_pass(1, self.samp_rate, (self.cw_freq*1.2), (self.cw_freq/2), window.WIN_HAMMING, 6.76))
+        self.filter_fft_low_pass_filter_0_0.set_taps(firdes.low_pass(1, self.samp_rate, (self.cw_freq*1.2), (self.cw_freq/2), window.WIN_HAMMING, 6.76))
+
+    def get_cw_amp(self):
+        return self.cw_amp
+
+    def set_cw_amp(self, cw_amp):
+        self.cw_amp = cw_amp
 
     def get_burst_len(self):
         return self.burst_len
@@ -449,6 +386,7 @@ class sfcwRadarGUI(gr.top_block, Qt.QWidget):
 
     def set_LP_dec(self, LP_dec):
         self.LP_dec = LP_dec
+        self.qtgui_time_raster_sink_x_0.set_num_cols((self.num_steps*self.LP_dec))
 
 
 

@@ -26,22 +26,78 @@ namespace gr {
 namespace sfcwRadar {
 
 using input_type = gr_complex;
-rawSignalSink_cc::sptr rawSignalSink_cc::make()
+rawSignalSink_cc::sptr rawSignalSink_cc::make(std::string dir, 
+                                             std::string prefix, 
+                                             int num_steps,
+                                             bladerf_frequency start_freq,
+                                             bladerf_frequency freq_step,
+                                             bladerf_gain tx_gain,
+                                             bladerf_gain rx_gain,
+                                             bladerf_gain ref_gain,
+                                             int samp_rate,
+                                             size_t burst_len,
+                                             float cw_frequency,
+                                             float cw_amplitude)
 {
-    return gnuradio::make_block_sptr<rawSignalSink_cc_impl>();
+    return gnuradio::make_block_sptr<rawSignalSink_cc_impl>(dir, 
+                                             prefix, 
+                                             num_steps,
+                                             start_freq,
+                                             freq_step,
+                                             tx_gain,
+                                             rx_gain,
+                                             ref_gain,
+                                             samp_rate,
+                                             burst_len,
+                                             cw_frequency,
+                                             cw_amplitude);
 }
 
 
 /*
  * The private constructor
  */
-rawSignalSink_cc_impl::rawSignalSink_cc_impl()
+rawSignalSink_cc_impl::rawSignalSink_cc_impl(std::string dir, 
+                                             std::string prefix, 
+                                             int num_steps,
+                                             bladerf_frequency start_freq,
+                                             bladerf_frequency freq_step,
+                                             bladerf_gain tx_gain,
+                                             bladerf_gain rx_gain,
+                                             bladerf_gain ref_gain,
+                                             int samp_rate,
+                                             size_t burst_len,
+                                             float cw_frequency,
+                                             float cw_amplitude)
     : gr::sync_block("rawSignalSink_cc",
                      gr::io_signature::make(
                          2 /* min inputs */, 2 /* max inputs */, sizeof(input_type)),
                      gr::io_signature::make(0, 0, 0)),
     d_itemsize(sizeof(input_type))
 {
+    /**
+     * check if the provided dir exists
+     * */
+    struct stat info;
+    if(stat(dir.c_str(), &info)!=0){
+        std::cout << "cannot access " << dir << std::endl;
+        return;
+    }
+    d_rx_dir_filename = dir+prefix+rx_suffix;
+    d_ref_dir_fielname = dir+prefix+ref_suffix;
+    std::cout << "rx samples will be stored to: " << d_rx_dir_filename << std::endl;
+    std::cout << "ref samples will be stored to: " << d_ref_dir_fielname << std::endl;
+
+    d_num_steps = num_steps;
+    d_start_freq = start_freq;
+    d_freq_step = freq_step;
+    d_tx_gain = tx_gain;
+    d_rx_gain = rx_gain;
+    d_ref_gain = ref_gain;
+    d_samp_rate = samp_rate;
+    d_burst_len = burst_len;
+    d_cw_frequency = cw_frequency;
+    d_cw_amplitude = cw_amplitude;
 }
 
 /*
@@ -72,18 +128,20 @@ int rawSignalSink_cc_impl::work(int noutput_items,
                 // for each valid new scan tag in the vector
                 auto N = (*vitr).offset;
                 idx = (N - start_N);
-                std::cout << "get a new scan tag, idx: " << N << std::endl;
+                //std::cout << "get a new scan tag, idx: " << N << std::endl;
                 if (d_ref_handle != nullptr){
-                std::cout << "close previous file" << std::endl;
+                //std::cout << "close previous file" << std::endl;
                     fclose(d_ref_handle);
                     d_ref_handle = nullptr;
                     d_rx_handle = nullptr;
                 }
-                std::cout << "create a new file to store the raw signals" << std::endl;
-                std::string ref_filename = fmt::format("file_ref_{:d}.dat", scan_id);
-                std::string rx_filename = fmt::format("file_rx_{:d}.dat", scan_id);
+                //std::cout << "create a new file to store the raw signals" << std::endl;
+                std::string ref_filename = d_ref_dir_fielname + std::to_string(scan_id) + ".dat";
+                std::string rx_filename = d_rx_dir_filename + std::to_string(scan_id) + ".dat";
+                //std::string ref_filename = fmt::format("file_ref_{:d}.dat", scan_id);
+                //std::string rx_filename = fmt::format("file_rx_{:d}.dat", scan_id);
                 std::string meta_filename = fmt::format("scan_meta_{:d}.json", scan_id);
-                std::cout << ref_filename << ":" << rx_filename << ":" << meta_filename << std::endl;
+                //std::cout << ref_filename << ":" << rx_filename << ":" << meta_filename << std::endl;
                 scan_id ++ ;
 
                 int ref_fd;
@@ -147,7 +205,8 @@ int rawSignalSink_cc_impl::work(int noutput_items,
 
             nwritten += count;
             rxbuf += count * d_itemsize;
-        } 
+        }
+        //std::cout << "wrote: " << nwritten << std::endl;
     }
 
     // Tell runtime system how many output items we produced.
