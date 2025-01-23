@@ -109,8 +109,8 @@ int rawSignalSink_cc_impl::work(int noutput_items,
                                 gr_vector_const_void_star& input_items,
                                 gr_vector_void_star& output_items)
 {
-    const char* refbuf = (const char*)(input_items[0]);
-    const char* rxbuf = (const char*)(input_items[1]);
+    const char* rxbuf = (const char*)(input_items[0]);
+    const char* refbuf = (const char*)(input_items[1]);
 
     uint64_t start_N = nitems_read(0);
     uint64_t end_N = start_N + (uint64_t)(noutput_items);

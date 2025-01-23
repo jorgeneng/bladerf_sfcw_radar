@@ -25,6 +25,7 @@ namespace py = pybind11;
     void bind_bladerfRadarBurst_cc(py::module& m);
     void bind_bladerfEchoTimer_cc(py::module& m);
     void bind_rawSignalSink_cc(py::module& m);
+    void bind_bladerfRadarMIMO(py::module& m);
 // ) END BINDING_FUNCTION_PROTOTYPES
 
 
@@ -57,5 +58,6 @@ PYBIND11_MODULE(sfcwRadar_python, m)
     bind_bladerfRadarBurst_cc(m);
     bind_bladerfEchoTimer_cc(m);
     bind_rawSignalSink_cc(m);
+    bind_bladerfRadarMIMO(m);
     // ) END BINDING_FUNCTION_CALLS
 }

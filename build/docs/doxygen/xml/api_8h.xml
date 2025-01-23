@@ -6,6 +6,7 @@
     <includedby refid="bladerfEchoTimer__cc_8h" local="no">bladerfEchoTimer_cc.h</includedby>
     <includedby refid="bladerfRadar__cc_8h" local="no">bladerfRadar_cc.h</includedby>
     <includedby refid="bladerfRadarBurst__cc_8h" local="no">bladerfRadarBurst_cc.h</includedby>
+    <includedby refid="bladerfRadarMIMO_8h" local="no">bladerfRadarMIMO.h</includedby>
     <includedby refid="rawSignalSink__cc_8h" local="no">rawSignalSink_cc.h</includedby>
     <incdepgraph>
       <node id="2">
@@ -29,14 +30,18 @@
         <childnode refid="3" relation="include">
         </childnode>
       </node>
+      <node id="9">
+        <label>bladerfRadarMIMO_impl.h</label>
+        <link refid="bladerfRadarMIMO__impl_8h"/>
+      </node>
       <node id="5">
         <label>bladerfRadar_cc_impl.h</label>
         <link refid="bladerfRadar__cc__impl_8h"/>
       </node>
-      <node id="8">
+      <node id="10">
         <label>rawSignalSink_cc.h</label>
         <link refid="rawSignalSink__cc_8h"/>
-        <childnode refid="9" relation="include">
+        <childnode refid="11" relation="include">
         </childnode>
       </node>
       <node id="4">
@@ -49,6 +54,12 @@
         <label>bladerfEchoTimer_cc_impl.h</label>
         <link refid="bladerfEchoTimer__cc__impl_8h"/>
       </node>
+      <node id="8">
+        <label>bladerfRadarMIMO.h</label>
+        <link refid="bladerfRadarMIMO_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
       <node id="1">
         <label>api.h</label>
         <link refid="api_8h"/>
@@ -60,6 +71,8 @@
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
       </node>
       <node id="6">
         <label>bladerfRadarBurst_cc.h</label>
@@ -67,7 +80,7 @@
         <childnode refid="7" relation="include">
         </childnode>
       </node>
-      <node id="9">
+      <node id="11">
         <label>rawSignalSink_cc_impl.h</label>
         <link refid="rawSignalSink__cc__impl_8h"/>
       </node>

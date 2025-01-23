@@ -76,9 +76,9 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:ac095cd194821f812f3f742c405a79ff6"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classgr_1_1sfcwRadar_1_1rawSignalSink__cc.html#a40f02373088297a2f876a529d9ea3f82">sptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgr_1_1sfcwRadar_1_1rawSignalSink__cc.html#ac095cd194821f812f3f742c405a79ff6">make</a> ()</td></tr>
-<tr class="memdesc:ac095cd194821f812f3f742c405a79ff6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a shared_ptr to a new instance of <a class="el" href="classgr_1_1sfcwRadar_1_1rawSignalSink__cc.html" title="&lt;+description of block+&gt;">sfcwRadar::rawSignalSink_cc</a>.  <a href="classgr_1_1sfcwRadar_1_1rawSignalSink__cc.html#ac095cd194821f812f3f742c405a79ff6">More...</a><br /></td></tr>
-<tr class="separator:ac095cd194821f812f3f742c405a79ff6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1dd41fef7f4bd79042514d18f869a350"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classgr_1_1sfcwRadar_1_1rawSignalSink__cc.html#a40f02373088297a2f876a529d9ea3f82">sptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgr_1_1sfcwRadar_1_1rawSignalSink__cc.html#a1dd41fef7f4bd79042514d18f869a350">make</a> (std::string dir, std::string prefix, int num_steps, bladerf_frequency start_freq, bladerf_frequency freq_step, bladerf_gain tx_gain, bladerf_gain rx_gain, bladerf_gain ref_gain, int samp_rate, size_t burst_len, float cw_frequency, float cw_amplitude)</td></tr>
+<tr class="memdesc:a1dd41fef7f4bd79042514d18f869a350"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a shared_ptr to a new instance of <a class="el" href="classgr_1_1sfcwRadar_1_1rawSignalSink__cc.html" title="&lt;+description of block+&gt;">sfcwRadar::rawSignalSink_cc</a>.  <a href="classgr_1_1sfcwRadar_1_1rawSignalSink__cc.html#a1dd41fef7f4bd79042514d18f869a350">More...</a><br /></td></tr>
+<tr class="separator:a1dd41fef7f4bd79042514d18f869a350"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>&lt;+description of block+&gt; </p>
@@ -98,8 +98,8 @@ Static Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ac095cd194821f812f3f742c405a79ff6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac095cd194821f812f3f742c405a79ff6">&#9670;&nbsp;</a></span>make()</h2>
+<a id="a1dd41fef7f4bd79042514d18f869a350"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1dd41fef7f4bd79042514d18f869a350">&#9670;&nbsp;</a></span>make()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -110,8 +110,79 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">static <a class="el" href="classgr_1_1sfcwRadar_1_1rawSignalSink__cc.html#a40f02373088297a2f876a529d9ea3f82">sptr</a> gr::sfcwRadar::rawSignalSink_cc::make </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>dir</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>prefix</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>num_steps</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bladerf_frequency&#160;</td>
+          <td class="paramname"><em>start_freq</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bladerf_frequency&#160;</td>
+          <td class="paramname"><em>freq_step</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bladerf_gain&#160;</td>
+          <td class="paramname"><em>tx_gain</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bladerf_gain&#160;</td>
+          <td class="paramname"><em>rx_gain</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bladerf_gain&#160;</td>
+          <td class="paramname"><em>ref_gain</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>samp_rate</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>burst_len</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>cw_frequency</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>cw_amplitude</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -122,7 +193,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Return a shared_ptr to a new instance of <a class="el" href="classgr_1_1sfcwRadar_1_1rawSignalSink__cc.html" title="&lt;+description of block+&gt;">sfcwRadar::rawSignalSink_cc</a>. </p>
-<p>To avoid accidental use of raw pointers, <a class="el" href="classgr_1_1sfcwRadar_1_1rawSignalSink__cc.html" title="&lt;+description of block+&gt;">sfcwRadar::rawSignalSink_cc</a>'s constructor is in a private implementation class. <a class="el" href="classgr_1_1sfcwRadar_1_1rawSignalSink__cc.html#ac095cd194821f812f3f742c405a79ff6" title="Return a shared_ptr to a new instance of sfcwRadar::rawSignalSink_cc.">sfcwRadar::rawSignalSink_cc::make</a> is the public interface for creating new instances. </p>
+<p>To avoid accidental use of raw pointers, <a class="el" href="classgr_1_1sfcwRadar_1_1rawSignalSink__cc.html" title="&lt;+description of block+&gt;">sfcwRadar::rawSignalSink_cc</a>'s constructor is in a private implementation class. <a class="el" href="classgr_1_1sfcwRadar_1_1rawSignalSink__cc.html#a1dd41fef7f4bd79042514d18f869a350" title="Return a shared_ptr to a new instance of sfcwRadar::rawSignalSink_cc.">sfcwRadar::rawSignalSink_cc::make</a> is the public interface for creating new instances. </p>
 
 </div>
 </div>

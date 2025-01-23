@@ -2,40 +2,6 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="build_2python_2sfcwRadar_2bindings_2pydoc__macros_8h" kind="file" language="C++">
     <compoundname>build/python/sfcwRadar/bindings/pydoc_macros.h</compoundname>
-    <includedby refid="bladerfEchoTimer__cc__pydoc_8h" local="yes">bladerfEchoTimer_cc_pydoc.h</includedby>
-    <includedby refid="bladerfRadar__cc__pydoc_8h" local="yes">bladerfRadar_cc_pydoc.h</includedby>
-    <includedby refid="bladerfRadarBurst__cc__pydoc_8h" local="yes">bladerfRadarBurst_cc_pydoc.h</includedby>
-    <includedby refid="rawSignalSink__cc__pydoc_8h" local="yes">rawSignalSink_cc_pydoc.h</includedby>
-    <invincdepgraph>
-      <node id="3">
-        <label>bladerfRadar_cc_pydoc.h</label>
-        <link refid="bladerfRadar__cc__pydoc_8h"/>
-      </node>
-      <node id="4">
-        <label>bladerfRadarBurst_cc_pydoc.h</label>
-        <link refid="bladerfRadarBurst__cc__pydoc_8h"/>
-      </node>
-      <node id="2">
-        <label>bladerfEchoTimer_cc_pydoc.h</label>
-        <link refid="bladerfEchoTimer__cc__pydoc_8h"/>
-      </node>
-      <node id="5">
-        <label>rawSignalSink_cc_pydoc.h</label>
-        <link refid="rawSignalSink__cc__pydoc_8h"/>
-      </node>
-      <node id="1">
-        <label>pydoc_macros.h</label>
-        <link refid="build_2python_2sfcwRadar_2bindings_2pydoc__macros_8h"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-      </node>
-    </invincdepgraph>
       <sectiondef kind="define">
       <memberdef kind="define" id="build_2python_2sfcwRadar_2bindings_2pydoc__macros_8h_1afa7cf06549cf7fd295f622ef6f376357" prot="public" static="no">
         <name>__EXPAND</name>

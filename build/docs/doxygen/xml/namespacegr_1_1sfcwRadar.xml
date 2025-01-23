@@ -9,6 +9,8 @@
     <innerclass refid="classgr_1_1sfcwRadar_1_1bladerfRadar__cc__impl" prot="public">gr::sfcwRadar::bladerfRadar_cc_impl</innerclass>
     <innerclass refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc" prot="public">gr::sfcwRadar::bladerfRadarBurst_cc</innerclass>
     <innerclass refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl" prot="public">gr::sfcwRadar::bladerfRadarBurst_cc_impl</innerclass>
+    <innerclass refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO" prot="public">gr::sfcwRadar::bladerfRadarMIMO</innerclass>
+    <innerclass refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl" prot="public">gr::sfcwRadar::bladerfRadarMIMO_impl</innerclass>
     <innerclass refid="structgr_1_1sfcwRadar_1_1channel__config" prot="public">gr::sfcwRadar::channel_config</innerclass>
     <innerclass refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc" prot="public">gr::sfcwRadar::rawSignalSink_cc</innerclass>
     <innerclass refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl" prot="public">gr::sfcwRadar::rawSignalSink_cc_impl</innerclass>

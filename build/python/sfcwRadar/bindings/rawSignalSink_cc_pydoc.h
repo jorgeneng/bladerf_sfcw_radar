@@ -22,7 +22,21 @@ Constructor Specific Documentation:
 
 Return a shared_ptr to a new instance of sfcwRadar::rawSignalSink_cc.
 
-To avoid accidental use of raw pointers, sfcwRadar::rawSignalSink_cc's constructor is in a private implementation class. sfcwRadar::rawSignalSink_cc::make is the public interface for creating new instances.)doc";
+To avoid accidental use of raw pointers, sfcwRadar::rawSignalSink_cc's constructor is in a private implementation class. sfcwRadar::rawSignalSink_cc::make is the public interface for creating new instances.
+
+Args:
+    dir : 
+    prefix : 
+    num_steps : 
+    start_freq : 
+    freq_step : 
+    tx_gain : 
+    rx_gain : 
+    ref_gain : 
+    samp_rate : 
+    burst_len : 
+    cw_frequency : 
+    cw_amplitude : )doc";
 
 
  static const char *__doc_gr_sfcwRadar_rawSignalSink_cc_rawSignalSink_cc = R"doc()doc";
@@ -34,6 +48,20 @@ Constructor Specific Documentation:
 
 Return a shared_ptr to a new instance of sfcwRadar::rawSignalSink_cc.
 
-To avoid accidental use of raw pointers, sfcwRadar::rawSignalSink_cc's constructor is in a private implementation class. sfcwRadar::rawSignalSink_cc::make is the public interface for creating new instances.)doc";
+To avoid accidental use of raw pointers, sfcwRadar::rawSignalSink_cc's constructor is in a private implementation class. sfcwRadar::rawSignalSink_cc::make is the public interface for creating new instances.
+
+Args:
+    dir : 
+    prefix : 
+    num_steps : 
+    start_freq : 
+    freq_step : 
+    tx_gain : 
+    rx_gain : 
+    ref_gain : 
+    samp_rate : 
+    burst_len : 
+    cw_frequency : 
+    cw_amplitude : )doc";
 
   

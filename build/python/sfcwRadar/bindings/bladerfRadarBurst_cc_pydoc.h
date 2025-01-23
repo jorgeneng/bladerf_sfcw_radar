@@ -35,7 +35,9 @@ Args:
     burst_len : 
     num_buffers : 
     buffer_size : 
-    num_transfers : )doc";
+    num_transfers : 
+    cw_amplitude : 
+    cw_frequency : )doc";
 
 
  static const char *__doc_gr_sfcwRadar_bladerfRadarBurst_cc_bladerfRadarBurst_cc = R"doc()doc";
@@ -60,7 +62,9 @@ Args:
     burst_len : 
     num_buffers : 
     buffer_size : 
-    num_transfers : )doc";
+    num_transfers : 
+    cw_amplitude : 
+    cw_frequency : )doc";
  
  static const char *__doc_gr_sfcwRadar_bladerfRadarBurst_cc_set_rx_gain = R"doc()doc";
  

@@ -14,6 +14,12 @@
 # EXTERNAL cache entries
 ########################
 
+//Path to a file.
+BLADERF_INCLUDE_DIRS:PATH=/usr/local/include
+
+//Path to a library.
+BLADERF_LIBRARIES:FILEPATH=/usr/local/lib/libgnuradio-bladeRF.so
+
 Boost_DATE_TIME_LIBRARY_RELEASE:STRING=/usr/local/lib/libboost_date_time.so.1.73.0
 
 //The directory containing a CMake configuration file for Boost.
@@ -258,12 +264,6 @@ GMP_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libgmp.so
 //The directory containing a CMake configuration file for Gnuradio.
 Gnuradio_DIR:PATH=/usr/local/lib/cmake/gnuradio
 
-//Path to a file.
-LIBBLADERF_INCLUDE_DIR:PATH=/usr/local/include
-
-//Path to a library.
-LIBBLADERF_LIBRARY:FILEPATH=/usr/local/lib/libbladeRF.so
-
 //lib directory suffix
 LIB_SUFFIX:STRING=
 
@@ -304,7 +304,7 @@ VOLK_LIBRARIES:STRING=Volk::volk
 Volk_DIR:PATH=/usr/local/lib/cmake/volk
 
 //The directory containing a CMake configuration file for bladeRF.
-bladeRF_DIR:PATH=/usr/local/share/cmake/bladeRF
+bladeRF_DIR:PATH=/usr/local/lib/cmake/bladeRF
 
 //The directory containing a CMake configuration file for boost_date_time.
 boost_date_time_DIR:PATH=/usr/local/lib/cmake/boost_date_time-1.73.0
@@ -353,6 +353,10 @@ spdlog_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/spdlog
 # INTERNAL cache entries
 ########################
 
+//ADVANCED property for variable: BLADERF_INCLUDE_DIRS
+BLADERF_INCLUDE_DIRS-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: BLADERF_LIBRARIES
+BLADERF_LIBRARIES-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: Boost_DIR
 Boost_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_ADDR2LINE
@@ -512,6 +516,8 @@ CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 DOXYGEN_DOT_EXECUTABLE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: DOXYGEN_EXECUTABLE
 DOXYGEN_EXECUTABLE-ADVANCED:INTERNAL=1
+//Details about finding BLADERF
+FIND_PACKAGE_MESSAGE_DETAILS_BLADERF:INTERNAL=[/usr/local/lib/libgnuradio-bladeRF.so][/usr/local/include][v()]
 //Details about finding Boost
 FIND_PACKAGE_MESSAGE_DETAILS_Boost:INTERNAL=[/usr/local/lib/cmake/Boost-1.73.0/BoostConfig.cmake][cfound components: date_time program_options system regex thread unit_test_framework ][v1.73.0(1.73.0)]
 //Details about finding Doxygen
@@ -564,6 +570,31 @@ HAVE_WARN_ALL:INTERNAL=1
 HAVE_WARN_NO_UNINITIALIZED:INTERNAL=1
 //Test HAVE_WARN_SIGN_COMPARE
 HAVE_WARN_SIGN_COMPARE:INTERNAL=1
+PC_BLADERF_CFLAGS:INTERNAL=
+PC_BLADERF_CFLAGS_I:INTERNAL=
+PC_BLADERF_CFLAGS_OTHER:INTERNAL=
+PC_BLADERF_FOUND:INTERNAL=
+PC_BLADERF_INCLUDEDIR:INTERNAL=
+PC_BLADERF_LIBDIR:INTERNAL=
+PC_BLADERF_LIBS:INTERNAL=
+PC_BLADERF_LIBS_L:INTERNAL=
+PC_BLADERF_LIBS_OTHER:INTERNAL=
+PC_BLADERF_LIBS_PATHS:INTERNAL=
+PC_BLADERF_MODULE_NAME:INTERNAL=
+PC_BLADERF_PREFIX:INTERNAL=
+PC_BLADERF_STATIC_CFLAGS:INTERNAL=
+PC_BLADERF_STATIC_CFLAGS_I:INTERNAL=
+PC_BLADERF_STATIC_CFLAGS_OTHER:INTERNAL=
+PC_BLADERF_STATIC_LIBDIR:INTERNAL=
+PC_BLADERF_STATIC_LIBS:INTERNAL=
+PC_BLADERF_STATIC_LIBS_L:INTERNAL=
+PC_BLADERF_STATIC_LIBS_OTHER:INTERNAL=
+PC_BLADERF_STATIC_LIBS_PATHS:INTERNAL=
+PC_BLADERF_VERSION:INTERNAL=
+PC_BLADERF_bladeRF_INCLUDEDIR:INTERNAL=
+PC_BLADERF_bladeRF_LIBDIR:INTERNAL=
+PC_BLADERF_bladeRF_PREFIX:INTERNAL=
+PC_BLADERF_bladeRF_VERSION:INTERNAL=
 PC_GMP_CFLAGS:INTERNAL=
 PC_GMP_CFLAGS_I:INTERNAL=
 PC_GMP_CFLAGS_OTHER:INTERNAL=
@@ -618,6 +649,7 @@ VOLK_INCLUDE_DIRS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: VOLK_LIBRARIES
 VOLK_LIBRARIES-ADVANCED:INTERNAL=1
 __pkg_config_arguments_PC_GMP:INTERNAL=gmp
+__pkg_config_checked_PC_BLADERF:INTERNAL=1
 __pkg_config_checked_PC_GMP:INTERNAL=1
 //ADVANCED property for variable: boost_date_time_DIR
 boost_date_time_DIR-ADVANCED:INTERNAL=1

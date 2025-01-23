@@ -44,6 +44,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
     "/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/bladerfRadarBurst_cc.h"
     "/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/bladerfEchoTimer_cc.h"
     "/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/rawSignalSink_cc.h"
+    "/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/bladerfRadarMIMO.h"
     )
 endif()
 

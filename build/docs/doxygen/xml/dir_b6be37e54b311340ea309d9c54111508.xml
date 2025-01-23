@@ -2,11 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="dir_b6be37e54b311340ea309d9c54111508" kind="dir">
     <compoundname>bindings</compoundname>
-    <innerfile refid="bladerfEchoTimer__cc__pydoc_8h">bladerfEchoTimer_cc_pydoc.h</innerfile>
-    <innerfile refid="bladerfRadar__cc__pydoc_8h">bladerfRadar_cc_pydoc.h</innerfile>
-    <innerfile refid="bladerfRadarBurst__cc__pydoc_8h">bladerfRadarBurst_cc_pydoc.h</innerfile>
     <innerfile refid="build_2python_2sfcwRadar_2bindings_2pydoc__macros_8h">build/python/sfcwRadar/bindings/pydoc_macros.h</innerfile>
-    <innerfile refid="rawSignalSink__cc__pydoc_8h">rawSignalSink_cc_pydoc.h</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

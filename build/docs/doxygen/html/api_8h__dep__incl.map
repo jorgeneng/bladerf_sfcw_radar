@@ -1,11 +1,13 @@
 <map id="api.h" name="api.h">
-<area shape="rect" id="node1" title=" " alt="" coords="315,5,366,32"/>
-<area shape="rect" id="node2" href="$bladerfEchoTimer__cc_8h.html" title=" " alt="" coords="8,80,164,107"/>
-<area shape="rect" id="node4" href="$bladerfRadar__cc_8h.html" title=" " alt="" coords="193,80,321,107"/>
-<area shape="rect" id="node6" href="$bladerfRadarBurst__cc_8h.html" title=" " alt="" coords="349,80,508,107"/>
-<area shape="rect" id="node8" href="$rawSignalSink__cc_8h.html" title=" " alt="" coords="540,80,677,107"/>
+<area shape="rect" id="node1" title=" " alt="" coords="406,5,457,32"/>
+<area shape="rect" id="node2" href="$bladerfEchoTimer__cc_8h.html" title=" " alt="" coords="9,80,165,107"/>
+<area shape="rect" id="node4" href="$bladerfRadar__cc_8h.html" title=" " alt="" coords="194,80,322,107"/>
+<area shape="rect" id="node6" href="$bladerfRadarBurst__cc_8h.html" title=" " alt="" coords="352,80,511,107"/>
+<area shape="rect" id="node8" href="$bladerfRadarMIMO_8h.html" title=" " alt="" coords="540,80,683,107"/>
+<area shape="rect" id="node10" href="$rawSignalSink__cc_8h.html" title=" " alt="" coords="725,80,863,107"/>
 <area shape="rect" id="node3" href="$bladerfEchoTimer__cc__impl_8h.html" title=" " alt="" coords="5,155,151,196"/>
 <area shape="rect" id="node5" href="$bladerfRadar__cc__impl_8h.html" title=" " alt="" coords="175,162,333,189"/>
 <area shape="rect" id="node7" href="$bladerfRadarBurst__cc__impl_8h.html" title=" " alt="" coords="357,155,505,196"/>
-<area shape="rect" id="node9" href="$rawSignalSink__cc__impl_8h.html" title=" " alt="" coords="530,162,698,189"/>
+<area shape="rect" id="node9" href="$bladerfRadarMIMO__impl_8h.html" title=" " alt="" coords="529,162,704,189"/>
+<area shape="rect" id="node11" href="$rawSignalSink__cc__impl_8h.html" title=" " alt="" coords="729,162,897,189"/>
 </map>

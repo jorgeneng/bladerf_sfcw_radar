@@ -17,24 +17,72 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/rawSignalSink_cc.h" line="25" column="29" bodyfile="/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/rawSignalSink_cc.h" bodystart="25" bodyend="-1"/>
+        <location file="/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/rawSignalSink_cc.h" line="26" column="29" bodyfile="/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/rawSignalSink_cc.h" bodystart="26" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1rawSignalSink__cc_1ac095cd194821f812f3f742c405a79ff6" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1rawSignalSink__cc_1a1dd41fef7f4bd79042514d18f869a350" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc_1a40f02373088297a2f876a529d9ea3f82" kindref="member">sptr</ref></type>
         <definition>static sptr gr::sfcwRadar::rawSignalSink_cc::make</definition>
-        <argsstring>()</argsstring>
+        <argsstring>(std::string dir, std::string prefix, int num_steps, bladerf_frequency start_freq, bladerf_frequency freq_step, bladerf_gain tx_gain, bladerf_gain rx_gain, bladerf_gain ref_gain, int samp_rate, size_t burst_len, float cw_frequency, float cw_amplitude)</argsstring>
         <name>make</name>
+        <param>
+          <type>std::string</type>
+          <declname>dir</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>prefix</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>num_steps</declname>
+        </param>
+        <param>
+          <type>bladerf_frequency</type>
+          <declname>start_freq</declname>
+        </param>
+        <param>
+          <type>bladerf_frequency</type>
+          <declname>freq_step</declname>
+        </param>
+        <param>
+          <type>bladerf_gain</type>
+          <declname>tx_gain</declname>
+        </param>
+        <param>
+          <type>bladerf_gain</type>
+          <declname>rx_gain</declname>
+        </param>
+        <param>
+          <type>bladerf_gain</type>
+          <declname>ref_gain</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>samp_rate</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>burst_len</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>cw_frequency</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>cw_amplitude</declname>
+        </param>
         <briefdescription>
 <para>Return a shared_ptr to a new instance of <ref refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc" kindref="compound">sfcwRadar::rawSignalSink_cc</ref>. </para>
         </briefdescription>
         <detaileddescription>
-<para>To avoid accidental use of raw pointers, <ref refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc" kindref="compound">sfcwRadar::rawSignalSink_cc</ref>&apos;s constructor is in a private implementation class. <ref refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc_1ac095cd194821f812f3f742c405a79ff6" kindref="member">sfcwRadar::rawSignalSink_cc::make</ref> is the public interface for creating new instances. </para>
+<para>To avoid accidental use of raw pointers, <ref refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc" kindref="compound">sfcwRadar::rawSignalSink_cc</ref>&apos;s constructor is in a private implementation class. <ref refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc_1a1dd41fef7f4bd79042514d18f869a350" kindref="member">sfcwRadar::rawSignalSink_cc::make</ref> is the public interface for creating new instances. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/rawSignalSink_cc.h" line="35" column="17"/>
+        <location file="/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/rawSignalSink_cc.h" line="36" column="17"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -70,9 +118,9 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/rawSignalSink_cc.h" line="23" column="1" bodyfile="/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/rawSignalSink_cc.h" bodystart="22" bodyend="36"/>
+    <location file="/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/rawSignalSink_cc.h" line="24" column="1" bodyfile="/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/rawSignalSink_cc.h" bodystart="23" bodyend="48"/>
     <listofallmembers>
-      <member refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc_1ac095cd194821f812f3f742c405a79ff6" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::rawSignalSink_cc</scope><name>make</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc_1a1dd41fef7f4bd79042514d18f869a350" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::rawSignalSink_cc</scope><name>make</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc_1a40f02373088297a2f876a529d9ea3f82" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::rawSignalSink_cc</scope><name>sptr</name></member>
     </listofallmembers>
   </compounddef>

@@ -4,19 +4,309 @@
     <compoundname>gr::sfcwRadar::rawSignalSink_cc_impl</compoundname>
     <basecompoundref refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc" prot="public" virt="non-virtual">gr::sfcwRadar::rawSignalSink_cc</basecompoundref>
     <includes refid="rawSignalSink__cc__impl_8h" local="no">rawSignalSink_cc_impl.h</includes>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1a546f84e82756d1b82550e8e9eba98ea3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type></type>
-        <definition>gr::sfcwRadar::rawSignalSink_cc_impl::rawSignalSink_cc_impl</definition>
-        <argsstring>()</argsstring>
-        <name>rawSignalSink_cc_impl</name>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1a4750b2de711e301cadae44ae6df6f56d" prot="private" static="no" mutable="no">
+        <type>uint64_t</type>
+        <definition>uint64_t gr::sfcwRadar::rawSignalSink_cc_impl::scan_id</definition>
+        <argsstring></argsstring>
+        <name>scan_id</name>
+        <initializer>= 0</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" line="22" column="5"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" line="23" column="14" bodyfile="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1a3a3c46d068e0d5cd2354c3057e84e076" prot="private" static="no" mutable="no">
+        <type>const std::string</type>
+        <definition>const std::string gr::sfcwRadar::rawSignalSink_cc_impl::rx_suffix</definition>
+        <argsstring></argsstring>
+        <name>rx_suffix</name>
+        <initializer>= &quot;_rx_&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" line="25" column="23" bodyfile="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1a09c730eef071eaf93a6cf1441c46cb98" prot="private" static="no" mutable="no">
+        <type>const std::string</type>
+        <definition>const std::string gr::sfcwRadar::rawSignalSink_cc_impl::ref_suffix</definition>
+        <argsstring></argsstring>
+        <name>ref_suffix</name>
+        <initializer>= &quot;_ref_&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" line="26" column="23" bodyfile="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1a27904e4ef3826c5ab9f11c42334be1fd" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string gr::sfcwRadar::rawSignalSink_cc_impl::d_rx_dir_filename</definition>
+        <argsstring></argsstring>
+        <name>d_rx_dir_filename</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" line="27" column="17" bodyfile="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1a313e4d6251043e469e95d690de5cfc11" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string gr::sfcwRadar::rawSignalSink_cc_impl::d_ref_dir_fielname</definition>
+        <argsstring></argsstring>
+        <name>d_ref_dir_fielname</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" line="28" column="17" bodyfile="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1ad3721bbf536345e44897717893040437" prot="private" static="no" mutable="no">
+        <type>FILE *</type>
+        <definition>FILE* gr::sfcwRadar::rawSignalSink_cc_impl::d_ref_handle</definition>
+        <argsstring></argsstring>
+        <name>d_ref_handle</name>
+        <initializer>= nullptr</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" line="29" column="10" bodyfile="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1a3edd326bcd2f2e023dba1cb598d62307" prot="private" static="no" mutable="no">
+        <type>FILE *</type>
+        <definition>FILE* gr::sfcwRadar::rawSignalSink_cc_impl::d_rx_handle</definition>
+        <argsstring></argsstring>
+        <name>d_rx_handle</name>
+        <initializer>= nullptr</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" line="30" column="10" bodyfile="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1aaf7923133f3500e1db5def51430d2f34" prot="private" static="no" mutable="no">
+        <type>const size_t</type>
+        <definition>const size_t gr::sfcwRadar::rawSignalSink_cc_impl::d_itemsize</definition>
+        <argsstring></argsstring>
+        <name>d_itemsize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" line="31" column="18" bodyfile="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1ac19cce3f632ba5e59207f7dc4377096b" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int gr::sfcwRadar::rawSignalSink_cc_impl::d_num_steps</definition>
+        <argsstring></argsstring>
+        <name>d_num_steps</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>For meta data recording </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" line="36" column="9" bodyfile="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1afcc76cdcb871c18e453441697b29bcb4" prot="private" static="no" mutable="no">
+        <type>bladerf_frequency</type>
+        <definition>bladerf_frequency gr::sfcwRadar::rawSignalSink_cc_impl::d_start_freq</definition>
+        <argsstring></argsstring>
+        <name>d_start_freq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" line="37" column="23" bodyfile="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1a9420c69565dafbe39b1099b0730ba240" prot="private" static="no" mutable="no">
+        <type>bladerf_frequency</type>
+        <definition>bladerf_frequency gr::sfcwRadar::rawSignalSink_cc_impl::d_freq_step</definition>
+        <argsstring></argsstring>
+        <name>d_freq_step</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" line="38" column="23" bodyfile="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1a44b111e7a0e61785d5d7432c49b2665c" prot="private" static="no" mutable="no">
+        <type>bladerf_gain</type>
+        <definition>bladerf_gain gr::sfcwRadar::rawSignalSink_cc_impl::d_tx_gain</definition>
+        <argsstring></argsstring>
+        <name>d_tx_gain</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" line="39" column="18" bodyfile="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1a8aa660a22646d891597ecfee52e6b9b7" prot="private" static="no" mutable="no">
+        <type>bladerf_gain</type>
+        <definition>bladerf_gain gr::sfcwRadar::rawSignalSink_cc_impl::d_rx_gain</definition>
+        <argsstring></argsstring>
+        <name>d_rx_gain</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" line="40" column="18" bodyfile="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1acce6cfc8accad330ffbcce0e9b317bd1" prot="private" static="no" mutable="no">
+        <type>bladerf_gain</type>
+        <definition>bladerf_gain gr::sfcwRadar::rawSignalSink_cc_impl::d_ref_gain</definition>
+        <argsstring></argsstring>
+        <name>d_ref_gain</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" line="41" column="18" bodyfile="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1a627179f8fd5c10b49ff27ed9f72a4936" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int gr::sfcwRadar::rawSignalSink_cc_impl::d_samp_rate</definition>
+        <argsstring></argsstring>
+        <name>d_samp_rate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" line="42" column="9" bodyfile="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1aac06c56e4dd4fd813f1dd3fc6ae36d81" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t gr::sfcwRadar::rawSignalSink_cc_impl::d_burst_len</definition>
+        <argsstring></argsstring>
+        <name>d_burst_len</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" line="43" column="12" bodyfile="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1a149f985bb5ec2db6a772e6f1cff869a6" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float gr::sfcwRadar::rawSignalSink_cc_impl::d_cw_frequency</definition>
+        <argsstring></argsstring>
+        <name>d_cw_frequency</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" line="44" column="11" bodyfile="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1a5f65697fa9d12b55f8af9022d9238018" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float gr::sfcwRadar::rawSignalSink_cc_impl::d_cw_amplitude</definition>
+        <argsstring></argsstring>
+        <name>d_cw_amplitude</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" line="45" column="11" bodyfile="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1afbc4fc323a44c4aec1dc04c91134d9f4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>gr::sfcwRadar::rawSignalSink_cc_impl::rawSignalSink_cc_impl</definition>
+        <argsstring>(std::string dir, std::string prefix, int num_steps, bladerf_frequency start_freq, bladerf_frequency freq_step, bladerf_gain tx_gain, bladerf_gain rx_gain, bladerf_gain ref_gain, int samp_rate, size_t burst_len, float cw_frequency, float cw_amplitude)</argsstring>
+        <name>rawSignalSink_cc_impl</name>
+        <param>
+          <type>std::string</type>
+          <declname>dir</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>prefix</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>num_steps</declname>
+        </param>
+        <param>
+          <type>bladerf_frequency</type>
+          <declname>start_freq</declname>
+        </param>
+        <param>
+          <type>bladerf_frequency</type>
+          <declname>freq_step</declname>
+        </param>
+        <param>
+          <type>bladerf_gain</type>
+          <declname>tx_gain</declname>
+        </param>
+        <param>
+          <type>bladerf_gain</type>
+          <declname>rx_gain</declname>
+        </param>
+        <param>
+          <type>bladerf_gain</type>
+          <declname>ref_gain</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>samp_rate</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>burst_len</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>cw_frequency</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>cw_amplitude</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" line="48" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1a6f9689fb47be8caaca47bc12dec4b394" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -29,7 +319,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" line="23" column="5"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" line="60" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1a003a78d6325ff810b47dad1590ce1a45" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -54,7 +344,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" line="26" column="9"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" line="63" column="9"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -95,10 +385,28 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" line="17" column="1" bodyfile="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" bodystart="16" bodyend="29"/>
+    <location file="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" line="21" column="1" bodyfile="/home/hui/gr-sfcwRadar/lib/rawSignalSink_cc_impl.h" bodystart="20" bodyend="66"/>
     <listofallmembers>
-      <member refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc_1ac095cd194821f812f3f742c405a79ff6" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::rawSignalSink_cc_impl</scope><name>make</name></member>
-      <member refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1a546f84e82756d1b82550e8e9eba98ea3" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::rawSignalSink_cc_impl</scope><name>rawSignalSink_cc_impl</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1aac06c56e4dd4fd813f1dd3fc6ae36d81" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::rawSignalSink_cc_impl</scope><name>d_burst_len</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1a5f65697fa9d12b55f8af9022d9238018" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::rawSignalSink_cc_impl</scope><name>d_cw_amplitude</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1a149f985bb5ec2db6a772e6f1cff869a6" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::rawSignalSink_cc_impl</scope><name>d_cw_frequency</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1a9420c69565dafbe39b1099b0730ba240" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::rawSignalSink_cc_impl</scope><name>d_freq_step</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1aaf7923133f3500e1db5def51430d2f34" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::rawSignalSink_cc_impl</scope><name>d_itemsize</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1ac19cce3f632ba5e59207f7dc4377096b" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::rawSignalSink_cc_impl</scope><name>d_num_steps</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1a313e4d6251043e469e95d690de5cfc11" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::rawSignalSink_cc_impl</scope><name>d_ref_dir_fielname</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1acce6cfc8accad330ffbcce0e9b317bd1" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::rawSignalSink_cc_impl</scope><name>d_ref_gain</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1ad3721bbf536345e44897717893040437" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::rawSignalSink_cc_impl</scope><name>d_ref_handle</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1a27904e4ef3826c5ab9f11c42334be1fd" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::rawSignalSink_cc_impl</scope><name>d_rx_dir_filename</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1a8aa660a22646d891597ecfee52e6b9b7" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::rawSignalSink_cc_impl</scope><name>d_rx_gain</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1a3edd326bcd2f2e023dba1cb598d62307" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::rawSignalSink_cc_impl</scope><name>d_rx_handle</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1a627179f8fd5c10b49ff27ed9f72a4936" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::rawSignalSink_cc_impl</scope><name>d_samp_rate</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1afcc76cdcb871c18e453441697b29bcb4" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::rawSignalSink_cc_impl</scope><name>d_start_freq</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1a44b111e7a0e61785d5d7432c49b2665c" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::rawSignalSink_cc_impl</scope><name>d_tx_gain</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc_1a1dd41fef7f4bd79042514d18f869a350" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::rawSignalSink_cc_impl</scope><name>make</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1afbc4fc323a44c4aec1dc04c91134d9f4" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::rawSignalSink_cc_impl</scope><name>rawSignalSink_cc_impl</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1a09c730eef071eaf93a6cf1441c46cb98" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::rawSignalSink_cc_impl</scope><name>ref_suffix</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1a3a3c46d068e0d5cd2354c3057e84e076" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::rawSignalSink_cc_impl</scope><name>rx_suffix</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1a4750b2de711e301cadae44ae6df6f56d" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::rawSignalSink_cc_impl</scope><name>scan_id</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc_1a40f02373088297a2f876a529d9ea3f82" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::rawSignalSink_cc_impl</scope><name>sptr</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1a003a78d6325ff810b47dad1590ce1a45" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::rawSignalSink_cc_impl</scope><name>work</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl_1a6f9689fb47be8caaca47bc12dec4b394" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::rawSignalSink_cc_impl</scope><name>~rawSignalSink_cc_impl</name></member>

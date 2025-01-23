@@ -10,7 +10,7 @@
 gnuradio/attributes.h
 -
 
-../include/gnuradio/sfcwRadar/bladerfRadarBurst_cc.h
+../include/gnuradio/sfcwRadar/bladerfRadarMIMO.h
 gnuradio/sfcwRadar/api.h
 -
 gnuradio/tagged_stream_block.h
@@ -18,9 +18,9 @@ gnuradio/tagged_stream_block.h
 libbladeRF.h
 -
 
-/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.cc
-bladerfRadarBurst_cc_impl.h
-/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h
+/home/hui/gr-sfcwRadar/lib/bladerfRadarMIMO_impl.cc
+bladerfRadarMIMO_impl.h
+/home/hui/gr-sfcwRadar/lib/bladerfRadarMIMO_impl.h
 gnuradio/io_signature.h
 -
 volk/volk.h
@@ -28,8 +28,8 @@ volk/volk.h
 gnuradio/math.h
 -
 
-/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h
-gnuradio/sfcwRadar/bladerfRadarBurst_cc.h
+/home/hui/gr-sfcwRadar/lib/bladerfRadarMIMO_impl.h
+gnuradio/sfcwRadar/bladerfRadarMIMO.h
 -
 libbladeRF.h
 -

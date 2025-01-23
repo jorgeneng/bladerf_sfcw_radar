@@ -63,13 +63,13 @@ parameters:
 #      * vlen (optional - data stream vector length. Default is 1)
 #      * optional (optional - set to 1 for optional inputs. Default is 0)
 inputs:
-- label: ref
+- label: rx
   domain: stream
   dtype: complex
 #  vlen: ...
 #  optional: ...
 
-- label: rx
+- label: ref
   domain: stream
   dtype: complex
 outputs:

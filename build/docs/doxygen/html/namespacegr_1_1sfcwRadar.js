@@ -7,6 +7,8 @@ var namespacegr_1_1sfcwRadar =
     [ "bladerfRadar_cc_impl", "classgr_1_1sfcwRadar_1_1bladerfRadar__cc__impl.html", "classgr_1_1sfcwRadar_1_1bladerfRadar__cc__impl" ],
     [ "bladerfRadarBurst_cc", "classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc.html", "classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc" ],
     [ "bladerfRadarBurst_cc_impl", "classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl.html", "classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl" ],
+    [ "bladerfRadarMIMO", "classgr_1_1sfcwRadar_1_1bladerfRadarMIMO.html", "classgr_1_1sfcwRadar_1_1bladerfRadarMIMO" ],
+    [ "bladerfRadarMIMO_impl", "classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl.html", "classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl" ],
     [ "channel_config", "structgr_1_1sfcwRadar_1_1channel__config.html", "structgr_1_1sfcwRadar_1_1channel__config" ],
     [ "rawSignalSink_cc", "classgr_1_1sfcwRadar_1_1rawSignalSink__cc.html", "classgr_1_1sfcwRadar_1_1rawSignalSink__cc" ],
     [ "rawSignalSink_cc_impl", "classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl.html", "classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl" ]

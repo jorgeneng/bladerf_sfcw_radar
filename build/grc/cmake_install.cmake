@@ -47,6 +47,8 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
     "/home/hui/gr-sfcwRadar/grc/sfcwRadar_bladerfEchoTimer_cc.block.yml"
     "/home/hui/gr-sfcwRadar/grc/sfcwRadar_rangeProfileSink.block.yml"
     "/home/hui/gr-sfcwRadar/grc/sfcwRadar_rawSignalSink_cc.block.yml"
+    "/home/hui/gr-sfcwRadar/grc/sfcwRadar_bladerfRadarMIMO.block.yml"
+    "/home/hui/gr-sfcwRadar/grc/sfcwRadar_calibration.block.yml"
     )
 endif()
 

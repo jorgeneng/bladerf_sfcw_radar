@@ -28,7 +28,8 @@ list(APPEND sfcwRadar_python_files
     bladerfRadar_cc_python.cc
     bladerfRadarBurst_cc_python.cc
     bladerfEchoTimer_cc_python.cc
-    rawSignalSink_cc_python.cc python_bindings.cc)
+    rawSignalSink_cc_python.cc
+    bladerfRadarMIMO_python.cc python_bindings.cc)
 
 gr_pybind_make_oot(sfcwRadar ../../.. gr::sfcwRadar "${sfcwRadar_python_files}")
 

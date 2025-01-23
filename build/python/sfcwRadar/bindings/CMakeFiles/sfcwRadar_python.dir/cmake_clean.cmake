@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/sfcwRadar_python.dir/bladerfEchoTimer_cc_python.cc.o"
   "CMakeFiles/sfcwRadar_python.dir/bladerfRadarBurst_cc_python.cc.o"
+  "CMakeFiles/sfcwRadar_python.dir/bladerfRadarMIMO_python.cc.o"
   "CMakeFiles/sfcwRadar_python.dir/bladerfRadar_cc_python.cc.o"
   "CMakeFiles/sfcwRadar_python.dir/python_bindings.cc.o"
   "CMakeFiles/sfcwRadar_python.dir/rawSignalSink_cc_python.cc.o"

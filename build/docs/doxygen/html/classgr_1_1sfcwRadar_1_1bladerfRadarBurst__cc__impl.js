@@ -1,6 +1,6 @@
 var classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl =
 [
-    [ "bladerfRadarBurst_cc_impl", "classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl.html#a7bd69757f9fdaac6deca2b46bb955596", null ],
+    [ "bladerfRadarBurst_cc_impl", "classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl.html#ae00f3a7e29443439451a3f343cfce441", null ],
     [ "~bladerfRadarBurst_cc_impl", "classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl.html#a9caebe2fb53ca4442f1b6d525151a486", null ],
     [ "calculate_output_stream_length", "classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl.html#a35a0ba35a13b1726b944fc417c7eb896", null ],
     [ "set_burst_len", "classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl.html#ac98c2ce2fa1381f0983eb44e340461a5", null ],

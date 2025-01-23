@@ -16,6 +16,9 @@ var hierarchy =
     [ "tagged_stream_block", null, [
       [ "gr::sfcwRadar::bladerfRadarBurst_cc", "classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc.html", [
         [ "gr::sfcwRadar::bladerfRadarBurst_cc_impl", "classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl.html", null ]
+      ] ],
+      [ "gr::sfcwRadar::bladerfRadarMIMO", "classgr_1_1sfcwRadar_1_1bladerfRadarMIMO.html", [
+        [ "gr::sfcwRadar::bladerfRadarMIMO_impl", "classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl.html", null ]
       ] ]
     ] ]
 ];

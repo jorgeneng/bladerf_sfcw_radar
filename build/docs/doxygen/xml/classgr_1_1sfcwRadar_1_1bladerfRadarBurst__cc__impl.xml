@@ -244,6 +244,46 @@
         </inbodydescription>
         <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="63" column="9" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" bodystart="63" bodyend="-1"/>
       </memberdef>
+      <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1ae080739f5e7a5a1cc0f83db41becdb18" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float gr::sfcwRadar::bladerfRadarBurst_cc_impl::d_cw_amplitude</definition>
+        <argsstring></argsstring>
+        <name>d_cw_amplitude</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="65" column="11" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1abea3ec4968ef1bd8a6351c143168d7cc" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float gr::sfcwRadar::bladerfRadarBurst_cc_impl::d_cw_frequency</definition>
+        <argsstring></argsstring>
+        <name>d_cw_frequency</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="66" column="11" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1ad513c9873fdbfdf22bfd3a812b424a5b" prot="private" static="no" mutable="no">
+        <type>gr_complex</type>
+        <definition>gr_complex gr::sfcwRadar::bladerfRadarBurst_cc_impl::d_phase</definition>
+        <argsstring></argsstring>
+        <name>d_phase</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="67" column="16" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" bodystart="67" bodyend="-1"/>
+      </memberdef>
       <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1aec4b402dc951899592c91a9b9dca82f6" prot="private" static="no" mutable="no">
         <type>struct <ref refid="structgr_1_1sfcwRadar_1_1bladerf__quick__tune__info" kindref="compound">bladerf_quick_tune_info</ref> *</type>
         <definition>struct bladerf_quick_tune_info* gr::sfcwRadar::bladerfRadarBurst_cc_impl::d_quick_tunes_tx</definition>
@@ -255,7 +295,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="65" column="34" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" bodystart="65" bodyend="-1"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="69" column="34" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" bodystart="69" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a744f3fd7f35aafd2a18716a7526a67d9" prot="private" static="no" mutable="no">
         <type>struct <ref refid="structgr_1_1sfcwRadar_1_1bladerf__quick__tune__info" kindref="compound">bladerf_quick_tune_info</ref> *</type>
@@ -268,7 +308,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="67" column="34" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" bodystart="67" bodyend="-1"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="71" column="34" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" bodystart="71" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a6088fa2be66122d8f34a55c5340bd907" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -283,7 +323,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="75" column="10" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" bodystart="75" bodyend="-1"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="79" column="10" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" bodystart="79" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a9f4fd7ced9d31839f68b61f0d75fea53" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -297,7 +337,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="76" column="10" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" bodystart="76" bodyend="-1"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="80" column="10" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" bodystart="80" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a5fedc96250307861d3617077c562d087" prot="private" static="no" mutable="no">
         <type>float</type>
@@ -311,7 +351,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="77" column="11" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" bodystart="77" bodyend="-1"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="81" column="11" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" bodystart="81" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1aa5c64e1c4481349b80c00785cef9a081" prot="private" static="no" mutable="no">
         <type>float</type>
@@ -325,7 +365,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="78" column="11" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" bodystart="78" bodyend="-1"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="82" column="11" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" bodystart="82" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a070dd770363c3afa011fba66518ae3f2" prot="private" static="no" mutable="no">
         <type>unsigned int</type>
@@ -338,7 +378,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="81" column="18" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" bodystart="81" bodyend="-1"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="85" column="18" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" bodystart="85" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1aea8005e691a8fc38d340cedfc24f6214" prot="private" static="no" mutable="no">
         <type>unsigned int</type>
@@ -351,7 +391,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="82" column="18" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" bodystart="82" bodyend="-1"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="86" column="18" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" bodystart="86" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a7b81fc3135c4c72693c68d39264b185e" prot="private" static="no" mutable="no">
         <type>int16_t *</type>
@@ -365,7 +405,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="84" column="13" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" bodystart="84" bodyend="-1"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="88" column="13" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" bodystart="88" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a02edaf224f5bd66ad0b1895e05a1eef2" prot="private" static="no" mutable="no">
         <type>gr_complex *</type>
@@ -379,7 +419,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="85" column="16" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" bodystart="85" bodyend="-1"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="89" column="16" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" bodystart="89" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a4b43ae123e48b5a6d3f2d297326e247b" prot="private" static="no" mutable="no">
         <type>int16_t *</type>
@@ -393,7 +433,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="87" column="13" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" bodystart="87" bodyend="-1"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="91" column="13" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" bodystart="91" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a39cae17bd4db7fc863830104c1fdc481" prot="private" static="no" mutable="no">
         <type>gr_complex *</type>
@@ -407,7 +447,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="88" column="16" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" bodystart="88" bodyend="-1"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="92" column="16" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" bodystart="92" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1ae2e35a76797715758abebd6bcbf4b4bd" prot="private" static="no" mutable="no">
         <type>const float</type>
@@ -421,7 +461,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="91" column="17" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" bodystart="91" bodyend="-1"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="95" column="17" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" bodystart="95" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-attrib">
@@ -437,7 +477,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="166" column="24" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" bodystart="166" bodyend="-1"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="177" column="24" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" bodystart="177" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a6037a607499dba0a5423292af6c111c5" prot="public" static="no" mutable="no">
         <type>gr::thread::thread</type>
@@ -450,7 +490,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="167" column="24" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" bodystart="167" bodyend="-1"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="178" column="24" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" bodystart="178" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1aeae387c5d1e7020466125b72f9613756" prot="public" static="no" mutable="no">
         <type>std::chrono::steady_clock::time_point</type>
@@ -464,7 +504,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="169" column="43" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" bodystart="169" bodyend="-1"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="180" column="43" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" bodystart="180" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a237c49e6366a5976b16e2e53ada63271" prot="public" static="no" mutable="no">
         <type>std::chrono::steady_clock::time_point</type>
@@ -478,7 +518,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="170" column="43" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" bodystart="170" bodyend="-1"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="181" column="43" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" bodystart="181" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-func">
@@ -493,7 +533,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="93" column="9"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="97" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1aa0b1fadd82df2fa950f0bf34719f1920" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -522,7 +562,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="104" column="9"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="108" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a97d844d63153e3eda9aa900b76e81107" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -546,7 +586,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="114" column="9"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="118" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a9855fde62d6de5055d42613d9afd46f4" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -560,7 +600,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="119" column="9"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="123" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1abf8a58489b9d556918c9a0d6e4224f65" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -578,7 +618,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="124" column="9"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="128" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1adb7150998dee01f328de8c8deccf89e1" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -592,7 +632,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="129" column="10"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="133" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a5442958d79c13fd25bcb778739119ae5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -622,7 +662,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="134" column="9"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="138" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1aa5bca3c49810900be2a88366f541bb7b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -636,7 +676,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="139" column="10"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="143" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a774ee7cd5f83684a70c23aac0f47cb6b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -654,7 +694,21 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="144" column="10"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="148" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1ac1aecd71ed0f564825b2d7a1ac304246" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void gr::sfcwRadar::bladerfRadarBurst_cc_impl::generate_cw_samples</definition>
+        <argsstring>()</argsstring>
+        <name>generate_cw_samples</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>generate cw samples </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="153" column="10"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="protected-func">
@@ -673,14 +727,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="147" column="9"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="156" column="9"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a7bd69757f9fdaac6deca2b46bb955596" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1ae00f3a7e29443439451a3f343cfce441" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>gr::sfcwRadar::bladerfRadarBurst_cc_impl::bladerfRadarBurst_cc_impl</definition>
-        <argsstring>(bladerf_frequency start_freq, int num_steps, bladerf_frequency freq_step, int samp_rate, bladerf_gain rx_gain, bladerf_gain tx_gain, bladerf_gain ref_gain, size_t burst_len, size_t num_buffers, size_t buffer_size, size_t num_transfers)</argsstring>
+        <argsstring>(bladerf_frequency start_freq, int num_steps, bladerf_frequency freq_step, int samp_rate, bladerf_gain rx_gain, bladerf_gain tx_gain, bladerf_gain ref_gain, size_t burst_len, size_t num_buffers, size_t buffer_size, size_t num_transfers, float cw_amplitude, float cw_frequency)</argsstring>
         <name>bladerfRadarBurst_cc_impl</name>
         <param>
           <type>bladerf_frequency</type>
@@ -726,13 +780,21 @@
           <type>size_t</type>
           <declname>num_transfers</declname>
         </param>
+        <param>
+          <type>float</type>
+          <declname>cw_amplitude</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>cw_frequency</declname>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="150" column="5"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="159" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a9caebe2fb53ca4442f1b6d525151a486" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -745,7 +807,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="161" column="5"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="172" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1af06fc46dcf3a37a070ace69c9fae46b8" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>int</type>
@@ -764,7 +826,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="175" column="9"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="186" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a7c7828e1057af42964cec2515db58680" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>int</type>
@@ -782,7 +844,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="176" column="9"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="187" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a45f8341fd9dd87138efc037d243e04f5" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>int</type>
@@ -800,7 +862,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="177" column="9"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="188" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1abe4d92df2f42601023fe83fed0b6ea57" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>int</type>
@@ -819,7 +881,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="182" column="9"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="193" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1ac82b6bd78d544c875990439a21d99441" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>int</type>
@@ -837,7 +899,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="183" column="9"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="194" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a97f02a9dbe948aaf04549a0802bfb6ff" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>int</type>
@@ -855,7 +917,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="184" column="9"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="195" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1ac98c2ce2fa1381f0983eb44e340461a5" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>int</type>
@@ -873,7 +935,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="185" column="9"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="196" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a11b78ace27fee2da526d854e6a016dec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -886,7 +948,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="187" column="10"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="198" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a4d9566d218555194daa25eb548d08543" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -915,7 +977,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="190" column="9"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="201" column="9"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -923,6 +985,9 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
+      <node id="3">
+        <label>tagged_stream_block</label>
+      </node>
       <node id="1">
         <label>gr::sfcwRadar::bladerfRadarBurst_cc_impl</label>
         <link refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl"/>
@@ -934,12 +999,12 @@
         <link refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc"/>
         <childnode refid="3" relation="public-inheritance">
         </childnode>
-      </node>
-      <node id="3">
-        <label>gr::tagged_stream_block</label>
       </node>
     </inheritancegraph>
     <collaborationgraph>
+      <node id="3">
+        <label>tagged_stream_block</label>
+      </node>
       <node id="1">
         <label>gr::sfcwRadar::bladerfRadarBurst_cc_impl</label>
         <link refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl"/>
@@ -952,18 +1017,15 @@
         <childnode refid="3" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="3">
-        <label>gr::tagged_stream_block</label>
-      </node>
     </collaborationgraph>
-    <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="33" column="1" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" bodystart="32" bodyend="194"/>
+    <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" line="33" column="1" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarBurst_cc_impl.h" bodystart="32" bodyend="205"/>
     <listofallmembers>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a7b81fc3135c4c72693c68d39264b185e" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc_impl</scope><name>_16icbuf_in</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a4b43ae123e48b5a6d3f2d297326e247b" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc_impl</scope><name>_16icbuf_out</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a02edaf224f5bd66ad0b1895e05a1eef2" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc_impl</scope><name>_32fcbuf_in</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a39cae17bd4db7fc863830104c1fdc481" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc_impl</scope><name>_32fcbuf_out</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1aeae387c5d1e7020466125b72f9613756" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc_impl</scope><name>begin</name></member>
-      <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a7bd69757f9fdaac6deca2b46bb955596" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc_impl</scope><name>bladerfRadarBurst_cc_impl</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1ae00f3a7e29443439451a3f343cfce441" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc_impl</scope><name>bladerfRadarBurst_cc_impl</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a35a0ba35a13b1726b944fc417c7eb896" prot="protected" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc_impl</scope><name>calculate_output_stream_length</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1ab3f50b09db11b0ac0c7ebb5bbe488d33" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc_impl</scope><name>config</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1aa0b1fadd82df2fa950f0bf34719f1920" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc_impl</scope><name>configure_channel</name></member>
@@ -971,6 +1033,8 @@
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1ae679542e4c9483dfb1db400547a10967" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc_impl</scope><name>d_burst_len</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a9f4fd7ced9d31839f68b61f0d75fea53" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc_impl</scope><name>d_continuous_scan_flag</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a727510333b245bafdc1d1f1f4d33939a" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc_impl</scope><name>d_currrent_freq</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1ae080739f5e7a5a1cc0f83db41becdb18" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc_impl</scope><name>d_cw_amplitude</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1abea3ec4968ef1bd8a6351c143168d7cc" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc_impl</scope><name>d_cw_frequency</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1aade4b6eab15074ac864374e45ace6983" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc_impl</scope><name>d_freq_index</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1af54bd0838e834343270166e801abf600" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc_impl</scope><name>d_freq_step</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a5fedc96250307861d3617077c562d087" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc_impl</scope><name>d_gps_x</name></member>
@@ -981,6 +1045,7 @@
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a070dd770363c3afa011fba66518ae3f2" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc_impl</scope><name>d_num_samples_to_send</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a19115b97444a8fa5089fa894b594bee8" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc_impl</scope><name>d_num_steps</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a9a5117cc9c7de93bc949e4af9e6e4a0a" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc_impl</scope><name>d_num_transfers</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1ad513c9873fdbfdf22bfd3a812b424a5b" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc_impl</scope><name>d_phase</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a744f3fd7f35aafd2a18716a7526a67d9" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc_impl</scope><name>d_quick_tunes_rx</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1aec4b402dc951899592c91a9b9dca82f6" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc_impl</scope><name>d_quick_tunes_tx</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a1516f425c7d63667e0d42fa6b5bc645f" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc_impl</scope><name>d_ref_gain</name></member>
@@ -994,10 +1059,11 @@
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1abbdf558604c8d27acf65edc175b7fa5b" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc_impl</scope><name>dev</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1af7ac174ed992adabbe2bd853044b44fa" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc_impl</scope><name>dev_info</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a237c49e6366a5976b16e2e53ada63271" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc_impl</scope><name>end</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1ac1aecd71ed0f564825b2d7a1ac304246" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc_impl</scope><name>generate_cw_samples</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a774ee7cd5f83684a70c23aac0f47cb6b" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc_impl</scope><name>handle_scan_msg</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1af56d5f202800bf88d5117b9749556295" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc_impl</scope><name>init_device</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1a97d844d63153e3eda9aa900b76e81107" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc_impl</scope><name>init_sync</name></member>
-      <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc_1a75f349795cd70a066e256519a509947c" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc_impl</scope><name>make</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc_1a21c8d2b7a291d5627129fa78e3ad47e5" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc_impl</scope><name>make</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1abf8a58489b9d556918c9a0d6e4224f65" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc_impl</scope><name>quick_tune</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1adb7150998dee01f328de8c8deccf89e1" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc_impl</scope><name>recv</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl_1ae2e35a76797715758abebd6bcbf4b4bd" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarBurst_cc_impl</scope><name>SCALING_FACTOR</name></member>
