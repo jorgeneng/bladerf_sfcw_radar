@@ -182,33 +182,6 @@ gnuradio-sfcwRadar/fast:
 	cd /home/hui/gr-sfcwRadar/build && $(MAKE) -f lib/CMakeFiles/gnuradio-sfcwRadar.dir/build.make lib/CMakeFiles/gnuradio-sfcwRadar.dir/build
 .PHONY : gnuradio-sfcwRadar/fast
 
-bladerfEchoTimer_cc_impl.o: bladerfEchoTimer_cc_impl.cc.o
-
-.PHONY : bladerfEchoTimer_cc_impl.o
-
-# target to build an object file
-bladerfEchoTimer_cc_impl.cc.o:
-	cd /home/hui/gr-sfcwRadar/build && $(MAKE) -f lib/CMakeFiles/gnuradio-sfcwRadar.dir/build.make lib/CMakeFiles/gnuradio-sfcwRadar.dir/bladerfEchoTimer_cc_impl.cc.o
-.PHONY : bladerfEchoTimer_cc_impl.cc.o
-
-bladerfEchoTimer_cc_impl.i: bladerfEchoTimer_cc_impl.cc.i
-
-.PHONY : bladerfEchoTimer_cc_impl.i
-
-# target to preprocess a source file
-bladerfEchoTimer_cc_impl.cc.i:
-	cd /home/hui/gr-sfcwRadar/build && $(MAKE) -f lib/CMakeFiles/gnuradio-sfcwRadar.dir/build.make lib/CMakeFiles/gnuradio-sfcwRadar.dir/bladerfEchoTimer_cc_impl.cc.i
-.PHONY : bladerfEchoTimer_cc_impl.cc.i
-
-bladerfEchoTimer_cc_impl.s: bladerfEchoTimer_cc_impl.cc.s
-
-.PHONY : bladerfEchoTimer_cc_impl.s
-
-# target to generate assembly for a file
-bladerfEchoTimer_cc_impl.cc.s:
-	cd /home/hui/gr-sfcwRadar/build && $(MAKE) -f lib/CMakeFiles/gnuradio-sfcwRadar.dir/build.make lib/CMakeFiles/gnuradio-sfcwRadar.dir/bladerfEchoTimer_cc_impl.cc.s
-.PHONY : bladerfEchoTimer_cc_impl.cc.s
-
 bladerfRadarBurst_cc_impl.o: bladerfRadarBurst_cc_impl.cc.o
 
 .PHONY : bladerfRadarBurst_cc_impl.o
@@ -236,6 +209,33 @@ bladerfRadarBurst_cc_impl.cc.s:
 	cd /home/hui/gr-sfcwRadar/build && $(MAKE) -f lib/CMakeFiles/gnuradio-sfcwRadar.dir/build.make lib/CMakeFiles/gnuradio-sfcwRadar.dir/bladerfRadarBurst_cc_impl.cc.s
 .PHONY : bladerfRadarBurst_cc_impl.cc.s
 
+bladerfRadarController_cc_impl.o: bladerfRadarController_cc_impl.cc.o
+
+.PHONY : bladerfRadarController_cc_impl.o
+
+# target to build an object file
+bladerfRadarController_cc_impl.cc.o:
+	cd /home/hui/gr-sfcwRadar/build && $(MAKE) -f lib/CMakeFiles/gnuradio-sfcwRadar.dir/build.make lib/CMakeFiles/gnuradio-sfcwRadar.dir/bladerfRadarController_cc_impl.cc.o
+.PHONY : bladerfRadarController_cc_impl.cc.o
+
+bladerfRadarController_cc_impl.i: bladerfRadarController_cc_impl.cc.i
+
+.PHONY : bladerfRadarController_cc_impl.i
+
+# target to preprocess a source file
+bladerfRadarController_cc_impl.cc.i:
+	cd /home/hui/gr-sfcwRadar/build && $(MAKE) -f lib/CMakeFiles/gnuradio-sfcwRadar.dir/build.make lib/CMakeFiles/gnuradio-sfcwRadar.dir/bladerfRadarController_cc_impl.cc.i
+.PHONY : bladerfRadarController_cc_impl.cc.i
+
+bladerfRadarController_cc_impl.s: bladerfRadarController_cc_impl.cc.s
+
+.PHONY : bladerfRadarController_cc_impl.s
+
+# target to generate assembly for a file
+bladerfRadarController_cc_impl.cc.s:
+	cd /home/hui/gr-sfcwRadar/build && $(MAKE) -f lib/CMakeFiles/gnuradio-sfcwRadar.dir/build.make lib/CMakeFiles/gnuradio-sfcwRadar.dir/bladerfRadarController_cc_impl.cc.s
+.PHONY : bladerfRadarController_cc_impl.cc.s
+
 bladerfRadarMIMO_impl.o: bladerfRadarMIMO_impl.cc.o
 
 .PHONY : bladerfRadarMIMO_impl.o
@@ -262,33 +262,6 @@ bladerfRadarMIMO_impl.s: bladerfRadarMIMO_impl.cc.s
 bladerfRadarMIMO_impl.cc.s:
 	cd /home/hui/gr-sfcwRadar/build && $(MAKE) -f lib/CMakeFiles/gnuradio-sfcwRadar.dir/build.make lib/CMakeFiles/gnuradio-sfcwRadar.dir/bladerfRadarMIMO_impl.cc.s
 .PHONY : bladerfRadarMIMO_impl.cc.s
-
-bladerfRadar_cc_impl.o: bladerfRadar_cc_impl.cc.o
-
-.PHONY : bladerfRadar_cc_impl.o
-
-# target to build an object file
-bladerfRadar_cc_impl.cc.o:
-	cd /home/hui/gr-sfcwRadar/build && $(MAKE) -f lib/CMakeFiles/gnuradio-sfcwRadar.dir/build.make lib/CMakeFiles/gnuradio-sfcwRadar.dir/bladerfRadar_cc_impl.cc.o
-.PHONY : bladerfRadar_cc_impl.cc.o
-
-bladerfRadar_cc_impl.i: bladerfRadar_cc_impl.cc.i
-
-.PHONY : bladerfRadar_cc_impl.i
-
-# target to preprocess a source file
-bladerfRadar_cc_impl.cc.i:
-	cd /home/hui/gr-sfcwRadar/build && $(MAKE) -f lib/CMakeFiles/gnuradio-sfcwRadar.dir/build.make lib/CMakeFiles/gnuradio-sfcwRadar.dir/bladerfRadar_cc_impl.cc.i
-.PHONY : bladerfRadar_cc_impl.cc.i
-
-bladerfRadar_cc_impl.s: bladerfRadar_cc_impl.cc.s
-
-.PHONY : bladerfRadar_cc_impl.s
-
-# target to generate assembly for a file
-bladerfRadar_cc_impl.cc.s:
-	cd /home/hui/gr-sfcwRadar/build && $(MAKE) -f lib/CMakeFiles/gnuradio-sfcwRadar.dir/build.make lib/CMakeFiles/gnuradio-sfcwRadar.dir/bladerfRadar_cc_impl.cc.s
-.PHONY : bladerfRadar_cc_impl.cc.s
 
 rawSignalSink_cc_impl.o: rawSignalSink_cc_impl.cc.o
 
@@ -331,18 +304,15 @@ help:
 	@echo "... test"
 	@echo "... install/local"
 	@echo "... gnuradio-sfcwRadar"
-	@echo "... bladerfEchoTimer_cc_impl.o"
-	@echo "... bladerfEchoTimer_cc_impl.i"
-	@echo "... bladerfEchoTimer_cc_impl.s"
 	@echo "... bladerfRadarBurst_cc_impl.o"
 	@echo "... bladerfRadarBurst_cc_impl.i"
 	@echo "... bladerfRadarBurst_cc_impl.s"
+	@echo "... bladerfRadarController_cc_impl.o"
+	@echo "... bladerfRadarController_cc_impl.i"
+	@echo "... bladerfRadarController_cc_impl.s"
 	@echo "... bladerfRadarMIMO_impl.o"
 	@echo "... bladerfRadarMIMO_impl.i"
 	@echo "... bladerfRadarMIMO_impl.s"
-	@echo "... bladerfRadar_cc_impl.o"
-	@echo "... bladerfRadar_cc_impl.i"
-	@echo "... bladerfRadar_cc_impl.s"
 	@echo "... rawSignalSink_cc_impl.o"
 	@echo "... rawSignalSink_cc_impl.i"
 	@echo "... rawSignalSink_cc_impl.s"

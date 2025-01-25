@@ -809,127 +809,6 @@
         </inbodydescription>
         <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarMIMO_impl.h" line="172" column="5"/>
       </memberdef>
-      <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1a9cb74d7436f6d2be23ed65d5c7d5a2c0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>int</type>
-        <definition>int gr::sfcwRadar::bladerfRadarMIMO_impl::set_rx_gain</definition>
-        <argsstring>(bladerf_gain gain)</argsstring>
-        <name>set_rx_gain</name>
-        <param>
-          <type>bladerf_gain</type>
-          <declname>gain</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para>callback functions for setting gains of the TX and two RX channels </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarMIMO_impl.h" line="186" column="9"/>
-      </memberdef>
-      <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1ac5271affb791dbfda28b24d545d02499" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>int</type>
-        <definition>int gr::sfcwRadar::bladerfRadarMIMO_impl::set_ref_gain</definition>
-        <argsstring>(bladerf_gain gain)</argsstring>
-        <name>set_ref_gain</name>
-        <param>
-          <type>bladerf_gain</type>
-          <declname>gain</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarMIMO_impl.h" line="187" column="9"/>
-      </memberdef>
-      <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1a85208828d460be2669662442cab605fb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>int</type>
-        <definition>int gr::sfcwRadar::bladerfRadarMIMO_impl::set_tx_gain</definition>
-        <argsstring>(bladerf_gain gain)</argsstring>
-        <name>set_tx_gain</name>
-        <param>
-          <type>bladerf_gain</type>
-          <declname>gain</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarMIMO_impl.h" line="188" column="9"/>
-      </memberdef>
-      <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1af2c6d35ed0bd65afac0c0c0513f47bf0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>int</type>
-        <definition>int gr::sfcwRadar::bladerfRadarMIMO_impl::set_start_freq</definition>
-        <argsstring>(bladerf_frequency start_freq)</argsstring>
-        <name>set_start_freq</name>
-        <param>
-          <type>bladerf_frequency</type>
-          <declname>start_freq</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para>callback functions for setting radar frequencies </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarMIMO_impl.h" line="193" column="9"/>
-      </memberdef>
-      <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1a6ac934a9226c374952c275870e31012b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>int</type>
-        <definition>int gr::sfcwRadar::bladerfRadarMIMO_impl::set_freq_step</definition>
-        <argsstring>(bladerf_frequency freq_step)</argsstring>
-        <name>set_freq_step</name>
-        <param>
-          <type>bladerf_frequency</type>
-          <declname>freq_step</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarMIMO_impl.h" line="194" column="9"/>
-      </memberdef>
-      <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1a799d34aa96ed374426e0f3d7903e7167" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>int</type>
-        <definition>int gr::sfcwRadar::bladerfRadarMIMO_impl::set_num_steps</definition>
-        <argsstring>(int num_steps)</argsstring>
-        <name>set_num_steps</name>
-        <param>
-          <type>int</type>
-          <declname>num_steps</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarMIMO_impl.h" line="195" column="9"/>
-      </memberdef>
-      <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1aa8d10fac23a334e8c1d89d1256833e06" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>int</type>
-        <definition>int gr::sfcwRadar::bladerfRadarMIMO_impl::set_burst_len</definition>
-        <argsstring>(int burst_len)</argsstring>
-        <name>set_burst_len</name>
-        <param>
-          <type>int</type>
-          <declname>burst_len</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarMIMO_impl.h" line="196" column="9"/>
-      </memberdef>
       <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1abf6e6f8b9ab8a109f49dab1f8f45e577" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void gr::sfcwRadar::bladerfRadarMIMO_impl::update_gps</definition>
@@ -941,7 +820,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarMIMO_impl.h" line="198" column="10"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarMIMO_impl.h" line="183" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1aaaebe517867275c420837bb44f0b8a11" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -970,7 +849,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarMIMO_impl.h" line="202" column="9"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarMIMO_impl.h" line="187" column="9"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -1011,7 +890,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarMIMO_impl.h" line="33" column="1" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarMIMO_impl.h" bodystart="32" bodyend="206"/>
+    <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarMIMO_impl.h" line="33" column="1" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarMIMO_impl.h" bodystart="32" bodyend="191"/>
     <listofallmembers>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1aa7b478fa4b983feed12a0b557e632260" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarMIMO_impl</scope><name>_16icbuf_in</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1a3fad695bd39031fdca1357d6b45b77e2" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarMIMO_impl</scope><name>_16icbuf_out</name></member>
@@ -1061,14 +940,7 @@
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1aaf8a3df6a87f561ec43c0e5db075dbb6" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarMIMO_impl</scope><name>recv</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1a8367d7e557c2161438fa31e2825293c6" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarMIMO_impl</scope><name>SCALING_FACTOR</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1a11625e5bcb3b7adb35fd63deb4f022c0" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarMIMO_impl</scope><name>send</name></member>
-      <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1aa8d10fac23a334e8c1d89d1256833e06" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarMIMO_impl</scope><name>set_burst_len</name></member>
-      <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1a6ac934a9226c374952c275870e31012b" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarMIMO_impl</scope><name>set_freq_step</name></member>
-      <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1a799d34aa96ed374426e0f3d7903e7167" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarMIMO_impl</scope><name>set_num_steps</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1afd7a435d3dfa4cf6085335eb5b0672ec" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarMIMO_impl</scope><name>set_quick_tune</name></member>
-      <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1ac5271affb791dbfda28b24d545d02499" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarMIMO_impl</scope><name>set_ref_gain</name></member>
-      <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1a9cb74d7436f6d2be23ed65d5c7d5a2c0" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarMIMO_impl</scope><name>set_rx_gain</name></member>
-      <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1af2c6d35ed0bd65afac0c0c0513f47bf0" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarMIMO_impl</scope><name>set_start_freq</name></member>
-      <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1a85208828d460be2669662442cab605fb" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarMIMO_impl</scope><name>set_tx_gain</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO_1a3eb4f2d8a7dd23c885dad2a8368ea2e1" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarMIMO_impl</scope><name>sptr</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1ab2abef974f741d0d2e3680f3dc01e588" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarMIMO_impl</scope><name>timeout_ms</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1abf6e6f8b9ab8a109f49dab1f8f45e577" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarMIMO_impl</scope><name>update_gps</name></member>

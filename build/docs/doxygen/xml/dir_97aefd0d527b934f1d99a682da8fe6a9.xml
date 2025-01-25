@@ -2,9 +2,8 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="dir_97aefd0d527b934f1d99a682da8fe6a9" kind="dir">
     <compoundname>lib</compoundname>
-    <innerfile refid="bladerfEchoTimer__cc__impl_8h">bladerfEchoTimer_cc_impl.h</innerfile>
-    <innerfile refid="bladerfRadar__cc__impl_8h">bladerfRadar_cc_impl.h</innerfile>
     <innerfile refid="bladerfRadarBurst__cc__impl_8h">bladerfRadarBurst_cc_impl.h</innerfile>
+    <innerfile refid="bladerfRadarController__cc__impl_8h">bladerfRadarController_cc_impl.h</innerfile>
     <innerfile refid="bladerfRadarMIMO__impl_8h">bladerfRadarMIMO_impl.h</innerfile>
     <innerfile refid="rawSignalSink__cc__impl_8h">rawSignalSink_cc_impl.h</innerfile>
     <briefdescription>

@@ -10,8 +10,7 @@
 # Install public header files
 ########################################################################
 install(FILES api.h
-    bladerfRadar_cc.h
     bladerfRadarBurst_cc.h
-    bladerfEchoTimer_cc.h
     rawSignalSink_cc.h
-    bladerfRadarMIMO.h DESTINATION include/gnuradio/sfcwRadar)
+    bladerfRadarMIMO.h
+    bladerfRadarController_cc.h DESTINATION include/gnuradio/sfcwRadar)

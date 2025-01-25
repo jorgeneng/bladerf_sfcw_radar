@@ -122,7 +122,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: 1e6
+    value: 100e3
   states:
     bus_sink: false
     bus_source: false
@@ -256,7 +256,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: 5e6
+    value: 10e6
   states:
     bus_sink: false
     bus_source: false
@@ -365,7 +365,7 @@ blocks:
     start: '0'
     step: '1'
     stop: '26000'
-    value: '15'
+    value: '500'
     widget: counter_slider
   states:
     bus_sink: false
@@ -469,7 +469,7 @@ blocks:
     bus_structure: null
     coordinate: [992, 648.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: blocks_complex_to_mag_squared_0
   id: blocks_complex_to_mag_squared
   parameters:
@@ -485,7 +485,7 @@ blocks:
     bus_structure: null
     coordinate: [968, 744.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: blocks_divide_xx_0
   id: blocks_divide_xx
   parameters:
@@ -503,7 +503,7 @@ blocks:
     bus_structure: null
     coordinate: [1264, 192.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: blocks_integrate_xx_0
   id: blocks_integrate_xx
   parameters:
@@ -537,7 +537,7 @@ blocks:
     bus_structure: null
     coordinate: [1296, 224.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: blocks_multiply_const_xx_0
   id: blocks_multiply_const_xx
   parameters:
@@ -572,24 +572,6 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [152, 668.0]
-    rotation: 0
-    state: enabled
-- name: blocks_nlog10_ff_0
-  id: blocks_nlog10_ff
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    k: '0'
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    n: '10'
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1120, 708.0]
     rotation: 0
     state: enabled
 - name: blocks_stream_to_tagged_stream_0
@@ -1008,7 +990,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1232, 564.0]
+    coordinate: [1224, 556.0]
     rotation: 0
     state: enabled
 - name: qtgui_time_sink_x_2
@@ -1211,7 +1193,7 @@ blocks:
     bus_structure: null
     coordinate: [408, 876.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: sfcwRadar_rangeProfileSink_0
   id: sfcwRadar_rangeProfileSink
   parameters:
@@ -1266,7 +1248,7 @@ blocks:
     bus_structure: null
     coordinate: [1472, 212.0]
     rotation: 0
-    state: enabled
+    state: disabled
 
 connections:
 - [analog_sig_source_x_0, '0', blocks_add_xx_0, '0']
@@ -1276,7 +1258,8 @@ connections:
 - [blocks_complex_to_arg_1, '0', qtgui_time_sink_x_2, '0']
 - [blocks_complex_to_mag_0, '0', qtgui_time_raster_sink_x_0, '0']
 - [blocks_complex_to_mag_0, '0', qtgui_time_sink_x_1_0_0, '0']
-- [blocks_complex_to_mag_squared_0, '0', blocks_nlog10_ff_0, '0']
+- [blocks_complex_to_mag_squared_0, '0', qtgui_time_raster_sink_x_0, '0']
+- [blocks_complex_to_mag_squared_0, '0', qtgui_time_sink_x_1_0_0, '0']
 - [blocks_divide_xx_0, '0', blocks_integrate_xx_0, '0']
 - [blocks_integrate_xx_0, '0', blocks_complex_to_arg_1, '0']
 - [blocks_integrate_xx_0, '0', blocks_multiply_const_xx_0_0, '0']
@@ -1284,17 +1267,14 @@ connections:
 - [blocks_multiply_const_xx_0, '0', blocks_complex_to_mag_squared_0, '0']
 - [blocks_multiply_const_xx_0_0, '0', blocks_stream_to_vector_0, '0']
 - [blocks_multiply_const_xx_0_0, '0', rational_resampler_xxx_0, '0']
-- [blocks_nlog10_ff_0, '0', qtgui_time_raster_sink_x_0, '0']
-- [blocks_nlog10_ff_0, '0', qtgui_time_sink_x_1_0_0, '0']
 - [blocks_stream_to_tagged_stream_0, '0', sfcwRadar_bladerfRadarMIMO_0, '0']
 - [blocks_stream_to_tagged_stream_0, '0', sfcwRadar_bladerfRadarMIMO_0, '1']
+- [blocks_stream_to_vector_0, '0', fft_vxx_0, '0']
 - [blocks_stream_to_vector_0, '0', sfcwRadar_calibration_0, '0']
 - [blocks_tag_gate_0, '0', blocks_divide_xx_0, '0']
 - [blocks_tag_gate_0, '0', blocks_multiply_conjugate_cc_0, '0']
-- [blocks_tag_gate_0, '0', qtgui_time_sink_x_1, '0']
 - [blocks_tag_gate_0_0, '0', blocks_divide_xx_0, '1']
 - [blocks_tag_gate_0_0, '0', blocks_multiply_conjugate_cc_0, '1']
-- [blocks_tag_gate_0_0, '0', qtgui_time_sink_x_1, '1']
 - [blocks_vector_to_stream_0, '0', blocks_complex_to_mag_0, '0']
 - [blocks_vector_to_stream_0, '0', blocks_complex_to_mag_squared_0, '0']
 - [blocks_vector_to_stream_0, '0', blocks_multiply_const_xx_0, '0']
@@ -1302,8 +1282,10 @@ connections:
 - [blocks_vector_to_stream_0, '0', sfcwRadar_rangeProfileSink_1, '0']
 - [fft_vxx_0, '0', blocks_vector_to_stream_0, '0']
 - [filter_fft_low_pass_filter_0_0, '0', blocks_tag_gate_0_0, '0']
+- [filter_fft_low_pass_filter_0_0, '0', qtgui_time_sink_x_1, '1']
 - [filter_fft_low_pass_filter_0_0, '0', sfcwRadar_rawSignalSink_cc_0, '1']
 - [filter_fft_low_pass_filter_0_0_0, '0', blocks_tag_gate_0, '0']
+- [filter_fft_low_pass_filter_0_0_0, '0', qtgui_time_sink_x_1, '0']
 - [filter_fft_low_pass_filter_0_0_0, '0', sfcwRadar_rawSignalSink_cc_0, '0']
 - [rational_resampler_xxx_0, '0', blocks_stream_to_vector_0, '0']
 - [scan_cont, pressed, sfcwRadar_bladerfRadarMIMO_0, scan]

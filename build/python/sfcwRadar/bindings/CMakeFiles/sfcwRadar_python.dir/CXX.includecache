@@ -10,18 +10,18 @@
 gnuradio/attributes.h
 -
 
-../include/gnuradio/sfcwRadar/bladerfEchoTimer_cc.h
-gnuradio/sfcwRadar/api.h
--
-gnuradio/sync_block.h
--
-libbladeRF.h
--
-
 ../include/gnuradio/sfcwRadar/bladerfRadarBurst_cc.h
 gnuradio/sfcwRadar/api.h
 -
 gnuradio/tagged_stream_block.h
+-
+libbladeRF.h
+-
+
+../include/gnuradio/sfcwRadar/bladerfRadarController_cc.h
+gnuradio/sfcwRadar/api.h
+-
+gnuradio/sync_block.h
 -
 libbladeRF.h
 -
@@ -34,32 +34,12 @@ gnuradio/tagged_stream_block.h
 libbladeRF.h
 -
 
-../include/gnuradio/sfcwRadar/bladerfRadar_cc.h
-gnuradio/sfcwRadar/api.h
--
-gnuradio/sync_block.h
--
-libbladeRF.h
--
-
 ../include/gnuradio/sfcwRadar/rawSignalSink_cc.h
 gnuradio/sfcwRadar/api.h
 -
 gnuradio/sync_block.h
 -
 libbladeRF.h
--
-
-/home/hui/gr-sfcwRadar/python/sfcwRadar/bindings/bladerfEchoTimer_cc_python.cc
-pybind11/complex.h
--
-pybind11/pybind11.h
--
-pybind11/stl.h
--
-gnuradio/sfcwRadar/bladerfEchoTimer_cc.h
--
-bladerfEchoTimer_cc_pydoc.h
 -
 
 /home/hui/gr-sfcwRadar/python/sfcwRadar/bindings/bladerfRadarBurst_cc_python.cc
@@ -74,6 +54,18 @@ gnuradio/sfcwRadar/bladerfRadarBurst_cc.h
 bladerfRadarBurst_cc_pydoc.h
 -
 
+/home/hui/gr-sfcwRadar/python/sfcwRadar/bindings/bladerfRadarController_cc_python.cc
+pybind11/complex.h
+-
+pybind11/pybind11.h
+-
+pybind11/stl.h
+-
+gnuradio/sfcwRadar/bladerfRadarController_cc.h
+-
+bladerfRadarController_cc_pydoc.h
+-
+
 /home/hui/gr-sfcwRadar/python/sfcwRadar/bindings/bladerfRadarMIMO_python.cc
 pybind11/complex.h
 -
@@ -84,18 +76,6 @@ pybind11/stl.h
 gnuradio/sfcwRadar/bladerfRadarMIMO.h
 -
 bladerfRadarMIMO_pydoc.h
--
-
-/home/hui/gr-sfcwRadar/python/sfcwRadar/bindings/bladerfRadar_cc_python.cc
-pybind11/complex.h
--
-pybind11/pybind11.h
--
-pybind11/stl.h
--
-gnuradio/sfcwRadar/bladerfRadar_cc.h
--
-bladerfRadar_cc_pydoc.h
 -
 
 /home/hui/gr-sfcwRadar/python/sfcwRadar/bindings/python_bindings.cc
@@ -708,19 +688,15 @@ cpython/unicodeobject.h
 
 /usr/include/python3.8/weakrefobject.h
 
-python/sfcwRadar/bindings/bladerfEchoTimer_cc_pydoc.h
-pydoc_macros.h
-python/sfcwRadar/bindings/pydoc_macros.h
-
 python/sfcwRadar/bindings/bladerfRadarBurst_cc_pydoc.h
 pydoc_macros.h
 python/sfcwRadar/bindings/pydoc_macros.h
 
-python/sfcwRadar/bindings/bladerfRadarMIMO_pydoc.h
+python/sfcwRadar/bindings/bladerfRadarController_cc_pydoc.h
 pydoc_macros.h
 python/sfcwRadar/bindings/pydoc_macros.h
 
-python/sfcwRadar/bindings/bladerfRadar_cc_pydoc.h
+python/sfcwRadar/bindings/bladerfRadarMIMO_pydoc.h
 pydoc_macros.h
 python/sfcwRadar/bindings/pydoc_macros.h
 

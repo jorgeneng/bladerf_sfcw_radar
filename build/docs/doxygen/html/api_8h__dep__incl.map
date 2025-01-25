@@ -1,13 +1,11 @@
 <map id="api.h" name="api.h">
-<area shape="rect" id="node1" title=" " alt="" coords="406,5,457,32"/>
-<area shape="rect" id="node2" href="$bladerfEchoTimer__cc_8h.html" title=" " alt="" coords="9,80,165,107"/>
-<area shape="rect" id="node4" href="$bladerfRadar__cc_8h.html" title=" " alt="" coords="194,80,322,107"/>
-<area shape="rect" id="node6" href="$bladerfRadarBurst__cc_8h.html" title=" " alt="" coords="352,80,511,107"/>
-<area shape="rect" id="node8" href="$bladerfRadarMIMO_8h.html" title=" " alt="" coords="540,80,683,107"/>
-<area shape="rect" id="node10" href="$rawSignalSink__cc_8h.html" title=" " alt="" coords="725,80,863,107"/>
-<area shape="rect" id="node3" href="$bladerfEchoTimer__cc__impl_8h.html" title=" " alt="" coords="5,155,151,196"/>
-<area shape="rect" id="node5" href="$bladerfRadar__cc__impl_8h.html" title=" " alt="" coords="175,162,333,189"/>
-<area shape="rect" id="node7" href="$bladerfRadarBurst__cc__impl_8h.html" title=" " alt="" coords="357,155,505,196"/>
-<area shape="rect" id="node9" href="$bladerfRadarMIMO__impl_8h.html" title=" " alt="" coords="529,162,704,189"/>
-<area shape="rect" id="node11" href="$rawSignalSink__cc__impl_8h.html" title=" " alt="" coords="729,162,897,189"/>
+<area shape="rect" id="node1" title=" " alt="" coords="349,5,399,32"/>
+<area shape="rect" id="node2" href="$bladerfRadarBurst__cc_8h.html" title=" " alt="" coords="5,80,164,107"/>
+<area shape="rect" id="node4" href="$bladerfRadarController__cc_8h.html" title=" " alt="" coords="189,80,373,107"/>
+<area shape="rect" id="node6" href="$bladerfRadarMIMO_8h.html" title=" " alt="" coords="397,80,540,107"/>
+<area shape="rect" id="node8" href="$rawSignalSink__cc_8h.html" title=" " alt="" coords="580,80,717,107"/>
+<area shape="rect" id="node3" href="$bladerfRadarBurst__cc__impl_8h.html" title=" " alt="" coords="11,155,159,196"/>
+<area shape="rect" id="node5" href="$bladerfRadarController__cc__impl_8h.html" title=" " alt="" coords="205,155,357,196"/>
+<area shape="rect" id="node7" href="$bladerfRadarMIMO__impl_8h.html" title=" " alt="" coords="381,162,556,189"/>
+<area shape="rect" id="node9" href="$rawSignalSink__cc__impl_8h.html" title=" " alt="" coords="581,162,749,189"/>
 </map>

@@ -11,9 +11,7 @@
 from PyQt5 import Qt
 from gnuradio import qtgui
 from PyQt5 import QtCore
-from gnuradio import analog
 from gnuradio import blocks
-from gnuradio import eng_notation
 from gnuradio import fft
 from gnuradio.fft import window
 from gnuradio import filter
@@ -24,6 +22,7 @@ import signal
 from PyQt5 import Qt
 from argparse import ArgumentParser
 from gnuradio.eng_arg import eng_float, intx
+from gnuradio import eng_notation
 from gnuradio import sfcwRadar
 import sip
 
@@ -64,7 +63,7 @@ class sfcwRadarGUI(gr.top_block, Qt.QWidget):
         ##################################################
         # Variables
         ##################################################
-        self.y_max = y_max = 15
+        self.y_max = y_max = 50
         self.tx_gain = tx_gain = 60
         self.start_freq = start_freq = 2e9
         self.samp_rate = samp_rate = 5e6
@@ -72,30 +71,19 @@ class sfcwRadarGUI(gr.top_block, Qt.QWidget):
         self.ref_gain = ref_gain = 30
         self.num_steps = num_steps = 128
         self.freq_step = freq_step = 10e6
-        self.cw_freq = cw_freq = 1e6
+        self.cw_freq = cw_freq = 100e3
         self.cw_amp = cw_amp = 1
-        self.calibration_off = calibration_off = 0
-        self.burst_len = burst_len = 2**11
+        self.burst_len = burst_len = 2**13
         self.LP_dec = LP_dec = 1
 
         ##################################################
         # Blocks
         ##################################################
 
-        self._y_max_range = qtgui.Range(0, 26000, 1, 15, 200)
+        self._y_max_range = qtgui.Range(0, 26000, 1, 50, 200)
         self._y_max_win = qtgui.RangeWidget(self._y_max_range, self.set_y_max, "'y_max'", "counter_slider", float, QtCore.Qt.Horizontal)
         self.top_layout.addWidget(self._y_max_win)
-        self._calibration_off_tool_bar = Qt.QToolBar(self)
-        self._calibration_off_tool_bar.addWidget(Qt.QLabel("'calibration_off'" + ": "))
-        self._calibration_off_line_edit = Qt.QLineEdit(str(self.calibration_off))
-        self._calibration_off_tool_bar.addWidget(self._calibration_off_line_edit)
-        self._calibration_off_line_edit.editingFinished.connect(
-            lambda: self.set_calibration_off(int(str(self._calibration_off_line_edit.text()))))
-        self.top_layout.addWidget(self._calibration_off_tool_bar)
-        self.sfcwRadar_rawSignalSink_cc_0 = sfcwRadar.rawSignalSink_cc('../gui/', 'scan', int(start_freq), num_steps, int(freq_step), int(samp_rate), rx_gain, tx_gain, ref_gain, burst_len, 1, cw_freq)
-        self.sfcwRadar_calibration_0 = sfcwRadar.calibration(num_steps, burst_len, '../gui/cal_ref_1.dat', '../gui/cal_rx_1.dat', calibration_off)
-        self.sfcwRadar_bladerfRadarMIMO_0 = sfcwRadar.bladerfRadarMIMO(int(start_freq), num_steps, int(freq_step), int(samp_rate), rx_gain, tx_gain, ref_gain, burst_len, 8, 1024, 4, cw_amp, cw_freq)
-        self.sfcwRadar_bladerfRadarMIMO_0.set_min_output_buffer((burst_len*2))
+        self.sfcwRadar_bladerfRadarController_cc_0 = sfcwRadar.bladerfRadarController_cc(int(start_freq), num_steps, int(freq_step), int(samp_rate), rx_gain, tx_gain, ref_gain, burst_len, 8, 1024, 4, cw_amp, cw_freq, 1, 1, 1)
         self.scan_once = _scan_once_toggle_button = qtgui.MsgPushButton('scan_once', '',1,"default","default")
         self.scan_once = _scan_once_toggle_button
 
@@ -258,46 +246,34 @@ class sfcwRadarGUI(gr.top_block, Qt.QWidget):
         self.blocks_tag_gate_0 = blocks.tag_gate(gr.sizeof_gr_complex * 1, False)
         self.blocks_tag_gate_0.set_single_key("burst")
         self.blocks_stream_to_vector_0 = blocks.stream_to_vector(gr.sizeof_gr_complex*1, (num_steps*LP_dec))
-        self.blocks_stream_to_tagged_stream_0 = blocks.stream_to_tagged_stream(gr.sizeof_gr_complex, 1, burst_len, "burst")
-        self.blocks_stream_to_tagged_stream_0.set_min_output_buffer((burst_len*2))
-        self.blocks_nlog10_ff_0 = blocks.nlog10_ff(10, 1, 0)
         self.blocks_multiply_const_xx_0_0 = blocks.multiply_const_cc(1/burst_len, 1)
-        self.blocks_multiply_conjugate_cc_0 = blocks.multiply_conjugate_cc(1)
         self.blocks_integrate_xx_0 = blocks.integrate_cc(int(burst_len), 1)
-        self.blocks_complex_to_mag_squared_0 = blocks.complex_to_mag_squared(1)
+        self.blocks_divide_xx_0 = blocks.divide_cc(1)
+        self.blocks_complex_to_mag_0 = blocks.complex_to_mag(1)
         self.blocks_complex_to_arg_1 = blocks.complex_to_arg(1)
-        self.analog_sig_source_x_0 = analog.sig_source_c(samp_rate, analog.GR_COS_WAVE, cw_freq, 1, 0, 0)
-        self.analog_sig_source_x_0.set_min_output_buffer((burst_len*2))
 
 
         ##################################################
         # Connections
         ##################################################
-        self.msg_connect((self.scan_cont, 'pressed'), (self.sfcwRadar_bladerfRadarMIMO_0, 'scan'))
-        self.msg_connect((self.scan_once, 'pressed'), (self.sfcwRadar_bladerfRadarMIMO_0, 'scan'))
-        self.connect((self.analog_sig_source_x_0, 0), (self.blocks_stream_to_tagged_stream_0, 0))
+        self.msg_connect((self.scan_cont, 'pressed'), (self.sfcwRadar_bladerfRadarController_cc_0, 'scan'))
+        self.msg_connect((self.scan_once, 'pressed'), (self.sfcwRadar_bladerfRadarController_cc_0, 'scan'))
         self.connect((self.blocks_complex_to_arg_1, 0), (self.qtgui_time_sink_x_2, 0))
-        self.connect((self.blocks_complex_to_mag_squared_0, 0), (self.blocks_nlog10_ff_0, 0))
+        self.connect((self.blocks_complex_to_mag_0, 0), (self.qtgui_time_raster_sink_x_0, 0))
+        self.connect((self.blocks_complex_to_mag_0, 0), (self.qtgui_time_sink_x_1_0_0, 0))
+        self.connect((self.blocks_divide_xx_0, 0), (self.blocks_integrate_xx_0, 0))
         self.connect((self.blocks_integrate_xx_0, 0), (self.blocks_complex_to_arg_1, 0))
         self.connect((self.blocks_integrate_xx_0, 0), (self.blocks_multiply_const_xx_0_0, 0))
-        self.connect((self.blocks_multiply_conjugate_cc_0, 0), (self.blocks_integrate_xx_0, 0))
         self.connect((self.blocks_multiply_const_xx_0_0, 0), (self.blocks_stream_to_vector_0, 0))
-        self.connect((self.blocks_nlog10_ff_0, 0), (self.qtgui_time_raster_sink_x_0, 0))
-        self.connect((self.blocks_nlog10_ff_0, 0), (self.qtgui_time_sink_x_1_0_0, 0))
-        self.connect((self.blocks_stream_to_tagged_stream_0, 0), (self.sfcwRadar_bladerfRadarMIMO_0, 0))
-        self.connect((self.blocks_stream_to_tagged_stream_0, 0), (self.sfcwRadar_bladerfRadarMIMO_0, 1))
-        self.connect((self.blocks_stream_to_vector_0, 0), (self.sfcwRadar_calibration_0, 0))
-        self.connect((self.blocks_tag_gate_0, 0), (self.blocks_multiply_conjugate_cc_0, 0))
-        self.connect((self.blocks_tag_gate_0_0, 0), (self.blocks_multiply_conjugate_cc_0, 1))
-        self.connect((self.blocks_vector_to_stream_0, 0), (self.blocks_complex_to_mag_squared_0, 0))
+        self.connect((self.blocks_stream_to_vector_0, 0), (self.fft_vxx_0, 0))
+        self.connect((self.blocks_tag_gate_0, 0), (self.blocks_divide_xx_0, 0))
+        self.connect((self.blocks_tag_gate_0_0, 0), (self.blocks_divide_xx_0, 1))
+        self.connect((self.blocks_vector_to_stream_0, 0), (self.blocks_complex_to_mag_0, 0))
         self.connect((self.fft_vxx_0, 0), (self.blocks_vector_to_stream_0, 0))
         self.connect((self.filter_fft_low_pass_filter_0_0, 0), (self.blocks_tag_gate_0_0, 0))
-        self.connect((self.filter_fft_low_pass_filter_0_0, 0), (self.sfcwRadar_rawSignalSink_cc_0, 1))
         self.connect((self.filter_fft_low_pass_filter_0_0_0, 0), (self.blocks_tag_gate_0, 0))
-        self.connect((self.filter_fft_low_pass_filter_0_0_0, 0), (self.sfcwRadar_rawSignalSink_cc_0, 0))
-        self.connect((self.sfcwRadar_bladerfRadarMIMO_0, 1), (self.filter_fft_low_pass_filter_0_0, 0))
-        self.connect((self.sfcwRadar_bladerfRadarMIMO_0, 0), (self.filter_fft_low_pass_filter_0_0_0, 0))
-        self.connect((self.sfcwRadar_calibration_0, 0), (self.fft_vxx_0, 0))
+        self.connect((self.sfcwRadar_bladerfRadarController_cc_0, 1), (self.filter_fft_low_pass_filter_0_0, 0))
+        self.connect((self.sfcwRadar_bladerfRadarController_cc_0, 0), (self.filter_fft_low_pass_filter_0_0_0, 0))
 
 
     def closeEvent(self, event):
@@ -332,7 +308,6 @@ class sfcwRadarGUI(gr.top_block, Qt.QWidget):
 
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
-        self.analog_sig_source_x_0.set_sampling_freq(self.samp_rate)
         self.filter_fft_low_pass_filter_0_0.set_taps(firdes.low_pass(1, self.samp_rate, (self.cw_freq*1.3), (self.cw_freq*2), window.WIN_HAMMING, 6.76))
         self.filter_fft_low_pass_filter_0_0_0.set_taps(firdes.low_pass(1, self.samp_rate, (self.cw_freq*1.3), (self.cw_freq*2), window.WIN_HAMMING, 6.76))
         self.qtgui_time_sink_x_1_0_0.set_samp_rate(self.samp_rate)
@@ -368,7 +343,6 @@ class sfcwRadarGUI(gr.top_block, Qt.QWidget):
 
     def set_cw_freq(self, cw_freq):
         self.cw_freq = cw_freq
-        self.analog_sig_source_x_0.set_frequency(self.cw_freq)
         self.filter_fft_low_pass_filter_0_0.set_taps(firdes.low_pass(1, self.samp_rate, (self.cw_freq*1.3), (self.cw_freq*2), window.WIN_HAMMING, 6.76))
         self.filter_fft_low_pass_filter_0_0_0.set_taps(firdes.low_pass(1, self.samp_rate, (self.cw_freq*1.3), (self.cw_freq*2), window.WIN_HAMMING, 6.76))
 
@@ -378,22 +352,12 @@ class sfcwRadarGUI(gr.top_block, Qt.QWidget):
     def set_cw_amp(self, cw_amp):
         self.cw_amp = cw_amp
 
-    def get_calibration_off(self):
-        return self.calibration_off
-
-    def set_calibration_off(self, calibration_off):
-        self.calibration_off = calibration_off
-        Qt.QMetaObject.invokeMethod(self._calibration_off_line_edit, "setText", Qt.Q_ARG("QString", str(self.calibration_off)))
-        self.sfcwRadar_calibration_0.set_isOff(self.calibration_off)
-
     def get_burst_len(self):
         return self.burst_len
 
     def set_burst_len(self, burst_len):
         self.burst_len = burst_len
         self.blocks_multiply_const_xx_0_0.set_k(1/self.burst_len)
-        self.blocks_stream_to_tagged_stream_0.set_packet_len(self.burst_len)
-        self.blocks_stream_to_tagged_stream_0.set_packet_len_pmt(self.burst_len)
 
     def get_LP_dec(self):
         return self.LP_dec

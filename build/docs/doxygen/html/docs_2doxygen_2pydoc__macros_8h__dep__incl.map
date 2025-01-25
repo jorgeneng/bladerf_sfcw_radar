@@ -1,8 +1,7 @@
 <map id="pydoc_macros.h" name="pydoc_macros.h">
-<area shape="rect" id="node1" title=" " alt="" coords="372,5,491,32"/>
-<area shape="rect" id="node2" href="$bladerfEchoTimer__cc__pydoc__template_8h.html" title=" " alt="" coords="5,80,151,121"/>
-<area shape="rect" id="node3" href="$bladerfRadar__cc__pydoc__template_8h.html" title=" " alt="" coords="175,80,333,121"/>
-<area shape="rect" id="node4" href="$bladerfRadarBurst__cc__pydoc__template_8h.html" title=" " alt="" coords="357,80,505,121"/>
-<area shape="rect" id="node5" href="$bladerfRadarMIMO__pydoc__template_8h.html" title=" " alt="" coords="529,80,704,121"/>
-<area shape="rect" id="node6" href="$rawSignalSink__cc__pydoc__template_8h.html" title=" " alt="" coords="729,80,897,121"/>
+<area shape="rect" id="node1" title=" " alt="" coords="288,5,407,32"/>
+<area shape="rect" id="node2" href="$bladerfRadarBurst__cc__pydoc__template_8h.html" title=" " alt="" coords="5,80,153,121"/>
+<area shape="rect" id="node3" href="$bladerfRadarController__cc__pydoc__template_8h.html" title=" " alt="" coords="177,80,331,121"/>
+<area shape="rect" id="node4" href="$bladerfRadarMIMO__pydoc__template_8h.html" title=" " alt="" coords="355,80,529,121"/>
+<area shape="rect" id="node5" href="$rawSignalSink__cc__pydoc__template_8h.html" title=" " alt="" coords="554,80,722,121"/>
 </map>

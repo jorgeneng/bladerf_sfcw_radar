@@ -92,7 +92,7 @@
     </detaileddescription>
     <inheritancegraph>
       <node id="2">
-        <label>gr::sync_block</label>
+        <label>sync_block</label>
       </node>
       <node id="3">
         <label>gr::sfcwRadar::rawSignalSink_cc_impl</label>
@@ -109,7 +109,7 @@
     </inheritancegraph>
     <collaborationgraph>
       <node id="2">
-        <label>gr::sync_block</label>
+        <label>sync_block</label>
       </node>
       <node id="1">
         <label>gr::sfcwRadar::rawSignalSink_cc</label>

@@ -21,11 +21,10 @@ namespace py = pybind11;
 // Please do not delete
 /**************************************/
 // BINDING_FUNCTION_PROTOTYPES(
-    void bind_bladerfRadar_cc(py::module& m);
     void bind_bladerfRadarBurst_cc(py::module& m);
-    void bind_bladerfEchoTimer_cc(py::module& m);
     void bind_rawSignalSink_cc(py::module& m);
     void bind_bladerfRadarMIMO(py::module& m);
+    void bind_bladerfRadarController_cc(py::module& m);
 // ) END BINDING_FUNCTION_PROTOTYPES
 
 
@@ -54,10 +53,9 @@ PYBIND11_MODULE(sfcwRadar_python, m)
     // Please do not delete
     /**************************************/
     // BINDING_FUNCTION_CALLS(
-    bind_bladerfRadar_cc(m);
     bind_bladerfRadarBurst_cc(m);
-    bind_bladerfEchoTimer_cc(m);
     bind_rawSignalSink_cc(m);
     bind_bladerfRadarMIMO(m);
+    bind_bladerfRadarController_cc(m);
     // ) END BINDING_FUNCTION_CALLS
 }

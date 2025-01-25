@@ -22,7 +22,6 @@ add_subdirectory(bindings)
 gr_python_install(FILES 
     __init__.py 
     frequencyTunner.py
-    responseCollector.py
     radarTxRxSimulator.py
     rangeProfileSink.py
     calibration.py

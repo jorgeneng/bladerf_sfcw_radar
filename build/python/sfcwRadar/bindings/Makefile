@@ -212,33 +212,6 @@ sfcwRadar_python/fast:
 	cd /home/hui/gr-sfcwRadar/build && $(MAKE) -f python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/build.make python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/build
 .PHONY : sfcwRadar_python/fast
 
-bladerfEchoTimer_cc_python.o: bladerfEchoTimer_cc_python.cc.o
-
-.PHONY : bladerfEchoTimer_cc_python.o
-
-# target to build an object file
-bladerfEchoTimer_cc_python.cc.o:
-	cd /home/hui/gr-sfcwRadar/build && $(MAKE) -f python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/build.make python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/bladerfEchoTimer_cc_python.cc.o
-.PHONY : bladerfEchoTimer_cc_python.cc.o
-
-bladerfEchoTimer_cc_python.i: bladerfEchoTimer_cc_python.cc.i
-
-.PHONY : bladerfEchoTimer_cc_python.i
-
-# target to preprocess a source file
-bladerfEchoTimer_cc_python.cc.i:
-	cd /home/hui/gr-sfcwRadar/build && $(MAKE) -f python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/build.make python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/bladerfEchoTimer_cc_python.cc.i
-.PHONY : bladerfEchoTimer_cc_python.cc.i
-
-bladerfEchoTimer_cc_python.s: bladerfEchoTimer_cc_python.cc.s
-
-.PHONY : bladerfEchoTimer_cc_python.s
-
-# target to generate assembly for a file
-bladerfEchoTimer_cc_python.cc.s:
-	cd /home/hui/gr-sfcwRadar/build && $(MAKE) -f python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/build.make python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/bladerfEchoTimer_cc_python.cc.s
-.PHONY : bladerfEchoTimer_cc_python.cc.s
-
 bladerfRadarBurst_cc_python.o: bladerfRadarBurst_cc_python.cc.o
 
 .PHONY : bladerfRadarBurst_cc_python.o
@@ -266,6 +239,33 @@ bladerfRadarBurst_cc_python.cc.s:
 	cd /home/hui/gr-sfcwRadar/build && $(MAKE) -f python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/build.make python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/bladerfRadarBurst_cc_python.cc.s
 .PHONY : bladerfRadarBurst_cc_python.cc.s
 
+bladerfRadarController_cc_python.o: bladerfRadarController_cc_python.cc.o
+
+.PHONY : bladerfRadarController_cc_python.o
+
+# target to build an object file
+bladerfRadarController_cc_python.cc.o:
+	cd /home/hui/gr-sfcwRadar/build && $(MAKE) -f python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/build.make python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/bladerfRadarController_cc_python.cc.o
+.PHONY : bladerfRadarController_cc_python.cc.o
+
+bladerfRadarController_cc_python.i: bladerfRadarController_cc_python.cc.i
+
+.PHONY : bladerfRadarController_cc_python.i
+
+# target to preprocess a source file
+bladerfRadarController_cc_python.cc.i:
+	cd /home/hui/gr-sfcwRadar/build && $(MAKE) -f python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/build.make python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/bladerfRadarController_cc_python.cc.i
+.PHONY : bladerfRadarController_cc_python.cc.i
+
+bladerfRadarController_cc_python.s: bladerfRadarController_cc_python.cc.s
+
+.PHONY : bladerfRadarController_cc_python.s
+
+# target to generate assembly for a file
+bladerfRadarController_cc_python.cc.s:
+	cd /home/hui/gr-sfcwRadar/build && $(MAKE) -f python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/build.make python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/bladerfRadarController_cc_python.cc.s
+.PHONY : bladerfRadarController_cc_python.cc.s
+
 bladerfRadarMIMO_python.o: bladerfRadarMIMO_python.cc.o
 
 .PHONY : bladerfRadarMIMO_python.o
@@ -292,33 +292,6 @@ bladerfRadarMIMO_python.s: bladerfRadarMIMO_python.cc.s
 bladerfRadarMIMO_python.cc.s:
 	cd /home/hui/gr-sfcwRadar/build && $(MAKE) -f python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/build.make python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/bladerfRadarMIMO_python.cc.s
 .PHONY : bladerfRadarMIMO_python.cc.s
-
-bladerfRadar_cc_python.o: bladerfRadar_cc_python.cc.o
-
-.PHONY : bladerfRadar_cc_python.o
-
-# target to build an object file
-bladerfRadar_cc_python.cc.o:
-	cd /home/hui/gr-sfcwRadar/build && $(MAKE) -f python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/build.make python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/bladerfRadar_cc_python.cc.o
-.PHONY : bladerfRadar_cc_python.cc.o
-
-bladerfRadar_cc_python.i: bladerfRadar_cc_python.cc.i
-
-.PHONY : bladerfRadar_cc_python.i
-
-# target to preprocess a source file
-bladerfRadar_cc_python.cc.i:
-	cd /home/hui/gr-sfcwRadar/build && $(MAKE) -f python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/build.make python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/bladerfRadar_cc_python.cc.i
-.PHONY : bladerfRadar_cc_python.cc.i
-
-bladerfRadar_cc_python.s: bladerfRadar_cc_python.cc.s
-
-.PHONY : bladerfRadar_cc_python.s
-
-# target to generate assembly for a file
-bladerfRadar_cc_python.cc.s:
-	cd /home/hui/gr-sfcwRadar/build && $(MAKE) -f python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/build.make python/sfcwRadar/bindings/CMakeFiles/sfcwRadar_python.dir/bladerfRadar_cc_python.cc.s
-.PHONY : bladerfRadar_cc_python.cc.s
 
 python_bindings.o: python_bindings.cc.o
 
@@ -390,18 +363,15 @@ help:
 	@echo "... test"
 	@echo "... extracted_docstrings"
 	@echo "... sfcwRadar_python"
-	@echo "... bladerfEchoTimer_cc_python.o"
-	@echo "... bladerfEchoTimer_cc_python.i"
-	@echo "... bladerfEchoTimer_cc_python.s"
 	@echo "... bladerfRadarBurst_cc_python.o"
 	@echo "... bladerfRadarBurst_cc_python.i"
 	@echo "... bladerfRadarBurst_cc_python.s"
+	@echo "... bladerfRadarController_cc_python.o"
+	@echo "... bladerfRadarController_cc_python.i"
+	@echo "... bladerfRadarController_cc_python.s"
 	@echo "... bladerfRadarMIMO_python.o"
 	@echo "... bladerfRadarMIMO_python.i"
 	@echo "... bladerfRadarMIMO_python.s"
-	@echo "... bladerfRadar_cc_python.o"
-	@echo "... bladerfRadar_cc_python.i"
-	@echo "... bladerfRadar_cc_python.s"
 	@echo "... python_bindings.o"
 	@echo "... python_bindings.i"
 	@echo "... python_bindings.s"

@@ -39,8 +39,8 @@
 <g id="node3" class="node">
 <title>Node3</title>
 <g id="a_node3"><a xlink:title=" ">
-<polygon fill="white" stroke="#bfbfbf" points="23.5,-134.5 23.5,-153.5 103.5,-153.5 103.5,-134.5 23.5,-134.5"/>
-<text text-anchor="middle" x="63.5" y="-141.5" font-family="Helvetica,sans-Serif" font-size="10.00">gr::sync_block</text>
+<polygon fill="white" stroke="#bfbfbf" points="30.5,-134.5 30.5,-153.5 96.5,-153.5 96.5,-134.5 30.5,-134.5"/>
+<text text-anchor="middle" x="63.5" y="-141.5" font-family="Helvetica,sans-Serif" font-size="10.00">sync_block</text>
 </a>
 </g>
 </g>
