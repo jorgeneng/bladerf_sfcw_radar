@@ -359,20 +359,20 @@ int bladerfRadarMIMO_impl::init_sync(struct bladerf *dev){
     /**
      * Enable bias tee of RX_0
      * */
-    /*status = bladerf_set_bias_tee(dev, BLADERF_CHANNEL_RX(0), true);
+    status = bladerf_set_bias_tee(dev, BLADERF_CHANNEL_RX(0), true);
     if(status != 0){
         std::cerr << "set channel: " << BLADERF_CHANNEL_RX(0) << " bias tee failed" << std::endl;
     }else{
         bool is_bias_tee_enabled = false;
         status = bladerf_get_bias_tee(dev, BLADERF_CHANNEL_RX(0), &is_bias_tee_enabled);
         std::cout << "bias tee status of chennel " << BLADERF_CHANNEL_RX(0) << " :" << is_bias_tee_enabled << std::endl;
-    }*/
+    }
 
     /**
      * Set AGC of RX_0 (echo)
      * */
-    status = bladerf_set_gain_mode(dev, BLADERF_CHANNEL_RX(0), BLADERF_GAIN_MANUAL);
-    //status = bladerf_set_gain_mode(dev, BLADERF_CHANNEL_RX(0), BLADERF_GAIN_HYBRID_AGC);
+    //status = bladerf_set_gain_mode(dev, BLADERF_CHANNEL_RX(0), BLADERF_GAIN_MANUAL);
+    status = bladerf_set_gain_mode(dev, BLADERF_CHANNEL_RX(0), BLADERF_GAIN_HYBRID_AGC);
     if (status != 0) {
         fprintf(stderr, "Failed to set gain mode = %u: %s\n", BLADERF_CHANNEL_RX(0),
         bladerf_strerror(status));
@@ -412,14 +412,14 @@ int bladerfRadarMIMO_impl::init_sync(struct bladerf *dev){
     /**
      * Enable bias tee for TX0
      * */
-    /*status = bladerf_set_bias_tee(dev, BLADERF_CHANNEL_TX(0), true);
+    status = bladerf_set_bias_tee(dev, BLADERF_CHANNEL_TX(0), true);
     if(status != 0){
         std::cerr << "set channel: " << BLADERF_CHANNEL_TX(0) << " bias tee failed" << std::endl;
     }else{
         bool is_bias_tee_enabled = false;
         status = bladerf_get_bias_tee(dev, BLADERF_CHANNEL_TX(0), &is_bias_tee_enabled);
         std::cout << "bias tee status of chennel " << BLADERF_CHANNEL_TX(0) << " :" << is_bias_tee_enabled << std::endl;
-    }*/
+    }
 
     status = bladerf_enable_module(dev, BLADERF_CHANNEL_RX(0), true);
     if (status != 0) {

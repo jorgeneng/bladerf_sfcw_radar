@@ -327,7 +327,7 @@ blocks:
   parameters:
     affinity: ''
     alias: ''
-    bias_tee0: 'True'
+    bias_tee0: 'False'
     bias_tee1: 'False'
     buffers: '1024'
     buflen: '4096'
@@ -338,7 +338,7 @@ blocks:
     device_id: ''
     feature: default
     fpga_image: ''
-    fpga_reload: 'False'
+    fpga_reload: 'True'
     freq: c_freq_tx
     gain0: tx_gain
     gain1: tx_ref_gain
@@ -380,7 +380,7 @@ blocks:
   parameters:
     affinity: ''
     alias: ''
-    bias_tee0: 'True'
+    bias_tee0: 'False'
     bias_tee1: 'False'
     buffers: '1024'
     buflen: '4096'
@@ -393,7 +393,7 @@ blocks:
     device_id: ''
     feature: default
     fpga_image: ''
-    fpga_reload: 'False'
+    fpga_reload: 'True'
     freq: c_freq_tx+offset
     gain0: rx_gain
     gain1: rx_ref_gain

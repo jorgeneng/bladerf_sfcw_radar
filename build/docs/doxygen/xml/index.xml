@@ -100,6 +100,11 @@
     <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a3c11e076299b4ed6e66f6bbaffda49b4" kind="variable"><name>d_currrent_freq</name></member>
     <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a73a0919d2b2bd9f6c30dcc72e11421fa" kind="variable"><name>d_max_freq</name></member>
     <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a2755365af5164bf86fb3ba2a261b21b7" kind="variable"><name>d_freq_index</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1ab65a5eea9b276acca0d168f2cd8b697d" kind="variable"><name>d_ts_inc_rec</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1af29dc6af65b261f58f5ee9b4daf26926" kind="variable"><name>d_ts_inc_send</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a3068f011ede0b8fa7f67a298d48da488" kind="variable"><name>d_ts_inc_tune</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a9bf965924809b3d59ecb6350c43288dc" kind="variable"><name>d_rx_meta</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1ae4386143c0038f9dd68921bfe329aead" kind="variable"><name>d_tx_meta</name></member>
     <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a3faa3d18f32f2f698e921f38e654054e" kind="variable"><name>d_cw_amplitude</name></member>
     <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1aa97f74eca184afaf3050335b54febe85" kind="variable"><name>d_cw_frequency</name></member>
     <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a8400408bb0ea36c0b6b45a6d71d7e16b" kind="variable"><name>d_phase</name></member>

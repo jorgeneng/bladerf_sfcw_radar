@@ -102,6 +102,15 @@ bladerfRadarController_cc_impl::bladerfRadarController_cc_impl(
     std::cout << "max_freq: " << d_max_freq << std::endl; 
     std::cout << "samp_rate: " << samp_rate << std::endl; 
 
+    d_ts_inc_rec = (uint64_t)(d_samp_rate * ts_inc_recv)/1000;
+    d_ts_inc_send = (uint64_t)(d_samp_rate * ts_inc_send)/1000;
+    d_ts_inc_tune = (uint64_t)(d_samp_rate * ts_inc_tune)/1000;
+    memset(&d_rx_meta, 0, sizeof(d_rx_meta));
+    d_tx_meta.flags = BLADERF_META_FLAG_TX_BURST_START | BLADERF_META_FLAG_TX_BURST_END;
+    std::cout << "d_tx_meta.flags = " << d_tx_meta.flags << std::endl;
+    std::cout << (BLADERF_META_FLAG_TX_BURST_START | BLADERF_META_FLAG_TX_BURST_END) << std::endl;
+    memset(&d_tx_meta, 0, sizeof(d_tx_meta));
+
     d_burst_len = burst_len;
     std::cout << "burst_len: " << d_burst_len << std::endl;
 
@@ -184,7 +193,7 @@ int bladerfRadarController_cc_impl::init_device(){
         bladerf_set_tuning_mode(dev, BLADERF_TUNING_MODE_FPGA);
         bladerf_tuning_mode current_mode;
         bladerf_get_tuning_mode(dev, &current_mode);
-        std::cout << "tnning mode is: " << current_mode << std::endl;
+        std::cout << "Tunning mode is: " << current_mode << std::endl;
         
         /**
          * Configure RX channel 0. 
@@ -251,7 +260,7 @@ int bladerfRadarController_cc_impl::init_device(){
         /* Initialize synchronous interface on RXs and TXs */
         status = init_sync(dev);
         if (status != 0) {
-            fprintf(stderr, "Failed to enable RX: %s\n", bladerf_strerror(status));
+            fprintf(stderr, "Failed to init sync interface: %s\n", bladerf_strerror(status));
         }else{
             std::cout << "init succed" << std::endl;
         }
@@ -300,24 +309,24 @@ int bladerfRadarController_cc_impl::configure_channel(struct bladerf *dev, struc
         std::cout << "Set chennel" << c->channel << ", samplerate: " << actual_value << std::endl;
     }
 
-    status = bladerf_set_gain_mode(dev, c->channel, BLADERF_GAIN_MANUAL);
+    //status = bladerf_set_gain_mode(dev, c->channel, BLADERF_GAIN_MANUAL);
     //status = bladerf_set_gain_mode(dev, c->channel, BLADERF_GAIN_HYBRID_AGC);
     //status = bladerf_set_gain_mode(dev, c->channel, BLADERF_GAIN_SLOWATTACK_AGC);
-    if (status != 0) {
+    /*if (status != 0) {
         fprintf(stderr, "Failed to set gain mode = %u: %s\n", c->channel,
         bladerf_strerror(status));
         return status;
     }else{
         std::cout << "Set chennel" << c->channel << ", gain mode: " << BLADERF_GAIN_MANUAL << std::endl;
-    }
+    }*/
 
-    bladerf_gain_mode current_gain_mode;
+    /*bladerf_gain_mode current_gain_mode;
     status = bladerf_get_gain_mode(dev, c->channel, &current_gain_mode);
     if(status!=0){
         std::cerr << "Falied to read gain mode from channel: " << c->channel << std::endl;
     }else{
         std::cout << "Channel: " << c->channel << ", gain mode: " << current_gain_mode << std::endl;
-    }
+    }*/
 
     /*const bladerf_range *range;
     status = bladerf_get_gain_range(dev, c->channel, &range);
@@ -351,7 +360,7 @@ int bladerfRadarController_cc_impl::init_sync(struct bladerf *dev){
     * interface. SC16 Q11 samples *with* metadata are used. */
  
     status = bladerf_sync_config(dev, BLADERF_RX_X2, 
-                                 BLADERF_FORMAT_SC16_Q11, d_num_buffers, 
+                                 BLADERF_FORMAT_SC16_Q11_META, d_num_buffers, 
                                  d_buffer_size, d_num_transfers,timeout_ms);
 
     if (status != 0) {
@@ -366,7 +375,7 @@ int bladerfRadarController_cc_impl::init_sync(struct bladerf *dev){
     }
  
     status = bladerf_sync_config(dev, BLADERF_TX_X2,
-                                 BLADERF_FORMAT_SC16_Q11, d_num_buffers,
+                                 BLADERF_FORMAT_SC16_Q11_META, d_num_buffers,
                                  d_buffer_size, d_num_transfers, timeout_ms); 
     if (status != 0) {
         fprintf(stderr, "Failed to configure TX sync interface: %s\n",
@@ -380,9 +389,33 @@ int bladerfRadarController_cc_impl::init_sync(struct bladerf *dev){
     }
     
     /**
+     * Enable bias tee for TX0
+     * */
+    status = bladerf_set_bias_tee(dev, BLADERF_CHANNEL_TX(0), true);
+    if(status != 0){
+        std::cerr << "set channel: " << BLADERF_CHANNEL_TX(0) << " bias tee failed" << std::endl;
+    }else{
+        bool is_bias_tee_enabled = false;
+        status = bladerf_get_bias_tee(dev, BLADERF_CHANNEL_TX(0), &is_bias_tee_enabled);
+        std::cout << "bias tee status of chennel " << BLADERF_CHANNEL_TX(0) << " :" << is_bias_tee_enabled << std::endl;
+    }
+    
+    /**
      * Enable bias tee of RX_0
      * */
-    /*status = bladerf_set_bias_tee(dev, BLADERF_CHANNEL_RX(0), true);
+    status = bladerf_set_bias_tee(dev, BLADERF_CHANNEL_RX(0), true);
+    if(status != 0){
+        std::cerr << "set channel: " << BLADERF_CHANNEL_RX(0) << " bias tee failed" << std::endl;
+    }else{
+        bool is_bias_tee_enabled = false;
+        status = bladerf_get_bias_tee(dev, BLADERF_CHANNEL_RX(0), &is_bias_tee_enabled);
+        std::cout << "bias tee status of chennel " << BLADERF_CHANNEL_RX(0) << " :" << is_bias_tee_enabled << std::endl;
+    }
+    
+    /**
+     * Disable bias tee of RX_0
+     * */
+    /*status = bladerf_set_bias_tee(dev, BLADERF_CHANNEL_RX(0), false);
     if(status != 0){
         std::cerr << "set channel: " << BLADERF_CHANNEL_RX(0) << " bias tee failed" << std::endl;
     }else{
@@ -390,12 +423,13 @@ int bladerfRadarController_cc_impl::init_sync(struct bladerf *dev){
         status = bladerf_get_bias_tee(dev, BLADERF_CHANNEL_RX(0), &is_bias_tee_enabled);
         std::cout << "bias tee status of chennel " << BLADERF_CHANNEL_RX(0) << " :" << is_bias_tee_enabled << std::endl;
     }*/
-
+    
     /**
      * Set AGC of RX_0 (echo)
      * */
     status = bladerf_set_gain_mode(dev, BLADERF_CHANNEL_RX(0), BLADERF_GAIN_MANUAL);
     //status = bladerf_set_gain_mode(dev, BLADERF_CHANNEL_RX(0), BLADERF_GAIN_HYBRID_AGC);
+    //status = bladerf_set_gain_mode(dev, BLADERF_CHANNEL_RX(0), BLADERF_GAIN_SLOWATTACK_AGC);
     if (status != 0) {
         fprintf(stderr, "Failed to set gain mode = %u: %s\n", BLADERF_CHANNEL_RX(0),
         bladerf_strerror(status));
@@ -403,7 +437,7 @@ int bladerfRadarController_cc_impl::init_sync(struct bladerf *dev){
     }else{
         std::cout << "Set chennel" << BLADERF_CHANNEL_RX(0) << ", gain mode" << std::endl;
     }
-
+    
     bladerf_gain_mode current_gain_mode;
     status = bladerf_get_gain_mode(dev, BLADERF_CHANNEL_RX(0), &current_gain_mode);
     if(status!=0){
@@ -417,6 +451,7 @@ int bladerfRadarController_cc_impl::init_sync(struct bladerf *dev){
      * */
     //status = bladerf_set_gain_mode(dev, BLADERF_CHANNEL_RX(1), BLADERF_GAIN_MANUAL);
     status = bladerf_set_gain_mode(dev, BLADERF_CHANNEL_RX(1), BLADERF_GAIN_HYBRID_AGC);
+    //status = bladerf_set_gain_mode(dev, BLADERF_CHANNEL_RX(1), BLADERF_GAIN_SLOWATTACK_AGC);
     if (status != 0) {
         fprintf(stderr, "Failed to set gain mode = %u: %s\n", BLADERF_CHANNEL_RX(1),
         bladerf_strerror(status));
@@ -431,18 +466,6 @@ int bladerfRadarController_cc_impl::init_sync(struct bladerf *dev){
     }else{
         std::cout << "Channel: " << BLADERF_CHANNEL_RX(1) << ", gain mode: " << current_gain_mode << std::endl;
     }
-
-    /**
-     * Enable bias tee for TX0
-     * */
-    /*status = bladerf_set_bias_tee(dev, BLADERF_CHANNEL_TX(0), true);
-    if(status != 0){
-        std::cerr << "set channel: " << BLADERF_CHANNEL_TX(0) << " bias tee failed" << std::endl;
-    }else{
-        bool is_bias_tee_enabled = false;
-        status = bladerf_get_bias_tee(dev, BLADERF_CHANNEL_TX(0), &is_bias_tee_enabled);
-        std::cout << "bias tee status of chennel " << BLADERF_CHANNEL_TX(0) << " :" << is_bias_tee_enabled << std::endl;
-    }*/
 
     status = bladerf_enable_module(dev, BLADERF_CHANNEL_RX(0), true);
     if (status != 0) {
@@ -552,13 +575,14 @@ int bladerfRadarController_cc_impl::set_quick_tune(){
 }
 
 int bladerfRadarController_cc_impl::wait_for_timestamp(struct bladerf *dev, bladerf_direction dir, uint64_t timestamp, unsigned int timeout_ms){
-    //std::cout<<"wait for timestamp" << std::endl;
+    //std::cout<<"wait for timestamp: " << timestamp << std::endl;
     int status;
     uint64_t curr_ts = 0;
     unsigned int slept_ms = 0;
     bool done;
     do{
         status = bladerf_get_timestamp(dev, dir, &curr_ts);
+        //std::cout << "curr_ts: " << curr_ts << std::endl;
         done = (status!=0) || curr_ts >= timestamp;
         if(!done){
             if(slept_ms > timeout_ms){
@@ -620,10 +644,10 @@ void bladerfRadarController_cc_impl::handle_scan_msg(const pmt::pmt_t& msg){
 void bladerfRadarController_cc_impl::send(){
     int status;
     
-    /*struct bladerf_metadata meta;
+    struct bladerf_metadata meta;
     memset(&meta, 0, sizeof(meta));
 
-    meta.flags = BLADERF_META_FLAG_TX_BURST_START | BLADERF_META_FLAG_TX_BURST_END | BLADERF_META_FLAG_TX_NOW; */
+    //meta.flags = BLADERF_META_FLAG_TX_BURST_START | BLADERF_META_FLAG_TX_BURST_END | BLADERF_META_FLAG_TX_NOW;*/
 
     //Retrieve the current timestamp so we can schedule our transmission in the future.
     /*status = bladerf_get_timestamp(dev, BLADERF_TX, &meta.timestamp);
@@ -636,28 +660,27 @@ void bladerfRadarController_cc_impl::send(){
 
     // Set initial timestamp d_ts_inc_send ms in the future.
     meta.timestamp += d_ts_inc_send;*/
-
-    /*status = bladerf_sync_tx(dev, static_cast<void const *>(_16icbuf_in), d_burst_len*2*2, &meta, timeout_ms*2); 
+    status = bladerf_sync_tx(dev, static_cast<void const *>(_16icbuf_in), d_burst_len*2, &d_tx_meta, timeout_ms); 
 
     if (status == 0){
-        status = bladerf_get_timestamp(dev, BLADERF_TX, &meta.timestamp);
+        /*status = bladerf_get_timestamp(dev, BLADERF_TX, &meta.timestamp);
         if (status != 0) {
             fprintf(stderr, "Failed to get current TX timestamp: %s\n",
                     bladerf_strerror(status));
         }
-
+        //std::cout << "current ts: " << meta.timestamp << std::endl;
         meta.timestamp += d_burst_len;
-        wait_for_timestamp(dev, BLADERF_TX, meta.timestamp, timeout_ms);
+        wait_for_timestamp(dev, BLADERF_TX, meta.timestamp, timeout_ms);*/
     }
     else{
         std::cerr << "sending failed: " << bladerf_strerror(status) << std::endl;
-    }*/
+    }
 
-    status = bladerf_sync_tx(dev, static_cast<void const *>(_16icbuf_in), d_burst_len*2, NULL, timeout_ms*2); 
+    /*status = bladerf_sync_tx(dev, static_cast<void const *>(_16icbuf_in), d_burst_len*2, NULL, timeout_ms*2); 
 
     if (status != 0){
         std::cerr << "sending failed: " << bladerf_strerror(status) << std::endl;
-    }
+    }*/
 }
 
 /**
@@ -687,22 +710,21 @@ void bladerfRadarController_cc_impl::recv(){
 
     //schedule first RX to be d_ts_inc_rec ms in the future.
     meta.timestamp += d_ts_inc_rec;*/
-
-    /*status = bladerf_sync_rx(dev, static_cast<void *>(_16icbuf_out),
-            d_burst_len*2*2, &meta, timeout_ms*2);
+    status = bladerf_sync_rx(dev, static_cast<void *>(_16icbuf_out),
+            d_burst_len*2, &d_rx_meta, timeout_ms);
 
     if (status != 0){
         std::cerr << "receiving failed: " << bladerf_strerror(status) << std::endl;
-    }else if (meta.status & BLADERF_META_STATUS_OVERRUN){
-        std::cerr << "Overrun detected in scheduled RX. Number of samples read is: " << meta.actual_count << std::endl;
-    }*/
+    }else if (d_rx_meta.status & BLADERF_META_STATUS_OVERRUN){
+       std::cerr << "Overrun detected in scheduled RX. Number of samples read is: " << d_rx_meta.actual_count << std::endl;
+    }
     
-    status = bladerf_sync_rx(dev, static_cast<void *>(_16icbuf_out),
+    /*status = bladerf_sync_rx(dev, static_cast<void *>(_16icbuf_out),
             d_burst_len*2, NULL, timeout_ms*2);
 
     if (status != 0){
         std::cerr << "receiving failed: " << bladerf_strerror(status) << std::endl;
-    }
+    }*/
     //memcpy(_16icbuf_out, _16icbuf_in, d_burst_len*2*2*sizeof(int16_t));
     //memcpy(_32fcbuf_out, _32fcbuf_in, d_burst_len*2*sizeof(gr_complex));
 }
@@ -733,6 +755,7 @@ int bladerfRadarController_cc_impl::quick_tune(){
 
     //std::cout<<"tunning rx to: " << d_quick_tunes_rx[index].freq << std::endl;
     int status = bladerf_schedule_retune(dev, BLADERF_RX, BLADERF_RETUNE_NOW, 0, &d_quick_tunes_rx[d_freq_index].quick_tune);
+    //int status = bladerf_schedule_retune(dev, BLADERF_RX, d_tx_meta.timestamp, 0, &d_quick_tunes_rx[d_freq_index].quick_tune);
     //int status = bladerf_set_frequency(dev, BLADERF_RX, d_quick_tunes_rx[index].freq);
     if(status != 0){
         std::cerr << "failed to tune RX: " << bladerf_strerror(status) << std::endl;
@@ -763,15 +786,29 @@ int bladerfRadarController_cc_impl::work(int noutput_items,
 {
     //auto out = static_cast<output_type*>(output_items[0]);
     gr_complex **out = reinterpret_cast<gr_complex **>(&output_items[0]);
+    d_tx_meta.flags = BLADERF_META_FLAG_TX_BURST_START | BLADERF_META_FLAG_TX_BURST_END;
+    d_rx_meta.flags = 0;
     if(d_scan == true){
         std::cout << "scanning..." << std::endl;
         begin = std::chrono::steady_clock::now();
+        /*int status = bladerf_get_timestamp(dev, BLADERF_TX, &d_tx_meta.timestamp);
+        if (status != 0) {
+            fprintf(stderr, "Failed to get current TX timestamp: %s\n", bladerf_strerror(status));
+        } else {
+            std::cout << "Current TX timestamp " << d_tx_meta.timestamp << std::endl; 
+        } 
+        d_tx_meta.timestamp = d_tx_meta.timestamp + d_ts_inc_tune;*/
         //add a new scan tag
         pmt::pmt_t new_scan_tag_key = pmt::string_to_symbol("newScan");
         pmt::pmt_t new_scan_tag_value = pmt::PMT_T;
         add_item_tag(0,nitems_written(0),new_scan_tag_key,new_scan_tag_value);
+        pmt::pmt_t new_freq_tag_key = pmt::string_to_symbol("newFreq");
         // scan cmd received, start sweeping the bandwidth
         for (int i = 0; i < d_num_steps; i++){
+            //add a new freq tag
+            //pmt::pmt_t new_freq_tag_key = pmt::string_to_symbol("newFreq");
+            pmt::pmt_t new_freq_tag_value = pmt::from_uint64(i);
+            add_item_tag(0,nitems_written(0)+i*d_burst_len,new_freq_tag_key,new_freq_tag_value);
             //std::cout << "step " << i << std::endl;
             //1. tune frequency
             d_freq_index = i;
@@ -787,6 +824,16 @@ int bladerfRadarController_cc_impl::work(int noutput_items,
             /**
             * create sending and receiving threads
             * */
+            int status = bladerf_get_timestamp(dev, BLADERF_TX, &d_tx_meta.timestamp);
+            if (status != 0) {
+                fprintf(stderr, "Failed to get current TX timestamp: %s\n", bladerf_strerror(status));
+            }
+            d_tx_meta.timestamp += d_ts_inc_send;
+            d_rx_meta.timestamp = d_tx_meta.timestamp + d_ts_inc_rec;
+            //d_tx_meta.flags = BLADERF_META_FLAG_TX_BURST_START | BLADERF_META_FLAG_TX_BURST_END;
+            //d_rx_meta.flags = 0;
+            //std::cout << "receive at: " << d_rx_meta.timestamp << "; send at: " << d_tx_meta.timestamp << std::endl;
+            //std::cout << "tx_meta.flags = " << d_tx_meta.flags << "; rx_meta.flags = " << d_rx_meta.flags << std::endl;
             //std::cout << "sending cw in frequency: " << d_currrent_freq << ", freq_index = " << d_freq_index << std::endl;
             d_thread_recv = gr::thread::thread(boost::bind(&bladerfRadarController_cc_impl::recv, this)); 
             d_thread_send = gr::thread::thread(boost::bind(&bladerfRadarController_cc_impl::send, this));

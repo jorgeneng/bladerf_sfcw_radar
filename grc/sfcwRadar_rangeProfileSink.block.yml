@@ -4,7 +4,7 @@ category: '[sfcwRadar]'
 
 templates:
   imports: from gnuradio import sfcwRadar
-  make: sfcwRadar.rangeProfileSink(${numSteps},${dir})
+  make: sfcwRadar.rangeProfileSink(${num_steps},${prefix})
 
 #  Make one 'parameters' list entry for every parameter you want settable from the GUI.
 #     Keys include:
@@ -13,10 +13,10 @@ templates:
 #     * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
 #     * default
 parameters:
-- id: numSteps
-  label: numSteps
+- id: num_steps
+  label: num_steps
   dtype: int
-- id: dir
+- id: prefix
   label: directory of saved scan
   dtype: string
 #- id: ...
@@ -32,9 +32,9 @@ parameters:
 #      * optional (optional - set to 1 for optional inputs. Default is 0)
 inputs:
 - label: in
-#  domain: ...
+  domain: stream
   dtype: complex
-#  vlen: ...
+  vlen: ${num_steps}
 #  optional: ...
 
 outputs:

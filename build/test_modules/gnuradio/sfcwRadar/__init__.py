@@ -21,11 +21,11 @@ except ModuleNotFoundError:
 
 # import any pure python here
 from .frequencyTunner import frequencyTunner
-
-
-
 from .rangeProfileSink import rangeProfileSink
 from .calibration import calibration
+from .matchedFilter import matchedFilter
+
+
 
 
 

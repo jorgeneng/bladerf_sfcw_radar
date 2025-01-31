@@ -44,6 +44,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
     "/home/hui/gr-sfcwRadar/python/sfcwRadar/radarTxRxSimulator.py"
     "/home/hui/gr-sfcwRadar/python/sfcwRadar/rangeProfileSink.py"
     "/home/hui/gr-sfcwRadar/python/sfcwRadar/calibration.py"
+    "/home/hui/gr-sfcwRadar/python/sfcwRadar/matchedFilter.py"
     )
 endif()
 

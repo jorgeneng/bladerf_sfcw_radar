@@ -45,7 +45,7 @@ private:
     size_t d_num_buffers;
     size_t d_buffer_size;
     size_t d_num_transfers;
-    const unsigned int timeout_ms = 2000;
+    const unsigned int timeout_ms = 4000;
 
     /**
      * Stepped frequency radar parameters
@@ -61,6 +61,12 @@ private:
     bladerf_frequency d_currrent_freq;  //current frequency of the radar
     bladerf_frequency d_max_freq; //the radar goes back to d_start_freq until it reaches here
     int d_freq_index;
+
+    uint64_t d_ts_inc_rec;
+    uint64_t d_ts_inc_send;
+    uint64_t d_ts_inc_tune;
+    struct bladerf_metadata d_rx_meta;
+    struct bladerf_metadata d_tx_meta;
 
     float d_cw_amplitude;
     float d_cw_frequency;

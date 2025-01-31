@@ -91,7 +91,7 @@
         <definition>const unsigned int gr::sfcwRadar::bladerfRadarController_cc_impl::timeout_ms</definition>
         <argsstring></argsstring>
         <name>timeout_ms</name>
-        <initializer>= 2000</initializer>
+        <initializer>= 4000</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -244,6 +244,71 @@
         </inbodydescription>
         <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="63" column="9" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="63" bodyend="-1"/>
       </memberdef>
+      <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1ab65a5eea9b276acca0d168f2cd8b697d" prot="private" static="no" mutable="no">
+        <type>uint64_t</type>
+        <definition>uint64_t gr::sfcwRadar::bladerfRadarController_cc_impl::d_ts_inc_rec</definition>
+        <argsstring></argsstring>
+        <name>d_ts_inc_rec</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="65" column="14" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1af29dc6af65b261f58f5ee9b4daf26926" prot="private" static="no" mutable="no">
+        <type>uint64_t</type>
+        <definition>uint64_t gr::sfcwRadar::bladerfRadarController_cc_impl::d_ts_inc_send</definition>
+        <argsstring></argsstring>
+        <name>d_ts_inc_send</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="66" column="14" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a3068f011ede0b8fa7f67a298d48da488" prot="private" static="no" mutable="no">
+        <type>uint64_t</type>
+        <definition>uint64_t gr::sfcwRadar::bladerfRadarController_cc_impl::d_ts_inc_tune</definition>
+        <argsstring></argsstring>
+        <name>d_ts_inc_tune</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="67" column="14" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a9bf965924809b3d59ecb6350c43288dc" prot="private" static="no" mutable="no">
+        <type>struct bladerf_metadata</type>
+        <definition>struct bladerf_metadata gr::sfcwRadar::bladerfRadarController_cc_impl::d_rx_meta</definition>
+        <argsstring></argsstring>
+        <name>d_rx_meta</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="67" column="14" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1ae4386143c0038f9dd68921bfe329aead" prot="private" static="no" mutable="no">
+        <type>struct bladerf_metadata</type>
+        <definition>struct bladerf_metadata gr::sfcwRadar::bladerfRadarController_cc_impl::d_tx_meta</definition>
+        <argsstring></argsstring>
+        <name>d_tx_meta</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="67" column="14" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="69" bodyend="-1"/>
+      </memberdef>
       <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a3faa3d18f32f2f698e921f38e654054e" prot="private" static="no" mutable="no">
         <type>float</type>
         <definition>float gr::sfcwRadar::bladerfRadarController_cc_impl::d_cw_amplitude</definition>
@@ -255,7 +320,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="65" column="11" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="65" bodyend="-1"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="71" column="11" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="71" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1aa97f74eca184afaf3050335b54febe85" prot="private" static="no" mutable="no">
         <type>float</type>
@@ -268,7 +333,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="66" column="11" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="66" bodyend="-1"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="72" column="11" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="72" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a8400408bb0ea36c0b6b45a6d71d7e16b" prot="private" static="no" mutable="no">
         <type>gr_complex</type>
@@ -282,7 +347,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="67" column="16" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="67" bodyend="-1"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="73" column="16" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="73" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a4dec5dd74b07b6e1ff71cbdb31798130" prot="private" static="no" mutable="no">
         <type>struct <ref refid="structgr_1_1sfcwRadar_1_1bladerf__quick__tune__info" kindref="compound">bladerf_quick_tune_info</ref> *</type>
@@ -295,7 +360,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="69" column="34" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="69" bodyend="-1"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="75" column="34" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="75" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a0f06962e5d7a1930d113fc68c58846bb" prot="private" static="no" mutable="no">
         <type>struct <ref refid="structgr_1_1sfcwRadar_1_1bladerf__quick__tune__info" kindref="compound">bladerf_quick_tune_info</ref> *</type>
@@ -308,7 +373,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="71" column="34" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="71" bodyend="-1"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="77" column="34" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="77" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a647221eb4498ab84e4cb283b02784670" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -323,7 +388,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="79" column="10" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="79" bodyend="-1"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="85" column="10" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="85" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1ad7e24e787b75d143165b3a85b975e21b" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -337,7 +402,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="80" column="10" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="80" bodyend="-1"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="86" column="10" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="86" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a934d7c55b59798956a999caf4184556c" prot="private" static="no" mutable="no">
         <type>float</type>
@@ -351,7 +416,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="81" column="11" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="81" bodyend="-1"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="87" column="11" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="87" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1aa3b8e0c4c5c4559ea425f771651ce8f6" prot="private" static="no" mutable="no">
         <type>float</type>
@@ -365,7 +430,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="82" column="11" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="82" bodyend="-1"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="88" column="11" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="88" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a5f3af4fd7b940d3498bf31126251c8a7" prot="private" static="no" mutable="no">
         <type>unsigned int</type>
@@ -378,7 +443,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="85" column="18" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="85" bodyend="-1"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="91" column="18" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="91" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1aee72b9529bfc1c32800d3f4f11d073a5" prot="private" static="no" mutable="no">
         <type>unsigned int</type>
@@ -391,7 +456,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="86" column="18" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="86" bodyend="-1"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="92" column="18" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="92" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a3b7f36563359077bbfeaa25735fd56e1" prot="private" static="no" mutable="no">
         <type>int16_t *</type>
@@ -405,7 +470,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="88" column="13" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="88" bodyend="-1"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="94" column="13" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="94" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a884d95026ad0fb37c032a25746bf508f" prot="private" static="no" mutable="no">
         <type>gr_complex *</type>
@@ -419,7 +484,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="89" column="16" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="89" bodyend="-1"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="95" column="16" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="95" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1aca853c665217aed1bd0cac1e7a5b5bc4" prot="private" static="no" mutable="no">
         <type>int16_t *</type>
@@ -433,7 +498,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="91" column="13" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="91" bodyend="-1"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="97" column="13" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="97" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a21bce0686b25e98df89d0d5b838f9ec2" prot="private" static="no" mutable="no">
         <type>gr_complex *</type>
@@ -447,7 +512,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="92" column="16" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="92" bodyend="-1"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="98" column="16" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="98" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a749c738959c8033773931bcf9576d28c" prot="private" static="no" mutable="no">
         <type>const float</type>
@@ -461,7 +526,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="95" column="17" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="95" bodyend="-1"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="101" column="17" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="101" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-attrib">
@@ -477,7 +542,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="171" column="24" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="171" bodyend="-1"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="177" column="24" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="177" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1ae83ec21a629b9f82b402fa06634ec2b3" prot="public" static="no" mutable="no">
         <type>gr::thread::thread</type>
@@ -490,7 +555,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="172" column="24" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="172" bodyend="-1"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="178" column="24" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="178" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1afa7650b595e92a92c0a2831ca0ee925f" prot="public" static="no" mutable="no">
         <type>gr::thread::thread</type>
@@ -503,7 +568,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="174" column="24" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="174" bodyend="-1"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="180" column="24" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="180" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1aef73e6cf002dd50bc6d24b3d29bb9c88" prot="public" static="no" mutable="no">
         <type>gr::thread::thread</type>
@@ -516,7 +581,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="175" column="24" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="175" bodyend="-1"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="181" column="24" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="181" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1aabeb0c3e6a677d98d1825a745787f38c" prot="public" static="no" mutable="no">
         <type>std::chrono::steady_clock::time_point</type>
@@ -530,7 +595,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="177" column="43" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="177" bodyend="-1"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="183" column="43" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="183" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1ad203e4051824ca105e2705b2f125fac8" prot="public" static="no" mutable="no">
         <type>std::chrono::steady_clock::time_point</type>
@@ -544,7 +609,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="178" column="43" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="178" bodyend="-1"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="184" column="43" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="184" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-func">
@@ -559,7 +624,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="97" column="9"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="103" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a80c60a47bb422e3aae95a9b0114a5763" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -583,7 +648,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="107" column="9"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="113" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a0f1fec5180b35e778d7580e46ab5af5c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -612,7 +677,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="118" column="9"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="124" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a8509ee3ade71cc37a7d781db5b6a1ca0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -626,7 +691,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="123" column="9"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="129" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a7b30a37ad4a3e4d47dae339d7621d012" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -640,7 +705,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="128" column="9"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="134" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a2a7a072ca4b510949b2596d81534cb91" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -653,7 +718,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="130" column="10"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="136" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a728dc88fb70714220966b621a1ad673c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -666,7 +731,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="131" column="10"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="137" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1abeef4901f25117771e8fbeb715798548" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -684,7 +749,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="136" column="10"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="142" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1ada05d609cb2ea6f22b850f24777313fc" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -698,7 +763,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="141" column="10"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="147" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a27f77a4f422323787efdb138a8db6ab4" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -711,7 +776,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="143" column="10"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="149" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a3d38c69d59884267c4a1dbd17b5ea4b1" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -724,7 +789,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="144" column="10"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="150" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a451312a60a864d347d5451744aa73995" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -753,7 +818,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="146" column="9"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="152" column="9"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -832,7 +897,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="150" column="5"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="156" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a2526b01eb2d68896647610c0e7bad7ee" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -845,7 +910,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="166" column="5"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="172" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1ac0177d655a964b68bfa36848c148f245" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -858,7 +923,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="180" column="10"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="186" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1abcc574622457288c1e5ba5bf059e415e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -883,7 +948,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="183" column="9"/>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="189" column="9"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -924,7 +989,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="33" column="1" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="32" bodyend="186"/>
+    <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="33" column="1" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="32" bodyend="192"/>
     <listofallmembers>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a3b7f36563359077bbfeaa25735fd56e1" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarController_cc_impl</scope><name>_16icbuf_in</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1aca853c665217aed1bd0cac1e7a5b5bc4" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarController_cc_impl</scope><name>_16icbuf_out</name></member>
@@ -955,6 +1020,7 @@
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a4dec5dd74b07b6e1ff71cbdb31798130" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarController_cc_impl</scope><name>d_quick_tunes_tx</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a7accef0158708f065fe740e6a21ca6f4" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarController_cc_impl</scope><name>d_ref_gain</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1aa60beeb82e4036676b4b460aa823844b" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarController_cc_impl</scope><name>d_rx_gain</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a9bf965924809b3d59ecb6350c43288dc" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarController_cc_impl</scope><name>d_rx_meta</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1acc81e1a96e3665f468347597cd754eeb" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarController_cc_impl</scope><name>d_samp_rate</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a647221eb4498ab84e4cb283b02784670" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarController_cc_impl</scope><name>d_scan</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a77c3cb92caa9fb8c3de3e2ab28260447" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarController_cc_impl</scope><name>d_start_freq</name></member>
@@ -962,7 +1028,11 @@
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1afa7650b595e92a92c0a2831ca0ee925f" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarController_cc_impl</scope><name>d_thread_rx_freq_tuning</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1aa4798ba8a80527d1ef67e65305cbe2f6" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarController_cc_impl</scope><name>d_thread_send</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1aef73e6cf002dd50bc6d24b3d29bb9c88" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarController_cc_impl</scope><name>d_thread_tx_freq_tuning</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1ab65a5eea9b276acca0d168f2cd8b697d" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarController_cc_impl</scope><name>d_ts_inc_rec</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1af29dc6af65b261f58f5ee9b4daf26926" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarController_cc_impl</scope><name>d_ts_inc_send</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a3068f011ede0b8fa7f67a298d48da488" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarController_cc_impl</scope><name>d_ts_inc_tune</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a47684f84ca05a4e102bff9e0c667b9c6" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarController_cc_impl</scope><name>d_tx_gain</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1ae4386143c0038f9dd68921bfe329aead" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarController_cc_impl</scope><name>d_tx_meta</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a5f6f4814ecff2ab01389abb9db9c84bd" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarController_cc_impl</scope><name>dev</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a315d23ea5a5ec3154774b1a05f754b41" prot="private" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarController_cc_impl</scope><name>dev_info</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1ad203e4051824ca105e2705b2f125fac8" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarController_cc_impl</scope><name>end</name></member>

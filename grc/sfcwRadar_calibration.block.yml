@@ -4,7 +4,7 @@ category: '[sfcwRadar]'
 
 templates:
   imports: from gnuradio import sfcwRadar
-  make: sfcwRadar.calibration(${num_steps}, ${burst_len}, ${ref_fileName}, ${rx_fileName}, ${isOff})
+  make: sfcwRadar.calibration(${num_steps}, ${cal_fileName}, ${isOff})
   callbacks:
     - set_isOff(${isOff}) 
 
@@ -20,20 +20,10 @@ parameters:
   dtype: int
   default: 128
 
-- id: burst_len
-  label: burst_len
-  dtype: int
-  default: 2048
-
-- id: ref_fileName
-  label: ref_fileName
-  dtype: string
-  default: ../cal_ref_1.dat
-
-- id: rx_fileName
+- id: cal_fileName
   label: rx_fileName
   dtype: string
-  default: ../cal_rx_1.dat
+  default: ../cal_rx_1.npy
 
 - id: isOff
   label: turn_off

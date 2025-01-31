@@ -341,7 +341,7 @@ class SoilRF(gr.top_block, Qt.QWidget):
                  + ",feature=" + 'default'
                  + ",sample_format=" + '16bit'
                  + ",fpga=" + str('')
-                 + ",fpga-reload=" + 'False'
+                 + ",fpga-reload=" + 'True'
                  + ",use_ref_clk=" + 'False'
                  + ",ref_clk=" + str(int(10e6))
                  + ",buflen=" + str(int(4096))
@@ -362,7 +362,7 @@ class SoilRF(gr.top_block, Qt.QWidget):
                  + ",trigger1="+'False'
                  + ",trigger_role1="+'master'
                  + ",trigger_signal1="+'J51_1'
-                 + ",bias_tee0="+'True'
+                 + ",bias_tee0="+'False'
                  + ",bias_tee1="+'False'
 
 
@@ -388,7 +388,7 @@ class SoilRF(gr.top_block, Qt.QWidget):
                  + ",feature=" + 'default'
                  + ",sample_format=" + '16bit'
                  + ",fpga=" + str('')
-                 + ",fpga-reload=" + 'False'
+                 + ",fpga-reload=" + 'True'
                  + ",use_ref_clk=" + 'True'
                  + ",ref_clk=" + str(int(10e6))
                  + ",buflen=" + str(int(4096))
@@ -409,7 +409,7 @@ class SoilRF(gr.top_block, Qt.QWidget):
                  + ",trigger1="+'False'
                  + ",trigger_role1="+'master'
                  + ",trigger_signal1="+'J51_1'
-                 + ",bias_tee0="+'True'
+                 + ",bias_tee0="+'False'
                  + ",bias_tee1="+'False'
 
 
@@ -430,15 +430,15 @@ class SoilRF(gr.top_block, Qt.QWidget):
         self.connect((self.analog_sig_source_x_0, 0), (self.blocks_throttle2_0, 0))
         self.connect((self.bladeRF_source_0, 1), (self.blocks_multiply_conjugate_cc_0, 1))
         self.connect((self.bladeRF_source_0, 0), (self.blocks_multiply_conjugate_cc_0, 0))
-        self.connect((self.bladeRF_source_0, 1), (self.qtgui_freq_sink_x_0, 1))
         self.connect((self.bladeRF_source_0, 0), (self.qtgui_freq_sink_x_0, 0))
+        self.connect((self.bladeRF_source_0, 1), (self.qtgui_freq_sink_x_0, 1))
         self.connect((self.bladeRF_source_0, 1), (self.qtgui_time_sink_x_1_0, 1))
         self.connect((self.bladeRF_source_0, 0), (self.qtgui_time_sink_x_1_0, 0))
         self.connect((self.blocks_complex_to_magphase_0, 0), (self.qtgui_time_sink_x_0, 0))
         self.connect((self.blocks_complex_to_magphase_0, 1), (self.qtgui_time_sink_x_0_0, 0))
         self.connect((self.blocks_multiply_conjugate_cc_0, 0), (self.filter_fft_low_pass_filter_0, 0))
-        self.connect((self.blocks_throttle2_0, 0), (self.bladeRF_sink_0, 1))
         self.connect((self.blocks_throttle2_0, 0), (self.bladeRF_sink_0, 0))
+        self.connect((self.blocks_throttle2_0, 0), (self.bladeRF_sink_0, 1))
         self.connect((self.filter_fft_low_pass_filter_0, 0), (self.blocks_complex_to_magphase_0, 0))
 
 

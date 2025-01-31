@@ -49,7 +49,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: 2**11
+    value: 2**13
   states:
     bus_sink: false
     bus_source: false
@@ -150,7 +150,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: 10e6
+    value: 20e6
   states:
     bus_sink: false
     bus_source: false
@@ -162,7 +162,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: '128'
+    value: '64'
   states:
     bus_sink: false
     bus_source: false
@@ -223,7 +223,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: '60'
+    value: '40'
   states:
     bus_sink: false
     bus_source: false
@@ -256,7 +256,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: 10e6
+    value: 5e6
   states:
     bus_sink: false
     bus_source: false
@@ -365,7 +365,7 @@ blocks:
     start: '0'
     step: '1'
     stop: '26000'
-    value: '500'
+    value: '30'
     widget: counter_slider
   states:
     bus_sink: false
@@ -703,7 +703,7 @@ blocks:
     nthreads: '1'
     samp_rate: samp_rate
     type: ccc
-    width: cw_freq*2
+    width: cw_freq/2
     win: window.WIN_HAMMING
   states:
     bus_sink: false
@@ -727,7 +727,7 @@ blocks:
     nthreads: '1'
     samp_rate: samp_rate
     type: ccc
-    width: cw_freq*2
+    width: cw_freq/2
     win: window.WIN_HAMMING
   states:
     bus_sink: false
@@ -893,9 +893,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1328, 116.0]
+    coordinate: [1360, 252.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: qtgui_time_sink_x_1_0_0
   id: qtgui_time_sink_x
   parameters:
@@ -1179,14 +1179,12 @@ blocks:
   parameters:
     affinity: ''
     alias: ''
-    burst_len: burst_len
+    cal_fileName: ../cal_rx_1.npy
     comment: ''
     isOff: calibration_off
     maxoutbuf: '0'
     minoutbuf: '0'
     num_steps: num_steps
-    ref_fileName: ../gui/cal_ref_1.dat
-    rx_fileName: ../gui/cal_rx_1.dat
   states:
     bus_sink: false
     bus_source: false
@@ -1200,8 +1198,8 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    dir: /tmp/
-    numSteps: num_steps
+    num_steps: ''
+    prefix: ''
   states:
     bus_sink: false
     bus_source: false
@@ -1215,8 +1213,8 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    dir: '"ex_tree"'
-    numSteps: num_steps
+    num_steps: ''
+    prefix: ''
   states:
     bus_sink: false
     bus_source: false
