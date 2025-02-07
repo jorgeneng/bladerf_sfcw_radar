@@ -36,20 +36,23 @@ public:
      */
     static sptr make(bladerf_frequency start_freq,
                      int num_steps,
-                     bladerf_frequency freq_step,
+                     bladerf_frequency step_size,
                      int samp_rate,
                      bladerf_gain rx_gain,
                      bladerf_gain tx_gain,
                      bladerf_gain ref_gain,
+                     bool enable_biastee,
                      size_t burst_len,
+                     size_t recv_buf_len,
                      size_t num_buffers,
                      size_t buffer_size,
                      size_t num_transfers,
                      float cw_amplitude,
                      float cw_frequency,
+                     bool isChirp,
+                     float chirp_bandwidth,
                      float ts_inc_send,
-                     float ts_inc_recv,
-                     float ts_inc_tune);
+                     float ts_inc_recv);
 };
 
 } // namespace sfcwRadar

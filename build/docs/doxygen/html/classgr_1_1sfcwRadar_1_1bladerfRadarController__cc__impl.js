@@ -1,8 +1,7 @@
 var classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl =
 [
-    [ "bladerfRadarController_cc_impl", "classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl.html#a761d86cd7106c635fe5e7c0265c3001b", null ],
+    [ "bladerfRadarController_cc_impl", "classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl.html#a3056cfa0e071e8fa84754a7ddf7c0663", null ],
     [ "~bladerfRadarController_cc_impl", "classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl.html#a2526b01eb2d68896647610c0e7bad7ee", null ],
-    [ "update_gps", "classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl.html#ac0177d655a964b68bfa36848c148f245", null ],
     [ "work", "classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl.html#abcc574622457288c1e5ba5bf059e415e", null ],
     [ "begin", "classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl.html#aabeb0c3e6a677d98d1825a745787f38c", null ],
     [ "d_thread_recv", "classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl.html#ae83ec21a629b9f82b402fa06634ec2b3", null ],

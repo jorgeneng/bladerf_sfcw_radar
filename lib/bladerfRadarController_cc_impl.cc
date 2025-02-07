@@ -17,37 +17,43 @@ using output_type = gr_complex;
 bladerfRadarController_cc::sptr
 bladerfRadarController_cc::make(bladerf_frequency start_freq,
                                 int num_steps,
-                                bladerf_frequency freq_step,
+                                bladerf_frequency step_size,
                                 int samp_rate,
                                 bladerf_gain rx_gain,
                                 bladerf_gain tx_gain,
                                 bladerf_gain ref_gain,
+                                bool enable_biastee,
                                 size_t burst_len,
+                                size_t recv_buf_len,
                                 size_t num_buffers,
                                 size_t buffer_size,
                                 size_t num_transfers,
                                 float cw_amplitude,
                                 float cw_frequency,
+                                bool isChirp,
+                                float chirp_bandwidth,
                                 float ts_inc_send,
-                                float ts_inc_recv,
-                                float ts_inc_tune)
+                                float ts_inc_recv)
 {
     return gnuradio::make_block_sptr<bladerfRadarController_cc_impl>(start_freq,
                                                                      num_steps,
-                                                                     freq_step,
+                                                                     step_size,
                                                                      samp_rate,
                                                                      rx_gain,
                                                                      tx_gain,
                                                                      ref_gain,
+                                                                     enable_biastee,
                                                                      burst_len,
+                                                                     recv_buf_len,
                                                                      num_buffers,
                                                                      buffer_size,
                                                                      num_transfers,
                                                                      cw_amplitude,
                                                                      cw_frequency,
+                                                                     isChirp,
+                                                                     chirp_bandwidth,
                                                                      ts_inc_send,
-                                                                     ts_inc_recv,
-                                                                     ts_inc_tune);
+                                                                     ts_inc_recv);
 }
 
 
@@ -57,20 +63,23 @@ bladerfRadarController_cc::make(bladerf_frequency start_freq,
 bladerfRadarController_cc_impl::bladerfRadarController_cc_impl(
     bladerf_frequency start_freq,
     int num_steps,
-    bladerf_frequency freq_step,
+    bladerf_frequency step_size,
     int samp_rate,
     bladerf_gain rx_gain,
     bladerf_gain tx_gain,
     bladerf_gain ref_gain,
+    bool enable_biastee,
     size_t burst_len,
+    size_t recv_buf_len,
     size_t num_buffers,
     size_t buffer_size,
     size_t num_transfers,
     float cw_amplitude,
     float cw_frequency,
+    bool isChirp,
+    float chirp_bandwidth,
     float ts_inc_send,
-    float ts_inc_recv,
-    float ts_inc_tune)
+    float ts_inc_recv)
     : gr::sync_block("bladerfRadarController_cc",
                      gr::io_signature::make(0, 0, 0),
                      gr::io_signature::make(
@@ -87,40 +96,52 @@ bladerfRadarController_cc_impl::bladerfRadarController_cc_impl(
     * save input parameters
     * */
     d_start_freq = start_freq;
-    d_freq_step = freq_step;
-    d_currrent_freq = start_freq;
+    d_step_size = step_size;
     d_num_steps = num_steps;
-    d_max_freq = d_start_freq + d_freq_step * (num_steps-1);
     d_freq_index = 0;
     d_samp_rate = samp_rate;
     d_tx_gain = tx_gain;
     d_rx_gain = rx_gain;
     d_ref_gain = ref_gain;
-    std::cout << "start_freq: " << d_start_freq << std::endl;
-    std::cout << "freq_step: " << d_freq_step << std::endl;
-    std::cout << "num_steps: " << d_num_steps << std::endl;
-    std::cout << "max_freq: " << d_max_freq << std::endl; 
-    std::cout << "samp_rate: " << samp_rate << std::endl; 
-
+    d_enable_biastee = enable_biastee;
+    std::cout << "start frequency: " << d_start_freq << std::endl;
+    std::cout << "bandiwdth between two consecutive frequency step: " << d_step_size << std::endl;
+    std::cout << "num of steps: " << d_num_steps << std::endl;
+    std::cout << "max frequency: " << d_start_freq + d_step_size * (num_steps-1) << std::endl; 
+    std::cout << "sampling rate: " << samp_rate << std::endl; 
+    
+    /**
+     * FPGA time steps to wait for transmission after frequency tunning
+     * */
     d_ts_inc_rec = (uint64_t)(d_samp_rate * ts_inc_recv)/1000;
     d_ts_inc_send = (uint64_t)(d_samp_rate * ts_inc_send)/1000;
-    d_ts_inc_tune = (uint64_t)(d_samp_rate * ts_inc_tune)/1000;
+    
+    /**
+     * Initialize tx and rx metadata
+     * */
     memset(&d_rx_meta, 0, sizeof(d_rx_meta));
-    d_tx_meta.flags = BLADERF_META_FLAG_TX_BURST_START | BLADERF_META_FLAG_TX_BURST_END;
-    std::cout << "d_tx_meta.flags = " << d_tx_meta.flags << std::endl;
-    std::cout << (BLADERF_META_FLAG_TX_BURST_START | BLADERF_META_FLAG_TX_BURST_END) << std::endl;
     memset(&d_tx_meta, 0, sizeof(d_tx_meta));
+    d_tx_meta.flags = BLADERF_META_FLAG_TX_BURST_START | BLADERF_META_FLAG_TX_BURST_END; //send as burst
+    //std::cout << "d_tx_meta.flags = " << d_tx_meta.flags << std::endl;
+    //std::cout << (BLADERF_META_FLAG_TX_BURST_START | BLADERF_META_FLAG_TX_BURST_END) << std::endl;
 
     d_burst_len = burst_len;
     std::cout << "burst_len: " << d_burst_len << std::endl;
+    d_recv_len = recv_buf_len;
+    std::cout << "recv_len: " << d_recv_len << std::endl;
+
+    if(d_recv_len < d_burst_len){
+        std::cout << "WARNING: recv_len is smaller than burst_len" << std::endl;
+    }
 
     d_num_buffers = num_buffers;
     d_buffer_size = buffer_size;
     d_num_transfers = num_transfers;
-    std::cout << "buffer setup. num_buffers: " << d_num_buffers << " buffer_size: " << buffer_size << " num_transfers: " << num_transfers << std::endl;
 
     d_cw_amplitude = cw_amplitude;
     d_cw_frequency = cw_frequency;
+    d_isChirp = isChirp;
+    d_chirp_bandwidth = chirp_bandwidth;
 
     /* Set up constraints */
     int const alignment_multiple = volk_get_alignment() / sizeof(gr_complex);
@@ -131,22 +152,24 @@ bladerfRadarController_cc_impl::bladerfRadarController_cc_impl(
     /**
      * Bladerf accept int16_t as input and output samples in int16_t while gnuradio use 2x float to store one sample 
      * */
-    //Because we use two TXs, the size of input samples are interleaved so the buffer for sending should be twice as the d_burst_len
-    _16icbuf_in = reinterpret_cast<int16_t *>(volk_malloc(2*2*d_burst_len*sizeof(int16_t), alignment));
+    //Because we use two TXs, the input samples are interleaved so the size of buffer for sending should be twice as the d_burst_len
     _32fcbuf_in = reinterpret_cast<gr_complex *>(volk_malloc(2*d_burst_len*sizeof(gr_complex), alignment));
+    //_16icbuf_in needs to be twice as the size of _32fcbuf_in
+    _16icbuf_in = reinterpret_cast<int16_t *>(volk_malloc(2*2*d_burst_len*sizeof(int16_t), alignment));
 
-    //Because we use two RXs, the size of output samples are interleaved so the buffer for receiving should be twice as the d_burst_len
-    _16icbuf_out = reinterpret_cast<int16_t *>(volk_malloc(2*2*d_burst_len*sizeof(int16_t), alignment));
-    _32fcbuf_out = reinterpret_cast<gr_complex *>(volk_malloc(2*d_burst_len*sizeof(gr_complex), alignment)); 
+    //Because we use two RXs, the output samples are interleaved so the size of buffer for receiving should be twice as the d_recv_len
+    _32fcbuf_out = reinterpret_cast<gr_complex *>(volk_malloc(2*d_recv_len*sizeof(gr_complex), alignment));
+    //_16icbuf_out need to be twice as the size of _32fcbuf_out
+    _16icbuf_out = reinterpret_cast<int16_t *>(volk_malloc(2*2*d_recv_len*sizeof(int16_t), alignment));
 
     int status = init_device();
     /**
-     * Set input/ouput contrains based on the burst_len
+     * Set input/ouput contrains based on the d_recv_len
      * */
     // two RXs
     set_output_multiple(2);
-    set_min_noutput_items(d_burst_len*num_steps);
-    set_min_output_buffer(d_burst_len*num_steps*2);
+    set_min_noutput_items(d_recv_len*num_steps);
+    set_min_output_buffer(d_recv_len*num_steps*2);
 
 }
 
@@ -155,8 +178,6 @@ int bladerfRadarController_cc_impl::init_device(){
 
     d_scan = false;
     d_continuous_scan_flag = false;
-    d_currrent_freq = d_start_freq;
-    d_max_freq = d_start_freq + d_freq_step * (d_num_steps-1);
 
     /**
      * variables to save the quick retune parameters of each frequency step 
@@ -213,7 +234,7 @@ int bladerfRadarController_cc_impl::init_device(){
         
         /**
          * Configure RX channel 1
-         * This channel is used for receiving ref signal (from a spliter or ditectional coupler)
+         * This channel is used for receiving ref signal 
          * */
         config.channel = BLADERF_CHANNEL_RX(1);
         config.frequency = d_start_freq;
@@ -243,7 +264,7 @@ int bladerfRadarController_cc_impl::init_device(){
         }
         /**
          * Configure TX channel 1
-         * This channel is used for sending ref signal (from a spliter or ditectional coupler)
+         * This channel is used for sending ref signal 
          * */
         config.channel = BLADERF_CHANNEL_TX(1);
         config.frequency = d_start_freq;
@@ -309,36 +330,6 @@ int bladerfRadarController_cc_impl::configure_channel(struct bladerf *dev, struc
         std::cout << "Set chennel" << c->channel << ", samplerate: " << actual_value << std::endl;
     }
 
-    //status = bladerf_set_gain_mode(dev, c->channel, BLADERF_GAIN_MANUAL);
-    //status = bladerf_set_gain_mode(dev, c->channel, BLADERF_GAIN_HYBRID_AGC);
-    //status = bladerf_set_gain_mode(dev, c->channel, BLADERF_GAIN_SLOWATTACK_AGC);
-    /*if (status != 0) {
-        fprintf(stderr, "Failed to set gain mode = %u: %s\n", c->channel,
-        bladerf_strerror(status));
-        return status;
-    }else{
-        std::cout << "Set chennel" << c->channel << ", gain mode: " << BLADERF_GAIN_MANUAL << std::endl;
-    }*/
-
-    /*bladerf_gain_mode current_gain_mode;
-    status = bladerf_get_gain_mode(dev, c->channel, &current_gain_mode);
-    if(status!=0){
-        std::cerr << "Falied to read gain mode from channel: " << c->channel << std::endl;
-    }else{
-        std::cout << "Channel: " << c->channel << ", gain mode: " << current_gain_mode << std::endl;
-    }*/
-
-    /*const bladerf_range *range;
-    status = bladerf_get_gain_range(dev, c->channel, &range);
-    if(status != 0){
-        fprintf(stderr, "Failed to get gain range, channel: %u: %s\n", c->channel,
-        bladerf_strerror(status));
-        return status;
-    }
-    std::cout << "gain range: " << range->min << ": " << range->max << std::endl;
-    std::cout << "gain scale: " << range->scale << std::endl;
-    std::cout << "gain step: " << range->step << std::endl;*/
-
     /**
      * Set gain
      * */
@@ -389,9 +380,9 @@ int bladerfRadarController_cc_impl::init_sync(struct bladerf *dev){
     }
     
     /**
-     * Enable bias tee for TX0
+     * Set bias tee for TX0
      * */
-    status = bladerf_set_bias_tee(dev, BLADERF_CHANNEL_TX(0), true);
+    status = bladerf_set_bias_tee(dev, BLADERF_CHANNEL_TX(0), d_enable_biastee);
     if(status != 0){
         std::cerr << "set channel: " << BLADERF_CHANNEL_TX(0) << " bias tee failed" << std::endl;
     }else{
@@ -401,9 +392,9 @@ int bladerfRadarController_cc_impl::init_sync(struct bladerf *dev){
     }
     
     /**
-     * Enable bias tee of RX_0
+     * Set bias tee of RX_0
      * */
-    status = bladerf_set_bias_tee(dev, BLADERF_CHANNEL_RX(0), true);
+    status = bladerf_set_bias_tee(dev, BLADERF_CHANNEL_RX(0), d_enable_biastee);
     if(status != 0){
         std::cerr << "set channel: " << BLADERF_CHANNEL_RX(0) << " bias tee failed" << std::endl;
     }else{
@@ -411,18 +402,6 @@ int bladerfRadarController_cc_impl::init_sync(struct bladerf *dev){
         status = bladerf_get_bias_tee(dev, BLADERF_CHANNEL_RX(0), &is_bias_tee_enabled);
         std::cout << "bias tee status of chennel " << BLADERF_CHANNEL_RX(0) << " :" << is_bias_tee_enabled << std::endl;
     }
-    
-    /**
-     * Disable bias tee of RX_0
-     * */
-    /*status = bladerf_set_bias_tee(dev, BLADERF_CHANNEL_RX(0), false);
-    if(status != 0){
-        std::cerr << "set channel: " << BLADERF_CHANNEL_RX(0) << " bias tee failed" << std::endl;
-    }else{
-        bool is_bias_tee_enabled = false;
-        status = bladerf_get_bias_tee(dev, BLADERF_CHANNEL_RX(0), &is_bias_tee_enabled);
-        std::cout << "bias tee status of chennel " << BLADERF_CHANNEL_RX(0) << " :" << is_bias_tee_enabled << std::endl;
-    }*/
     
     /**
      * Set AGC of RX_0 (echo)
@@ -434,8 +413,6 @@ int bladerfRadarController_cc_impl::init_sync(struct bladerf *dev){
         fprintf(stderr, "Failed to set gain mode = %u: %s\n", BLADERF_CHANNEL_RX(0),
         bladerf_strerror(status));
         return status;
-    }else{
-        std::cout << "Set chennel" << BLADERF_CHANNEL_RX(0) << ", gain mode" << std::endl;
     }
     
     bladerf_gain_mode current_gain_mode;
@@ -449,15 +426,13 @@ int bladerfRadarController_cc_impl::init_sync(struct bladerf *dev){
     /**
      * Set AGC for RX_1 (ref)
      * */
-    //status = bladerf_set_gain_mode(dev, BLADERF_CHANNEL_RX(1), BLADERF_GAIN_MANUAL);
-    status = bladerf_set_gain_mode(dev, BLADERF_CHANNEL_RX(1), BLADERF_GAIN_HYBRID_AGC);
+    status = bladerf_set_gain_mode(dev, BLADERF_CHANNEL_RX(1), BLADERF_GAIN_MANUAL);
+    //status = bladerf_set_gain_mode(dev, BLADERF_CHANNEL_RX(1), BLADERF_GAIN_HYBRID_AGC);
     //status = bladerf_set_gain_mode(dev, BLADERF_CHANNEL_RX(1), BLADERF_GAIN_SLOWATTACK_AGC);
     if (status != 0) {
         fprintf(stderr, "Failed to set gain mode = %u: %s\n", BLADERF_CHANNEL_RX(1),
         bladerf_strerror(status));
         return status;
-    }else{
-        std::cout << "Set chennel" << BLADERF_CHANNEL_RX(1) << ", gain mode: " << BLADERF_GAIN_MANUAL << std::endl;
     }
 
     status = bladerf_get_gain_mode(dev, BLADERF_CHANNEL_RX(1), &current_gain_mode);
@@ -537,39 +512,36 @@ int bladerfRadarController_cc_impl::init_sync(struct bladerf *dev){
 
 int bladerfRadarController_cc_impl::set_quick_tune(){
     int status;
+    bladerf_frequency freq;
+    freq = d_start_freq;
     for (int i = 0; i < d_num_steps; i++){
-        std::cout << "set quick tune parameters for frequency: " << d_currrent_freq << std::endl;
-        status = bladerf_set_frequency(dev, BLADERF_TX, d_currrent_freq);
+        std::cout << "set quick tune parameters for frequency: " << freq << std::endl;
+        status = bladerf_set_frequency(dev, BLADERF_TX, freq);
         if(status!=0){
-            std::cerr << "set TX frequency to: "<< d_currrent_freq << " failed" << std::endl;
+            std::cerr << "set TX frequency to: "<< freq << " failed" << std::endl;
             return status;
         }
-        d_quick_tunes_tx[i].freq = d_currrent_freq;
+        d_quick_tunes_tx[i].freq = freq;
         status = bladerf_get_quick_tune(dev, BLADERF_TX, &d_quick_tunes_tx[i].quick_tune);
         if(status != 0){
             std::cerr << "failed to get quick tune for TX" << std::endl;
             return status;
         }
         
-        status = bladerf_set_frequency(dev, BLADERF_RX, d_currrent_freq);
+        status = bladerf_set_frequency(dev, BLADERF_RX, freq);
         if(status!=0){
-            std::cerr << "set RX frequency to: "<< d_currrent_freq << " failed" << std::endl;
+            std::cerr << "set RX frequency to: "<< freq << " failed" << std::endl;
             return status;
         }
-        d_quick_tunes_rx[i].freq = d_currrent_freq;
+        d_quick_tunes_rx[i].freq = freq;
         status = bladerf_get_quick_tune(dev, BLADERF_RX, &d_quick_tunes_rx[i].quick_tune);
         if(status != 0){
             std::cerr << "failed to get quick tune for RX" << std::endl;
             return status;
         }
-        d_currrent_freq = d_currrent_freq + d_freq_step;
+        freq = freq + d_step_size;
     }
 
-    /**
-     * set d_currrent_freq to start frequency and frequency index to 0
-     * Upon receiving "scan" message, the module can imediately start sweep the frequencies 
-     * */
-    d_currrent_freq = d_start_freq;
     d_freq_index = 0;
     return status;
 }
@@ -625,6 +597,21 @@ void bladerfRadarController_cc_impl::generate_cw_samples(){
     }
 }
 
+void bladerfRadarController_cc_impl::generate_chirp_samples(){
+    float phase = 0;
+    float f_inst = -d_chirp_bandwidth/2;
+    float dt = 1/(float)d_samp_rate;
+    int _32fcbuf_in_index = 0;
+    memset(_32fcbuf_in,0,d_burst_len*2*sizeof(gr_complex));
+    for (size_t i=0; i<d_burst_len;i++){
+        f_inst = -d_chirp_bandwidth/2 + d_chirp_bandwidth*i/(d_burst_len);
+        phase = phase + 2 * M_PI * f_inst * dt;
+        _32fcbuf_in[_32fcbuf_in_index] = d_cw_amplitude * std::exp(std::complex<float>(0,phase));
+        _32fcbuf_in[_32fcbuf_in_index+1] = _32fcbuf_in[_32fcbuf_in_index];
+        _32fcbuf_in_index = _32fcbuf_in_index+2;
+    }
+}
+
 void bladerfRadarController_cc_impl::handle_scan_msg(const pmt::pmt_t& msg){
     std::cout << "received scan cmd" << std::endl;
     std::cout << pmt::cdr(msg) << std::endl;
@@ -643,44 +630,11 @@ void bladerfRadarController_cc_impl::handle_scan_msg(const pmt::pmt_t& msg){
  * */
 void bladerfRadarController_cc_impl::send(){
     int status;
-    
-    struct bladerf_metadata meta;
-    memset(&meta, 0, sizeof(meta));
-
-    //meta.flags = BLADERF_META_FLAG_TX_BURST_START | BLADERF_META_FLAG_TX_BURST_END | BLADERF_META_FLAG_TX_NOW;*/
-
-    //Retrieve the current timestamp so we can schedule our transmission in the future.
-    /*status = bladerf_get_timestamp(dev, BLADERF_TX, &meta.timestamp);
-    if (status != 0) {
-        fprintf(stderr, "Failed to get current TX timestamp: %s\n",
-                bladerf_strerror(status));
-    } else {
-        //std::cout << "Current TX timestamp " << meta.timestamp << std::endl; 
-    } 
-
-    // Set initial timestamp d_ts_inc_send ms in the future.
-    meta.timestamp += d_ts_inc_send;*/
     status = bladerf_sync_tx(dev, static_cast<void const *>(_16icbuf_in), d_burst_len*2, &d_tx_meta, timeout_ms); 
-
-    if (status == 0){
-        /*status = bladerf_get_timestamp(dev, BLADERF_TX, &meta.timestamp);
-        if (status != 0) {
-            fprintf(stderr, "Failed to get current TX timestamp: %s\n",
-                    bladerf_strerror(status));
-        }
-        //std::cout << "current ts: " << meta.timestamp << std::endl;
-        meta.timestamp += d_burst_len;
-        wait_for_timestamp(dev, BLADERF_TX, meta.timestamp, timeout_ms);*/
-    }
-    else{
-        std::cerr << "sending failed: " << bladerf_strerror(status) << std::endl;
-    }
-
-    /*status = bladerf_sync_tx(dev, static_cast<void const *>(_16icbuf_in), d_burst_len*2, NULL, timeout_ms*2); 
 
     if (status != 0){
         std::cerr << "sending failed: " << bladerf_strerror(status) << std::endl;
-    }*/
+    }
 }
 
 /**
@@ -690,43 +644,13 @@ void bladerfRadarController_cc_impl::send(){
  * */
 void bladerfRadarController_cc_impl::recv(){
     int status;
-    /**
-     * scheduled receiving
-     * */
-    /*struct bladerf_metadata meta;
-    memset(&meta,0,sizeof(meta));
-    //ensure BLADERF_META_FLAG_RX_NOW is cleared
-    meta.flags = 0;
-    meta.flags = BLADERF_META_FLAG_RX_NOW;*/
-
-    //Retrieve the current timestamp 
-    /*status = bladerf_get_timestamp(dev, BLADERF_RX, &meta.timestamp);
-    if (status != 0) {
-        fprintf(stderr, "Failed to get current RX timestamp: %s\n",
-                bladerf_strerror(status));
-    } else {
-        //std::cout << "Current RX timestamp " << meta.timestamp << std::endl; 
-    } 
-
-    //schedule first RX to be d_ts_inc_rec ms in the future.
-    meta.timestamp += d_ts_inc_rec;*/
-    status = bladerf_sync_rx(dev, static_cast<void *>(_16icbuf_out),
-            d_burst_len*2, &d_rx_meta, timeout_ms);
+    status = bladerf_sync_rx(dev, static_cast<void *>(_16icbuf_out), d_recv_len*2, &d_rx_meta, timeout_ms);
 
     if (status != 0){
         std::cerr << "receiving failed: " << bladerf_strerror(status) << std::endl;
     }else if (d_rx_meta.status & BLADERF_META_STATUS_OVERRUN){
        std::cerr << "Overrun detected in scheduled RX. Number of samples read is: " << d_rx_meta.actual_count << std::endl;
     }
-    
-    /*status = bladerf_sync_rx(dev, static_cast<void *>(_16icbuf_out),
-            d_burst_len*2, NULL, timeout_ms*2);
-
-    if (status != 0){
-        std::cerr << "receiving failed: " << bladerf_strerror(status) << std::endl;
-    }*/
-    //memcpy(_16icbuf_out, _16icbuf_in, d_burst_len*2*2*sizeof(int16_t));
-    //memcpy(_32fcbuf_out, _32fcbuf_in, d_burst_len*2*sizeof(gr_complex));
 }
 
 void bladerfRadarController_cc_impl::tune_rx(){
@@ -755,8 +679,6 @@ int bladerfRadarController_cc_impl::quick_tune(){
 
     //std::cout<<"tunning rx to: " << d_quick_tunes_rx[index].freq << std::endl;
     int status = bladerf_schedule_retune(dev, BLADERF_RX, BLADERF_RETUNE_NOW, 0, &d_quick_tunes_rx[d_freq_index].quick_tune);
-    //int status = bladerf_schedule_retune(dev, BLADERF_RX, d_tx_meta.timestamp, 0, &d_quick_tunes_rx[d_freq_index].quick_tune);
-    //int status = bladerf_set_frequency(dev, BLADERF_RX, d_quick_tunes_rx[index].freq);
     if(status != 0){
         std::cerr << "failed to tune RX: " << bladerf_strerror(status) << std::endl;
         return status;
@@ -767,7 +689,6 @@ int bladerfRadarController_cc_impl::quick_tune(){
     status = bladerf_schedule_retune(dev, BLADERF_TX, BLADERF_RETUNE_NOW, 0, &d_quick_tunes_tx[d_freq_index].quick_tune);
     //std::chrono::steady_clock::time_point tune_end = std::chrono::steady_clock::now();
     //std::cout << "Time used for tuning = " << std::chrono::duration_cast<std::chrono::microseconds>(tune_end - tune_begin).count() << "[µs]" << std::endl;
-    //status = bladerf_set_frequency(dev, BLADERF_TX, d_quick_tunes_tx[index].freq);
     if(status != 0){
         std::cerr << "failed to tune TX: " << bladerf_strerror(status) << std::endl;
         return status;
@@ -784,43 +705,53 @@ int bladerfRadarController_cc_impl::work(int noutput_items,
                                          gr_vector_const_void_star& input_items,
                                          gr_vector_void_star& output_items)
 {
-    //auto out = static_cast<output_type*>(output_items[0]);
+    /**
+     * Pointer to output
+     * */
     gr_complex **out = reinterpret_cast<gr_complex **>(&output_items[0]);
+    /**
+     * Make sure the flags of tx and rx are correct
+     * */
     d_tx_meta.flags = BLADERF_META_FLAG_TX_BURST_START | BLADERF_META_FLAG_TX_BURST_END;
     d_rx_meta.flags = 0;
     if(d_scan == true){
         std::cout << "scanning..." << std::endl;
         begin = std::chrono::steady_clock::now();
-        /*int status = bladerf_get_timestamp(dev, BLADERF_TX, &d_tx_meta.timestamp);
-        if (status != 0) {
-            fprintf(stderr, "Failed to get current TX timestamp: %s\n", bladerf_strerror(status));
-        } else {
-            std::cout << "Current TX timestamp " << d_tx_meta.timestamp << std::endl; 
-        } 
-        d_tx_meta.timestamp = d_tx_meta.timestamp + d_ts_inc_tune;*/
         //add a new scan tag
         pmt::pmt_t new_scan_tag_key = pmt::string_to_symbol("newScan");
         pmt::pmt_t new_scan_tag_value = pmt::PMT_T;
         add_item_tag(0,nitems_written(0),new_scan_tag_key,new_scan_tag_value);
+
+        //create newFreq tag
         pmt::pmt_t new_freq_tag_key = pmt::string_to_symbol("newFreq");
         // scan cmd received, start sweeping the bandwidth
         for (int i = 0; i < d_num_steps; i++){
             //add a new freq tag
-            //pmt::pmt_t new_freq_tag_key = pmt::string_to_symbol("newFreq");
             pmt::pmt_t new_freq_tag_value = pmt::from_uint64(i);
-            add_item_tag(0,nitems_written(0)+i*d_burst_len,new_freq_tag_key,new_freq_tag_value);
-            //std::cout << "step " << i << std::endl;
-            //1. tune frequency
+            add_item_tag(0,nitems_written(0)+i*d_recv_len,new_freq_tag_key,new_freq_tag_value);
+            
+            /**
+             * Tune frequency to the next step
+             * */
             d_freq_index = i;
             quick_tune();
-            //2. generate samples
-            generate_cw_samples();
-            //std::cout << "generate_cw_samples" << std::endl;
-            // convert floating point to fixed point and scale
-            // input_items is gr_complex (2x float), so num_points is 2*noutput_items
+            
+            /**
+             * Generate pulse samples, the generated samples for two TXs are stored in _32fcbuf_in
+             * */
+            if (d_isChirp){
+                //Chirp pulse
+                generate_chirp_samples();
+            }else{
+                //Sine pulse
+                generate_cw_samples();
+            }
+            /** 
+             * convert floating point to fixed point and scale
+             * input_items is gr_complex (2x float), for 2 TXs, so num_points is 2*2*d_burst_len
+             * */
             volk_32f_s32f_convert_16i(_16icbuf_in, reinterpret_cast<float const *>(_32fcbuf_in),
                             SCALING_FACTOR, 2*2*d_burst_len);
-            //std::cout << "volk_32f_s32f_convert_16i" << std::endl;
             /**
             * create sending and receiving threads
             * */
@@ -828,13 +759,9 @@ int bladerfRadarController_cc_impl::work(int noutput_items,
             if (status != 0) {
                 fprintf(stderr, "Failed to get current TX timestamp: %s\n", bladerf_strerror(status));
             }
+            //schedule tx and tx in the future
             d_tx_meta.timestamp += d_ts_inc_send;
             d_rx_meta.timestamp = d_tx_meta.timestamp + d_ts_inc_rec;
-            //d_tx_meta.flags = BLADERF_META_FLAG_TX_BURST_START | BLADERF_META_FLAG_TX_BURST_END;
-            //d_rx_meta.flags = 0;
-            //std::cout << "receive at: " << d_rx_meta.timestamp << "; send at: " << d_tx_meta.timestamp << std::endl;
-            //std::cout << "tx_meta.flags = " << d_tx_meta.flags << "; rx_meta.flags = " << d_rx_meta.flags << std::endl;
-            //std::cout << "sending cw in frequency: " << d_currrent_freq << ", freq_index = " << d_freq_index << std::endl;
             d_thread_recv = gr::thread::thread(boost::bind(&bladerfRadarController_cc_impl::recv, this)); 
             d_thread_send = gr::thread::thread(boost::bind(&bladerfRadarController_cc_impl::send, this));
     
@@ -842,21 +769,22 @@ int bladerfRadarController_cc_impl::work(int noutput_items,
             d_thread_recv.join();
             d_thread_send.join();
             //std::cout << "threads ended" << std::endl;
+            
             /**
             * process received samples
             * */
             // convert from int16_t to float
-            // output_items is gr_complex (2x float), so num_points is 2*noutput_items
+            // output_items is gr_complex (2x float), receiving from 2 RXs, so num_points is 2*2*d_recv_len
             volk_16i_s32f_convert_32f(reinterpret_cast<float *>(_32fcbuf_out), _16icbuf_out,
-                            SCALING_FACTOR, 2*2*d_burst_len);
-            //std::cout << "process received samples" << std::endl;
+                            SCALING_FACTOR, 2*2*d_recv_len);
 
             //std::cout << "copy the samples into output_items" <<std::endl;
             // we need to deinterleave the multiplex as we copy
             gr_complex const *deint_in = _32fcbuf_out;
+            //gr_complex const *deint_in = _32fcbuf_in;
 
             //std::cout << "deinterleave" << std::endl;
-            for (size_t i = 0; i < (d_burst_len); ++i) {
+            for (size_t i = 0; i < (d_recv_len); ++i) {
                 for (size_t n = 0; n < 2; ++n) {
                     memcpy(out[n]++, deint_in++, sizeof(gr_complex));
                 }
@@ -871,7 +799,7 @@ int bladerfRadarController_cc_impl::work(int noutput_items,
         return 0;
     }
     //std::cout << "return: " << d_num_steps*d_burst_len << std::endl;
-    return d_num_steps*d_burst_len;
+    return d_num_steps*d_recv_len;
 }
 
 } /* namespace sfcwRadar */

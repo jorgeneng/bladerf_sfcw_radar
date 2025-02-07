@@ -27,20 +27,23 @@ To avoid accidental use of raw pointers, sfcwRadar::bladerfRadarController_cc's 
 Args:
     start_freq : 
     num_steps : 
-    freq_step : 
+    step_size : 
     samp_rate : 
     rx_gain : 
     tx_gain : 
     ref_gain : 
+    enable_biastee : 
     burst_len : 
+    recv_buf_len : 
     num_buffers : 
     buffer_size : 
     num_transfers : 
     cw_amplitude : 
     cw_frequency : 
+    isChirp : 
+    chirp_bandwidth : 
     ts_inc_send : 
-    ts_inc_recv : 
-    ts_inc_tune : )doc";
+    ts_inc_recv : )doc";
 
 
  static const char *__doc_gr_sfcwRadar_bladerfRadarController_cc_bladerfRadarController_cc = R"doc()doc";
@@ -57,19 +60,22 @@ To avoid accidental use of raw pointers, sfcwRadar::bladerfRadarController_cc's 
 Args:
     start_freq : 
     num_steps : 
-    freq_step : 
+    step_size : 
     samp_rate : 
     rx_gain : 
     tx_gain : 
     ref_gain : 
+    enable_biastee : 
     burst_len : 
+    recv_buf_len : 
     num_buffers : 
     buffer_size : 
     num_transfers : 
     cw_amplitude : 
     cw_frequency : 
+    isChirp : 
+    chirp_bandwidth : 
     ts_inc_send : 
-    ts_inc_recv : 
-    ts_inc_tune : )doc";
+    ts_inc_recv : )doc";
 
   

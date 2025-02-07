@@ -150,7 +150,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: 20e6
+    value: 15e6
   states:
     bus_sink: false
     bus_source: false
@@ -162,7 +162,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: '64'
+    value: '128'
   states:
     bus_sink: false
     bus_source: false
@@ -190,7 +190,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: '30'
+    value: '20'
   states:
     bus_sink: false
     bus_source: false
@@ -1151,7 +1151,7 @@ blocks:
   parameters:
     affinity: ''
     alias: ''
-    buffer_size: '1024'
+    buffer_size: '2048'
     burst_len: burst_len
     comment: ''
     cw_amplitude: cw_amp

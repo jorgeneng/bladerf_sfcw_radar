@@ -40,11 +40,11 @@ endif()
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python3.8/dist-packages/gnuradio/sfcwRadar" TYPE FILE FILES
     "/home/hui/gr-sfcwRadar/python/sfcwRadar/__init__.py"
-    "/home/hui/gr-sfcwRadar/python/sfcwRadar/frequencyTunner.py"
-    "/home/hui/gr-sfcwRadar/python/sfcwRadar/radarTxRxSimulator.py"
     "/home/hui/gr-sfcwRadar/python/sfcwRadar/rangeProfileSink.py"
     "/home/hui/gr-sfcwRadar/python/sfcwRadar/calibration.py"
     "/home/hui/gr-sfcwRadar/python/sfcwRadar/matchedFilter.py"
+    "/home/hui/gr-sfcwRadar/python/sfcwRadar/findPeak.py"
+    "/home/hui/gr-sfcwRadar/python/sfcwRadar/rawSamplesSink.py"
     )
 endif()
 

@@ -21,11 +21,11 @@ add_subdirectory(bindings)
 ########################################################################
 gr_python_install(FILES 
     __init__.py 
-    frequencyTunner.py
-    radarTxRxSimulator.py
     rangeProfileSink.py
     calibration.py
     matchedFilter.py
+    findPeak.py
+    rawSamplesSink.py
     DESTINATION ${GR_PYTHON_DIR}/gnuradio/sfcwRadar)
 
 ########################################################################

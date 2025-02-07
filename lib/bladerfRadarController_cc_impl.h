@@ -40,7 +40,7 @@ private:
     struct bladerf_devinfo dev_info;
     
     /**
-     * bladerf buffer setup
+     * bladerf tx/rx buffer setup
      * */
     size_t d_num_buffers;
     size_t d_buffer_size;
@@ -48,23 +48,36 @@ private:
     const unsigned int timeout_ms = 4000;
 
     /**
-     * Stepped frequency radar parameters
+     * number of samples to transmit at each frequency step
      * */
-    size_t d_burst_len;
+    size_t d_burst_len; 
+    /**
+     * number of samples to receive at each frequency step
+     * It is prefer to set d_recv_len > d_burst_len when using chirp pulse
+     * */
+    size_t d_recv_len; 
     int d_num_steps; // number of frequency steps
     int d_samp_rate;
     bladerf_gain d_rx_gain;
     bladerf_gain d_tx_gain;
     bladerf_gain d_ref_gain;
+    bool d_enable_biastee;
     bladerf_frequency d_start_freq; //the radar starts from this frequency
-    bladerf_frequency d_freq_step;  //the bandwidth of each frequency step
-    bladerf_frequency d_currrent_freq;  //current frequency of the radar
-    bladerf_frequency d_max_freq; //the radar goes back to d_start_freq until it reaches here
+    bladerf_frequency d_step_size;  //the bandwidth of each frequency step
     int d_freq_index;
-
+    
+    /**
+     * FPGA time steps to wait for transmission after frequency tunning finished
+     * */
     uint64_t d_ts_inc_rec;
+    /**
+     * keep this 0
+     * */
     uint64_t d_ts_inc_send;
-    uint64_t d_ts_inc_tune;
+
+    /**
+     * Tx and Rx metadata
+     * */
     struct bladerf_metadata d_rx_meta;
     struct bladerf_metadata d_tx_meta;
 
@@ -84,12 +97,12 @@ private:
      * */
     bool d_scan = false;
     bool d_continuous_scan_flag = false;
+    /**
+     * Preserved for store current gps
+     * */
     float d_gps_x = 0;
     float d_gps_y = 0;
 
-    // Sample-handling buffers
-    unsigned int d_num_samples_to_send;
-    unsigned int d_num_samples_to_recv;
     
     int16_t *_16icbuf_in;              /**< raw samples to bladeRF */
     gr_complex *_32fcbuf_in;           /**< intermediate buffer from upstream block */ 
@@ -104,11 +117,11 @@ private:
     
     /**
      * 1. Configure both the device's X2 RX and X2 TX channels for use with the
-     * synchronous interface. SC16 Q11 samples *without* metadata are used.
-     * Use BLADERF_FORMAT_SC16_Q11 instead of BLADERF_FORMAT_SC16_Q11_META cause the META mode does not work with two RXs due to FPGA bug
-     * 2. Enable BLADERF_CHANNEL_RX(0), BLADERF_CHANNEL_RX(1) and BLADERF_CHANNEL_TX(0)
+     * synchronous interface. SC16 Q11 samples *with* metadata are used.
+     * TX0 and RX0 are used for transmitting and receiving radar echos
+     * TX1 and RX1 are used for transmitting and receiving ref signals
+     * 2. Enable BLADERF_CHANNEL_RX(0), BLADERF_CHANNEL_RX(1), BLADERF_CHANNEL_TX(0) and BLADERF_CHANNEL_TX(1) 
      * 3. Read gains of the above three channel to confirm if gain setup was success
-     * 4. Initialize _16icbuf_in, _32fcbuf_in, _16icbuf_out and _32fcbuf_out buffers
      * */
     int init_sync(struct bladerf *dev);
     
@@ -117,7 +130,6 @@ private:
      * 1. LO frequency 
      * 2. Sample rate
      * 3. gain
-     * 4. Disable AGC 
      *
      * return 0 if everything is OK
      * */
@@ -145,6 +157,13 @@ private:
      * generate cw samples
      * */
     void generate_cw_samples();
+
+    /**
+     * generate chirp samples
+     * */
+    bool d_isChirp = false;
+    float d_chirp_bandwidth = 5e6;
+    void generate_chirp_samples();
     
     void send();
     void recv();
@@ -155,20 +174,23 @@ private:
 public:
     bladerfRadarController_cc_impl(bladerf_frequency start_freq,
                                    int num_steps,
-                                   bladerf_frequency freq_step,
+                                   bladerf_frequency step_size,
                                    int samp_rate,
                                    bladerf_gain rx_gain,
                                    bladerf_gain tx_gain,
                                    bladerf_gain ref_gain,
+                                   bool enable_biastee,
                                    size_t burst_len,
+                                   size_t recv_buf_len,
                                    size_t num_buffers,
                                    size_t buffer_size,
                                    size_t num_transfers,
                                    float cw_amplitude,
                                    float cw_frequency,
+                                   bool isChirp,
+                                   float chirp_bandwidth,
                                    float ts_inc_send,
-                                   float ts_inc_recv,
-                                   float ts_inc_tune);
+                                   float ts_inc_recv);
     ~bladerfRadarController_cc_impl();
 
     /**
@@ -177,14 +199,15 @@ public:
     gr::thread::thread d_thread_send; 
     gr::thread::thread d_thread_recv; 
     
+    /**
+     * thread handles for tx and rx tuning 
+     * */
     gr::thread::thread d_thread_rx_freq_tuning; 
     gr::thread::thread d_thread_tx_freq_tuning; 
     
     std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
     std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
 
-    void update_gps();
-    
     // Where all the action really happens
     int work(int noutput_items,
              gr_vector_const_void_star& input_items,

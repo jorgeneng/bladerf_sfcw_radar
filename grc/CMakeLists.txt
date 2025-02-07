@@ -6,13 +6,10 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 #
 install(FILES
-    sfcwRadar_radarTxRxSimulator.block.yml
-    sfcwRadar_frequencyTunner.block.yml
-    sfcwRadar_bladerfRadarBurst_cc.block.yml
     sfcwRadar_rangeProfileSink.block.yml
-    sfcwRadar_rawSignalSink_cc.block.yml
     sfcwRadar_bladerfRadarMIMO.block.yml
     sfcwRadar_calibration.block.yml
     sfcwRadar_bladerfRadarController_cc.block.yml
     sfcwRadar_matchedFilter.block.yml
-    DESTINATION share/gnuradio/grc/blocks)
+    sfcwRadar_findPeak.block.yml
+    sfcwRadar_rawSamplesSink.block.yml DESTINATION share/gnuradio/grc/blocks)

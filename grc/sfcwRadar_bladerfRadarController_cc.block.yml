@@ -4,7 +4,7 @@ category: '[sfcwRadar]'
 
 templates:
   imports: from gnuradio import sfcwRadar
-  make: sfcwRadar.bladerfRadarController_cc(${start_freq}, ${num_steps}, ${freq_step}, ${samp_rate}, ${rx_gain}, ${tx_gain}, ${ref_gain}, ${burst_len}, ${num_buffers}, ${buffer_size}, ${num_transfers}, ${cw_amplitude}, ${cw_frequency}, ${ts_inc_send}, ${ts_inc_recv}, ${ts_inc_tune})
+  make: sfcwRadar.bladerfRadarController_cc(${start_freq}, ${num_steps}, ${step_size}, ${samp_rate}, ${rx_gain}, ${tx_gain}, ${ref_gain}, ${enable_biastee}, ${burst_len}, ${recv_buf_len}, ${num_buffers}, ${buffer_size}, ${num_transfers}, ${cw_amplitude}, ${cw_frequency}, ${isChirp}, ${chirp_bandwidth}, ${ts_inc_send}, ${ts_inc_recv})
 
 #  Make one 'parameters' list entry for every parameter you want settable from the GUI.
 #     Keys include:
@@ -14,34 +14,46 @@ templates:
 #     * default
 parameters:
 - id: start_freq
-  label: starting frequency
+  label: Starting frequency
   dtype: int
 - id: num_steps
-  label: num_steps
+  label: Num of steps
   dtype: int
-- id: freq_step
-  label: freq_step
+- id: step_size
+  label: Step bandwidth
   dtype: int
 - id: cw_amplitude
-  label: amplitude of cw
+  label: Amplitude of pulse
   dtype: float
 - id: cw_frequency
-  label: frequency of cw
+  label: frequency of baseband
+  dtype: float
+- id: isChirp
+  label: use chirp waveform?
+  dtype: bool
+- id: chirp_bandwidth
+  label: Chirp bandwidth
   dtype: float
 - id: samp_rate
-  label: samp_rate
+  label: Sampling rate
   dtype: int
 - id: rx_gain
-  label: rx_gain
+  label: Gain of RX0
   dtype: int
 - id: tx_gain
-  label: tx_gain
+  label: Gain of TX0
   dtype: int
 - id: ref_gain
-  label: ref_gain
+  label: Gain of TX1&RX1
   dtype: int
+- id: enable_biastee
+  label: Enable biastee for TX0&RX0
+  dtype: bool
 - id: burst_len
-  label: burst_len
+  label: Number of pulse samples
+  dtype: int
+- id: recv_buf_len
+  label: Number of samples to receive
   dtype: int
 - id: num_buffers 
   label: num_buffers
@@ -53,13 +65,10 @@ parameters:
   label: num_transfers
   dtype: int
 - id: ts_inc_send
-  label: ts_inc_send
+  label: Time(ms) to wait for TX/RX
   dtype: float
 - id: ts_inc_recv
-  label: ts_inc_recv
-  dtype: float
-- id: ts_inc_tune
-  label: ts_inc_tune
+  label: Keep this zero
   dtype: float
 #- id: ...
 #  label: ...

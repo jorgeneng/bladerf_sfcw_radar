@@ -295,14 +295,12 @@
 /usr/local/share/doc/gr-sfcwRadar/html/classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__inherit__graph.map
 /usr/local/share/doc/gr-sfcwRadar/html/bladerfRadarController__cc__impl_8h__incl.md5
 /usr/local/lib/python3.8/dist-packages/gnuradio/sfcwRadar/__init__.py
-/usr/local/lib/python3.8/dist-packages/gnuradio/sfcwRadar/frequencyTunner.py
-/usr/local/lib/python3.8/dist-packages/gnuradio/sfcwRadar/radarTxRxSimulator.py
 /usr/local/lib/python3.8/dist-packages/gnuradio/sfcwRadar/rangeProfileSink.py
 /usr/local/lib/python3.8/dist-packages/gnuradio/sfcwRadar/calibration.py
 /usr/local/lib/python3.8/dist-packages/gnuradio/sfcwRadar/matchedFilter.py
+/usr/local/lib/python3.8/dist-packages/gnuradio/sfcwRadar/findPeak.py
+/usr/local/lib/python3.8/dist-packages/gnuradio/sfcwRadar/rawSamplesSink.py
 /usr/local/lib/python3.8/dist-packages/gnuradio/sfcwRadar/sfcwRadar_python.cpython-38-x86_64-linux-gnu.so
-/usr/local/share/gnuradio/grc/blocks/sfcwRadar_radarTxRxSimulator.block.yml
-/usr/local/share/gnuradio/grc/blocks/sfcwRadar_frequencyTunner.block.yml
 /usr/local/share/gnuradio/grc/blocks/sfcwRadar_bladerfRadarBurst_cc.block.yml
 /usr/local/share/gnuradio/grc/blocks/sfcwRadar_rangeProfileSink.block.yml
 /usr/local/share/gnuradio/grc/blocks/sfcwRadar_rawSignalSink_cc.block.yml
@@ -310,3 +308,5 @@
 /usr/local/share/gnuradio/grc/blocks/sfcwRadar_calibration.block.yml
 /usr/local/share/gnuradio/grc/blocks/sfcwRadar_bladerfRadarController_cc.block.yml
 /usr/local/share/gnuradio/grc/blocks/sfcwRadar_matchedFilter.block.yml
+/usr/local/share/gnuradio/grc/blocks/sfcwRadar_findPeak.block.yml
+/usr/local/share/gnuradio/grc/blocks/sfcwRadar_rawSamplesSink.block.yml

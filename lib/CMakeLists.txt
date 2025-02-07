@@ -11,8 +11,6 @@
 ########################################################################
 include(GrPlatform) #define LIB_SUFFIX
 list(APPEND sfcwRadar_sources
-    bladerfRadarBurst_cc_impl.cc
-    rawSignalSink_cc_impl.cc
     bladerfRadarMIMO_impl.cc
     bladerfRadarController_cc_impl.cc)
 

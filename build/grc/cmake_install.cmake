@@ -39,8 +39,6 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/gnuradio/grc/blocks" TYPE FILE FILES
-    "/home/hui/gr-sfcwRadar/grc/sfcwRadar_radarTxRxSimulator.block.yml"
-    "/home/hui/gr-sfcwRadar/grc/sfcwRadar_frequencyTunner.block.yml"
     "/home/hui/gr-sfcwRadar/grc/sfcwRadar_bladerfRadarBurst_cc.block.yml"
     "/home/hui/gr-sfcwRadar/grc/sfcwRadar_rangeProfileSink.block.yml"
     "/home/hui/gr-sfcwRadar/grc/sfcwRadar_rawSignalSink_cc.block.yml"
@@ -48,6 +46,8 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
     "/home/hui/gr-sfcwRadar/grc/sfcwRadar_calibration.block.yml"
     "/home/hui/gr-sfcwRadar/grc/sfcwRadar_bladerfRadarController_cc.block.yml"
     "/home/hui/gr-sfcwRadar/grc/sfcwRadar_matchedFilter.block.yml"
+    "/home/hui/gr-sfcwRadar/grc/sfcwRadar_findPeak.block.yml"
+    "/home/hui/gr-sfcwRadar/grc/sfcwRadar_rawSamplesSink.block.yml"
     )
 endif()
 

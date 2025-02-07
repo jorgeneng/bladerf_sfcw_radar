@@ -20,10 +20,13 @@ except ModuleNotFoundError:
     pass
 
 # import any pure python here
-from .frequencyTunner import frequencyTunner
+
 from .rangeProfileSink import rangeProfileSink
 from .calibration import calibration
 from .matchedFilter import matchedFilter
+from .findPeak import findPeak
+from .rawSamplesSink import rawSamplesSink
+
 
 
 
