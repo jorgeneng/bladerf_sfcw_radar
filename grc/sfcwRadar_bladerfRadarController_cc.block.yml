@@ -5,6 +5,11 @@ category: '[sfcwRadar]'
 templates:
   imports: from gnuradio import sfcwRadar
   make: sfcwRadar.bladerfRadarController_cc(${start_freq}, ${num_steps}, ${step_size}, ${samp_rate}, ${rx_gain}, ${tx_gain}, ${ref_gain}, ${enable_biastee}, ${burst_len}, ${recv_buf_len}, ${num_buffers}, ${buffer_size}, ${num_transfers}, ${cw_amplitude}, ${cw_frequency}, ${isChirp}, ${chirp_bandwidth}, ${ts_inc_send}, ${ts_inc_recv})
+  callbacks:
+    - set_tx_gain(${tx_gain})
+    - set_rx_gain(${rx_gain})
+    - set_ref_gain(${ref_gain})
+    - set_chirp_bandwidth(${chirp_bandwidth})
 
 #  Make one 'parameters' list entry for every parameter you want settable from the GUI.
 #     Keys include:
@@ -96,10 +101,10 @@ outputs:
 #  dtype: ...
 #  vlen: ...
 #  optional: ...
-- label: rx
+- label: out0
   domain: stream
   dtype: complex
-- label: ref
+- label: out1
   domain: stream
   dtype: complex
 

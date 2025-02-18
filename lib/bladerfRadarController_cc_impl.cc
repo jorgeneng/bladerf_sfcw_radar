@@ -104,27 +104,6 @@ bladerfRadarController_cc_impl::bladerfRadarController_cc_impl(
     d_rx_gain = rx_gain;
     d_ref_gain = ref_gain;
     d_enable_biastee = enable_biastee;
-    std::cout << "start frequency: " << d_start_freq << std::endl;
-    std::cout << "bandiwdth between two consecutive frequency step: " << d_step_size << std::endl;
-    std::cout << "num of steps: " << d_num_steps << std::endl;
-    std::cout << "max frequency: " << d_start_freq + d_step_size * (num_steps-1) << std::endl; 
-    std::cout << "sampling rate: " << samp_rate << std::endl; 
-    
-    /**
-     * FPGA time steps to wait for transmission after frequency tunning
-     * */
-    d_ts_inc_rec = (uint64_t)(d_samp_rate * ts_inc_recv)/1000;
-    d_ts_inc_send = (uint64_t)(d_samp_rate * ts_inc_send)/1000;
-    
-    /**
-     * Initialize tx and rx metadata
-     * */
-    memset(&d_rx_meta, 0, sizeof(d_rx_meta));
-    memset(&d_tx_meta, 0, sizeof(d_tx_meta));
-    d_tx_meta.flags = BLADERF_META_FLAG_TX_BURST_START | BLADERF_META_FLAG_TX_BURST_END; //send as burst
-    //std::cout << "d_tx_meta.flags = " << d_tx_meta.flags << std::endl;
-    //std::cout << (BLADERF_META_FLAG_TX_BURST_START | BLADERF_META_FLAG_TX_BURST_END) << std::endl;
-
     d_burst_len = burst_len;
     std::cout << "burst_len: " << d_burst_len << std::endl;
     d_recv_len = recv_buf_len;
@@ -142,6 +121,31 @@ bladerfRadarController_cc_impl::bladerfRadarController_cc_impl(
     d_cw_frequency = cw_frequency;
     d_isChirp = isChirp;
     d_chirp_bandwidth = chirp_bandwidth;
+    d_channel_bandwidth = d_chirp_bandwidth;
+
+    std::cout << "**************************Summary of Radar parameters*************************" << std::endl;
+    std::cout << "Start frequency: " << d_start_freq << std::endl;
+    std::cout << "Bandiwdth between two consecutive frequency step: " << d_step_size << std::endl;
+    std::cout << "Num of steps: " << d_num_steps << std::endl;
+    std::cout << "Max frequency: " << d_start_freq + d_step_size * (num_steps-1) << std::endl; 
+    std::cout << "Sampling rate: " << samp_rate << std::endl; 
+    std::cout << "Is biastee enabled: " << d_enable_biastee << std::endl; 
+    std::cout << "Is chirp waveform used:" << d_isChirp << std::endl; 
+    
+    /**
+     * FPGA time steps to wait for transmission after frequency tunning
+     * */
+    d_ts_inc_rec = (uint64_t)(d_samp_rate * ts_inc_recv)/1000;
+    d_ts_inc_send = (uint64_t)(d_samp_rate * ts_inc_send)/1000;
+    
+    /**
+     * Initialize tx and rx metadata
+     * */
+    memset(&d_rx_meta, 0, sizeof(d_rx_meta));
+    memset(&d_tx_meta, 0, sizeof(d_tx_meta));
+    d_tx_meta.flags = BLADERF_META_FLAG_TX_BURST_START | BLADERF_META_FLAG_TX_BURST_END; //send as burst
+    //std::cout << "d_tx_meta.flags = " << d_tx_meta.flags << std::endl;
+    //std::cout << (BLADERF_META_FLAG_TX_BURST_START | BLADERF_META_FLAG_TX_BURST_END) << std::endl;
 
     /* Set up constraints */
     int const alignment_multiple = volk_get_alignment() / sizeof(gr_complex);
@@ -176,6 +180,7 @@ bladerfRadarController_cc_impl::bladerfRadarController_cc_impl(
 
 int bladerfRadarController_cc_impl::init_device(){
 
+    std::cout << "*************************Initialize device************************" <<std::endl;
     d_scan = false;
     d_continuous_scan_flag = false;
 
@@ -211,7 +216,8 @@ int bladerfRadarController_cc_impl::init_device(){
         /**
          * set tunning mode to FPGA to get fast frequency tunning
          * */
-        bladerf_set_tuning_mode(dev, BLADERF_TUNING_MODE_FPGA);
+        //bladerf_set_tuning_mode(dev, BLADERF_TUNING_MODE_FPGA);
+        bladerf_set_tuning_mode(dev, BLADERF_TUNING_MODE_HOST);
         bladerf_tuning_mode current_mode;
         bladerf_get_tuning_mode(dev, &current_mode);
         std::cout << "Tunning mode is: " << current_mode << std::endl;
@@ -220,62 +226,62 @@ int bladerfRadarController_cc_impl::init_device(){
          * Configure RX channel 0. 
          * RX channel 1 is used for receiving echo signals
          * */
-        config.channel = BLADERF_CHANNEL_RX(0);
+        config.channel = RADAR_RX;
         config.frequency = d_start_freq;
-        config.bandwidth = d_samp_rate/2;
+        config.bandwidth = d_chirp_bandwidth;//d_samp_rate/2;
         config.samplerate = d_samp_rate;
         config.gain = d_rx_gain;
         status = configure_channel(dev, &config);
         if (status !=0){
-            std::cerr << "RX Channel " << config.channel << ": configure_channel failed" << std::endl;
+            std::cerr << "Channel " << config.channel << ": configure_channel failed" << std::endl;
         }else{
-            std::cout << "RX channel " << config.channel << ": configure_channel succed" << std::endl;
+            std::cout << "Channel " << config.channel << ": configure_channel succed" << std::endl;
         }
         
         /**
          * Configure RX channel 1
          * This channel is used for receiving ref signal 
          * */
-        config.channel = BLADERF_CHANNEL_RX(1);
+        config.channel = REF_RX;
         config.frequency = d_start_freq;
-        config.bandwidth = d_samp_rate/2;
+        config.bandwidth = d_channel_bandwidth;//d_samp_rate/2;
         config.samplerate = d_samp_rate;
         config.gain = d_ref_gain;
         status = configure_channel(dev, &config);
         if (status !=0){
-            std::cerr << "RX Channel " << config.channel << ": configure_channel failed" << std::endl;
+            std::cerr << "Channel " << config.channel << ": configure_channel failed" << std::endl;
         }else{
-            std::cout << "RX channel " << config.channel << ": configure_channel succed" << std::endl;
+            std::cout << "Channel " << config.channel << ": configure_channel succed" << std::endl;
         }
         /**
          * Configure TX channel 0
          * This channel is used for sending radar signal 
          * */
-        config.channel = BLADERF_CHANNEL_TX(0);
+        config.channel = RADAR_TX;
         config.frequency = d_start_freq;
-        config.bandwidth = d_samp_rate/2;
+        config.bandwidth = d_chirp_bandwidth;//d_samp_rate/2;
         config.samplerate = d_samp_rate;
         config.gain = d_tx_gain;
         status = configure_channel(dev, &config);
         if (status !=0){
-            std::cerr << "TX Channel " << config.channel << ": configure_channel failed" << std::endl;
+            std::cerr << "Channel " << config.channel << ": configure_channel failed" << std::endl;
         }else{
-            std::cout << "TX channel " << config.channel << ": configure_channel succed" << std::endl;
+            std::cout << "Channel " << config.channel << ": configure_channel succed" << std::endl;
         }
         /**
          * Configure TX channel 1
          * This channel is used for sending ref signal 
          * */
-        config.channel = BLADERF_CHANNEL_TX(1);
+        config.channel = REF_TX;
         config.frequency = d_start_freq;
-        config.bandwidth = d_samp_rate/2;
+        config.bandwidth = d_chirp_bandwidth;//d_samp_rate/2;
         config.samplerate = d_samp_rate;
         config.gain = d_ref_gain;
         status = configure_channel(dev,&config);
         if (status !=0){
-            std::cerr << "TX Channel " << config.channel << ": configure_channel failed" << std::endl;
+            std::cerr << "Channel " << config.channel << ": configure_channel failed" << std::endl;
         }else{
-            std::cout << "TX channel " << config.channel << ": configure_channel succed" << std::endl;
+            std::cout << "Channel " << config.channel << ": configure_channel succed" << std::endl;
         }
         
         /* Initialize synchronous interface on RXs and TXs */
@@ -333,7 +339,7 @@ int bladerfRadarController_cc_impl::configure_channel(struct bladerf *dev, struc
     /**
      * Set gain
      * */
-    std::cout << "trying to set gain: " << c->gain << std::endl;
+    std::cout << "Set channel " << c->channel << " gain to "<< c->gain << std::endl;
     status = bladerf_set_gain(dev, c->channel, c->gain);
     if (status != 0) {
         fprintf(stderr, "Failed to set gain: %s\n", bladerf_strerror(status));
@@ -380,131 +386,129 @@ int bladerfRadarController_cc_impl::init_sync(struct bladerf *dev){
     }
     
     /**
-     * Set bias tee for TX0
+     * Set bias tee for RADAR_TX
      * */
-    status = bladerf_set_bias_tee(dev, BLADERF_CHANNEL_TX(0), d_enable_biastee);
+    status = bladerf_set_bias_tee(dev, RADAR_TX, d_enable_biastee);
     if(status != 0){
-        std::cerr << "set channel: " << BLADERF_CHANNEL_TX(0) << " bias tee failed" << std::endl;
+        std::cerr << "Set channel: " << RADAR_TX << " bias tee failed" << std::endl;
     }else{
         bool is_bias_tee_enabled = false;
-        status = bladerf_get_bias_tee(dev, BLADERF_CHANNEL_TX(0), &is_bias_tee_enabled);
-        std::cout << "bias tee status of chennel " << BLADERF_CHANNEL_TX(0) << " :" << is_bias_tee_enabled << std::endl;
+        status = bladerf_get_bias_tee(dev, RADAR_TX, &is_bias_tee_enabled);
+        std::cout << "bias tee status of chennel " << RADAR_TX << " :" << is_bias_tee_enabled << std::endl;
     }
     
     /**
-     * Set bias tee of RX_0
+     * Set bias tee of RADAR_RX
      * */
-    status = bladerf_set_bias_tee(dev, BLADERF_CHANNEL_RX(0), d_enable_biastee);
+    status = bladerf_set_bias_tee(dev, RADAR_RX, d_enable_biastee);
     if(status != 0){
-        std::cerr << "set channel: " << BLADERF_CHANNEL_RX(0) << " bias tee failed" << std::endl;
+        std::cerr << "Set channel: " << RADAR_RX << " bias tee failed" << std::endl;
     }else{
         bool is_bias_tee_enabled = false;
-        status = bladerf_get_bias_tee(dev, BLADERF_CHANNEL_RX(0), &is_bias_tee_enabled);
-        std::cout << "bias tee status of chennel " << BLADERF_CHANNEL_RX(0) << " :" << is_bias_tee_enabled << std::endl;
+        status = bladerf_get_bias_tee(dev,RADAR_RX, &is_bias_tee_enabled);
+        std::cout << "bias tee status of chennel " << RADAR_RX << " :" << is_bias_tee_enabled << std::endl;
     }
     
     /**
-     * Set AGC of RX_0 (echo)
+     * Set AGC of RADAR_RX
      * */
-    status = bladerf_set_gain_mode(dev, BLADERF_CHANNEL_RX(0), BLADERF_GAIN_MANUAL);
-    //status = bladerf_set_gain_mode(dev, BLADERF_CHANNEL_RX(0), BLADERF_GAIN_HYBRID_AGC);
-    //status = bladerf_set_gain_mode(dev, BLADERF_CHANNEL_RX(0), BLADERF_GAIN_SLOWATTACK_AGC);
+    status = bladerf_set_gain_mode(dev, RADAR_RX, BLADERF_GAIN_MANUAL);
+    //status = bladerf_set_gain_mode(dev, RADAR_RX, BLADERF_GAIN_HYBRID_AGC);
     if (status != 0) {
-        fprintf(stderr, "Failed to set gain mode = %u: %s\n", BLADERF_CHANNEL_RX(0),
+        fprintf(stderr, "Failed to set gain mode = %u: %s\n",RADAR_RX,
         bladerf_strerror(status));
         return status;
     }
     
     bladerf_gain_mode current_gain_mode;
-    status = bladerf_get_gain_mode(dev, BLADERF_CHANNEL_RX(0), &current_gain_mode);
+    status = bladerf_get_gain_mode(dev, RADAR_RX, &current_gain_mode);
     if(status!=0){
-        std::cerr << "Falied to read gain mode from channel: " << BLADERF_CHANNEL_RX(0) << std::endl;
+        std::cerr << "Falied to read gain mode from channel: " << RADAR_RX << std::endl;
     }else{
-        std::cout << "Channel: " << BLADERF_CHANNEL_RX(0) << ", gain mode: " << current_gain_mode << std::endl;
+        std::cout << "Channel: " << RADAR_RX << ", gain mode: " << current_gain_mode << std::endl;
     } 
     
     /**
-     * Set AGC for RX_1 (ref)
+     * Set AGC for REF_RX
      * */
-    status = bladerf_set_gain_mode(dev, BLADERF_CHANNEL_RX(1), BLADERF_GAIN_MANUAL);
-    //status = bladerf_set_gain_mode(dev, BLADERF_CHANNEL_RX(1), BLADERF_GAIN_HYBRID_AGC);
-    //status = bladerf_set_gain_mode(dev, BLADERF_CHANNEL_RX(1), BLADERF_GAIN_SLOWATTACK_AGC);
+    //status = bladerf_set_gain_mode(dev, REF_RX, BLADERF_GAIN_MANUAL);
+    status = bladerf_set_gain_mode(dev, REF_RX, BLADERF_GAIN_HYBRID_AGC);
     if (status != 0) {
-        fprintf(stderr, "Failed to set gain mode = %u: %s\n", BLADERF_CHANNEL_RX(1),
+        fprintf(stderr, "Failed to set gain mode = %u: %s\n", REF_RX,
         bladerf_strerror(status));
         return status;
     }
 
-    status = bladerf_get_gain_mode(dev, BLADERF_CHANNEL_RX(1), &current_gain_mode);
+    status = bladerf_get_gain_mode(dev, REF_RX, &current_gain_mode);
     if(status!=0){
-        std::cerr << "Falied to read gain mode from channel: " << BLADERF_CHANNEL_RX(1) << std::endl;
+        std::cerr << "Falied to read gain mode from channel: " << REF_RX << std::endl;
     }else{
-        std::cout << "Channel: " << BLADERF_CHANNEL_RX(1) << ", gain mode: " << current_gain_mode << std::endl;
+        std::cout << "Channel: " << REF_RX << ", gain mode: " << current_gain_mode << std::endl;
     }
 
-    status = bladerf_enable_module(dev, BLADERF_CHANNEL_RX(0), true);
+    status = bladerf_enable_module(dev, RADAR_RX, true);
     if (status != 0) {
-        std::cerr << "RX 0 enable failed" << std::endl;
+        std::cerr << "RADAR_RX enable failed" << std::endl;
         return status;
     }else{
-        std::cout << "RX 0 enalbed" << std::endl;
+        std::cout << "RADAR_RX enalbed" << std::endl;
     }
-    status = bladerf_enable_module(dev, BLADERF_CHANNEL_RX(1), true);
+    status = bladerf_enable_module(dev, REF_RX, true);
     if (status != 0) {
-        std::cerr << "RX 1 enable failed" << std::endl;
+        std::cerr << "REF_RX enable failed" << std::endl;
         return status;
     }else{
-        std::cout << "RX 1 enalbed" << std::endl;
+        std::cout << "REF_RX enalbed" << std::endl;
     }
-    status = bladerf_enable_module(dev, BLADERF_CHANNEL_TX(0), true);
+    status = bladerf_enable_module(dev, RADAR_TX, true);
     if (status != 0) {
-        std::cerr << "TX 0 enable failed" << std::endl;
+        std::cerr << "RADAR_TX enable failed" << std::endl;
         return status;
     }else{
-        std::cout << "TX 0 enalbed" << std::endl;
+        std::cout << "RADAR_TX enalbed" << std::endl;
     } 
-    status = bladerf_enable_module(dev, BLADERF_CHANNEL_TX(1), true);
+    status = bladerf_enable_module(dev, REF_TX, true);
     if (status != 0) {
-        std::cerr << "TX 1 enable failed" << std::endl;
+        std::cerr << "REF_TX enable failed" << std::endl;
         return status;
     }else{
-        std::cout << "TX 1 enalbed" << std::endl;
+        std::cout << "REF_TX enalbed" << std::endl;
     } 
     
     /**
      * varify if the gains of each channel is correctly assigned
      * */
     bladerf_gain current_gain;
-    status = bladerf_get_gain(dev,BLADERF_CHANNEL_RX(0),&current_gain);
+    status = bladerf_get_gain(dev,RADAR_RX,&current_gain);
     if(status !=0){
-        std::cerr << "failed to get gain for channel" << BLADERF_CHANNEL_RX(0) << std::endl;
+        std::cerr << "failed to get gain for channel" << RADAR_RX << std::endl;
         return status;
     }else{
-        std::cout << "Chennel" << BLADERF_CHANNEL_RX(0) << ", gain: " << current_gain << std::endl;
+        std::cout << "Chennel" << RADAR_RX << ", gain: " << current_gain << std::endl;
     }
     
-    status = bladerf_get_gain(dev,BLADERF_CHANNEL_RX(1),&current_gain);
+    status = bladerf_get_gain(dev,REF_RX,&current_gain);
     if(status !=0){
-        std::cerr << "failed to get gain for channel" << BLADERF_CHANNEL_RX(1) << std::endl;
+        std::cerr << "failed to get gain for channel" << REF_RX << std::endl;
         return status;
     }else{
-        std::cout << "Chennel" << BLADERF_CHANNEL_RX(1) << ", gain: " << current_gain << std::endl;
+        std::cout << "Chennel" << REF_RX << ", gain: " << current_gain << std::endl;
     }
     
-    status = bladerf_get_gain(dev,BLADERF_CHANNEL_TX(0),&current_gain);
+    status = bladerf_get_gain(dev,RADAR_TX,&current_gain);
     if(status !=0){
-        std::cerr << "failed to get gain for channel" << BLADERF_CHANNEL_TX(0) << std::endl;
+        std::cerr << "failed to get gain for channel" << RADAR_TX << std::endl;
         return status;
     }else{
-        std::cout << "Chennel" << BLADERF_CHANNEL_TX(0) << ", gain: " << current_gain << std::endl;
+        std::cout << "Chennel" << RADAR_TX << ", gain: " << current_gain << std::endl;
     }
     
-    status = bladerf_get_gain(dev,BLADERF_CHANNEL_TX(1),&current_gain);
+    status = bladerf_get_gain(dev,REF_TX,&current_gain);
     if(status !=0){
-        std::cerr << "failed to get gain for channel" << BLADERF_CHANNEL_TX(1) << std::endl;
+        std::cerr << "failed to get gain for channel" << REF_TX << std::endl;
         return status;
     }else{
-        std::cout << "Chennel" << BLADERF_CHANNEL_TX(1) << ", gain: " << current_gain << std::endl;
+        std::cout << "Chennel" << REF_TX << ", gain: " << current_gain << std::endl;
     }
 
     return status;
@@ -515,7 +519,7 @@ int bladerfRadarController_cc_impl::set_quick_tune(){
     bladerf_frequency freq;
     freq = d_start_freq;
     for (int i = 0; i < d_num_steps; i++){
-        std::cout << "set quick tune parameters for frequency: " << freq << std::endl;
+        //std::cout << "set quick tune parameters for frequency: " << freq << std::endl;
         status = bladerf_set_frequency(dev, BLADERF_TX, freq);
         if(status!=0){
             std::cerr << "set TX frequency to: "<< freq << " failed" << std::endl;
@@ -568,6 +572,30 @@ int bladerfRadarController_cc_impl::wait_for_timestamp(struct bladerf *dev, blad
     }while(!done);
     //std::cout<<"wait for timestamp finished" << std::endl;
     return status;
+}
+
+int bladerfRadarController_cc_impl::set_tx_gain(bladerf_gain tx_gain){
+    std::cout << "set radar tx gain to: " << tx_gain << std::endl;
+    d_tx_gain = tx_gain;
+    int status = bladerf_set_gain(dev,RADAR_TX,d_tx_gain);
+    return status;
+}
+
+int bladerfRadarController_cc_impl::set_rx_gain(bladerf_gain rx_gain){
+    d_rx_gain = rx_gain;
+    int status = bladerf_set_gain(dev, RADAR_RX, d_rx_gain);
+    return status;
+}
+
+int bladerfRadarController_cc_impl::set_ref_gain(bladerf_gain ref_gain){
+    d_ref_gain = ref_gain;
+    int status = bladerf_set_gain(dev, REF_TX, d_ref_gain);
+    return status;
+}
+
+int bladerfRadarController_cc_impl::set_chirp_bandwidth(float chirp_bandwidth){
+    d_chirp_bandwidth = chirp_bandwidth;
+    return 0;
 }
 
 /*
@@ -676,6 +704,20 @@ int bladerfRadarController_cc_impl::quick_tune(){
         std::cerr << "invalid index" << std::endl;
         return -1;
     }
+
+    /*if(d_freq_index == 20){
+        //std::cout << "increase gain" << std::endl;
+        //bladerf_set_gain(dev, RADAR_TX,d_tx_gain+10);
+        //bladerf_set_gain(dev, REF_TX,d_ref_gain+10);
+    }else if(d_freq_index == 80){
+        std::cout << "increase gain again" << std::endl;
+        bladerf_set_gain(dev, RADAR_TX,d_tx_gain+30);
+        
+    }else if(d_freq_index == 0){
+        std::cout << "tune gain back" << std::endl;
+        bladerf_set_gain(dev,RADAR_TX,d_tx_gain);
+        //bladerf_set_gain(dev,REF_TX,d_ref_gain);
+    }*/
 
     //std::cout<<"tunning rx to: " << d_quick_tunes_rx[index].freq << std::endl;
     int status = bladerf_schedule_retune(dev, BLADERF_RX, BLADERF_RETUNE_NOW, 0, &d_quick_tunes_rx[d_freq_index].quick_tune);

@@ -4,3 +4,7 @@
 ./include/gnuradio/sfcwRadar/bladerfRadarBurst_cc.hUnknown -std=c++xx flag used
 ./include/gnuradio/sfcwRadar/bladerfRadarBurst_cc.hUnknown -std=c++xx flag used
 ./include/gnuradio/sfcwRadar/bladerfRadarBurst_cc.hUnknown -std=c++xx flag used
+./include/gnuradio/sfcwRadar/bladerfRadarController_cc.hUnknown -std=c++xx flag used
+./include/gnuradio/sfcwRadar/bladerfRadarController_cc.hUnknown -std=c++xx flag used
+./include/gnuradio/sfcwRadar/bladerfRadarController_cc.hUnknown -std=c++xx flag used
+./include/gnuradio/sfcwRadar/bladerfRadarController_cc.hUnknown -std=c++xx flag used

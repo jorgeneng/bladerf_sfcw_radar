@@ -53,6 +53,11 @@ public:
                      float chirp_bandwidth,
                      float ts_inc_send,
                      float ts_inc_recv);
+
+    virtual int set_tx_gain(bladerf_gain tx_gain) = 0;
+    virtual int set_rx_gain(bladerf_gain rx_gain) = 0;
+    virtual int set_ref_gain(bladerf_gain ref_gain) = 0;
+    virtual int set_chirp_bandwidth(float chirp_bandwidth) = 0;
 };
 
 } // namespace sfcwRadar

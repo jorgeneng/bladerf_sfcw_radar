@@ -12,6 +12,11 @@
 #include <libbladeRF.h>
 #include <chrono>
 
+#define RADAR_TX BLADERF_CHANNEL_TX(0)
+#define RADAR_RX BLADERF_CHANNEL_RX(1)
+#define REF_TX BLADERF_CHANNEL_TX(1)
+#define REF_RX BLADERF_CHANNEL_RX(0)
+
 namespace gr {
 namespace sfcwRadar {
 
@@ -58,6 +63,7 @@ private:
     size_t d_recv_len; 
     int d_num_steps; // number of frequency steps
     int d_samp_rate;
+    unsigned int d_channel_bandwidth;
     bladerf_gain d_rx_gain;
     bladerf_gain d_tx_gain;
     bladerf_gain d_ref_gain;
@@ -193,6 +199,10 @@ public:
                                    float ts_inc_recv);
     ~bladerfRadarController_cc_impl();
 
+    int set_tx_gain(bladerf_gain tx_gain);
+    int set_rx_gain(bladerf_gain rx_gain);
+    int set_ref_gain(bladerf_gain ref_gain);
+    int set_chirp_bandwidth(float chirp_bandwidth);
     /**
      * thread handles for receive and send thread
      * */

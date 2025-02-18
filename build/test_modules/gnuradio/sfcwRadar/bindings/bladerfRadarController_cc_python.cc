@@ -14,7 +14,7 @@
 /* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
 /* BINDTOOL_USE_PYGCCXML(0)                                                        */
 /* BINDTOOL_HEADER_FILE(bladerfRadarController_cc.h)                                        */
-/* BINDTOOL_HEADER_FILE_HASH(02515a40724751771c84a16c8dd53c7f)                     */
+/* BINDTOOL_HEADER_FILE_HASH(df515e4cd3f16836c561cd21e4d29272)                     */
 /***********************************************************************************/
 
 #include <pybind11/complex.h>
@@ -39,7 +39,26 @@ void bind_bladerfRadarController_cc(py::module& m)
         .def(py::init(&bladerfRadarController_cc::make),
            D(bladerfRadarController_cc,make)
         )
+
+        .def("set_tx_gain",(int (bladerfRadarController_cc:: *) (bladerf_gain))&bladerfRadarController_cc::set_tx_gain,
+           py::arg("tx_gain"),
+           D(bladerfRadarController_cc,set_tx_gain)
+        )
         
+        .def("set_rx_gain",(int (bladerfRadarController_cc:: *) (bladerf_gain))&bladerfRadarController_cc::set_rx_gain,
+           py::arg("rx_gain"),
+           D(bladerfRadarController_cc,set_rx_gain)
+        )
+        
+        .def("set_ref_gain",(int (bladerfRadarController_cc:: *) (bladerf_gain))&bladerfRadarController_cc::set_ref_gain,
+           py::arg("ref_gain"),
+           D(bladerfRadarController_cc,set_ref_gain)
+        )
+        
+        .def("set_chirp_bandwidth",(int (bladerfRadarController_cc:: *) (float))&bladerfRadarController_cc::set_chirp_bandwidth,
+           py::arg("chirp_bandwidth"),
+           D(bladerfRadarController_cc,set_chirp_bandwidth)
+        )
 
 
 

@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
-  <compounddef id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc" kind="class" language="C++" prot="public">
+  <compounddef id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc" kind="class" language="C++" prot="public" abstract="yes">
     <compoundname>gr::sfcwRadar::bladerfRadarController_cc</compoundname>
     <basecompoundref prot="public" virt="virtual">sync_block</basecompoundref>
     <derivedcompoundref refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl" prot="public" virt="non-virtual">gr::sfcwRadar::bladerfRadarController_cc_impl</derivedcompoundref>
@@ -113,6 +113,80 @@
         <location file="/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/bladerfRadarController_cc.h" line="37" column="17"/>
       </memberdef>
       </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc_1ab2969674e809859276eb2f95d289957e" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>int</type>
+        <definition>virtual int gr::sfcwRadar::bladerfRadarController_cc::set_tx_gain</definition>
+        <argsstring>(bladerf_gain tx_gain)=0</argsstring>
+        <name>set_tx_gain</name>
+        <reimplementedby refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1ad52e182efe6c8c7e0d8f430ec8d32f02">set_tx_gain</reimplementedby>
+        <param>
+          <type>bladerf_gain</type>
+          <declname>tx_gain</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/bladerfRadarController_cc.h" line="57" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc_1a4ee245e0bf9e32589e39970f8a7cecf9" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>int</type>
+        <definition>virtual int gr::sfcwRadar::bladerfRadarController_cc::set_rx_gain</definition>
+        <argsstring>(bladerf_gain rx_gain)=0</argsstring>
+        <name>set_rx_gain</name>
+        <reimplementedby refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a8c1563b75f8100bf60bdae0e96fb741d">set_rx_gain</reimplementedby>
+        <param>
+          <type>bladerf_gain</type>
+          <declname>rx_gain</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/bladerfRadarController_cc.h" line="58" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc_1a678f8b4b66f64ef1a8c8d3fb70b78c3e" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>int</type>
+        <definition>virtual int gr::sfcwRadar::bladerfRadarController_cc::set_ref_gain</definition>
+        <argsstring>(bladerf_gain ref_gain)=0</argsstring>
+        <name>set_ref_gain</name>
+        <reimplementedby refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a2ed468bc89030d9ffb39a0c3aa7a4c25">set_ref_gain</reimplementedby>
+        <param>
+          <type>bladerf_gain</type>
+          <declname>ref_gain</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/bladerfRadarController_cc.h" line="59" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc_1afc018be3590317dae30e4f268e05a5d5" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>int</type>
+        <definition>virtual int gr::sfcwRadar::bladerfRadarController_cc::set_chirp_bandwidth</definition>
+        <argsstring>(float chirp_bandwidth)=0</argsstring>
+        <name>set_chirp_bandwidth</name>
+        <reimplementedby refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a42a203866cffaf8b6356100509950414">set_chirp_bandwidth</reimplementedby>
+        <param>
+          <type>float</type>
+          <declname>chirp_bandwidth</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/bladerfRadarController_cc.h" line="60" column="17"/>
+      </memberdef>
+      </sectiondef>
     <briefdescription>
 <para>&lt;+description of block+&gt; </para>
     </briefdescription>
@@ -146,9 +220,13 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/bladerfRadarController_cc.h" line="24" column="1" bodyfile="/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/bladerfRadarController_cc.h" bodystart="23" bodyend="56"/>
+    <location file="/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/bladerfRadarController_cc.h" line="24" column="1" bodyfile="/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/bladerfRadarController_cc.h" bodystart="23" bodyend="61"/>
     <listofallmembers>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc_1afd605922b0616f0348ae28168af2aa71" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarController_cc</scope><name>make</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc_1afc018be3590317dae30e4f268e05a5d5" prot="public" virt="pure-virtual"><scope>gr::sfcwRadar::bladerfRadarController_cc</scope><name>set_chirp_bandwidth</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc_1a678f8b4b66f64ef1a8c8d3fb70b78c3e" prot="public" virt="pure-virtual"><scope>gr::sfcwRadar::bladerfRadarController_cc</scope><name>set_ref_gain</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc_1a4ee245e0bf9e32589e39970f8a7cecf9" prot="public" virt="pure-virtual"><scope>gr::sfcwRadar::bladerfRadarController_cc</scope><name>set_rx_gain</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc_1ab2969674e809859276eb2f95d289957e" prot="public" virt="pure-virtual"><scope>gr::sfcwRadar::bladerfRadarController_cc</scope><name>set_tx_gain</name></member>
       <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc_1a6629ecd99003a0551d91aec37590a205" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarController_cc</scope><name>sptr</name></member>
     </listofallmembers>
   </compounddef>

@@ -3,10 +3,8 @@
   <compounddef id="dir_e59fc4185131949da80fc63bf6705596" kind="dir">
     <compoundname>sfcwRadar</compoundname>
     <innerfile refid="api_8h">api.h</innerfile>
-    <innerfile refid="bladerfRadarBurst__cc_8h">bladerfRadarBurst_cc.h</innerfile>
     <innerfile refid="bladerfRadarController__cc_8h">bladerfRadarController_cc.h</innerfile>
     <innerfile refid="bladerfRadarMIMO_8h">bladerfRadarMIMO.h</innerfile>
-    <innerfile refid="rawSignalSink__cc_8h">rawSignalSink_cc.h</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

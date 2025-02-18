@@ -39,7 +39,15 @@ class rawSamplesSink(gr.sync_block):
             "chirp_bandwidth":chirp_bandwidth
         }
 
-        filename = "{}.json".format(file_prefix)
+        filename = "{}_meta.json".format(file_prefix)
+        with open(filename,"w") as f:
+            json.dump(self.scan_param, f)
+        print("scan parameters: ", self.scan_param)
+        print("saved to ", filename)
+
+    def set_file_prefix(self,file_prefix):
+        self.file_prefix = file_prefix
+        filename = "{}_meta.json".format(file_prefix)
         with open(filename,"w") as f:
             json.dump(self.scan_param, f)
         print("scan parameters: ", self.scan_param)

@@ -2,10 +2,8 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="dir_f877d2106622a249c42c89971a10b9c7" kind="dir">
     <compoundname>docstrings</compoundname>
-    <innerfile refid="bladerfRadarBurst__cc__pydoc__template_8h">bladerfRadarBurst_cc_pydoc_template.h</innerfile>
     <innerfile refid="bladerfRadarController__cc__pydoc__template_8h">bladerfRadarController_cc_pydoc_template.h</innerfile>
     <innerfile refid="bladerfRadarMIMO__pydoc__template_8h">bladerfRadarMIMO_pydoc_template.h</innerfile>
-    <innerfile refid="rawSignalSink__cc__pydoc__template_8h">rawSignalSink_cc_pydoc_template.h</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

@@ -48,7 +48,18 @@ class matchedFilter(gr.sync_block):
         #print ('phase error:', arccos(cos_phi_est)*360/2/pi, 'degrees')
         #print ('amplitude error:', 20*log10(alpha_est), 'dB')
 
-        return y*sqrt(p_in/var(y)) 
+        return y*sqrt(p_in/var(y))
+
+    def normaliseBurst(self,input_burst):
+        burst_real = np.real(input_burst)
+        burst_imag = np.imag(input_burst)
+        max_val = np.max(burst_real)
+        min_val = np.min(burst_real)
+        burst_real_normalised = 2*(burst_real - min_val)/(max_val - min_val)-1
+        max_val = np.max(burst_imag)
+        min_val = np.min(burst_imag)
+        burst_imag_normalised = 2*(burst_imag - min_val)/(max_val - min_val)-1
+        return burst_real_normalised + 1j*burst_imag_normalised 
 
     def work(self, input_items, output_items):
         rx_vec = input_items[0]
@@ -60,8 +71,10 @@ class matchedFilter(gr.sync_block):
             print(f"Warning: Input vector length ({len(in_vec)}) does not match mf_size ({self.burst_len}).")
             return 0  # Or handle the mismatch in another way
         for i in range(len(rx_vec)):
-            rx_IQ_fixed = self.fix_iq_imbalance(rx_vec[i][:])
-            ref_IQ_fixed = self.fix_iq_imbalance(ref_vec[i][:])
-            #out_vec[i][:] = signal.correlate(rx_vec[i][:], ref_vec[i][:], mode='same')
-            out_vec[i][:] = signal.correlate(rx_IQ_fixed,ref_IQ_fixed,mode='same')
+            rx_sample = rx_vec[i][:]/np.linalg.norm(rx_vec[i][:])
+            ref_sample = ref_vec[i][:]/np.linalg.norm(ref_vec[i][:])
+            out_vec[i][:] = signal.correlate(rx_sample,ref_sample,mode='same')
+
+            #norm_factor = sqrt(sum(np.abs(rx_vec[i][:])*sum(np.abs(ref_vec[i][:])))) 
+            #out_vec[i][:] = signal.correlate(rx_vec[i][:],ref_vec[i][:],mode='same')/norm_factor
         return len(output_items[0])

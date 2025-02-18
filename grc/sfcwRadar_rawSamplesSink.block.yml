@@ -5,6 +5,8 @@ category: '[sfcwRadar]'
 templates:
   imports: from gnuradio import sfcwRadar
   make: sfcwRadar.rawSamplesSink(${file_prefix}, ${start_freq}, ${num_steps}, ${samp_rate}, ${rx_gain}, ${tx_gain}, ${ref_gain}, ${enable_biastee}, ${burst_len}, ${recv_buf_len}, ${cw_amplitude}, ${cw_frequency}, ${isChirp}, ${chirp_bandwidth})
+  callbacks:
+      - set_file_prefix(${file_prefix})
 
 #  Make one 'parameters' list entry for every parameter you want settable from the GUI.
 #     Keys include:

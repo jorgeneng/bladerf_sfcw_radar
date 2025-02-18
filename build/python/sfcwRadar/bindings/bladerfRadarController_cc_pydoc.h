@@ -77,5 +77,12 @@ Args:
     chirp_bandwidth : 
     ts_inc_send : 
     ts_inc_recv : )doc";
-
+ 
+ static const char *__doc_gr_sfcwRadar_bladerfRadarController_cc_set_tx_gain = R"doc()doc";
+ 
+ static const char *__doc_gr_sfcwRadar_bladerfRadarController_cc_set_rx_gain = R"doc()doc";
+ 
+ static const char *__doc_gr_sfcwRadar_bladerfRadarController_cc_set_ref_gain = R"doc()doc";
+ 
+ static const char *__doc_gr_sfcwRadar_bladerfRadarController_cc_set_chirp_bandwidth = R"doc()doc";
   

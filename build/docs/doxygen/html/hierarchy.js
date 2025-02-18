@@ -5,15 +5,9 @@ var hierarchy =
     [ "sync_block", null, [
       [ "gr::sfcwRadar::bladerfRadarController_cc", "classgr_1_1sfcwRadar_1_1bladerfRadarController__cc.html", [
         [ "gr::sfcwRadar::bladerfRadarController_cc_impl", "classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl.html", null ]
-      ] ],
-      [ "gr::sfcwRadar::rawSignalSink_cc", "classgr_1_1sfcwRadar_1_1rawSignalSink__cc.html", [
-        [ "gr::sfcwRadar::rawSignalSink_cc_impl", "classgr_1_1sfcwRadar_1_1rawSignalSink__cc__impl.html", null ]
       ] ]
     ] ],
     [ "tagged_stream_block", null, [
-      [ "gr::sfcwRadar::bladerfRadarBurst_cc", "classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc.html", [
-        [ "gr::sfcwRadar::bladerfRadarBurst_cc_impl", "classgr_1_1sfcwRadar_1_1bladerfRadarBurst__cc__impl.html", null ]
-      ] ],
       [ "gr::sfcwRadar::bladerfRadarMIMO", "classgr_1_1sfcwRadar_1_1bladerfRadarMIMO.html", [
         [ "gr::sfcwRadar::bladerfRadarMIMO_impl", "classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl.html", null ]
       ] ]

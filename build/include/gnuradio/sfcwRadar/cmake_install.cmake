@@ -40,8 +40,6 @@ endif()
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/gnuradio/sfcwRadar" TYPE FILE FILES
     "/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/api.h"
-    "/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/bladerfRadarBurst_cc.h"
-    "/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/rawSignalSink_cc.h"
     "/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/bladerfRadarMIMO.h"
     "/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/bladerfRadarController_cc.h"
     )
