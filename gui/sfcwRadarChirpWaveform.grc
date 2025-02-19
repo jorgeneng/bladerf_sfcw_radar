@@ -11,7 +11,7 @@ options:
     gen_linking: dynamic
     generate_options: qt_gui
     hier_block_src_path: '.:'
-    id: sfcwRadarGUI
+    id: sfcwRadarChirpWaveform
     max_nouts: '0'
     output_language: python
     placement: (0,0)
@@ -1116,6 +1116,9 @@ blocks:
     comment: ''
     num_steps: num_steps
     prefix: rangeProfile/scan
+    server_ip: localhost
+    server_port: '9999'
+    upload_to_server: ''
   states:
     bus_sink: false
     bus_source: false
@@ -1131,6 +1134,9 @@ blocks:
     comment: ''
     num_steps: num_steps
     prefix: cal_mf_2g
+    server_ip: localhost
+    server_port: '9999'
+    upload_to_server: ''
   states:
     bus_sink: false
     bus_source: false
