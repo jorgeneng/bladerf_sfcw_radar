@@ -71,10 +71,10 @@ class matchedFilter(gr.sync_block):
             print(f"Warning: Input vector length ({len(in_vec)}) does not match mf_size ({self.burst_len}).")
             return 0  # Or handle the mismatch in another way
         for i in range(len(rx_vec)):
-            rx_sample = rx_vec[i][:]/np.linalg.norm(rx_vec[i][:])
-            ref_sample = ref_vec[i][:]/np.linalg.norm(ref_vec[i][:])
-            out_vec[i][:] = signal.correlate(rx_sample,ref_sample,mode='same')
+#rx_sample = rx_vec[i][:]/np.linalg.norm(rx_vec[i][:])
+#ref_sample = ref_vec[i][:]/np.linalg.norm(ref_vec[i][:])
+#out_vec[i][:] = signal.correlate(rx_sample,ref_sample,mode='same')
 
-            #norm_factor = sqrt(sum(np.abs(rx_vec[i][:])*sum(np.abs(ref_vec[i][:])))) 
-            #out_vec[i][:] = signal.correlate(rx_vec[i][:],ref_vec[i][:],mode='same')/norm_factor
+            norm_factor = sqrt(sum(np.abs(rx_vec[i][:])*sum(np.abs(ref_vec[i][:])))) 
+            out_vec[i][:] = signal.correlate(rx_vec[i][:],ref_vec[i][:],mode='same')/norm_factor
         return len(output_items[0])

@@ -63,12 +63,12 @@ class sfcwRadarGUI(gr.top_block, Qt.QWidget):
         ##################################################
         # Variables
         ##################################################
-        self.burst_len = burst_len = 2**10
+        self.burst_len = burst_len = 2**11
         self.recv_buf_len = recv_buf_len = burst_len+512
         self.chirp_bandwidth = chirp_bandwidth = 1e6
         self.tx_gain = tx_gain = 20
         self.transition_width = transition_width = chirp_bandwidth
-        self.start_freq = start_freq = 1e9
+        self.start_freq = start_freq = 2e9
         self.scale = scale = 0
         self.samp_rate = samp_rate = 5e6
         self.rx_gain = rx_gain = 40
@@ -76,7 +76,7 @@ class sfcwRadarGUI(gr.top_block, Qt.QWidget):
         self.num_steps = num_steps = 128
         self.mf_size = mf_size = recv_buf_len
         self.lp_dec = lp_dec = 1
-        self.freq_step = freq_step = 10e6
+        self.freq_step = freq_step = 20e6
         self.file_prefix = file_prefix = '0'
         self.cw_freq = cw_freq = 100e3
         self.cw_amp = cw_amp = 1
@@ -124,6 +124,7 @@ class sfcwRadarGUI(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(1, 2):
             self.top_grid_layout.setColumnStretch(c, 1)
+        self.sfcwRadar_rangeProfileSink_1 = sfcwRadar.rangeProfileSink(num_steps,'rangeProfile/scan')
         self.sfcwRadar_matchedFilter_0 = sfcwRadar.matchedFilter((int(mf_size/lp_dec)))
         self.sfcwRadar_findPeak_0 = sfcwRadar.findPeak((int(mf_size/lp_dec)))
         self.sfcwRadar_bladerfRadarController_cc_0 = sfcwRadar.bladerfRadarController_cc(int(start_freq), num_steps, int(freq_step), int(samp_rate), rx_gain, tx_gain, ref_gain, True, burst_len, recv_buf_len, 8, 2048, 4, cw_amp, cw_freq, True, chirp_bandwidth, 1, 0)
@@ -316,7 +317,7 @@ class sfcwRadarGUI(gr.top_block, Qt.QWidget):
 
         labels = ['', '', '', '', '',
             '', '', '', '', '']
-        colors = [2, 0, 0, 0, 0,
+        colors = [0, 0, 0, 0, 0,
             0, 0, 0, 0, 0]
         alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
             1.0, 1.0, 1.0, 1.0, 1.0]
@@ -386,6 +387,7 @@ class sfcwRadarGUI(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_stream_to_vector_1_0, 0), (self.sfcwRadar_matchedFilter_0, 0))
         self.connect((self.blocks_vector_to_stream_0, 0), (self.blocks_complex_to_mag_squared_0, 0))
         self.connect((self.fft_vxx_0, 0), (self.blocks_vector_to_stream_0, 0))
+        self.connect((self.fft_vxx_0, 0), (self.sfcwRadar_rangeProfileSink_1, 0))
         self.connect((self.low_pass_filter_0, 0), (self.blocks_stream_to_vector_1, 0))
         self.connect((self.low_pass_filter_0, 0), (self.qtgui_time_sink_x_1, 0))
         self.connect((self.low_pass_filter_0_0, 0), (self.blocks_stream_to_vector_1_0, 0))
