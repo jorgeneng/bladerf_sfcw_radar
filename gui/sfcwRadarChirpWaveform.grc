@@ -1118,7 +1118,7 @@ blocks:
     prefix: scan
     server_ip: localhost
     server_port: '9999'
-    upload_to_server: 'False'
+    upload_to_server: 'True'
   states:
     bus_sink: false
     bus_source: false
@@ -1205,4 +1205,4 @@ connections:
 
 metadata:
   file_format: 1
-  grc_version: v3.10.9.2-56-g7d2ba75b
+  grc_version: v3.10.9.2-39-gcf065ee5

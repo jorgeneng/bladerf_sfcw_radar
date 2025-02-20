@@ -27,25 +27,32 @@ from gnuradio import sfcwRadar
 
 class sfcwRadarNoGUI(gr.top_block):
 
-    def __init__(self):
+    def __init__(self, burst_len=(2**10), freq_step=20e6, num_steps=128, range_profile_prefix='/home/hui/rangeProfile/scan', raw_signal_file_prefix='/home/hui/rawSignals/raw', recv_buf_len=(2**10+256), ref_gain=5, rx_gain=40, start_freq=2e9, tx_gain=20, upload_to_server=1):
         gr.top_block.__init__(self, "Not titled yet", catch_exceptions=True)
+
+        ##################################################
+        # Parameters
+        ##################################################
+        self.burst_len = burst_len
+        self.freq_step = freq_step
+        self.num_steps = num_steps
+        self.range_profile_prefix = range_profile_prefix
+        self.raw_signal_file_prefix = raw_signal_file_prefix
+        self.recv_buf_len = recv_buf_len
+        self.ref_gain = ref_gain
+        self.rx_gain = rx_gain
+        self.start_freq = start_freq
+        self.tx_gain = tx_gain
+        self.upload_to_server = upload_to_server
 
         ##################################################
         # Variables
         ##################################################
-        self.burst_len = burst_len = 2**11
-        self.recv_buf_len = recv_buf_len = burst_len+512
         self.chirp_bandwidth = chirp_bandwidth = 1e6
-        self.tx_gain = tx_gain = 20
         self.transition_width = transition_width = chirp_bandwidth/2
-        self.start_freq = start_freq = 2e9
         self.samp_rate = samp_rate = 5e6
-        self.rx_gain = rx_gain = 40
-        self.ref_gain = ref_gain = 5
-        self.num_steps = num_steps = 128
         self.mf_size = mf_size = recv_buf_len
         self.lp_dec = lp_dec = 1
-        self.freq_step = freq_step = 20e6
         self.cw_freq = cw_freq = 100e3
         self.cw_amp = cw_amp = 1
         self.cut_off = cut_off = chirp_bandwidth
@@ -54,8 +61,8 @@ class sfcwRadarNoGUI(gr.top_block):
         # Blocks
         ##################################################
 
-        self.sfcwRadar_rawSamplesSink_0 = sfcwRadar.rawSamplesSink('raw', int(start_freq), num_steps, int(samp_rate), rx_gain, tx_gain, ref_gain, False, burst_len, recv_buf_len, cw_amp, cw_freq, True, chirp_bandwidth)
-        self.sfcwRadar_rangeProfileSink_1 = sfcwRadar.rangeProfileSink(num_steps,'rangeProfile/scan',,'localhost',9999)
+        self.sfcwRadar_rawSamplesSink_0 = sfcwRadar.rawSamplesSink(raw_signal_file_prefix, int(start_freq), num_steps, int(samp_rate), rx_gain, tx_gain, ref_gain, False, burst_len, recv_buf_len, cw_amp, cw_freq, True, chirp_bandwidth)
+        self.sfcwRadar_rangeProfileSink_1 = sfcwRadar.rangeProfileSink(num_steps,range_profile_prefix,upload_to_server,'localhost',9999)
         self.sfcwRadar_matchedFilter_0 = sfcwRadar.matchedFilter((int(mf_size/lp_dec)))
         self.sfcwRadar_findPeak_0 = sfcwRadar.findPeak((int(mf_size/lp_dec)))
         self.sfcwRadar_bladerfRadarController_cc_0 = sfcwRadar.bladerfRadarController_cc(int(start_freq), num_steps, int(freq_step), int(samp_rate), rx_gain, tx_gain, ref_gain, True, burst_len, recv_buf_len, 8, 2048, 4, cw_amp, cw_freq, True, chirp_bandwidth, 1, 0)
@@ -78,19 +85,18 @@ class sfcwRadarNoGUI(gr.top_block):
                 window.WIN_HAMMING,
                 6.76))
         self.fft_vxx_0 = fft.fft_vcc(num_steps, False, window.hamming(num_steps), True, 1)
-        self.blocks_var_to_msg_0 = blocks.var_to_msg_pair('scan_cont')
         self.blocks_stream_to_vector_1_0_1 = blocks.stream_to_vector(gr.sizeof_gr_complex*1, (recv_buf_len*num_steps))
         self.blocks_stream_to_vector_1_0_0 = blocks.stream_to_vector(gr.sizeof_gr_complex*1, (recv_buf_len*num_steps))
         self.blocks_stream_to_vector_1_0 = blocks.stream_to_vector(gr.sizeof_gr_complex*1, (int(mf_size/lp_dec)))
         self.blocks_stream_to_vector_1 = blocks.stream_to_vector(gr.sizeof_gr_complex*1, (int(mf_size/lp_dec)))
         self.blocks_stream_to_vector_0 = blocks.stream_to_vector(gr.sizeof_gr_complex*1, num_steps)
-        self.blocks_message_strobe_0 = blocks.message_strobe(pmt.intern("TEST"), 1000)
+        self.blocks_message_strobe_0 = blocks.message_strobe(pmt.cons(pmt.PMT_NIL, pmt.from_long(2)), 1000)
 
 
         ##################################################
         # Connections
         ##################################################
-        self.msg_connect((self.blocks_var_to_msg_0, 'msgout'), (self.sfcwRadar_bladerfRadarController_cc_0, 'scan'))
+        self.msg_connect((self.blocks_message_strobe_0, 'strobe'), (self.sfcwRadar_bladerfRadarController_cc_0, 'scan'))
         self.connect((self.blocks_stream_to_vector_0, 0), (self.fft_vxx_0, 0))
         self.connect((self.blocks_stream_to_vector_1, 0), (self.sfcwRadar_matchedFilter_0, 1))
         self.connect((self.blocks_stream_to_vector_1_0, 0), (self.sfcwRadar_matchedFilter_0, 0))
@@ -112,7 +118,31 @@ class sfcwRadarNoGUI(gr.top_block):
 
     def set_burst_len(self, burst_len):
         self.burst_len = burst_len
-        self.set_recv_buf_len(self.burst_len+512)
+
+    def get_freq_step(self):
+        return self.freq_step
+
+    def set_freq_step(self, freq_step):
+        self.freq_step = freq_step
+
+    def get_num_steps(self):
+        return self.num_steps
+
+    def set_num_steps(self, num_steps):
+        self.num_steps = num_steps
+
+    def get_range_profile_prefix(self):
+        return self.range_profile_prefix
+
+    def set_range_profile_prefix(self, range_profile_prefix):
+        self.range_profile_prefix = range_profile_prefix
+
+    def get_raw_signal_file_prefix(self):
+        return self.raw_signal_file_prefix
+
+    def set_raw_signal_file_prefix(self, raw_signal_file_prefix):
+        self.raw_signal_file_prefix = raw_signal_file_prefix
+        self.sfcwRadar_rawSamplesSink_0.set_file_prefix(self.raw_signal_file_prefix)
 
     def get_recv_buf_len(self):
         return self.recv_buf_len
@@ -120,6 +150,39 @@ class sfcwRadarNoGUI(gr.top_block):
     def set_recv_buf_len(self, recv_buf_len):
         self.recv_buf_len = recv_buf_len
         self.set_mf_size(self.recv_buf_len)
+
+    def get_ref_gain(self):
+        return self.ref_gain
+
+    def set_ref_gain(self, ref_gain):
+        self.ref_gain = ref_gain
+        self.sfcwRadar_bladerfRadarController_cc_0.set_ref_gain(self.ref_gain)
+
+    def get_rx_gain(self):
+        return self.rx_gain
+
+    def set_rx_gain(self, rx_gain):
+        self.rx_gain = rx_gain
+        self.sfcwRadar_bladerfRadarController_cc_0.set_rx_gain(self.rx_gain)
+
+    def get_start_freq(self):
+        return self.start_freq
+
+    def set_start_freq(self, start_freq):
+        self.start_freq = start_freq
+
+    def get_tx_gain(self):
+        return self.tx_gain
+
+    def set_tx_gain(self, tx_gain):
+        self.tx_gain = tx_gain
+        self.sfcwRadar_bladerfRadarController_cc_0.set_tx_gain(self.tx_gain)
+
+    def get_upload_to_server(self):
+        return self.upload_to_server
+
+    def set_upload_to_server(self, upload_to_server):
+        self.upload_to_server = upload_to_server
 
     def get_chirp_bandwidth(self):
         return self.chirp_bandwidth
@@ -130,13 +193,6 @@ class sfcwRadarNoGUI(gr.top_block):
         self.set_transition_width(self.chirp_bandwidth/2)
         self.sfcwRadar_bladerfRadarController_cc_0.set_chirp_bandwidth(self.chirp_bandwidth)
 
-    def get_tx_gain(self):
-        return self.tx_gain
-
-    def set_tx_gain(self, tx_gain):
-        self.tx_gain = tx_gain
-        self.sfcwRadar_bladerfRadarController_cc_0.set_tx_gain(self.tx_gain)
-
     def get_transition_width(self):
         return self.transition_width
 
@@ -145,12 +201,6 @@ class sfcwRadarNoGUI(gr.top_block):
         self.low_pass_filter_0.set_taps(firdes.low_pass(1, self.samp_rate, self.cut_off, self.transition_width, window.WIN_HAMMING, 6.76))
         self.low_pass_filter_0_0.set_taps(firdes.low_pass(1, self.samp_rate, self.cut_off, self.transition_width, window.WIN_HAMMING, 6.76))
 
-    def get_start_freq(self):
-        return self.start_freq
-
-    def set_start_freq(self, start_freq):
-        self.start_freq = start_freq
-
     def get_samp_rate(self):
         return self.samp_rate
 
@@ -158,26 +208,6 @@ class sfcwRadarNoGUI(gr.top_block):
         self.samp_rate = samp_rate
         self.low_pass_filter_0.set_taps(firdes.low_pass(1, self.samp_rate, self.cut_off, self.transition_width, window.WIN_HAMMING, 6.76))
         self.low_pass_filter_0_0.set_taps(firdes.low_pass(1, self.samp_rate, self.cut_off, self.transition_width, window.WIN_HAMMING, 6.76))
-
-    def get_rx_gain(self):
-        return self.rx_gain
-
-    def set_rx_gain(self, rx_gain):
-        self.rx_gain = rx_gain
-        self.sfcwRadar_bladerfRadarController_cc_0.set_rx_gain(self.rx_gain)
-
-    def get_ref_gain(self):
-        return self.ref_gain
-
-    def set_ref_gain(self, ref_gain):
-        self.ref_gain = ref_gain
-        self.sfcwRadar_bladerfRadarController_cc_0.set_ref_gain(self.ref_gain)
-
-    def get_num_steps(self):
-        return self.num_steps
-
-    def set_num_steps(self, num_steps):
-        self.num_steps = num_steps
 
     def get_mf_size(self):
         return self.mf_size
@@ -190,12 +220,6 @@ class sfcwRadarNoGUI(gr.top_block):
 
     def set_lp_dec(self, lp_dec):
         self.lp_dec = lp_dec
-
-    def get_freq_step(self):
-        return self.freq_step
-
-    def set_freq_step(self, freq_step):
-        self.freq_step = freq_step
 
     def get_cw_freq(self):
         return self.cw_freq
@@ -219,9 +243,48 @@ class sfcwRadarNoGUI(gr.top_block):
 
 
 
+def argument_parser():
+    parser = ArgumentParser()
+    parser.add_argument(
+        "--burst-len", dest="burst_len", type=intx, default=(2**10),
+        help="Set burst_len [default=%(default)r]")
+    parser.add_argument(
+        "--freq-step", dest="freq_step", type=eng_float, default=eng_notation.num_to_str(float(20e6)),
+        help="Set freq_step [default=%(default)r]")
+    parser.add_argument(
+        "--num-steps", dest="num_steps", type=intx, default=128,
+        help="Set num_steps [default=%(default)r]")
+    parser.add_argument(
+        "--range-profile-prefix", dest="range_profile_prefix", type=str, default='/home/hui/rangeProfile/scan',
+        help="Set range_profile_prefix [default=%(default)r]")
+    parser.add_argument(
+        "--raw-signal-file-prefix", dest="raw_signal_file_prefix", type=str, default='/home/hui/rawSignals/raw',
+        help="Set raw_signal_file_prefix [default=%(default)r]")
+    parser.add_argument(
+        "--recv-buf-len", dest="recv_buf_len", type=intx, default=(2**10+256),
+        help="Set recv_buf_len [default=%(default)r]")
+    parser.add_argument(
+        "--ref-gain", dest="ref_gain", type=intx, default=5,
+        help="Set ref_gain [default=%(default)r]")
+    parser.add_argument(
+        "--rx-gain", dest="rx_gain", type=intx, default=40,
+        help="Set rx_gain [default=%(default)r]")
+    parser.add_argument(
+        "--start-freq", dest="start_freq", type=eng_float, default=eng_notation.num_to_str(float(2e9)),
+        help="Set start_freq [default=%(default)r]")
+    parser.add_argument(
+        "--tx-gain", dest="tx_gain", type=intx, default=20,
+        help="Set tx_gain [default=%(default)r]")
+    parser.add_argument(
+        "--upload-to-server", dest="upload_to_server", type=intx, default=1,
+        help="Set upload_to_server [default=%(default)r]")
+    return parser
+
 
 def main(top_block_cls=sfcwRadarNoGUI, options=None):
-    tb = top_block_cls()
+    if options is None:
+        options = argument_parser().parse_args()
+    tb = top_block_cls(burst_len=options.burst_len, freq_step=options.freq_step, num_steps=options.num_steps, range_profile_prefix=options.range_profile_prefix, raw_signal_file_prefix=options.raw_signal_file_prefix, recv_buf_len=options.recv_buf_len, ref_gain=options.ref_gain, rx_gain=options.rx_gain, start_freq=options.start_freq, tx_gain=options.tx_gain, upload_to_server=options.upload_to_server)
 
     def sig_handler(sig=None, frame=None):
         tb.stop()
