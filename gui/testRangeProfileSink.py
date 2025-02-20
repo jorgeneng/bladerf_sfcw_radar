@@ -8,8 +8,6 @@
 # Title: Not titled yet
 # GNU Radio version: v3.10.9.2-39-gcf065ee5
 
-from PyQt5 import Qt
-from gnuradio import qtgui
 from gnuradio import analog
 from gnuradio import blocks
 from gnuradio import gr
@@ -17,7 +15,6 @@ from gnuradio.filter import firdes
 from gnuradio.fft import window
 import sys
 import signal
-from PyQt5 import Qt
 from argparse import ArgumentParser
 from gnuradio.eng_arg import eng_float, intx
 from gnuradio import eng_notation
@@ -25,37 +22,19 @@ from gnuradio import sfcwRadar
 
 
 
-class testRangeProfileSink(gr.top_block, Qt.QWidget):
 
-    def __init__(self):
+class testRangeProfileSink(gr.top_block):
+
+    def __init__(self, num_steps=128, server_ip='localhost', server_port=9999, upload_to_server=0):
         gr.top_block.__init__(self, "Not titled yet", catch_exceptions=True)
-        Qt.QWidget.__init__(self)
-        self.setWindowTitle("Not titled yet")
-        qtgui.util.check_set_qss()
-        try:
-            self.setWindowIcon(Qt.QIcon.fromTheme('gnuradio-grc'))
-        except BaseException as exc:
-            print(f"Qt GUI: Could not set Icon: {str(exc)}", file=sys.stderr)
-        self.top_scroll_layout = Qt.QVBoxLayout()
-        self.setLayout(self.top_scroll_layout)
-        self.top_scroll = Qt.QScrollArea()
-        self.top_scroll.setFrameStyle(Qt.QFrame.NoFrame)
-        self.top_scroll_layout.addWidget(self.top_scroll)
-        self.top_scroll.setWidgetResizable(True)
-        self.top_widget = Qt.QWidget()
-        self.top_scroll.setWidget(self.top_widget)
-        self.top_layout = Qt.QVBoxLayout(self.top_widget)
-        self.top_grid_layout = Qt.QGridLayout()
-        self.top_layout.addLayout(self.top_grid_layout)
 
-        self.settings = Qt.QSettings("GNU Radio", "testRangeProfileSink")
-
-        try:
-            geometry = self.settings.value("geometry")
-            if geometry:
-                self.restoreGeometry(geometry)
-        except BaseException as exc:
-            print(f"Qt GUI: Could not restore geometry: {str(exc)}", file=sys.stderr)
+        ##################################################
+        # Parameters
+        ##################################################
+        self.num_steps = num_steps
+        self.server_ip = server_ip
+        self.server_port = server_port
+        self.upload_to_server = upload_to_server
 
         ##################################################
         # Variables
@@ -66,7 +45,7 @@ class testRangeProfileSink(gr.top_block, Qt.QWidget):
         # Blocks
         ##################################################
 
-        self.sfcwRadar_rangeProfileSink_0 = sfcwRadar.rangeProfileSink(128,'scan_',True,'localhost',9999)
+        self.sfcwRadar_rangeProfileSink_0 = sfcwRadar.rangeProfileSink(num_steps,'prefix',upload_to_server,server_ip,server_port)
         self.blocks_throttle2_0 = blocks.throttle( gr.sizeof_gr_complex*1, samp_rate, True, 0 if "auto" == "auto" else max( int(float(0.1) * samp_rate) if "auto" == "time" else int(0.1), 1) )
         self.blocks_stream_to_vector_0 = blocks.stream_to_vector(gr.sizeof_gr_complex*1, 128)
         self.analog_sig_source_x_0 = analog.sig_source_c(samp_rate, analog.GR_COS_WAVE, 100e3, 1, 0, 0)
@@ -80,13 +59,29 @@ class testRangeProfileSink(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_throttle2_0, 0), (self.blocks_stream_to_vector_0, 0))
 
 
-    def closeEvent(self, event):
-        self.settings = Qt.QSettings("GNU Radio", "testRangeProfileSink")
-        self.settings.setValue("geometry", self.saveGeometry())
-        self.stop()
-        self.wait()
+    def get_num_steps(self):
+        return self.num_steps
 
-        event.accept()
+    def set_num_steps(self, num_steps):
+        self.num_steps = num_steps
+
+    def get_server_ip(self):
+        return self.server_ip
+
+    def set_server_ip(self, server_ip):
+        self.server_ip = server_ip
+
+    def get_server_port(self):
+        return self.server_port
+
+    def set_server_port(self, server_port):
+        self.server_port = server_port
+
+    def get_upload_to_server(self):
+        return self.upload_to_server
+
+    def set_upload_to_server(self, upload_to_server):
+        self.upload_to_server = upload_to_server
 
     def get_samp_rate(self):
         return self.samp_rate
@@ -98,31 +93,46 @@ class testRangeProfileSink(gr.top_block, Qt.QWidget):
 
 
 
+def argument_parser():
+    parser = ArgumentParser()
+    parser.add_argument(
+        "--num-steps", dest="num_steps", type=intx, default=128,
+        help="Set num_steps [default=%(default)r]")
+    parser.add_argument(
+        "--server-ip", dest="server_ip", type=str, default='localhost',
+        help="Set server_ip [default=%(default)r]")
+    parser.add_argument(
+        "--server-port", dest="server_port", type=intx, default=9999,
+        help="Set server_port [default=%(default)r]")
+    parser.add_argument(
+        "--upload-to-server", dest="upload_to_server", type=intx, default=0,
+        help="Set upload_to_server [default=%(default)r]")
+    return parser
+
 
 def main(top_block_cls=testRangeProfileSink, options=None):
-
-    qapp = Qt.QApplication(sys.argv)
-
-    tb = top_block_cls()
-
-    tb.start()
-
-    tb.show()
+    if options is None:
+        options = argument_parser().parse_args()
+    tb = top_block_cls(num_steps=options.num_steps, server_ip=options.server_ip, server_port=options.server_port, upload_to_server=options.upload_to_server)
 
     def sig_handler(sig=None, frame=None):
         tb.stop()
         tb.wait()
 
-        Qt.QApplication.quit()
+        sys.exit(0)
 
     signal.signal(signal.SIGINT, sig_handler)
     signal.signal(signal.SIGTERM, sig_handler)
 
-    timer = Qt.QTimer()
-    timer.start(500)
-    timer.timeout.connect(lambda: None)
+    tb.start()
 
-    qapp.exec_()
+    try:
+        input('Press Enter to quit: ')
+    except EOFError:
+        pass
+    tb.stop()
+    tb.wait()
+
 
 if __name__ == '__main__':
     main()

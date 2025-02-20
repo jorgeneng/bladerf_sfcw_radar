@@ -9,7 +9,7 @@ options:
     description: ''
     gen_cmake: 'On'
     gen_linking: dynamic
-    generate_options: qt_gui
+    generate_options: no_gui
     hier_block_src_path: '.:'
     id: testRangeProfileSink
     max_nouts: '0'
@@ -107,22 +107,90 @@ blocks:
     coordinate: [456, 340.0]
     rotation: 0
     state: enabled
+- name: num_steps
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: ''
+    short_id: ''
+    type: intx
+    value: '128'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [456, 68.0]
+    rotation: 0
+    state: enabled
+- name: server_ip
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: ''
+    short_id: ''
+    type: str
+    value: localhost
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [848, 12.0]
+    rotation: 0
+    state: enabled
+- name: server_port
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: ''
+    short_id: ''
+    type: intx
+    value: '9999'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1056, 48.0]
+    rotation: 0
+    state: enabled
 - name: sfcwRadar_rangeProfileSink_0
   id: sfcwRadar_rangeProfileSink
   parameters:
     affinity: ''
     alias: ''
     comment: ''
-    num_steps: '128'
-    prefix: scan_
-    server_ip: localhost
-    server_port: '9999'
-    upload_to_server: 'True'
+    num_steps: num_steps
+    prefix: prefix
+    server_ip: server_ip
+    server_port: server_port
+    upload_to_server: upload_to_server
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
     coordinate: [848, 220.0]
+    rotation: 0
+    state: enabled
+- name: upload_to_server
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: ''
+    short_id: ''
+    type: intx
+    value: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [680, 28.0]
     rotation: 0
     state: enabled
 
