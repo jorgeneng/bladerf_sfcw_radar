@@ -216,8 +216,8 @@ int bladerfRadarController_cc_impl::init_device(){
         /**
          * set tunning mode to FPGA to get fast frequency tunning
          * */
-        //bladerf_set_tuning_mode(dev, BLADERF_TUNING_MODE_FPGA);
-        bladerf_set_tuning_mode(dev, BLADERF_TUNING_MODE_HOST);
+        bladerf_set_tuning_mode(dev, BLADERF_TUNING_MODE_FPGA);
+        //bladerf_set_tuning_mode(dev, BLADERF_TUNING_MODE_HOST);
         bladerf_tuning_mode current_mode;
         bladerf_get_tuning_mode(dev, &current_mode);
         std::cout << "Tunning mode is: " << current_mode << std::endl;

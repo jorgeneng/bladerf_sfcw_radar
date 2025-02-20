@@ -6,7 +6,7 @@
 #
 # GNU Radio Python Flow Graph
 # Title: Not titled yet
-# GNU Radio version: v3.10.9.2-39-gcf065ee5
+# GNU Radio version: v3.10.9.2-56-g7d2ba75b
 
 from PyQt5 import Qt
 from gnuradio import qtgui
@@ -63,7 +63,7 @@ class sfcwRadarChirpWaveform(gr.top_block, Qt.QWidget):
         ##################################################
         # Variables
         ##################################################
-        self.burst_len = burst_len = 2**11
+        self.burst_len = burst_len = 2**10
         self.recv_buf_len = recv_buf_len = burst_len+512
         self.chirp_bandwidth = chirp_bandwidth = 1e6
         self.tx_gain = tx_gain = 20
@@ -124,7 +124,7 @@ class sfcwRadarChirpWaveform(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(1, 2):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self.sfcwRadar_rangeProfileSink_1 = sfcwRadar.rangeProfileSink(num_steps,'rangeProfile/scan',,'localhost',9999)
+        self.sfcwRadar_rangeProfileSink_1 = sfcwRadar.rangeProfileSink(num_steps,'scan',False,'localhost',9999)
         self.sfcwRadar_matchedFilter_0 = sfcwRadar.matchedFilter((int(mf_size/lp_dec)))
         self.sfcwRadar_findPeak_0 = sfcwRadar.findPeak((int(mf_size/lp_dec)))
         self.sfcwRadar_bladerfRadarController_cc_0 = sfcwRadar.bladerfRadarController_cc(int(start_freq), num_steps, int(freq_step), int(samp_rate), rx_gain, tx_gain, ref_gain, True, burst_len, recv_buf_len, 8, 2048, 4, cw_amp, cw_freq, True, chirp_bandwidth, 1, 0)

@@ -37,7 +37,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: 2**11
+    value: 2**10
   states:
     bus_sink: false
     bus_source: false
@@ -1115,10 +1115,10 @@ blocks:
     alias: ''
     comment: ''
     num_steps: num_steps
-    prefix: rangeProfile/scan
+    prefix: scan
     server_ip: localhost
     server_port: '9999'
-    upload_to_server: ''
+    upload_to_server: 'False'
   states:
     bus_sink: false
     bus_source: false
@@ -1205,4 +1205,4 @@ connections:
 
 metadata:
   file_format: 1
-  grc_version: v3.10.9.2-39-gcf065ee5
+  grc_version: v3.10.9.2-56-g7d2ba75b
