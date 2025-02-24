@@ -441,6 +441,40 @@ blocks:
     coordinate: [1408, 100.0]
     rotation: 0
     state: enabled
+- name: server_ip
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: ''
+    short_id: ''
+    type: str
+    value: localhost
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [824, 100.0]
+    rotation: 0
+    state: enabled
+- name: server_port
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: ''
+    short_id: ''
+    type: intx
+    value: '9999'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [704, 100.0]
+    rotation: 0
+    state: enabled
 - name: sfcwRadar_bladerfRadarController_cc_0
   id: sfcwRadar_bladerfRadarController_cc
   parameters:
@@ -515,8 +549,8 @@ blocks:
     comment: ''
     num_steps: num_steps
     prefix: range_profile_prefix
-    server_ip: localhost
-    server_port: '9999'
+    server_ip: server_ip
+    server_port: server_port
     upload_to_server: upload_to_server
   states:
     bus_sink: false

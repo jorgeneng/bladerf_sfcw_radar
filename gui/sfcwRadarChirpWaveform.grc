@@ -1118,7 +1118,7 @@ blocks:
     prefix: scan
     server_ip: localhost
     server_port: '9999'
-    upload_to_server: 'True'
+    upload_to_server: 'False'
   states:
     bus_sink: false
     bus_source: false

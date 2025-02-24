@@ -27,7 +27,7 @@ from gnuradio import sfcwRadar
 
 class sfcwRadarNoGUI(gr.top_block):
 
-    def __init__(self, burst_len=(2**10), freq_step=20e6, num_steps=128, range_profile_prefix='/home/hui/rangeProfile/scan', raw_signal_file_prefix='/home/hui/rawSignals/raw', recv_buf_len=(2**10+256), ref_gain=5, rx_gain=40, start_freq=2e9, tx_gain=20, upload_to_server=1):
+    def __init__(self, burst_len=(2**10), freq_step=20e6, num_steps=128, range_profile_prefix='/home/hui/rangeProfile/scan', raw_signal_file_prefix='/home/hui/rawSignals/raw', recv_buf_len=(2**10+256), ref_gain=5, rx_gain=40, server_ip='localhost', server_port=9999, start_freq=2e9, tx_gain=20, upload_to_server=1):
         gr.top_block.__init__(self, "Not titled yet", catch_exceptions=True)
 
         ##################################################
@@ -41,6 +41,8 @@ class sfcwRadarNoGUI(gr.top_block):
         self.recv_buf_len = recv_buf_len
         self.ref_gain = ref_gain
         self.rx_gain = rx_gain
+        self.server_ip = server_ip
+        self.server_port = server_port
         self.start_freq = start_freq
         self.tx_gain = tx_gain
         self.upload_to_server = upload_to_server
@@ -62,7 +64,7 @@ class sfcwRadarNoGUI(gr.top_block):
         ##################################################
 
         self.sfcwRadar_rawSamplesSink_0 = sfcwRadar.rawSamplesSink(raw_signal_file_prefix, int(start_freq), num_steps, int(samp_rate), rx_gain, tx_gain, ref_gain, False, burst_len, recv_buf_len, cw_amp, cw_freq, True, chirp_bandwidth)
-        self.sfcwRadar_rangeProfileSink_1 = sfcwRadar.rangeProfileSink(num_steps,range_profile_prefix,upload_to_server,'localhost',9999)
+        self.sfcwRadar_rangeProfileSink_1 = sfcwRadar.rangeProfileSink(num_steps,range_profile_prefix,upload_to_server,server_ip,server_port)
         self.sfcwRadar_matchedFilter_0 = sfcwRadar.matchedFilter((int(mf_size/lp_dec)))
         self.sfcwRadar_findPeak_0 = sfcwRadar.findPeak((int(mf_size/lp_dec)))
         self.sfcwRadar_bladerfRadarController_cc_0 = sfcwRadar.bladerfRadarController_cc(int(start_freq), num_steps, int(freq_step), int(samp_rate), rx_gain, tx_gain, ref_gain, True, burst_len, recv_buf_len, 8, 2048, 4, cw_amp, cw_freq, True, chirp_bandwidth, 1, 0)
@@ -164,6 +166,18 @@ class sfcwRadarNoGUI(gr.top_block):
     def set_rx_gain(self, rx_gain):
         self.rx_gain = rx_gain
         self.sfcwRadar_bladerfRadarController_cc_0.set_rx_gain(self.rx_gain)
+
+    def get_server_ip(self):
+        return self.server_ip
+
+    def set_server_ip(self, server_ip):
+        self.server_ip = server_ip
+
+    def get_server_port(self):
+        return self.server_port
+
+    def set_server_port(self, server_port):
+        self.server_port = server_port
 
     def get_start_freq(self):
         return self.start_freq
@@ -270,6 +284,12 @@ def argument_parser():
         "--rx-gain", dest="rx_gain", type=intx, default=40,
         help="Set rx_gain [default=%(default)r]")
     parser.add_argument(
+        "--server-ip", dest="server_ip", type=str, default='localhost',
+        help="Set server_ip [default=%(default)r]")
+    parser.add_argument(
+        "--server-port", dest="server_port", type=intx, default=9999,
+        help="Set server_port [default=%(default)r]")
+    parser.add_argument(
         "--start-freq", dest="start_freq", type=eng_float, default=eng_notation.num_to_str(float(2e9)),
         help="Set start_freq [default=%(default)r]")
     parser.add_argument(
@@ -284,7 +304,7 @@ def argument_parser():
 def main(top_block_cls=sfcwRadarNoGUI, options=None):
     if options is None:
         options = argument_parser().parse_args()
-    tb = top_block_cls(burst_len=options.burst_len, freq_step=options.freq_step, num_steps=options.num_steps, range_profile_prefix=options.range_profile_prefix, raw_signal_file_prefix=options.raw_signal_file_prefix, recv_buf_len=options.recv_buf_len, ref_gain=options.ref_gain, rx_gain=options.rx_gain, start_freq=options.start_freq, tx_gain=options.tx_gain, upload_to_server=options.upload_to_server)
+    tb = top_block_cls(burst_len=options.burst_len, freq_step=options.freq_step, num_steps=options.num_steps, range_profile_prefix=options.range_profile_prefix, raw_signal_file_prefix=options.raw_signal_file_prefix, recv_buf_len=options.recv_buf_len, ref_gain=options.ref_gain, rx_gain=options.rx_gain, server_ip=options.server_ip, server_port=options.server_port, start_freq=options.start_freq, tx_gain=options.tx_gain, upload_to_server=options.upload_to_server)
 
     def sig_handler(sig=None, frame=None):
         tb.stop()

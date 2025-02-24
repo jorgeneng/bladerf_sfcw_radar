@@ -5,12 +5,16 @@ import socket
 import numpy as np
 import matplotlib.pyplot as plt
 import argparse
+import keyboard #install keyboard lib with pip install keyboard
+from sklearn import decomposition
 
 def range_profile_server(host, port, num_steps, max_b_scan_size):
-    fig, axes = plt.subplots(1,2)
+    fig, axes = plt.subplots(1,3)
     b_scan_data = []
     plt.ion()
     plt.show()
+    vmin = 0;
+    vmax = 100;
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.bind((host, port))
     server_socket.listen(5)
@@ -37,11 +41,30 @@ def range_profile_server(host, port, num_steps, max_b_scan_size):
             b_scan_data.append(np.abs(rangeProfile)**2)
             if len(b_scan_data) > max_b_scan_size:
                 b_scan_data.pop(0)
+                b_scan_pca = np.transpose(np.array(b_scan_plot))
+                u, s, v = decomposition.randomized_svd(np.abs(b_scan_pca), 1) 
+                low_rank = u @ np.diag(s) @ v 
+                axes[2].clear()
+                axes[2].imshow(b_scan_pca-low_rank, aspect='auto',cmap='jet') 
 
             b_scan_plot = np.array(b_scan_data)
             axes[1].clear()
-            axes[1].imshow(b_scan_plot, aspect='auto',origin = 'lower')
+            axes[1].imshow(b_scan_plot, aspect='auto',origin = 'lower', vmin=vmin, vmax=vmax)
+
             fig.canvas.flush_events()
+
+            if keyboard.is_pressed('q'):
+                vmin -=1
+                print(f"vmin: {vmin}, vmax: {vmax}")
+            if keyboard.is_pressed('w'):
+                vmin +=1
+                print(f"vmin: {vmin}, vmax: {vmax}")
+            if keyboard.is_pressed('a'):
+                vmax -=1
+                print(f"vmin: {vmin}, vmax: {vmax}")
+            if keyboard.is_pressed('s'):
+                vmax +=1
+                print(f"vmin: {vmin}, vmax: {vmax}")
         client_socket.close()
 
 if __name__ == "__main__":
