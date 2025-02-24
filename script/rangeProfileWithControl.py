@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import socket
 import time
-import keyboard #install keyboard library with pip install keyboard
+#import keyboard #install keyboard library with pip install keyboard
 
 # --- Configuration ---
 HOST = 'remote_machine_ip'
@@ -47,6 +47,7 @@ while True:
         plt.pause(0.01)
 
         # Keyboard input for vmin and vmax control
+        """
         if keyboard.is_pressed('q'): #lower vmin
             vmin -=1
             print(f"vmin: {vmin}, vmax: {vmax}")
@@ -63,7 +64,7 @@ while True:
             vmax += 1
             print(f"vmin: {vmin}, vmax: {vmax}")
             time.sleep(0.1)
-
+        """
     except ConnectionResetError:
         print("Connection closed by remote host.")
         break
