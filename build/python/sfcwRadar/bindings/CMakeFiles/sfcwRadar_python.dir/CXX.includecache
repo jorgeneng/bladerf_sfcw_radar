@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/gnuradio/sfcwRadar/api.h
+gnuradio/attributes.h
+-
+
+../include/gnuradio/sfcwRadar/sfcw_radar_mimo_cc.h
+gnuradio/sfcwRadar/api.h
+-
+gnuradio/sync_block.h
+-
+libbladeRF.h
+-
+
+/home/hui/gr-sfcwRadar/python/sfcwRadar/bindings/sfcw_radar_mimo_cc_python.cc
+pybind11/complex.h
+-
+pybind11/pybind11.h
+-
+pybind11/stl.h
+-
+gnuradio/sfcwRadar/sfcw_radar_mimo_cc.h
+-
+sfcw_radar_mimo_cc_pydoc.h
+-
+
+python/sfcwRadar/bindings/pydoc_macros.h
+
+python/sfcwRadar/bindings/sfcw_radar_mimo_cc_pydoc.h
+pydoc_macros.h
+python/sfcwRadar/bindings/pydoc_macros.h
+

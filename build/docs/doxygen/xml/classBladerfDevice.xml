@@ -1,0 +1,581 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classBladerfDevice" kind="class" language="C++" prot="public">
+    <compoundname>BladerfDevice</compoundname>
+    <includes refid="bladerf__device_8h" local="no">bladerf_device.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classBladerfDevice_1af2932da6ebcfb525584717ce50ef6c6b" prot="private" static="no" mutable="no">
+        <type>struct bladerf_devinfo</type>
+        <definition>struct bladerf_devinfo BladerfDevice::dev_info</definition>
+        <argsstring></argsstring>
+        <name>dev_info</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" line="50" column="9" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classBladerfDevice_1ab7a5416b1557b1e91dcc28f4a17465e1" prot="private" static="no" mutable="no">
+        <type>bladerf *</type>
+        <definition>bladerf* BladerfDevice::device</definition>
+        <argsstring></argsstring>
+        <name>device</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" line="54" column="13" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classBladerfDevice_1a4c694b1e4f2a51cb9f5e5ec8bd7ac072" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t BladerfDevice::d_num_buffers</definition>
+        <argsstring></argsstring>
+        <name>d_num_buffers</name>
+        <initializer>= 8</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>bladerf tx/rx buffer setup </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" line="58" column="12" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classBladerfDevice_1a3bbf7455c7827594bc55baa4e41d8289" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t BladerfDevice::d_buffer_size</definition>
+        <argsstring></argsstring>
+        <name>d_buffer_size</name>
+        <initializer>= 2048</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" line="59" column="12" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classBladerfDevice_1a599b549637871a9e60e63878eadbd071" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t BladerfDevice::d_num_transfers</definition>
+        <argsstring></argsstring>
+        <name>d_num_transfers</name>
+        <initializer>= 4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" line="60" column="12" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classBladerfDevice_1a4a8d320da0ea8b0e56563160354ffd42" prot="private" static="no" mutable="no">
+        <type>const unsigned int</type>
+        <definition>const unsigned int BladerfDevice::timeout_ms</definition>
+        <argsstring></argsstring>
+        <name>timeout_ms</name>
+        <initializer>= 2000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" line="61" column="24" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classBladerfDevice_1ad3fd6d92a5cea62e17bcf54ea0884251" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool BladerfDevice::d_enable_biastee</definition>
+        <argsstring></argsstring>
+        <name>d_enable_biastee</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" line="62" column="10" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classBladerfDevice_1a1c51e634d865776b7f8269c09d62ef47" prot="private" static="no" mutable="no">
+        <type>struct <ref refid="structbladerf__quick__tune__info" kindref="compound">bladerf_quick_tune_info</ref> *</type>
+        <definition>struct bladerf_quick_tune_info* BladerfDevice::d_quick_tunes_tx</definition>
+        <argsstring></argsstring>
+        <name>d_quick_tunes_tx</name>
+        <initializer>= nullptr</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>variables to save the quick retune parameters of each frequency step </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" line="67" column="34" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classBladerfDevice_1a4c73dc1cabcfce71928dbc64524e55e2" prot="private" static="no" mutable="no">
+        <type>struct <ref refid="structbladerf__quick__tune__info" kindref="compound">bladerf_quick_tune_info</ref> *</type>
+        <definition>struct bladerf_quick_tune_info* BladerfDevice::d_quick_tunes_rx</definition>
+        <argsstring></argsstring>
+        <name>d_quick_tunes_rx</name>
+        <initializer>= nullptr</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" line="68" column="34" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classBladerfDevice_1abf133cdd762204f8a2e5c69f13186db3" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int BladerfDevice::d_num_steps</definition>
+        <argsstring></argsstring>
+        <name>d_num_steps</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" line="69" column="9" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classBladerfDevice_1ac4bc2b3d4a77ead697d1eb9bb54128e4" prot="private" static="no" mutable="no">
+        <type>struct bladerf_metadata</type>
+        <definition>struct bladerf_metadata BladerfDevice::d_rx_meta</definition>
+        <argsstring></argsstring>
+        <name>d_rx_meta</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Tx and Rx metadata </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" line="69" column="9" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classBladerfDevice_1acb605188b4221e8d1b1f197a10f7f1d3" prot="private" static="no" mutable="no">
+        <type>struct bladerf_metadata</type>
+        <definition>struct bladerf_metadata BladerfDevice::d_tx_meta</definition>
+        <argsstring></argsstring>
+        <name>d_tx_meta</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" line="69" column="9" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classBladerfDevice_1a79aa66858c1b626adaa81a382acd97b1" prot="private" static="no" mutable="no">
+        <type>int16_t *</type>
+        <definition>int16_t* BladerfDevice::_16icbuf_in</definition>
+        <argsstring></argsstring>
+        <name>_16icbuf_in</name>
+        <initializer>= nullptr</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Pointers to Tx and Rx buffer </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" line="80" column="14" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classBladerfDevice_1a02dc3aa745417a32c935e815a2998c0b" prot="private" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int BladerfDevice::_16icbuf_in_num_samples</definition>
+        <argsstring></argsstring>
+        <name>_16icbuf_in_num_samples</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" line="81" column="18" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classBladerfDevice_1adec750ebb4292a1ec65c7edd3ddec68d" prot="private" static="no" mutable="no">
+        <type>int16_t *</type>
+        <definition>int16_t* BladerfDevice::_16icbuf_out</definition>
+        <argsstring></argsstring>
+        <name>_16icbuf_out</name>
+        <initializer>= nullptr</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" line="82" column="14" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classBladerfDevice_1aff7981a91d7efad89b74f737a2a4d176" prot="private" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int BladerfDevice::_16icbuf_out_num_samples</definition>
+        <argsstring></argsstring>
+        <name>_16icbuf_out_num_samples</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" line="83" column="18" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classBladerfDevice_1a2cb8a53c6cbc72d97441228f1920b6d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>BladerfDevice::BladerfDevice</definition>
+        <argsstring>(size_t num_buffers, size_t buffer_size, size_t num_transfers, bool enable_biastee)</argsstring>
+        <name>BladerfDevice</name>
+        <param>
+          <type>size_t</type>
+          <declname>num_buffers</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>buffer_size</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>num_transfers</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>enable_biastee</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" line="10" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classBladerfDevice_1a5f9c84fa81b33391d5a4f538120fb09f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>BladerfDevice::~BladerfDevice</definition>
+        <argsstring>()</argsstring>
+        <name>~BladerfDevice</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" line="11" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classBladerfDevice_1a96bbf2f62c4dd42644886f95e4aef162" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool BladerfDevice::openDevice</definition>
+        <argsstring>()</argsstring>
+        <name>openDevice</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" line="13" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classBladerfDevice_1afd6b8e0bf95897c4ee7f4979372c896e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void BladerfDevice::closeDevice</definition>
+        <argsstring>()</argsstring>
+        <name>closeDevice</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" line="15" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classBladerfDevice_1a0d33fb9b568ad45c129588d1f0072c59" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int BladerfDevice::enable_rx_channels</definition>
+        <argsstring>(struct channel_config *ref_rx_config, struct channel_config *radar_rx_config)</argsstring>
+        <name>enable_rx_channels</name>
+        <param>
+          <type>struct <ref refid="structchannel__config" kindref="compound">channel_config</ref> *</type>
+          <declname>ref_rx_config</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structchannel__config" kindref="compound">channel_config</ref> *</type>
+          <declname>radar_rx_config</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" line="17" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classBladerfDevice_1a7a07a227b326f29fac923ea28419e502" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int BladerfDevice::enable_dual_tx_channels</definition>
+        <argsstring>(struct channel_config *ref_tx_config, struct channel_config *radar_tx_config)</argsstring>
+        <name>enable_dual_tx_channels</name>
+        <param>
+          <type>struct <ref refid="structchannel__config" kindref="compound">channel_config</ref> *</type>
+          <declname>ref_tx_config</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structchannel__config" kindref="compound">channel_config</ref> *</type>
+          <declname>radar_tx_config</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Call this function if two txs will be used, one for transmitting radar signal, one for transmitting referece signal </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" line="22" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classBladerfDevice_1a7b6c433580570d9261d980d8fbd91474" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int BladerfDevice::enable_single_tx_channel</definition>
+        <argsstring>(struct channel_config *radar_tx_config)</argsstring>
+        <name>enable_single_tx_channel</name>
+        <param>
+          <type>struct <ref refid="structchannel__config" kindref="compound">channel_config</ref> *</type>
+          <declname>radar_tx_config</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Call this function if only on tx will be used, the reference signal will be feed to ref_rx_channel via a directional coupler </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" line="27" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classBladerfDevice_1a5e2411fea0eb2c3a8700a6f6c8da415b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int BladerfDevice::set_quick_tune</definition>
+        <argsstring>(bladerf_frequency start_freq, int num_steps, bladerf_frequency step_size)</argsstring>
+        <name>set_quick_tune</name>
+        <param>
+          <type>bladerf_frequency</type>
+          <declname>start_freq</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>num_steps</declname>
+        </param>
+        <param>
+          <type>bladerf_frequency</type>
+          <declname>step_size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" line="29" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classBladerfDevice_1a4a225640d06452cece75798239a0b397" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int BladerfDevice::tune_rx</definition>
+        <argsstring>(int freq_index)</argsstring>
+        <name>tune_rx</name>
+        <param>
+          <type>int</type>
+          <declname>freq_index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" line="31" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classBladerfDevice_1af34e6731977a41f8f473272b519fcc2f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int BladerfDevice::tune_tx</definition>
+        <argsstring>(int freq_index)</argsstring>
+        <name>tune_tx</name>
+        <param>
+          <type>int</type>
+          <declname>freq_index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" line="32" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classBladerfDevice_1a058defeed69ce197e58bf9d78932314e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void BladerfDevice::send</definition>
+        <argsstring>()</argsstring>
+        <name>send</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Send and recv functions </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" line="37" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classBladerfDevice_1acf903c9ff5f5743c1e30814c7e545dbe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void BladerfDevice::recv</definition>
+        <argsstring>()</argsstring>
+        <name>recv</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" line="38" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classBladerfDevice_1ab57e65395ca3c0ec72c1defb8d8d864e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int BladerfDevice::pulse</definition>
+        <argsstring>(float d_ts_inc_send, int16_t *samples_to_send, unsigned int num_samples_to_send, int16_t *rec_buf, unsigned int num_samples_to_recv)</argsstring>
+        <name>pulse</name>
+        <param>
+          <type>float</type>
+          <declname>d_ts_inc_send</declname>
+        </param>
+        <param>
+          <type>int16_t *</type>
+          <declname>samples_to_send</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>num_samples_to_send</declname>
+        </param>
+        <param>
+          <type>int16_t *</type>
+          <declname>rec_buf</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>num_samples_to_recv</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create two threads to send and recv at the same time </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" line="43" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classBladerfDevice_1a87951b094045958590974e1e304331bd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>struct bladerf *</type>
+        <definition>struct bladerf* BladerfDevice::get_device_handler</definition>
+        <argsstring>()</argsstring>
+        <name>get_device_handler</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" line="45" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classBladerfDevice_1a982c65e2f5c53c07bbc15a31a5c2e8dd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int BladerfDevice::set_gain</definition>
+        <argsstring>(bladerf_gain gain, bladerf_channel ch)</argsstring>
+        <name>set_gain</name>
+        <param>
+          <type>bladerf_gain</type>
+          <declname>gain</declname>
+        </param>
+        <param>
+          <type>bladerf_channel</type>
+          <declname>ch</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>setters </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" line="50" column="9"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classBladerfDevice_1a99665aca6bf14a192d8c1c356fe8f0cd" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int BladerfDevice::configure_channel</definition>
+        <argsstring>(struct channel_config *c)</argsstring>
+        <name>configure_channel</name>
+        <param>
+          <type>struct <ref refid="structchannel__config" kindref="compound">channel_config</ref> *</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Setup given channel<orderedlist>
+<listitem><para>LO frequency</para>
+</listitem><listitem><para>Sample rate</para>
+</listitem><listitem><para>gain</para>
+</listitem></orderedlist>
+</para>
+<para>return 0 if everything is OK </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" line="93" column="9"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" line="8" column="20" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" bodystart="8" bodyend="95"/>
+    <listofallmembers>
+      <member refid="classBladerfDevice_1a79aa66858c1b626adaa81a382acd97b1" prot="private" virt="non-virtual"><scope>BladerfDevice</scope><name>_16icbuf_in</name></member>
+      <member refid="classBladerfDevice_1a02dc3aa745417a32c935e815a2998c0b" prot="private" virt="non-virtual"><scope>BladerfDevice</scope><name>_16icbuf_in_num_samples</name></member>
+      <member refid="classBladerfDevice_1adec750ebb4292a1ec65c7edd3ddec68d" prot="private" virt="non-virtual"><scope>BladerfDevice</scope><name>_16icbuf_out</name></member>
+      <member refid="classBladerfDevice_1aff7981a91d7efad89b74f737a2a4d176" prot="private" virt="non-virtual"><scope>BladerfDevice</scope><name>_16icbuf_out_num_samples</name></member>
+      <member refid="classBladerfDevice_1a2cb8a53c6cbc72d97441228f1920b6d1" prot="public" virt="non-virtual"><scope>BladerfDevice</scope><name>BladerfDevice</name></member>
+      <member refid="classBladerfDevice_1afd6b8e0bf95897c4ee7f4979372c896e" prot="public" virt="non-virtual"><scope>BladerfDevice</scope><name>closeDevice</name></member>
+      <member refid="classBladerfDevice_1a99665aca6bf14a192d8c1c356fe8f0cd" prot="private" virt="non-virtual"><scope>BladerfDevice</scope><name>configure_channel</name></member>
+      <member refid="classBladerfDevice_1a3bbf7455c7827594bc55baa4e41d8289" prot="private" virt="non-virtual"><scope>BladerfDevice</scope><name>d_buffer_size</name></member>
+      <member refid="classBladerfDevice_1ad3fd6d92a5cea62e17bcf54ea0884251" prot="private" virt="non-virtual"><scope>BladerfDevice</scope><name>d_enable_biastee</name></member>
+      <member refid="classBladerfDevice_1a4c694b1e4f2a51cb9f5e5ec8bd7ac072" prot="private" virt="non-virtual"><scope>BladerfDevice</scope><name>d_num_buffers</name></member>
+      <member refid="classBladerfDevice_1abf133cdd762204f8a2e5c69f13186db3" prot="private" virt="non-virtual"><scope>BladerfDevice</scope><name>d_num_steps</name></member>
+      <member refid="classBladerfDevice_1a599b549637871a9e60e63878eadbd071" prot="private" virt="non-virtual"><scope>BladerfDevice</scope><name>d_num_transfers</name></member>
+      <member refid="classBladerfDevice_1a4c73dc1cabcfce71928dbc64524e55e2" prot="private" virt="non-virtual"><scope>BladerfDevice</scope><name>d_quick_tunes_rx</name></member>
+      <member refid="classBladerfDevice_1a1c51e634d865776b7f8269c09d62ef47" prot="private" virt="non-virtual"><scope>BladerfDevice</scope><name>d_quick_tunes_tx</name></member>
+      <member refid="classBladerfDevice_1ac4bc2b3d4a77ead697d1eb9bb54128e4" prot="private" virt="non-virtual"><scope>BladerfDevice</scope><name>d_rx_meta</name></member>
+      <member refid="classBladerfDevice_1acb605188b4221e8d1b1f197a10f7f1d3" prot="private" virt="non-virtual"><scope>BladerfDevice</scope><name>d_tx_meta</name></member>
+      <member refid="classBladerfDevice_1af2932da6ebcfb525584717ce50ef6c6b" prot="private" virt="non-virtual"><scope>BladerfDevice</scope><name>dev_info</name></member>
+      <member refid="classBladerfDevice_1ab7a5416b1557b1e91dcc28f4a17465e1" prot="private" virt="non-virtual"><scope>BladerfDevice</scope><name>device</name></member>
+      <member refid="classBladerfDevice_1a7a07a227b326f29fac923ea28419e502" prot="public" virt="non-virtual"><scope>BladerfDevice</scope><name>enable_dual_tx_channels</name></member>
+      <member refid="classBladerfDevice_1a0d33fb9b568ad45c129588d1f0072c59" prot="public" virt="non-virtual"><scope>BladerfDevice</scope><name>enable_rx_channels</name></member>
+      <member refid="classBladerfDevice_1a7b6c433580570d9261d980d8fbd91474" prot="public" virt="non-virtual"><scope>BladerfDevice</scope><name>enable_single_tx_channel</name></member>
+      <member refid="classBladerfDevice_1a87951b094045958590974e1e304331bd" prot="public" virt="non-virtual"><scope>BladerfDevice</scope><name>get_device_handler</name></member>
+      <member refid="classBladerfDevice_1a96bbf2f62c4dd42644886f95e4aef162" prot="public" virt="non-virtual"><scope>BladerfDevice</scope><name>openDevice</name></member>
+      <member refid="classBladerfDevice_1ab57e65395ca3c0ec72c1defb8d8d864e" prot="public" virt="non-virtual"><scope>BladerfDevice</scope><name>pulse</name></member>
+      <member refid="classBladerfDevice_1acf903c9ff5f5743c1e30814c7e545dbe" prot="public" virt="non-virtual"><scope>BladerfDevice</scope><name>recv</name></member>
+      <member refid="classBladerfDevice_1a058defeed69ce197e58bf9d78932314e" prot="public" virt="non-virtual"><scope>BladerfDevice</scope><name>send</name></member>
+      <member refid="classBladerfDevice_1a982c65e2f5c53c07bbc15a31a5c2e8dd" prot="public" virt="non-virtual"><scope>BladerfDevice</scope><name>set_gain</name></member>
+      <member refid="classBladerfDevice_1a5e2411fea0eb2c3a8700a6f6c8da415b" prot="public" virt="non-virtual"><scope>BladerfDevice</scope><name>set_quick_tune</name></member>
+      <member refid="classBladerfDevice_1a4a8d320da0ea8b0e56563160354ffd42" prot="private" virt="non-virtual"><scope>BladerfDevice</scope><name>timeout_ms</name></member>
+      <member refid="classBladerfDevice_1a4a225640d06452cece75798239a0b397" prot="public" virt="non-virtual"><scope>BladerfDevice</scope><name>tune_rx</name></member>
+      <member refid="classBladerfDevice_1af34e6731977a41f8f473272b519fcc2f" prot="public" virt="non-virtual"><scope>BladerfDevice</scope><name>tune_tx</name></member>
+      <member refid="classBladerfDevice_1a5f9c84fa81b33391d5a4f538120fb09f" prot="public" virt="non-virtual"><scope>BladerfDevice</scope><name>~BladerfDevice</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

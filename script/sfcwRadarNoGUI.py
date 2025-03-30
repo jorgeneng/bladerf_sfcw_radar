@@ -10,11 +10,9 @@
 
 from gnuradio import blocks
 import pmt
-from gnuradio import fft
-from gnuradio.fft import window
-from gnuradio import filter
-from gnuradio.filter import firdes
 from gnuradio import gr
+from gnuradio.filter import firdes
+from gnuradio.fft import window
 import sys
 import signal
 from argparse import ArgumentParser
@@ -27,7 +25,7 @@ from gnuradio import sfcwRadar
 
 class sfcwRadarNoGUI(gr.top_block):
 
-    def __init__(self, burst_len=(2**10), freq_step=20e6, num_steps=128, range_profile_prefix='/home/hui/rangeProfile/scan', raw_signal_file_prefix='/home/hui/rawSignals/raw', recv_buf_len=(2**10+256), ref_gain=5, rx_gain=40, server_ip='localhost', server_port=9999, start_freq=2e9, tx_gain=20, upload_to_server=1):
+    def __init__(self, burst_len=(2**10), freq_step=20e6, num_steps=128, range_profile_prefix='/home/hui/rangeProfile/scan', raw_signal_file_prefix='/home/hui/rawSignals/raw', recv_buf_len=(2**10+256), ref_gain=5, rx_gain=40, server_ip='localhost', server_port=9999, start_freq=2e9, tx_gain=50, upload_to_server=1):
         gr.top_block.__init__(self, "Not titled yet", catch_exceptions=True)
 
         ##################################################
@@ -64,34 +62,9 @@ class sfcwRadarNoGUI(gr.top_block):
         ##################################################
 
         self.sfcwRadar_rawSamplesSink_0 = sfcwRadar.rawSamplesSink(raw_signal_file_prefix, int(start_freq), num_steps, int(samp_rate), rx_gain, tx_gain, ref_gain, False, burst_len, recv_buf_len, cw_amp, cw_freq, True, chirp_bandwidth)
-        self.sfcwRadar_rangeProfileSink_1 = sfcwRadar.rangeProfileSink(num_steps,range_profile_prefix,upload_to_server,server_ip,server_port)
-        self.sfcwRadar_matchedFilter_0 = sfcwRadar.matchedFilter((int(mf_size/lp_dec)))
-        self.sfcwRadar_findPeak_0 = sfcwRadar.findPeak((int(mf_size/lp_dec)))
         self.sfcwRadar_bladerfRadarController_cc_0 = sfcwRadar.bladerfRadarController_cc(int(start_freq), num_steps, int(freq_step), int(samp_rate), rx_gain, tx_gain, ref_gain, True, burst_len, recv_buf_len, 8, 2048, 4, cw_amp, cw_freq, True, chirp_bandwidth, 1, 0)
-        self.low_pass_filter_0_0 = filter.fir_filter_ccf(
-            lp_dec,
-            firdes.low_pass(
-                1,
-                samp_rate,
-                cut_off,
-                transition_width,
-                window.WIN_HAMMING,
-                6.76))
-        self.low_pass_filter_0 = filter.fir_filter_ccf(
-            lp_dec,
-            firdes.low_pass(
-                1,
-                samp_rate,
-                cut_off,
-                transition_width,
-                window.WIN_HAMMING,
-                6.76))
-        self.fft_vxx_0 = fft.fft_vcc(num_steps, False, window.hamming(num_steps), True, 1)
         self.blocks_stream_to_vector_1_0_1 = blocks.stream_to_vector(gr.sizeof_gr_complex*1, (recv_buf_len*num_steps))
         self.blocks_stream_to_vector_1_0_0 = blocks.stream_to_vector(gr.sizeof_gr_complex*1, (recv_buf_len*num_steps))
-        self.blocks_stream_to_vector_1_0 = blocks.stream_to_vector(gr.sizeof_gr_complex*1, (int(mf_size/lp_dec)))
-        self.blocks_stream_to_vector_1 = blocks.stream_to_vector(gr.sizeof_gr_complex*1, (int(mf_size/lp_dec)))
-        self.blocks_stream_to_vector_0 = blocks.stream_to_vector(gr.sizeof_gr_complex*1, num_steps)
         self.blocks_message_strobe_0 = blocks.message_strobe(pmt.cons(pmt.PMT_NIL, pmt.from_long(2)), 1000)
 
 
@@ -99,20 +72,10 @@ class sfcwRadarNoGUI(gr.top_block):
         # Connections
         ##################################################
         self.msg_connect((self.blocks_message_strobe_0, 'strobe'), (self.sfcwRadar_bladerfRadarController_cc_0, 'scan'))
-        self.connect((self.blocks_stream_to_vector_0, 0), (self.fft_vxx_0, 0))
-        self.connect((self.blocks_stream_to_vector_1, 0), (self.sfcwRadar_matchedFilter_0, 1))
-        self.connect((self.blocks_stream_to_vector_1_0, 0), (self.sfcwRadar_matchedFilter_0, 0))
         self.connect((self.blocks_stream_to_vector_1_0_0, 0), (self.sfcwRadar_rawSamplesSink_0, 1))
         self.connect((self.blocks_stream_to_vector_1_0_1, 0), (self.sfcwRadar_rawSamplesSink_0, 0))
-        self.connect((self.fft_vxx_0, 0), (self.sfcwRadar_rangeProfileSink_1, 0))
-        self.connect((self.low_pass_filter_0, 0), (self.blocks_stream_to_vector_1, 0))
-        self.connect((self.low_pass_filter_0_0, 0), (self.blocks_stream_to_vector_1_0, 0))
         self.connect((self.sfcwRadar_bladerfRadarController_cc_0, 0), (self.blocks_stream_to_vector_1_0_0, 0))
         self.connect((self.sfcwRadar_bladerfRadarController_cc_0, 1), (self.blocks_stream_to_vector_1_0_1, 0))
-        self.connect((self.sfcwRadar_bladerfRadarController_cc_0, 0), (self.low_pass_filter_0, 0))
-        self.connect((self.sfcwRadar_bladerfRadarController_cc_0, 1), (self.low_pass_filter_0_0, 0))
-        self.connect((self.sfcwRadar_findPeak_0, 0), (self.blocks_stream_to_vector_0, 0))
-        self.connect((self.sfcwRadar_matchedFilter_0, 0), (self.sfcwRadar_findPeak_0, 0))
 
 
     def get_burst_len(self):
@@ -212,16 +175,12 @@ class sfcwRadarNoGUI(gr.top_block):
 
     def set_transition_width(self, transition_width):
         self.transition_width = transition_width
-        self.low_pass_filter_0.set_taps(firdes.low_pass(1, self.samp_rate, self.cut_off, self.transition_width, window.WIN_HAMMING, 6.76))
-        self.low_pass_filter_0_0.set_taps(firdes.low_pass(1, self.samp_rate, self.cut_off, self.transition_width, window.WIN_HAMMING, 6.76))
 
     def get_samp_rate(self):
         return self.samp_rate
 
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
-        self.low_pass_filter_0.set_taps(firdes.low_pass(1, self.samp_rate, self.cut_off, self.transition_width, window.WIN_HAMMING, 6.76))
-        self.low_pass_filter_0_0.set_taps(firdes.low_pass(1, self.samp_rate, self.cut_off, self.transition_width, window.WIN_HAMMING, 6.76))
 
     def get_mf_size(self):
         return self.mf_size
@@ -252,8 +211,6 @@ class sfcwRadarNoGUI(gr.top_block):
 
     def set_cut_off(self, cut_off):
         self.cut_off = cut_off
-        self.low_pass_filter_0.set_taps(firdes.low_pass(1, self.samp_rate, self.cut_off, self.transition_width, window.WIN_HAMMING, 6.76))
-        self.low_pass_filter_0_0.set_taps(firdes.low_pass(1, self.samp_rate, self.cut_off, self.transition_width, window.WIN_HAMMING, 6.76))
 
 
 
@@ -293,7 +250,7 @@ def argument_parser():
         "--start-freq", dest="start_freq", type=eng_float, default=eng_notation.num_to_str(float(2e9)),
         help="Set start_freq [default=%(default)r]")
     parser.add_argument(
-        "--tx-gain", dest="tx_gain", type=intx, default=20,
+        "--tx-gain", dest="tx_gain", type=intx, default=50,
         help="Set tx_gain [default=%(default)r]")
     parser.add_argument(
         "--upload-to-server", dest="upload_to_server", type=intx, default=1,

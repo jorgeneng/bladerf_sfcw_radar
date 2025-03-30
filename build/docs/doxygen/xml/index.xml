@@ -1,0 +1,363 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.17">
+  <compound refid="structgr_1_1sfcwRadar_1_1bladerf__quick__tune__info" kind="struct"><name>gr::sfcwRadar::bladerf_quick_tune_info</name>
+    <member refid="structgr_1_1sfcwRadar_1_1bladerf__quick__tune__info_1af8ff29f8db301d9c1a784521c90c1efc" kind="variable"><name>freq</name></member>
+    <member refid="structgr_1_1sfcwRadar_1_1bladerf__quick__tune__info_1a2b6715d13e1a9f6e1811d4955b2a31eb" kind="variable"><name>quick_tune</name></member>
+  </compound>
+  <compound refid="structbladerf__quick__tune__info" kind="struct"><name>bladerf_quick_tune_info</name>
+    <member refid="structbladerf__quick__tune__info_1af8ff29f8db301d9c1a784521c90c1efc" kind="variable"><name>freq</name></member>
+    <member refid="structbladerf__quick__tune__info_1a2b6715d13e1a9f6e1811d4955b2a31eb" kind="variable"><name>quick_tune</name></member>
+  </compound>
+  <compound refid="classBladerfDevice" kind="class"><name>BladerfDevice</name>
+    <member refid="classBladerfDevice_1af2932da6ebcfb525584717ce50ef6c6b" kind="variable"><name>dev_info</name></member>
+    <member refid="classBladerfDevice_1ab7a5416b1557b1e91dcc28f4a17465e1" kind="variable"><name>device</name></member>
+    <member refid="classBladerfDevice_1a4c694b1e4f2a51cb9f5e5ec8bd7ac072" kind="variable"><name>d_num_buffers</name></member>
+    <member refid="classBladerfDevice_1a3bbf7455c7827594bc55baa4e41d8289" kind="variable"><name>d_buffer_size</name></member>
+    <member refid="classBladerfDevice_1a599b549637871a9e60e63878eadbd071" kind="variable"><name>d_num_transfers</name></member>
+    <member refid="classBladerfDevice_1a4a8d320da0ea8b0e56563160354ffd42" kind="variable"><name>timeout_ms</name></member>
+    <member refid="classBladerfDevice_1ad3fd6d92a5cea62e17bcf54ea0884251" kind="variable"><name>d_enable_biastee</name></member>
+    <member refid="classBladerfDevice_1a1c51e634d865776b7f8269c09d62ef47" kind="variable"><name>d_quick_tunes_tx</name></member>
+    <member refid="classBladerfDevice_1a4c73dc1cabcfce71928dbc64524e55e2" kind="variable"><name>d_quick_tunes_rx</name></member>
+    <member refid="classBladerfDevice_1abf133cdd762204f8a2e5c69f13186db3" kind="variable"><name>d_num_steps</name></member>
+    <member refid="classBladerfDevice_1ac4bc2b3d4a77ead697d1eb9bb54128e4" kind="variable"><name>d_rx_meta</name></member>
+    <member refid="classBladerfDevice_1acb605188b4221e8d1b1f197a10f7f1d3" kind="variable"><name>d_tx_meta</name></member>
+    <member refid="classBladerfDevice_1a79aa66858c1b626adaa81a382acd97b1" kind="variable"><name>_16icbuf_in</name></member>
+    <member refid="classBladerfDevice_1a02dc3aa745417a32c935e815a2998c0b" kind="variable"><name>_16icbuf_in_num_samples</name></member>
+    <member refid="classBladerfDevice_1adec750ebb4292a1ec65c7edd3ddec68d" kind="variable"><name>_16icbuf_out</name></member>
+    <member refid="classBladerfDevice_1aff7981a91d7efad89b74f737a2a4d176" kind="variable"><name>_16icbuf_out_num_samples</name></member>
+    <member refid="classBladerfDevice_1a2cb8a53c6cbc72d97441228f1920b6d1" kind="function"><name>BladerfDevice</name></member>
+    <member refid="classBladerfDevice_1a5f9c84fa81b33391d5a4f538120fb09f" kind="function"><name>~BladerfDevice</name></member>
+    <member refid="classBladerfDevice_1a96bbf2f62c4dd42644886f95e4aef162" kind="function"><name>openDevice</name></member>
+    <member refid="classBladerfDevice_1afd6b8e0bf95897c4ee7f4979372c896e" kind="function"><name>closeDevice</name></member>
+    <member refid="classBladerfDevice_1a0d33fb9b568ad45c129588d1f0072c59" kind="function"><name>enable_rx_channels</name></member>
+    <member refid="classBladerfDevice_1a7a07a227b326f29fac923ea28419e502" kind="function"><name>enable_dual_tx_channels</name></member>
+    <member refid="classBladerfDevice_1a7b6c433580570d9261d980d8fbd91474" kind="function"><name>enable_single_tx_channel</name></member>
+    <member refid="classBladerfDevice_1a5e2411fea0eb2c3a8700a6f6c8da415b" kind="function"><name>set_quick_tune</name></member>
+    <member refid="classBladerfDevice_1a4a225640d06452cece75798239a0b397" kind="function"><name>tune_rx</name></member>
+    <member refid="classBladerfDevice_1af34e6731977a41f8f473272b519fcc2f" kind="function"><name>tune_tx</name></member>
+    <member refid="classBladerfDevice_1a058defeed69ce197e58bf9d78932314e" kind="function"><name>send</name></member>
+    <member refid="classBladerfDevice_1acf903c9ff5f5743c1e30814c7e545dbe" kind="function"><name>recv</name></member>
+    <member refid="classBladerfDevice_1ab57e65395ca3c0ec72c1defb8d8d864e" kind="function"><name>pulse</name></member>
+    <member refid="classBladerfDevice_1a87951b094045958590974e1e304331bd" kind="function"><name>get_device_handler</name></member>
+    <member refid="classBladerfDevice_1a982c65e2f5c53c07bbc15a31a5c2e8dd" kind="function"><name>set_gain</name></member>
+    <member refid="classBladerfDevice_1a99665aca6bf14a192d8c1c356fe8f0cd" kind="function"><name>configure_channel</name></member>
+  </compound>
+  <compound refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc" kind="class"><name>gr::sfcwRadar::bladerfRadarController_cc</name>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc_1a6629ecd99003a0551d91aec37590a205" kind="typedef"><name>sptr</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc_1afd605922b0616f0348ae28168af2aa71" kind="function"><name>make</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc_1ab2969674e809859276eb2f95d289957e" kind="function"><name>set_tx_gain</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc_1a4ee245e0bf9e32589e39970f8a7cecf9" kind="function"><name>set_rx_gain</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc_1a678f8b4b66f64ef1a8c8d3fb70b78c3e" kind="function"><name>set_ref_gain</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc_1afc018be3590317dae30e4f268e05a5d5" kind="function"><name>set_chirp_bandwidth</name></member>
+  </compound>
+  <compound refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl" kind="class"><name>gr::sfcwRadar::bladerfRadarController_cc_impl</name>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a8f4d2afcabbf01345f3ca49a5118038d" kind="variable"><name>config</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a5f6f4814ecff2ab01389abb9db9c84bd" kind="variable"><name>dev</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a315d23ea5a5ec3154774b1a05f754b41" kind="variable"><name>dev_info</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a981a42774c5a41f8a063f5afb4d83438" kind="variable"><name>d_num_buffers</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a83956f26b2e21797f17b86c41ed9af2d" kind="variable"><name>d_buffer_size</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1ac5659f58c09f2153ae03dc21ff8de1f7" kind="variable"><name>d_num_transfers</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1ad29cd652d381947fc5595c6ef3cef036" kind="variable"><name>timeout_ms</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1ae509e811e7a359a4068989f324c99f91" kind="variable"><name>d_burst_len</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a3aac649cc49ec0c3381f5478994b05e5" kind="variable"><name>d_recv_len</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a0253589843e6b34846949623d6ad4886" kind="variable"><name>d_num_steps</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1acc81e1a96e3665f468347597cd754eeb" kind="variable"><name>d_samp_rate</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a583c2171d3d7f42f3bb4bdb2fda5c2b6" kind="variable"><name>d_channel_bandwidth</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1aa60beeb82e4036676b4b460aa823844b" kind="variable"><name>d_rx_gain</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a47684f84ca05a4e102bff9e0c667b9c6" kind="variable"><name>d_tx_gain</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a7accef0158708f065fe740e6a21ca6f4" kind="variable"><name>d_ref_gain</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a630dcfc873790cb42518967ee1a9b397" kind="variable"><name>d_enable_biastee</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a77c3cb92caa9fb8c3de3e2ab28260447" kind="variable"><name>d_start_freq</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a36826ae3c7fc06aa7ada1ff559ac4df8" kind="variable"><name>d_step_size</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a2755365af5164bf86fb3ba2a261b21b7" kind="variable"><name>d_freq_index</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1ab65a5eea9b276acca0d168f2cd8b697d" kind="variable"><name>d_ts_inc_rec</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1af29dc6af65b261f58f5ee9b4daf26926" kind="variable"><name>d_ts_inc_send</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a9bf965924809b3d59ecb6350c43288dc" kind="variable"><name>d_rx_meta</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1ae4386143c0038f9dd68921bfe329aead" kind="variable"><name>d_tx_meta</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a3faa3d18f32f2f698e921f38e654054e" kind="variable"><name>d_cw_amplitude</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1aa97f74eca184afaf3050335b54febe85" kind="variable"><name>d_cw_frequency</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a8400408bb0ea36c0b6b45a6d71d7e16b" kind="variable"><name>d_phase</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a4dec5dd74b07b6e1ff71cbdb31798130" kind="variable"><name>d_quick_tunes_tx</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a0f06962e5d7a1930d113fc68c58846bb" kind="variable"><name>d_quick_tunes_rx</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a647221eb4498ab84e4cb283b02784670" kind="variable"><name>d_scan</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1ad7e24e787b75d143165b3a85b975e21b" kind="variable"><name>d_continuous_scan_flag</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a934d7c55b59798956a999caf4184556c" kind="variable"><name>d_gps_x</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1aa3b8e0c4c5c4559ea425f771651ce8f6" kind="variable"><name>d_gps_y</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a3b7f36563359077bbfeaa25735fd56e1" kind="variable"><name>_16icbuf_in</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a884d95026ad0fb37c032a25746bf508f" kind="variable"><name>_32fcbuf_in</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1aca853c665217aed1bd0cac1e7a5b5bc4" kind="variable"><name>_16icbuf_out</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a21bce0686b25e98df89d0d5b838f9ec2" kind="variable"><name>_32fcbuf_out</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a749c738959c8033773931bcf9576d28c" kind="variable"><name>SCALING_FACTOR</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a1addb83459fb2c2e9e735a5ca27134c6" kind="variable"><name>d_isChirp</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a97786ddf7c2cd8110bf003601f84ccd9" kind="variable"><name>d_chirp_bandwidth</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1aa4798ba8a80527d1ef67e65305cbe2f6" kind="variable"><name>d_thread_send</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1ae83ec21a629b9f82b402fa06634ec2b3" kind="variable"><name>d_thread_recv</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1afa7650b595e92a92c0a2831ca0ee925f" kind="variable"><name>d_thread_rx_freq_tuning</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1aef73e6cf002dd50bc6d24b3d29bb9c88" kind="variable"><name>d_thread_tx_freq_tuning</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1aabeb0c3e6a677d98d1825a745787f38c" kind="variable"><name>begin</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1ad203e4051824ca105e2705b2f125fac8" kind="variable"><name>end</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a8b83472e2d141be7723e4ab07c092114" kind="function"><name>init_device</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a80c60a47bb422e3aae95a9b0114a5763" kind="function"><name>init_sync</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a0f1fec5180b35e778d7580e46ab5af5c" kind="function"><name>configure_channel</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a8509ee3ade71cc37a7d781db5b6a1ca0" kind="function"><name>set_quick_tune</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a7b30a37ad4a3e4d47dae339d7621d012" kind="function"><name>quick_tune</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a2a7a072ca4b510949b2596d81534cb91" kind="function"><name>tune_rx</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a728dc88fb70714220966b621a1ad673c" kind="function"><name>tune_tx</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1abeef4901f25117771e8fbeb715798548" kind="function"><name>handle_scan_msg</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1ada05d609cb2ea6f22b850f24777313fc" kind="function"><name>generate_cw_samples</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a563c0a5cfe243f87c3712383f05ed693" kind="function"><name>generate_chirp_samples</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a27f77a4f422323787efdb138a8db6ab4" kind="function"><name>send</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a3d38c69d59884267c4a1dbd17b5ea4b1" kind="function"><name>recv</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a451312a60a864d347d5451744aa73995" kind="function"><name>wait_for_timestamp</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a3056cfa0e071e8fa84754a7ddf7c0663" kind="function"><name>bladerfRadarController_cc_impl</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a2526b01eb2d68896647610c0e7bad7ee" kind="function"><name>~bladerfRadarController_cc_impl</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1ad52e182efe6c8c7e0d8f430ec8d32f02" kind="function"><name>set_tx_gain</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a8c1563b75f8100bf60bdae0e96fb741d" kind="function"><name>set_rx_gain</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a2ed468bc89030d9ffb39a0c3aa7a4c25" kind="function"><name>set_ref_gain</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1a42a203866cffaf8b6356100509950414" kind="function"><name>set_chirp_bandwidth</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl_1abcc574622457288c1e5ba5bf059e415e" kind="function"><name>work</name></member>
+  </compound>
+  <compound refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO" kind="class"><name>gr::sfcwRadar::bladerfRadarMIMO</name>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO_1a3eb4f2d8a7dd23c885dad2a8368ea2e1" kind="typedef"><name>sptr</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO_1a60886334add69a01c4094264b22ee83f" kind="function"><name>make</name></member>
+  </compound>
+  <compound refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl" kind="class"><name>gr::sfcwRadar::bladerfRadarMIMO_impl</name>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1af125712cbd79727e36b87cbd083de560" kind="variable"><name>config</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1ade47f8210e73b174cfe78caa427b4a6f" kind="variable"><name>dev</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1a8eb05ad2b35387a54dbb2840b9f61133" kind="variable"><name>dev_info</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1a19392312b64a77b8a8b961be09ee4109" kind="variable"><name>d_num_buffers</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1ade6d67d0a5a191b80f17c730db26569c" kind="variable"><name>d_buffer_size</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1ae3453089ed7d731c17fef86c93f0f411" kind="variable"><name>d_num_transfers</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1ab2abef974f741d0d2e3680f3dc01e588" kind="variable"><name>timeout_ms</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1ab1caecac458e2868ac962055fa4a2ae7" kind="variable"><name>d_burst_len</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1a0ddad440bf1dd29ace490c32b562c6d5" kind="variable"><name>d_num_steps</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1a8d9b17d38224d20455ab75217219d1fe" kind="variable"><name>d_samp_rate</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1af0acef98d3d1c7c6b12998a0b250f903" kind="variable"><name>d_rx_gain</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1af3d7c8529f43a0068603ac7513b01649" kind="variable"><name>d_tx_gain</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1aca1e2b83e1c5fbd4a32444fabdb85049" kind="variable"><name>d_ref_gain</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1a0633fa5c26e5d0984b42e967c18c6f28" kind="variable"><name>d_start_freq</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1aab3722e71bc87d71b6db9607cd05002f" kind="variable"><name>d_freq_step</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1aed851e85bbe3fedb3a4e05e523d4bdc1" kind="variable"><name>d_currrent_freq</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1a102cba16113f38b233d839d527ac2369" kind="variable"><name>d_max_freq</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1a66c2b1fc5411f714d91889829a9a622f" kind="variable"><name>d_freq_index</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1a0cc51f56d9df11aedd7c039fc4f8b0f6" kind="variable"><name>d_cw_amplitude</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1a071e1122ee8e648d7f73b75fd73917d1" kind="variable"><name>d_cw_frequency</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1a4e6adc9d6250f147781f1372b0f62b45" kind="variable"><name>d_phase</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1a42fe9d14b9fe2147a9a5795944eef457" kind="variable"><name>d_quick_tunes_tx</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1a6214689a443e15355a50bdd4fc9d5f93" kind="variable"><name>d_quick_tunes_rx</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1a639836fed93838a427bafdf2684dcabf" kind="variable"><name>d_scan</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1ab0d7dde93842882a2cf05a96a4e58e35" kind="variable"><name>d_continuous_scan_flag</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1a9001c793baf041003501c64b95803ad1" kind="variable"><name>d_gps_x</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1a5bd647888a3c8fc5f2a6dd7d3b09afe4" kind="variable"><name>d_gps_y</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1a1b65102122dbd8dae47cd7a0b498b6c2" kind="variable"><name>d_num_samples_to_send</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1aece8d7ebf13f055bc20392d5abad3593" kind="variable"><name>d_num_samples_to_recv</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1aa7b478fa4b983feed12a0b557e632260" kind="variable"><name>_16icbuf_in</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1a80b031426e8934ac1e00d12beabfb5cc" kind="variable"><name>_32fcbuf_in</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1a3fad695bd39031fdca1357d6b45b77e2" kind="variable"><name>_16icbuf_out</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1ac0c73b3a46607d80c3b0b18d6d2a6f07" kind="variable"><name>_32fcbuf_out</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1a8367d7e557c2161438fa31e2825293c6" kind="variable"><name>SCALING_FACTOR</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1ac7b0db15d0726d06fd868ff1b72d54a7" kind="variable"><name>d_thread_send</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1aede9bc3004822e8cfd0d0ae5728a8287" kind="variable"><name>d_thread_recv</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1a528239cbadcb6799b0b2489bd0d1e03b" kind="variable"><name>begin</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1a3d57facb102489a2de86bf5f93ed6681" kind="variable"><name>end</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1a530f8e763756aeccd5d67695d0d823e2" kind="function"><name>init_device</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1a3af92ecf302a4544c6902758d233758d" kind="function"><name>configure_channel</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1a00d018165a9f52d7ece438fcf7d21458" kind="function"><name>init_sync</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1afd7a435d3dfa4cf6085335eb5b0672ec" kind="function"><name>set_quick_tune</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1a0dce6e5431ac6fb67e7d73e2793c349b" kind="function"><name>quick_tune</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1aaf8a3df6a87f561ec43c0e5db075dbb6" kind="function"><name>recv</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1a1548a6866ed5c1971318fca6fa93c357" kind="function"><name>wait_for_timestamp</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1a11625e5bcb3b7adb35fd63deb4f022c0" kind="function"><name>send</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1a5171ab5fc7a6d48c4845c7ce4a243035" kind="function"><name>handle_scan_msg</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1aa0f77947ee8c316fd2048dcaf14633a1" kind="function"><name>generate_cw_samples</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1ad4181c2a3d870beee5331f01ef02a443" kind="function"><name>calculate_output_stream_length</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1a40d42932956b68ef975e38a74f1a01c4" kind="function"><name>bladerfRadarMIMO_impl</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1aa3000d2e33d539ba9f89371ef53d1b9e" kind="function"><name>~bladerfRadarMIMO_impl</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1abf6e6f8b9ab8a109f49dab1f8f45e577" kind="function"><name>update_gps</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl_1aaaebe517867275c420837bb44f0b8a11" kind="function"><name>work</name></member>
+  </compound>
+  <compound refid="structgr_1_1sfcwRadar_1_1channel__config" kind="struct"><name>gr::sfcwRadar::channel_config</name>
+    <member refid="structgr_1_1sfcwRadar_1_1channel__config_1a6a71c880dcaec9807f09da7ccf6dfd41" kind="variable"><name>channel</name></member>
+    <member refid="structgr_1_1sfcwRadar_1_1channel__config_1a8400f2edecff349da712535e09b42aaa" kind="variable"><name>frequency</name></member>
+    <member refid="structgr_1_1sfcwRadar_1_1channel__config_1a417f629f0f74ea6a8fabf994f1e78191" kind="variable"><name>bandwidth</name></member>
+    <member refid="structgr_1_1sfcwRadar_1_1channel__config_1ad6fe986f494298bd49130d8e7324b8e7" kind="variable"><name>samplerate</name></member>
+    <member refid="structgr_1_1sfcwRadar_1_1channel__config_1a2b7705e454d897f62e2cf23b0a37f072" kind="variable"><name>gain</name></member>
+  </compound>
+  <compound refid="structchannel__config" kind="struct"><name>channel_config</name>
+    <member refid="structchannel__config_1a6a71c880dcaec9807f09da7ccf6dfd41" kind="variable"><name>channel</name></member>
+    <member refid="structchannel__config_1a8400f2edecff349da712535e09b42aaa" kind="variable"><name>frequency</name></member>
+    <member refid="structchannel__config_1a417f629f0f74ea6a8fabf994f1e78191" kind="variable"><name>bandwidth</name></member>
+    <member refid="structchannel__config_1ad6fe986f494298bd49130d8e7324b8e7" kind="variable"><name>samplerate</name></member>
+    <member refid="structchannel__config_1a2b7705e454d897f62e2cf23b0a37f072" kind="variable"><name>gain</name></member>
+  </compound>
+  <compound refid="classgr_1_1sfcwRadar_1_1sfcw__radar__mimo__cc" kind="class"><name>gr::sfcwRadar::sfcw_radar_mimo_cc</name>
+    <member refid="classgr_1_1sfcwRadar_1_1sfcw__radar__mimo__cc_1aaa0b20b5ef5240aa547d3db4c1f07d7d" kind="typedef"><name>sptr</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1sfcw__radar__mimo__cc_1a28202eff180d3dfc3087bd7e13937879" kind="function"><name>make</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1sfcw__radar__mimo__cc_1a2e3c57d94b0cf4daca3a43694e639058" kind="function"><name>set_radar_tx_gain</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1sfcw__radar__mimo__cc_1ae61d471a7512b29e68cab4ed6be6ed48" kind="function"><name>set_radar_rx_gain</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1sfcw__radar__mimo__cc_1af2af21b9a794857d0e90320360cad045" kind="function"><name>set_ref_tx_gain</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1sfcw__radar__mimo__cc_1a96745169afada5a2afb7478a91e39583" kind="function"><name>set_ref_rx_gain</name></member>
+  </compound>
+  <compound refid="classgr_1_1sfcwRadar_1_1sfcw__radar__mimo__cc__impl" kind="class"><name>gr::sfcwRadar::sfcw_radar_mimo_cc_impl</name>
+    <member refid="classgr_1_1sfcwRadar_1_1sfcw__radar__mimo__cc__impl_1a4418e29e30743a2f8a8783c34edae747" kind="variable"><name>bladeRF</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1sfcw__radar__mimo__cc__impl_1a844ce06d1fcba72a96482f30a9f98c79" kind="variable"><name>timeout_ms</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1sfcw__radar__mimo__cc__impl_1ae4d1cdb83c218386823b78ea8683bdbf" kind="variable"><name>d_cw_amplitude</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1sfcw__radar__mimo__cc__impl_1afd7c97bdee687ea721168c11dc0e3fdf" kind="variable"><name>d_cw_frequency</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1sfcw__radar__mimo__cc__impl_1a375ef76c5c741f64d124dd672ad1d8d0" kind="variable"><name>d_phase</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1sfcw__radar__mimo__cc__impl_1af9c77ef764aa7bd7ba24031c51e2ede1" kind="variable"><name>d_isChirp</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1sfcw__radar__mimo__cc__impl_1aa6e19f1bfa0196e4fe6ec7f27e905b69" kind="variable"><name>d_chirp_bandwidth</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1sfcw__radar__mimo__cc__impl_1a239337232459faabdccd06cf79bd2e15" kind="variable"><name>d_burst_len</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1sfcw__radar__mimo__cc__impl_1af07f8f4b06f65c2b4380cc220af13ab1" kind="variable"><name>d_recv_len</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1sfcw__radar__mimo__cc__impl_1a8ffe24cd018f65cbf4c2aa68fc04ef7c" kind="variable"><name>d_samp_rate</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1sfcw__radar__mimo__cc__impl_1a0b585c6e791160227c1080859c386650" kind="variable"><name>d_num_steps</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1sfcw__radar__mimo__cc__impl_1a7a38d87390ed15f79cd6dc0fb0db9bb8" kind="variable"><name>d_ts_inc_send</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1sfcw__radar__mimo__cc__impl_1a23a20c2059e9df99cda46706982084c6" kind="variable"><name>d_scan</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1sfcw__radar__mimo__cc__impl_1a9668e13845a2a003d676e38407fa463a" kind="variable"><name>d_continuous_scan_flag</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1sfcw__radar__mimo__cc__impl_1ab4aa37dac87e5bb3c7d9b15d0a377cc1" kind="variable"><name>d_gps_x</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1sfcw__radar__mimo__cc__impl_1a6d219d6e741c6f6025aace65d606dac0" kind="variable"><name>d_gps_y</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1sfcw__radar__mimo__cc__impl_1a2bb8a31fd1e8edecf52c2a62e438ae5e" kind="variable"><name>_16icbuf_in</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1sfcw__radar__mimo__cc__impl_1aefddfc8e6185d84817d42fa095fadcce" kind="variable"><name>_32fcbuf_in</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1sfcw__radar__mimo__cc__impl_1ac030857290d2affa1b6114a714c497c3" kind="variable"><name>_16icbuf_out</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1sfcw__radar__mimo__cc__impl_1ac237e58ed3d115b8fdac1379901f59cb" kind="variable"><name>_32fcbuf_out</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1sfcw__radar__mimo__cc__impl_1a8638fa54be8f1199e4a00b31b6533d9b" kind="variable"><name>SCALING_FACTOR</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1sfcw__radar__mimo__cc__impl_1afdfde0ed9ffb044ec0c18656ba43c4dc" kind="variable"><name>begin</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1sfcw__radar__mimo__cc__impl_1ac500675b518489a3e8739444f6194dcf" kind="variable"><name>end</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1sfcw__radar__mimo__cc__impl_1a1754e25197a299b255f99dd2cfdfdb05" kind="function"><name>handle_scan_msg</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1sfcw__radar__mimo__cc__impl_1ab949a88214227b60dfe15c0468ae1b62" kind="function"><name>generate_cw_samples</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1sfcw__radar__mimo__cc__impl_1a6d8b5f12668f4935681f072995b6536e" kind="function"><name>generate_chirp_samples</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1sfcw__radar__mimo__cc__impl_1a465f508728f2fad730acd856f39e6467" kind="function"><name>sfcw_radar_mimo_cc_impl</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1sfcw__radar__mimo__cc__impl_1a85fb350c7b4708ae4419d2685651297b" kind="function"><name>~sfcw_radar_mimo_cc_impl</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1sfcw__radar__mimo__cc__impl_1afac554883c2eee5777e7cd76d0d6e852" kind="function"><name>set_radar_tx_gain</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1sfcw__radar__mimo__cc__impl_1af3c3d5565a04161354f7e97312e2843a" kind="function"><name>set_ref_tx_gain</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1sfcw__radar__mimo__cc__impl_1af5345eb47678b9fbdc6e898e1b9c9d4f" kind="function"><name>set_radar_rx_gain</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1sfcw__radar__mimo__cc__impl_1aa3ebbc95b56e02986b4775937601929d" kind="function"><name>set_ref_rx_gain</name></member>
+    <member refid="classgr_1_1sfcwRadar_1_1sfcw__radar__mimo__cc__impl_1a742e7ac184d42fa6338a149799ae1497" kind="function"><name>work</name></member>
+  </compound>
+  <compound refid="namespacegr" kind="namespace"><name>gr</name>
+  </compound>
+  <compound refid="namespacegr_1_1sfcwRadar" kind="namespace"><name>gr::sfcwRadar</name>
+  </compound>
+  <compound refid="namespacestd" kind="namespace"><name>std</name>
+  </compound>
+  <compound refid="api_8h" kind="file"><name>api.h</name>
+    <member refid="api_8h_1ab2c4f320b5079554e171cd2ec552a655" kind="define"><name>SFCWRADAR_API</name></member>
+  </compound>
+  <compound refid="bladerf__device_8h" kind="file"><name>bladerf_device.h</name>
+  </compound>
+  <compound refid="bladerfRadarController__cc_8h" kind="file"><name>bladerfRadarController_cc.h</name>
+  </compound>
+  <compound refid="bladerfRadarController__cc__impl_8h" kind="file"><name>bladerfRadarController_cc_impl.h</name>
+    <member refid="bladerfRadarController__cc__impl_8h_1a90c71eedfd7f8c9832875485d788c0c2" kind="define"><name>RADAR_TX</name></member>
+    <member refid="bladerfRadarController__cc__impl_8h_1a0b9270b92998459da0b9728189469d5d" kind="define"><name>RADAR_RX</name></member>
+    <member refid="bladerfRadarController__cc__impl_8h_1a830d78185fc2516952cda7fca9688b95" kind="define"><name>REF_TX</name></member>
+    <member refid="bladerfRadarController__cc__impl_8h_1ac14dabd93cc979a7bd782a31f93ca228" kind="define"><name>REF_RX</name></member>
+  </compound>
+  <compound refid="bladerfRadarController__cc__pydoc__template_8h" kind="file"><name>bladerfRadarController_cc_pydoc_template.h</name>
+    <member refid="bladerfRadarController__cc__pydoc__template_8h_1a74021f021dcdfbb22891787b79c5529d" kind="define"><name>D</name></member>
+    <member refid="bladerfRadarController__cc__pydoc__template_8h_1a652660d0517315be09014a4c7396046c" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarController_cc</name></member>
+    <member refid="bladerfRadarController__cc__pydoc__template_8h_1a95aac932983e1fc2357a221b6718c3d9" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarController_cc_bladerfRadarController_cc</name></member>
+    <member refid="bladerfRadarController__cc__pydoc__template_8h_1a750dabd6424b435264227c0a8183575b" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarController_cc_make</name></member>
+    <member refid="bladerfRadarController__cc__pydoc__template_8h_1aae382c003d5275368414d897f14d539d" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarController_cc_set_tx_gain</name></member>
+    <member refid="bladerfRadarController__cc__pydoc__template_8h_1abdfe93f5532676e86641906db410e7a3" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarController_cc_set_rx_gain</name></member>
+    <member refid="bladerfRadarController__cc__pydoc__template_8h_1ab71d734af6b7c2fb8ff12f9707ebb97e" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarController_cc_set_ref_gain</name></member>
+    <member refid="bladerfRadarController__cc__pydoc__template_8h_1a79a7eab725ba126b18719aa53061061e" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarController_cc_set_chirp_bandwidth</name></member>
+  </compound>
+  <compound refid="bladerfRadarMIMO_8h" kind="file"><name>bladerfRadarMIMO.h</name>
+  </compound>
+  <compound refid="bladerfRadarMIMO__impl_8h" kind="file"><name>bladerfRadarMIMO_impl.h</name>
+  </compound>
+  <compound refid="bladerfRadarMIMO__pydoc__template_8h" kind="file"><name>bladerfRadarMIMO_pydoc_template.h</name>
+    <member refid="bladerfRadarMIMO__pydoc__template_8h_1a74021f021dcdfbb22891787b79c5529d" kind="define"><name>D</name></member>
+    <member refid="bladerfRadarMIMO__pydoc__template_8h_1a0ab9962209428283a3160a312989adfc" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarMIMO</name></member>
+    <member refid="bladerfRadarMIMO__pydoc__template_8h_1a8ec48d6b327ef5c4b6d6a2a7ff84b624" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarMIMO_bladerfRadarMIMO</name></member>
+    <member refid="bladerfRadarMIMO__pydoc__template_8h_1a7ff9523ca083739104a1eb8889aef1eb" kind="variable"><name>__doc_gr_sfcwRadar_bladerfRadarMIMO_make</name></member>
+  </compound>
+  <compound refid="group__defs_8dox" kind="file"><name>group_defs.dox</name>
+  </compound>
+  <compound refid="main__page_8dox" kind="file"><name>main_page.dox</name>
+  </compound>
+  <compound refid="misc_8h" kind="file"><name>misc.h</name>
+  </compound>
+  <compound refid="build_2python_2sfcwRadar_2bindings_2pydoc__macros_8h" kind="file"><name>build/python/sfcwRadar/bindings/pydoc_macros.h</name>
+    <member refid="build_2python_2sfcwRadar_2bindings_2pydoc__macros_8h_1afa7cf06549cf7fd295f622ef6f376357" kind="define"><name>__EXPAND</name></member>
+    <member refid="build_2python_2sfcwRadar_2bindings_2pydoc__macros_8h_1a251b23a2efed48ff2ba2d6f449ed33a3" kind="define"><name>__COUNT</name></member>
+    <member refid="build_2python_2sfcwRadar_2bindings_2pydoc__macros_8h_1a2815f7ab197591ba9559415c694f9ce0" kind="define"><name>__VA_SIZE</name></member>
+    <member refid="build_2python_2sfcwRadar_2bindings_2pydoc__macros_8h_1afdd58e017733f2235c227ef8dd3b2de8" kind="define"><name>__CAT1</name></member>
+    <member refid="build_2python_2sfcwRadar_2bindings_2pydoc__macros_8h_1af08fe30f2a41cef10658f6a892d20543" kind="define"><name>__CAT2</name></member>
+    <member refid="build_2python_2sfcwRadar_2bindings_2pydoc__macros_8h_1a43c147206df4346db5e9d6445aab28ae" kind="define"><name>__DOC1</name></member>
+    <member refid="build_2python_2sfcwRadar_2bindings_2pydoc__macros_8h_1a53738db606593bc1554371d718695fed" kind="define"><name>__DOC2</name></member>
+    <member refid="build_2python_2sfcwRadar_2bindings_2pydoc__macros_8h_1a21baf08c04d32485764f227c32b5bf5d" kind="define"><name>__DOC3</name></member>
+    <member refid="build_2python_2sfcwRadar_2bindings_2pydoc__macros_8h_1a9463ba0ad86bcb4c59b5aecf8a37174c" kind="define"><name>__DOC4</name></member>
+    <member refid="build_2python_2sfcwRadar_2bindings_2pydoc__macros_8h_1a942579d548421ddb2906af7094e5789c" kind="define"><name>__DOC5</name></member>
+    <member refid="build_2python_2sfcwRadar_2bindings_2pydoc__macros_8h_1a31ea356761360e78d16525aa69d2dae6" kind="define"><name>__DOC6</name></member>
+    <member refid="build_2python_2sfcwRadar_2bindings_2pydoc__macros_8h_1a6f1e731f1c6d2893ff1bf98582a7de6e" kind="define"><name>__DOC7</name></member>
+    <member refid="build_2python_2sfcwRadar_2bindings_2pydoc__macros_8h_1a4e578031ec998eaeb933d5caa6a7d28a" kind="define"><name>DOC</name></member>
+  </compound>
+  <compound refid="docs_2doxygen_2pydoc__macros_8h" kind="file"><name>docs/doxygen/pydoc_macros.h</name>
+    <member refid="docs_2doxygen_2pydoc__macros_8h_1afa7cf06549cf7fd295f622ef6f376357" kind="define"><name>__EXPAND</name></member>
+    <member refid="docs_2doxygen_2pydoc__macros_8h_1a251b23a2efed48ff2ba2d6f449ed33a3" kind="define"><name>__COUNT</name></member>
+    <member refid="docs_2doxygen_2pydoc__macros_8h_1a2815f7ab197591ba9559415c694f9ce0" kind="define"><name>__VA_SIZE</name></member>
+    <member refid="docs_2doxygen_2pydoc__macros_8h_1afdd58e017733f2235c227ef8dd3b2de8" kind="define"><name>__CAT1</name></member>
+    <member refid="docs_2doxygen_2pydoc__macros_8h_1af08fe30f2a41cef10658f6a892d20543" kind="define"><name>__CAT2</name></member>
+    <member refid="docs_2doxygen_2pydoc__macros_8h_1a43c147206df4346db5e9d6445aab28ae" kind="define"><name>__DOC1</name></member>
+    <member refid="docs_2doxygen_2pydoc__macros_8h_1a53738db606593bc1554371d718695fed" kind="define"><name>__DOC2</name></member>
+    <member refid="docs_2doxygen_2pydoc__macros_8h_1a21baf08c04d32485764f227c32b5bf5d" kind="define"><name>__DOC3</name></member>
+    <member refid="docs_2doxygen_2pydoc__macros_8h_1a9463ba0ad86bcb4c59b5aecf8a37174c" kind="define"><name>__DOC4</name></member>
+    <member refid="docs_2doxygen_2pydoc__macros_8h_1a942579d548421ddb2906af7094e5789c" kind="define"><name>__DOC5</name></member>
+    <member refid="docs_2doxygen_2pydoc__macros_8h_1a31ea356761360e78d16525aa69d2dae6" kind="define"><name>__DOC6</name></member>
+    <member refid="docs_2doxygen_2pydoc__macros_8h_1a6f1e731f1c6d2893ff1bf98582a7de6e" kind="define"><name>__DOC7</name></member>
+    <member refid="docs_2doxygen_2pydoc__macros_8h_1a4e578031ec998eaeb933d5caa6a7d28a" kind="define"><name>DOC</name></member>
+  </compound>
+  <compound refid="sfcw__radar__mimo__cc_8h" kind="file"><name>sfcw_radar_mimo_cc.h</name>
+  </compound>
+  <compound refid="sfcw__radar__mimo__cc__impl_8h" kind="file"><name>sfcw_radar_mimo_cc_impl.h</name>
+    <member refid="sfcw__radar__mimo__cc__impl_8h_1a90c71eedfd7f8c9832875485d788c0c2" kind="define"><name>RADAR_TX</name></member>
+    <member refid="sfcw__radar__mimo__cc__impl_8h_1a0b9270b92998459da0b9728189469d5d" kind="define"><name>RADAR_RX</name></member>
+    <member refid="sfcw__radar__mimo__cc__impl_8h_1a830d78185fc2516952cda7fca9688b95" kind="define"><name>REF_TX</name></member>
+    <member refid="sfcw__radar__mimo__cc__impl_8h_1ac14dabd93cc979a7bd782a31f93ca228" kind="define"><name>REF_RX</name></member>
+    <member refid="sfcw__radar__mimo__cc__impl_8h_1a27e526ebab8a326694ba531a661e5f83" kind="define"><name>NUM_TX_CHANNELS</name></member>
+    <member refid="sfcw__radar__mimo__cc__impl_8h_1a54335318df3476652340fe35e30fe094" kind="define"><name>NUM_RX_CHANNELS</name></member>
+  </compound>
+  <compound refid="sfcw__radar__mimo__cc__pydoc__template_8h" kind="file"><name>sfcw_radar_mimo_cc_pydoc_template.h</name>
+    <member refid="sfcw__radar__mimo__cc__pydoc__template_8h_1a74021f021dcdfbb22891787b79c5529d" kind="define"><name>D</name></member>
+    <member refid="sfcw__radar__mimo__cc__pydoc__template_8h_1afe84805fa541bb357864aa969643368b" kind="variable"><name>__doc_gr_sfcwRadar_sfcw_radar_mimo_cc</name></member>
+    <member refid="sfcw__radar__mimo__cc__pydoc__template_8h_1ada45c0ba7ba60322e3b0b49626edfff4" kind="variable"><name>__doc_gr_sfcwRadar_sfcw_radar_mimo_cc_sfcw_radar_mimo_cc</name></member>
+    <member refid="sfcw__radar__mimo__cc__pydoc__template_8h_1abc9e60dea8004120d2e9fad801567350" kind="variable"><name>__doc_gr_sfcwRadar_sfcw_radar_mimo_cc_make</name></member>
+    <member refid="sfcw__radar__mimo__cc__pydoc__template_8h_1adda19f74eec3810396e5414de0a1d5b2" kind="variable"><name>__doc_gr_sfcwRadar_sfcw_radar_mimo_cc_set_radar_tx_gain</name></member>
+    <member refid="sfcw__radar__mimo__cc__pydoc__template_8h_1a5fea9c547a501e773907166a1ce2f49e" kind="variable"><name>__doc_gr_sfcwRadar_sfcw_radar_mimo_cc_set_radar_rx_gain</name></member>
+    <member refid="sfcw__radar__mimo__cc__pydoc__template_8h_1ac9bc6ebd986c5647765589d0660af8eb" kind="variable"><name>__doc_gr_sfcwRadar_sfcw_radar_mimo_cc_set_ref_tx_gain</name></member>
+    <member refid="sfcw__radar__mimo__cc__pydoc__template_8h_1a00cb177a0595fc4cb25d4f185d334824" kind="variable"><name>__doc_gr_sfcwRadar_sfcw_radar_mimo_cc_set_ref_rx_gain</name></member>
+  </compound>
+  <compound refid="group__block" kind="group"><name>block</name>
+  </compound>
+  <compound refid="dir_09c4c514c1cf0edfd53e35a09fcd19d8" kind="dir"><name>bindings</name>
+  </compound>
+  <compound refid="dir_b6be37e54b311340ea309d9c54111508" kind="dir"><name>bindings</name>
+  </compound>
+  <compound refid="dir_49e56c817e5e54854c35e136979f97ca" kind="dir"><name>docs</name>
+  </compound>
+  <compound refid="dir_f877d2106622a249c42c89971a10b9c7" kind="dir"><name>docstrings</name>
+  </compound>
+  <compound refid="dir_359d2bec989c9a8deeeb9aee335c1c76" kind="dir"><name>doxygen</name>
+  </compound>
+  <compound refid="dir_902d6fe55786be073ae6681293cdb979" kind="dir"><name>gnuradio</name>
+  </compound>
+  <compound refid="dir_d44c64559bbebec7f509842c48db8b23" kind="dir"><name>include</name>
+  </compound>
+  <compound refid="dir_97aefd0d527b934f1d99a682da8fe6a9" kind="dir"><name>lib</name>
+  </compound>
+  <compound refid="dir_f2cd86917185299abf5a1f0679072f3c" kind="dir"><name>other</name>
+  </compound>
+  <compound refid="dir_ab3dd591509f89c87d6a9fd8136a6d03" kind="dir"><name>python</name>
+  </compound>
+  <compound refid="dir_7837fde3ab9c1fb2fc5be7b717af8d79" kind="dir"><name>python</name>
+  </compound>
+  <compound refid="dir_4e0b6bc00917f6e1f75d0811ab27d32a" kind="dir"><name>sfcwRadar</name>
+  </compound>
+  <compound refid="dir_b086c8a255c3d0dff23c3bce3b215051" kind="dir"><name>sfcwRadar</name>
+  </compound>
+  <compound refid="dir_e59fc4185131949da80fc63bf6705596" kind="dir"><name>sfcwRadar</name>
+  </compound>
+  <compound refid="indexpage" kind="page"><name>index</name>
+  </compound>
+</doxygenindex>

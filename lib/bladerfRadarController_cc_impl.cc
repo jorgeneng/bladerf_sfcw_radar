@@ -431,8 +431,8 @@ int bladerfRadarController_cc_impl::init_sync(struct bladerf *dev){
     /**
      * Set AGC for REF_RX
      * */
-    //status = bladerf_set_gain_mode(dev, REF_RX, BLADERF_GAIN_MANUAL);
-    status = bladerf_set_gain_mode(dev, REF_RX, BLADERF_GAIN_HYBRID_AGC);
+    status = bladerf_set_gain_mode(dev, REF_RX, BLADERF_GAIN_MANUAL);
+    //status = bladerf_set_gain_mode(dev, REF_RX, BLADERF_GAIN_HYBRID_AGC);
     if (status != 0) {
         fprintf(stderr, "Failed to set gain mode = %u: %s\n", REF_RX,
         bladerf_strerror(status));

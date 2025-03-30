@@ -163,7 +163,7 @@ blocks:
     bus_structure: null
     coordinate: [1096, 632.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: blocks_stream_to_vector_1
   id: blocks_stream_to_vector
   parameters:
@@ -181,7 +181,7 @@ blocks:
     bus_structure: null
     coordinate: [736, 224.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: blocks_stream_to_vector_1_0
   id: blocks_stream_to_vector
   parameters:
@@ -199,7 +199,7 @@ blocks:
     bus_structure: null
     coordinate: [744, 504.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: blocks_stream_to_vector_1_0_0
   id: blocks_stream_to_vector
   parameters:
@@ -271,9 +271,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1268.0, 424]
+    coordinate: [1276.0, 424]
     rotation: 270
-    state: enabled
+    state: disabled
 - name: freq_step
   id: parameter
   parameters:
@@ -314,7 +314,7 @@ blocks:
     bus_structure: null
     coordinate: [480, 164.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: low_pass_filter_0_0
   id: low_pass_filter
   parameters:
@@ -338,7 +338,7 @@ blocks:
     bus_structure: null
     coordinate: [472, 452.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: num_steps
   id: parameter
   parameters:
@@ -524,7 +524,7 @@ blocks:
     bus_structure: null
     coordinate: [1000, 500.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: sfcwRadar_matchedFilter_0
   id: sfcwRadar_matchedFilter
   parameters:
@@ -540,7 +540,7 @@ blocks:
     bus_structure: null
     coordinate: [936, 344.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: sfcwRadar_rangeProfileSink_1
   id: sfcwRadar_rangeProfileSink
   parameters:
@@ -549,8 +549,8 @@ blocks:
     comment: ''
     num_steps: num_steps
     prefix: range_profile_prefix
-    server_ip: server_ip
-    server_port: server_port
+    server_ip: localhost
+    server_port: '9999'
     upload_to_server: upload_to_server
   states:
     bus_sink: false
@@ -558,7 +558,7 @@ blocks:
     bus_structure: null
     coordinate: [888, 924.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: sfcwRadar_rawSamplesSink_0
   id: sfcwRadar_rawSamplesSink
   parameters:
@@ -612,7 +612,7 @@ blocks:
     label: ''
     short_id: ''
     type: intx
-    value: '20'
+    value: '50'
   states:
     bus_sink: false
     bus_source: false

@@ -58,7 +58,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1408, 532.0]
+    coordinate: [1456, 540.0]
     rotation: 0
     state: disabled
 - name: chirp_bandwidth
@@ -86,7 +86,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: 1e6
+    value: 2e6
   states:
     bus_sink: false
     bus_source: false
@@ -159,7 +159,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: 20e6
+    value: 10e6
   states:
     bus_sink: false
     bus_source: false
@@ -207,7 +207,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: burst_len+512
+    value: burst_len+256
   states:
     bus_sink: false
     bus_source: false
@@ -227,7 +227,7 @@ blocks:
     start: '0'
     step: '1'
     stop: '60'
-    value: '5'
+    value: '10'
     widget: eng
   states:
     bus_sink: false
@@ -294,7 +294,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: 2e9
+    value: 1e9
   states:
     bus_sink: false
     bus_source: false
@@ -335,7 +335,7 @@ blocks:
     start: '0'
     step: '1'
     stop: '60'
-    value: '20'
+    value: '30'
     widget: eng
   states:
     bus_sink: false
@@ -359,7 +359,23 @@ blocks:
     bus_structure: null
     coordinate: [1136, 304.0]
     rotation: 0
-    state: enabled
+    state: disabled
+- name: blocks_complex_to_arg_1_0
+  id: blocks_complex_to_arg
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    vlen: num_steps
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1416, 656.0]
+    rotation: 0
+    state: disabled
 - name: blocks_complex_to_mag_squared_0
   id: blocks_complex_to_mag_squared
   parameters:
@@ -373,7 +389,43 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1288, 960.0]
+    coordinate: [1320, 968.0]
+    rotation: 0
+    state: enabled
+- name: blocks_nlog10_ff_0
+  id: blocks_nlog10_ff
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    k: '0'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    n: '10'
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1424, 1120.0]
+    rotation: 0
+    state: enabled
+- name: blocks_nlog10_ff_0_0
+  id: blocks_nlog10_ff
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    k: '0'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    n: '10'
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1504, 948.0]
     rotation: 0
     state: enabled
 - name: blocks_stream_to_vector_0
@@ -391,7 +443,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1096, 632.0]
+    coordinate: [1072, 592.0]
     rotation: 0
     state: enabled
 - name: blocks_stream_to_vector_1
@@ -445,7 +497,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [624, 664.0]
+    coordinate: [624, 640.0]
     rotation: 0
     state: disabled
 - name: blocks_stream_to_vector_1_0_1
@@ -481,9 +533,27 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1336, 904.0]
+    coordinate: [1320, 888.0]
     rotation: 0
     state: enabled
+- name: blocks_vector_to_stream_1
+  id: blocks_vector_to_stream
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_items: num_steps
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1504, 752.0]
+    rotation: 0
+    state: disabled
 - name: fft_vxx_0
   id: fft_vxx
   parameters:
@@ -497,12 +567,12 @@ blocks:
     nthreads: '1'
     shift: 'True'
     type: complex
-    window: window.hamming(num_steps)
+    window: window.blackmanharris(num_steps)
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1268.0, 424]
+    coordinate: [1188.0, 688]
     rotation: 270
     state: enabled
 - name: low_pass_filter_0
@@ -694,7 +764,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1528, 1012.0]
+    coordinate: [1560, 1028.0]
     rotation: 0
     state: enabled
 - name: qtgui_time_sink_x_1
@@ -888,7 +958,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1536, 804.0]
+    coordinate: [1552, 828.0]
     rotation: 0
     state: enabled
 - name: qtgui_time_sink_x_2
@@ -987,7 +1057,7 @@ blocks:
     bus_structure: null
     coordinate: [1328, 244.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: scan_cont
   id: variable_qtgui_msg_push_button
   parameters:
@@ -1063,7 +1133,7 @@ blocks:
   parameters:
     affinity: ''
     alias: ''
-    cal_fileName: cal_mf_2g_1.npy
+    cal_fileName: cal_1.npy
     comment: ''
     isOff: calibration_off
     maxoutbuf: '0'
@@ -1073,7 +1143,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1408, 444.0]
+    coordinate: [1368, 428.0]
     rotation: 0
     state: disabled
 - name: sfcwRadar_findPeak_0
@@ -1125,7 +1195,7 @@ blocks:
     bus_structure: null
     coordinate: [1120, 1028.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: sfcwRadar_rangeProfileSink_1_0
   id: sfcwRadar_rangeProfileSink
   parameters:
@@ -1133,15 +1203,15 @@ blocks:
     alias: ''
     comment: ''
     num_steps: num_steps
-    prefix: cal_mf_2g
+    prefix: cal
     server_ip: localhost
     server_port: '9999'
-    upload_to_server: ''
+    upload_to_server: 'False'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1408, 372.0]
+    coordinate: [1416, 316.0]
     rotation: 0
     state: disabled
 - name: sfcwRadar_rawSamplesSink_0
@@ -1168,14 +1238,17 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [832, 588.0]
+    coordinate: [832, 572.0]
     rotation: 0
     state: disabled
 
 connections:
 - [blocks_complex_to_arg_1, '0', qtgui_time_sink_x_2, '0']
-- [blocks_complex_to_mag_squared_0, '0', qtgui_time_raster_sink_x_0, '0']
-- [blocks_complex_to_mag_squared_0, '0', qtgui_time_sink_x_1_0_0, '0']
+- [blocks_complex_to_arg_1_0, '0', blocks_vector_to_stream_1, '0']
+- [blocks_complex_to_mag_squared_0, '0', blocks_nlog10_ff_0, '0']
+- [blocks_complex_to_mag_squared_0, '0', blocks_nlog10_ff_0_0, '0']
+- [blocks_nlog10_ff_0, '0', qtgui_time_raster_sink_x_0, '0']
+- [blocks_nlog10_ff_0_0, '0', qtgui_time_sink_x_1_0_0, '0']
 - [blocks_stream_to_vector_0, '0', fft_vxx_0, '0']
 - [blocks_stream_to_vector_0, '0', sfcwRadar_calibration_0, '0']
 - [blocks_stream_to_vector_0, '0', sfcwRadar_rangeProfileSink_1_0, '0']
@@ -1184,6 +1257,7 @@ connections:
 - [blocks_stream_to_vector_1_0_0, '0', sfcwRadar_rawSamplesSink_0, '1']
 - [blocks_stream_to_vector_1_0_1, '0', sfcwRadar_rawSamplesSink_0, '0']
 - [blocks_vector_to_stream_0, '0', blocks_complex_to_mag_squared_0, '0']
+- [blocks_vector_to_stream_1, '0', qtgui_time_sink_x_2, '0']
 - [fft_vxx_0, '0', blocks_vector_to_stream_0, '0']
 - [fft_vxx_0, '0', sfcwRadar_rangeProfileSink_1, '0']
 - [low_pass_filter_0, '0', blocks_stream_to_vector_1, '0']
@@ -1198,6 +1272,7 @@ connections:
 - [sfcwRadar_bladerfRadarController_cc_0, '0', low_pass_filter_0, '0']
 - [sfcwRadar_bladerfRadarController_cc_0, '1', blocks_stream_to_vector_1_0_1, '0']
 - [sfcwRadar_bladerfRadarController_cc_0, '1', low_pass_filter_0_0, '0']
+- [sfcwRadar_calibration_0, '0', blocks_complex_to_arg_1_0, '0']
 - [sfcwRadar_calibration_0, '0', fft_vxx_0, '0']
 - [sfcwRadar_findPeak_0, '0', blocks_complex_to_arg_1, '0']
 - [sfcwRadar_findPeak_0, '0', blocks_stream_to_vector_0, '0']

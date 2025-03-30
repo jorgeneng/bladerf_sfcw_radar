@@ -64,19 +64,19 @@ class sfcwRadarChirpWaveform(gr.top_block, Qt.QWidget):
         # Variables
         ##################################################
         self.burst_len = burst_len = 2**10
-        self.recv_buf_len = recv_buf_len = burst_len+512
-        self.chirp_bandwidth = chirp_bandwidth = 1e6
+        self.recv_buf_len = recv_buf_len = burst_len+256
+        self.chirp_bandwidth = chirp_bandwidth = 2e6
         self.tx_gain = tx_gain = 20
         self.transition_width = transition_width = chirp_bandwidth
-        self.start_freq = start_freq = 2e9
+        self.start_freq = start_freq = 1e9
         self.scale = scale = 0
         self.samp_rate = samp_rate = 5e6
-        self.rx_gain = rx_gain = 40
-        self.ref_gain = ref_gain = 5
+        self.rx_gain = rx_gain = 20
+        self.ref_gain = ref_gain = 20
         self.num_steps = num_steps = 128
         self.mf_size = mf_size = recv_buf_len
         self.lp_dec = lp_dec = 1
-        self.freq_step = freq_step = 20e6
+        self.freq_step = freq_step = 10e6
         self.file_prefix = file_prefix = '0'
         self.cw_freq = cw_freq = 100e3
         self.cw_amp = cw_amp = 1
@@ -103,14 +103,14 @@ class sfcwRadarChirpWaveform(gr.top_block, Qt.QWidget):
         self._scale_range = qtgui.Range(0, 1, 0.01, 0, 200)
         self._scale_win = qtgui.RangeWidget(self._scale_range, self.set_scale, "B-scan scale", "counter_slider", float, QtCore.Qt.Horizontal)
         self.top_layout.addWidget(self._scale_win)
-        self._rx_gain_range = qtgui.Range(0, 60, 1, 40, 200)
+        self._rx_gain_range = qtgui.Range(0, 60, 1, 20, 200)
         self._rx_gain_win = qtgui.RangeWidget(self._rx_gain_range, self.set_rx_gain, "'rx_gain'", "eng", int, QtCore.Qt.Horizontal)
         self.top_grid_layout.addWidget(self._rx_gain_win, 2, 0, 1, 1)
         for r in range(2, 3):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(0, 1):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self._ref_gain_range = qtgui.Range(0, 60, 1, 5, 200)
+        self._ref_gain_range = qtgui.Range(0, 60, 1, 20, 200)
         self._ref_gain_win = qtgui.RangeWidget(self._ref_gain_range, self.set_ref_gain, "'ref_gain'", "eng", int, QtCore.Qt.Horizontal)
         self.top_grid_layout.addWidget(self._ref_gain_win, 1, 1, 1, 1)
         for r in range(1, 2):
@@ -124,10 +124,9 @@ class sfcwRadarChirpWaveform(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(1, 2):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self.sfcwRadar_rangeProfileSink_1 = sfcwRadar.rangeProfileSink(num_steps,'scan',False,'localhost',9999)
+        self.sfcwRadar_sfcw_radar_mimo_cc_0 = sfcwRadar.sfcw_radar_mimo_cc(int(start_freq), num_steps, int(freq_step), int(samp_rate), rx_gain, tx_gain, ref_gain, True, burst_len, recv_buf_len, 8, 2048, 4, cw_amp, cw_freq, True, chirp_bandwidth, 1)
         self.sfcwRadar_matchedFilter_0 = sfcwRadar.matchedFilter((int(mf_size/lp_dec)))
         self.sfcwRadar_findPeak_0 = sfcwRadar.findPeak((int(mf_size/lp_dec)))
-        self.sfcwRadar_bladerfRadarController_cc_0 = sfcwRadar.bladerfRadarController_cc(int(start_freq), num_steps, int(freq_step), int(samp_rate), rx_gain, tx_gain, ref_gain, True, burst_len, recv_buf_len, 8, 2048, 4, cw_amp, cw_freq, True, chirp_bandwidth, 1, 0)
         self.scan_once = _scan_once_toggle_button = qtgui.MsgPushButton('scan_once', '',1,"default","default")
         self.scan_once = _scan_once_toggle_button
 
@@ -144,54 +143,6 @@ class sfcwRadarChirpWaveform(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(3, 4):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self.qtgui_time_sink_x_2 = qtgui.time_sink_f(
-            num_steps, #size
-            samp_rate, #samp_rate
-            "Phase of each frequency step", #name
-            1, #number of inputs
-            None # parent
-        )
-        self.qtgui_time_sink_x_2.set_update_time(0.10)
-        self.qtgui_time_sink_x_2.set_y_axis(-4, 4)
-
-        self.qtgui_time_sink_x_2.set_y_label('Phase', "")
-
-        self.qtgui_time_sink_x_2.enable_tags(True)
-        self.qtgui_time_sink_x_2.set_trigger_mode(qtgui.TRIG_MODE_FREE, qtgui.TRIG_SLOPE_POS, 0.0, 0, 0, "")
-        self.qtgui_time_sink_x_2.enable_autoscale(False)
-        self.qtgui_time_sink_x_2.enable_grid(False)
-        self.qtgui_time_sink_x_2.enable_axis_labels(True)
-        self.qtgui_time_sink_x_2.enable_control_panel(False)
-        self.qtgui_time_sink_x_2.enable_stem_plot(False)
-
-
-        labels = ['Signal 1', 'Signal 2', 'Signal 3', 'Signal 4', 'Signal 5',
-            'Signal 6', 'Signal 7', 'Signal 8', 'Signal 9', 'Signal 10']
-        widths = [1, 1, 1, 1, 1,
-            1, 1, 1, 1, 1]
-        colors = ['blue', 'red', 'green', 'black', 'cyan',
-            'magenta', 'yellow', 'dark red', 'dark green', 'dark blue']
-        alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
-            1.0, 1.0, 1.0, 1.0, 1.0]
-        styles = [1, 1, 1, 1, 1,
-            1, 1, 1, 1, 1]
-        markers = [-1, -1, -1, -1, -1,
-            -1, -1, -1, -1, -1]
-
-
-        for i in range(1):
-            if len(labels[i]) == 0:
-                self.qtgui_time_sink_x_2.set_line_label(i, "Data {0}".format(i))
-            else:
-                self.qtgui_time_sink_x_2.set_line_label(i, labels[i])
-            self.qtgui_time_sink_x_2.set_line_width(i, widths[i])
-            self.qtgui_time_sink_x_2.set_line_color(i, colors[i])
-            self.qtgui_time_sink_x_2.set_line_style(i, styles[i])
-            self.qtgui_time_sink_x_2.set_line_marker(i, markers[i])
-            self.qtgui_time_sink_x_2.set_line_alpha(i, alphas[i])
-
-        self._qtgui_time_sink_x_2_win = sip.wrapinstance(self.qtgui_time_sink_x_2.qwidget(), Qt.QWidget)
-        self.top_layout.addWidget(self._qtgui_time_sink_x_2_win)
         self.qtgui_time_sink_x_1_0_0 = qtgui.time_sink_f(
             num_steps, #size
             samp_rate, #samp_rate
@@ -365,21 +316,19 @@ class sfcwRadarChirpWaveform(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(2, 3):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self.fft_vxx_0 = fft.fft_vcc(num_steps, False, window.hamming(num_steps), True, 1)
+        self.fft_vxx_0 = fft.fft_vcc(num_steps, False, window.blackmanharris(num_steps), True, 1)
         self.blocks_vector_to_stream_0 = blocks.vector_to_stream(gr.sizeof_gr_complex*1, num_steps)
         self.blocks_stream_to_vector_1_0 = blocks.stream_to_vector(gr.sizeof_gr_complex*1, (int(mf_size/lp_dec)))
         self.blocks_stream_to_vector_1 = blocks.stream_to_vector(gr.sizeof_gr_complex*1, (int(mf_size/lp_dec)))
         self.blocks_stream_to_vector_0 = blocks.stream_to_vector(gr.sizeof_gr_complex*1, num_steps)
         self.blocks_complex_to_mag_squared_0 = blocks.complex_to_mag_squared(1)
-        self.blocks_complex_to_arg_1 = blocks.complex_to_arg(1)
 
 
         ##################################################
         # Connections
         ##################################################
-        self.msg_connect((self.scan_cont, 'pressed'), (self.sfcwRadar_bladerfRadarController_cc_0, 'scan'))
-        self.msg_connect((self.scan_once, 'pressed'), (self.sfcwRadar_bladerfRadarController_cc_0, 'scan'))
-        self.connect((self.blocks_complex_to_arg_1, 0), (self.qtgui_time_sink_x_2, 0))
+        self.msg_connect((self.scan_cont, 'pressed'), (self.sfcwRadar_sfcw_radar_mimo_cc_0, 'scan'))
+        self.msg_connect((self.scan_once, 'pressed'), (self.sfcwRadar_sfcw_radar_mimo_cc_0, 'scan'))
         self.connect((self.blocks_complex_to_mag_squared_0, 0), (self.qtgui_time_raster_sink_x_0, 0))
         self.connect((self.blocks_complex_to_mag_squared_0, 0), (self.qtgui_time_sink_x_1_0_0, 0))
         self.connect((self.blocks_stream_to_vector_0, 0), (self.fft_vxx_0, 0))
@@ -387,16 +336,14 @@ class sfcwRadarChirpWaveform(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_stream_to_vector_1_0, 0), (self.sfcwRadar_matchedFilter_0, 0))
         self.connect((self.blocks_vector_to_stream_0, 0), (self.blocks_complex_to_mag_squared_0, 0))
         self.connect((self.fft_vxx_0, 0), (self.blocks_vector_to_stream_0, 0))
-        self.connect((self.fft_vxx_0, 0), (self.sfcwRadar_rangeProfileSink_1, 0))
         self.connect((self.low_pass_filter_0, 0), (self.blocks_stream_to_vector_1, 0))
         self.connect((self.low_pass_filter_0, 0), (self.qtgui_time_sink_x_1, 0))
         self.connect((self.low_pass_filter_0_0, 0), (self.blocks_stream_to_vector_1_0, 0))
         self.connect((self.low_pass_filter_0_0, 0), (self.qtgui_time_sink_x_1, 1))
-        self.connect((self.sfcwRadar_bladerfRadarController_cc_0, 0), (self.low_pass_filter_0, 0))
-        self.connect((self.sfcwRadar_bladerfRadarController_cc_0, 1), (self.low_pass_filter_0_0, 0))
-        self.connect((self.sfcwRadar_findPeak_0, 0), (self.blocks_complex_to_arg_1, 0))
         self.connect((self.sfcwRadar_findPeak_0, 0), (self.blocks_stream_to_vector_0, 0))
         self.connect((self.sfcwRadar_matchedFilter_0, 0), (self.sfcwRadar_findPeak_0, 0))
+        self.connect((self.sfcwRadar_sfcw_radar_mimo_cc_0, 0), (self.low_pass_filter_0, 0))
+        self.connect((self.sfcwRadar_sfcw_radar_mimo_cc_0, 1), (self.low_pass_filter_0_0, 0))
 
 
     def closeEvent(self, event):
@@ -412,7 +359,7 @@ class sfcwRadarChirpWaveform(gr.top_block, Qt.QWidget):
 
     def set_burst_len(self, burst_len):
         self.burst_len = burst_len
-        self.set_recv_buf_len(self.burst_len+512)
+        self.set_recv_buf_len(self.burst_len+256)
 
     def get_recv_buf_len(self):
         return self.recv_buf_len
@@ -428,14 +375,13 @@ class sfcwRadarChirpWaveform(gr.top_block, Qt.QWidget):
         self.chirp_bandwidth = chirp_bandwidth
         self.set_cut_off(self.chirp_bandwidth)
         self.set_transition_width(self.chirp_bandwidth)
-        self.sfcwRadar_bladerfRadarController_cc_0.set_chirp_bandwidth(self.chirp_bandwidth)
 
     def get_tx_gain(self):
         return self.tx_gain
 
     def set_tx_gain(self, tx_gain):
         self.tx_gain = tx_gain
-        self.sfcwRadar_bladerfRadarController_cc_0.set_tx_gain(self.tx_gain)
+        self.sfcwRadar_sfcw_radar_mimo_cc_0.set_radar_tx_gain(self.tx_gain)
 
     def get_transition_width(self):
         return self.transition_width
@@ -467,21 +413,21 @@ class sfcwRadarChirpWaveform(gr.top_block, Qt.QWidget):
         self.low_pass_filter_0_0.set_taps(firdes.low_pass(1, self.samp_rate, self.cut_off, self.transition_width, window.WIN_HAMMING, 6.76))
         self.qtgui_time_sink_x_1.set_samp_rate(self.samp_rate)
         self.qtgui_time_sink_x_1_0_0.set_samp_rate(self.samp_rate)
-        self.qtgui_time_sink_x_2.set_samp_rate(self.samp_rate)
 
     def get_rx_gain(self):
         return self.rx_gain
 
     def set_rx_gain(self, rx_gain):
         self.rx_gain = rx_gain
-        self.sfcwRadar_bladerfRadarController_cc_0.set_rx_gain(self.rx_gain)
+        self.sfcwRadar_sfcw_radar_mimo_cc_0.set_radar_rx_gain(self.rx_gain)
 
     def get_ref_gain(self):
         return self.ref_gain
 
     def set_ref_gain(self, ref_gain):
         self.ref_gain = ref_gain
-        self.sfcwRadar_bladerfRadarController_cc_0.set_ref_gain(self.ref_gain)
+        self.sfcwRadar_sfcw_radar_mimo_cc_0.set_ref_tx_gain(self.ref_gain)
+        self.sfcwRadar_sfcw_radar_mimo_cc_0.set_ref_rx_gain(self.ref_gain)
 
     def get_num_steps(self):
         return self.num_steps

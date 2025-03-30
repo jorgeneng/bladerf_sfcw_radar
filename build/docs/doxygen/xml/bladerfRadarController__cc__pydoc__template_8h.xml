@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="bladerfRadarController__cc__pydoc__template_8h" kind="file" language="C++">
+    <compoundname>bladerfRadarController_cc_pydoc_template.h</compoundname>
+    <includes local="yes">pydoc_macros.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>bladerfRadarController_cc_pydoc_template.h</label>
+        <link refid="bladerfRadarController__cc__pydoc__template_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>pydoc_macros.h</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="bladerfRadarController__cc__pydoc__template_8h_1a74021f021dcdfbb22891787b79c5529d" prot="public" static="no">
+        <name>D</name>
+        <param><defname>...</defname></param>
+        <initializer><ref refid="docs_2doxygen_2pydoc__macros_8h_1a4e578031ec998eaeb933d5caa6a7d28a" kindref="member">DOC</ref>(gr, sfcwRadar, __VA_ARGS__)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/python/sfcwRadar/bindings/docstrings/bladerfRadarController_cc_pydoc_template.h" line="10" column="10" bodyfile="/home/hui/gr-sfcwRadar/python/sfcwRadar/bindings/docstrings/bladerfRadarController_cc_pydoc_template.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="bladerfRadarController__cc__pydoc__template_8h_1a652660d0517315be09014a4c7396046c" prot="public" static="yes" mutable="no">
+        <type>const char *</type>
+        <definition>const char* __doc_gr_sfcwRadar_bladerfRadarController_cc</definition>
+        <argsstring></argsstring>
+        <name>__doc_gr_sfcwRadar_bladerfRadarController_cc</name>
+        <initializer>= R&quot;doc()doc&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/python/sfcwRadar/bindings/docstrings/bladerfRadarController_cc_pydoc_template.h" line="19" column="20" bodyfile="/home/hui/gr-sfcwRadar/python/sfcwRadar/bindings/docstrings/bladerfRadarController_cc_pydoc_template.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="bladerfRadarController__cc__pydoc__template_8h_1a95aac932983e1fc2357a221b6718c3d9" prot="public" static="yes" mutable="no">
+        <type>const char *</type>
+        <definition>const char* __doc_gr_sfcwRadar_bladerfRadarController_cc_bladerfRadarController_cc</definition>
+        <argsstring></argsstring>
+        <name>__doc_gr_sfcwRadar_bladerfRadarController_cc_bladerfRadarController_cc</name>
+        <initializer>= R&quot;doc()doc&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/python/sfcwRadar/bindings/docstrings/bladerfRadarController_cc_pydoc_template.h" line="22" column="20" bodyfile="/home/hui/gr-sfcwRadar/python/sfcwRadar/bindings/docstrings/bladerfRadarController_cc_pydoc_template.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="bladerfRadarController__cc__pydoc__template_8h_1a750dabd6424b435264227c0a8183575b" prot="public" static="yes" mutable="no">
+        <type>const char *</type>
+        <definition>const char* __doc_gr_sfcwRadar_bladerfRadarController_cc_make</definition>
+        <argsstring></argsstring>
+        <name>__doc_gr_sfcwRadar_bladerfRadarController_cc_make</name>
+        <initializer>= R&quot;doc()doc&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/python/sfcwRadar/bindings/docstrings/bladerfRadarController_cc_pydoc_template.h" line="25" column="20" bodyfile="/home/hui/gr-sfcwRadar/python/sfcwRadar/bindings/docstrings/bladerfRadarController_cc_pydoc_template.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="bladerfRadarController__cc__pydoc__template_8h_1aae382c003d5275368414d897f14d539d" prot="public" static="yes" mutable="no">
+        <type>const char *</type>
+        <definition>const char* __doc_gr_sfcwRadar_bladerfRadarController_cc_set_tx_gain</definition>
+        <argsstring></argsstring>
+        <name>__doc_gr_sfcwRadar_bladerfRadarController_cc_set_tx_gain</name>
+        <initializer>= R&quot;doc()doc&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/python/sfcwRadar/bindings/docstrings/bladerfRadarController_cc_pydoc_template.h" line="27" column="20" bodyfile="/home/hui/gr-sfcwRadar/python/sfcwRadar/bindings/docstrings/bladerfRadarController_cc_pydoc_template.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="bladerfRadarController__cc__pydoc__template_8h_1abdfe93f5532676e86641906db410e7a3" prot="public" static="yes" mutable="no">
+        <type>const char *</type>
+        <definition>const char* __doc_gr_sfcwRadar_bladerfRadarController_cc_set_rx_gain</definition>
+        <argsstring></argsstring>
+        <name>__doc_gr_sfcwRadar_bladerfRadarController_cc_set_rx_gain</name>
+        <initializer>= R&quot;doc()doc&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/python/sfcwRadar/bindings/docstrings/bladerfRadarController_cc_pydoc_template.h" line="29" column="20" bodyfile="/home/hui/gr-sfcwRadar/python/sfcwRadar/bindings/docstrings/bladerfRadarController_cc_pydoc_template.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="bladerfRadarController__cc__pydoc__template_8h_1ab71d734af6b7c2fb8ff12f9707ebb97e" prot="public" static="yes" mutable="no">
+        <type>const char *</type>
+        <definition>const char* __doc_gr_sfcwRadar_bladerfRadarController_cc_set_ref_gain</definition>
+        <argsstring></argsstring>
+        <name>__doc_gr_sfcwRadar_bladerfRadarController_cc_set_ref_gain</name>
+        <initializer>= R&quot;doc()doc&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/python/sfcwRadar/bindings/docstrings/bladerfRadarController_cc_pydoc_template.h" line="31" column="20" bodyfile="/home/hui/gr-sfcwRadar/python/sfcwRadar/bindings/docstrings/bladerfRadarController_cc_pydoc_template.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="bladerfRadarController__cc__pydoc__template_8h_1a79a7eab725ba126b18719aa53061061e" prot="public" static="yes" mutable="no">
+        <type>const char *</type>
+        <definition>const char* __doc_gr_sfcwRadar_bladerfRadarController_cc_set_chirp_bandwidth</definition>
+        <argsstring></argsstring>
+        <name>__doc_gr_sfcwRadar_bladerfRadarController_cc_set_chirp_bandwidth</name>
+        <initializer>= R&quot;doc()doc&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/python/sfcwRadar/bindings/docstrings/bladerfRadarController_cc_pydoc_template.h" line="33" column="20" bodyfile="/home/hui/gr-sfcwRadar/python/sfcwRadar/bindings/docstrings/bladerfRadarController_cc_pydoc_template.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/hui/gr-sfcwRadar/python/sfcwRadar/bindings/docstrings/bladerfRadarController_cc_pydoc_template.h"/>
+  </compounddef>
+</doxygen>
