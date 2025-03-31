@@ -1,27 +1,25 @@
 /* -*- c++ -*- */
 /*
+ * Copyright 2025 snt.
  * Author: Hui HUANG
  * Email: hui.huang@uni.lu
- *
- * Copyright 2025 SnT.
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-#ifndef INCLUDED_SFCWRADAR_SFCW_RADAR_MIMO_CC_IMPL_H
-#define INCLUDED_SFCWRADAR_SFCW_RADAR_MIMO_CC_IMPL_H
+#ifndef INCLUDED_SFCWRADAR_SFCW_RADAR_MISO_CC_IMPL_H
+#define INCLUDED_SFCWRADAR_SFCW_RADAR_MISO_CC_IMPL_H
 /**
- * Use 2 TXs and 2 RXs
+ * Use 1 TXs and 2 RXs
  * */
-#define NUM_TX_CHANNELS 2
+#define NUM_TX_CHANNELS 1
 #define NUM_RX_CHANNELS 2
 
 #define RADAR_TX BLADERF_CHANNEL_TX(0) /**TX 0 will be used for transmitting radar pulse*/
 #define RADAR_RX BLADERF_CHANNEL_RX(0) /**RX 0 will be used for receiving radar echos*/
-#define REF_TX BLADERF_CHANNEL_TX(1) /**TX 1 will be used for transmitting referece signal*/
 #define REF_RX BLADERF_CHANNEL_RX(1) /**RX 1 will be used for receiving reference signal*/
 
-#include <gnuradio/sfcwRadar/sfcw_radar_mimo_cc.h>
+#include <gnuradio/sfcwRadar/sfcw_radar_miso_cc.h>
 #include <libbladeRF.h>
 #include <chrono>
 #include "bladerf_device.h"
@@ -29,10 +27,17 @@
 namespace gr {
 namespace sfcwRadar {
 
-class sfcw_radar_mimo_cc_impl : public sfcw_radar_mimo_cc
+/**
+ * This class implement a SFCW radar.
+ * This version uses only one TX channel for transmitting radar pulse. 
+ * A directional coupler connected to the TX port feed the copy of the transmitting pulse to the reference RX port
+ * See macro for channel definitions.
+ * Two waveforms, single tone or chirp, are supported
+ * */
+class sfcw_radar_miso_cc_impl : public sfcw_radar_miso_cc
 {
 private:
-
+    
     /**
      * Pointer to the BladerfDevice instance
      * */
@@ -40,7 +45,7 @@ private:
     const unsigned int timeout_ms = 2000;
     
     /**
-     * Amplitude of each subpulse
+     * Amplitude of pulse
      * */
     float d_pulse_amplitude;
     
@@ -57,7 +62,7 @@ private:
     float d_chirp_bandwidth;
 
     /**
-     * sampling rate
+     * Sampling rate
      * */
     int d_samp_rate;
 
@@ -67,12 +72,12 @@ private:
     int d_num_steps;
 
     /**
-     * number of complex samples to transmit at each frequency step
+     * number of samples in a pulse to be transmitted at each frequency step
      * */
     size_t d_burst_len; 
 
     /**
-     * number of complex samples to receive at each frequency step
+     * number of samples to receive from *one RX channel* at each frequency step
      * It is prefer to set d_recv_len > d_burst_len when using chirp pulse
      * */
     size_t d_recv_len;
@@ -142,11 +147,12 @@ private:
     void generate_chirp_samples();
 
 public:
+    
     /**
      * Class Constructor.
      * The jobs include:
      * 1. Initialise sample buffers @see init_sample_buffers()
-     * 2. Create an instance of BladerfDevice, and set it to use two TX and two RXs, one pair for radar channel, one pair for reference channel
+     * 2. Create an instance of BladerfDevice, and set it to use on TX and two RXs
      * 3. Provide frequency plan to the device to enable quick tune functionality
      * @param   start_freq  The start frequency of the frequency plan
      * @param   num_steps   Number of frequency steps
@@ -167,7 +173,7 @@ public:
      * @param   chirp_bandwidth     Bandiwdth of chirp
      * @param   ts_inc_send     After each frequency tunning, wait ts_inc_send ms before transmitting radar pulse and receiving radar echo. Note that the value depends on the processing power and the USB overhead of the host computer. It is recommand to be larger than 1.
      * */
-    sfcw_radar_mimo_cc_impl(bladerf_frequency start_freq,
+    sfcw_radar_miso_cc_impl(bladerf_frequency start_freq,
                             int num_steps,
                             bladerf_frequency step_size,
                             int samp_rate,
@@ -185,7 +191,7 @@ public:
                             bool isChirp,
                             float chirp_bandwidth,
                             float ts_inc_send);
-    ~sfcw_radar_mimo_cc_impl();
+    ~sfcw_radar_miso_cc_impl();
     
     /**
      * Set gain for radar TX channel
@@ -193,13 +199,6 @@ public:
      * @return 0 if success
      * */
     int set_radar_tx_gain(bladerf_gain gain);
-    
-    /**
-     * Set gain for reference TX channel
-     * @param   gain    The expected gain
-     * @return 0 if success
-     * */
-    int set_ref_tx_gain(bladerf_gain gain);
     
     /**
      * Set gain for radar RX channel
@@ -215,16 +214,8 @@ public:
      * */
     int set_ref_rx_gain(bladerf_gain gain);
 
-    /**
-     * Sweep the frequency, send pulse and receive echos for each frequency step
-     * Jobs include:
-     * 1. add newScan tag at the begining of the SFCW pulse, and step tag at the begining of each subpulse
-     * 2. tune LO of tx and rx channels to sweep the frequency
-     * 3. generate subpulse samples, either single tone or chirp, and store them into _32fcbuf_in and then _16icbuf_in
-     * 4. control bladeRF device to send subpulse and receive echos
-     * 5. output received samples
-     * @return  d_num_steps*d_recv_len  number of samples per output port
-     * */
+
+    // Where all the action really happens
     int work(int noutput_items,
              gr_vector_const_void_star& input_items,
              gr_vector_void_star& output_items);
@@ -233,4 +224,4 @@ public:
 } // namespace sfcwRadar
 } // namespace gr
 
-#endif /* INCLUDED_SFCWRADAR_SFCW_RADAR_MIMO_CC_IMPL_H */
+#endif /* INCLUDED_SFCWRADAR_SFCW_RADAR_MISO_CC_IMPL_H */

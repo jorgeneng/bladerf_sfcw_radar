@@ -27,7 +27,7 @@ struct bladerf_quick_tune_info{
     bladerf_quick_tune quick_tune;
 };
 
-struct libbladeRF_buffer_config{
+struct usb_buffer_config{
     size_t num_buffers;
     size_t buffer_size;
     size_t num_transfers;

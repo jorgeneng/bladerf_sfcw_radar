@@ -15,7 +15,7 @@ list(APPEND sfcwRadar_sources
     bladerfRadarMIMO_impl.cc
     bladerfRadarController_cc_impl.cc
     sfcw_radar_mimo_cc_impl.cc
-    )
+    sfcw_radar_miso_cc_impl.cc )
 
 set(sfcwRadar_sources
     "${sfcwRadar_sources}"

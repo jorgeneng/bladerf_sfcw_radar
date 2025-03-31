@@ -1,12 +1,12 @@
 /* -*- c++ -*- */
 /*
- * Copyright 2025 SnT.
+ * Copyright 2025 snt.
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-#ifndef INCLUDED_SFCWRADAR_SFCW_RADAR_MIMO_CC_H
-#define INCLUDED_SFCWRADAR_SFCW_RADAR_MIMO_CC_H
+#ifndef INCLUDED_SFCWRADAR_SFCW_RADAR_MISO_CC_H
+#define INCLUDED_SFCWRADAR_SFCW_RADAR_MISO_CC_H
 
 #include <gnuradio/sfcwRadar/api.h>
 #include <gnuradio/sync_block.h>
@@ -20,17 +20,17 @@ namespace sfcwRadar {
  * \ingroup sfcwRadar
  *
  */
-class SFCWRADAR_API sfcw_radar_mimo_cc : virtual public gr::sync_block
+class SFCWRADAR_API sfcw_radar_miso_cc : virtual public gr::sync_block
 {
 public:
-    typedef std::shared_ptr<sfcw_radar_mimo_cc> sptr;
+    typedef std::shared_ptr<sfcw_radar_miso_cc> sptr;
 
     /*!
-     * \brief Return a shared_ptr to a new instance of sfcwRadar::sfcw_radar_mimo_cc.
+     * \brief Return a shared_ptr to a new instance of sfcwRadar::sfcw_radar_miso_cc.
      *
-     * To avoid accidental use of raw pointers, sfcwRadar::sfcw_radar_mimo_cc's
+     * To avoid accidental use of raw pointers, sfcwRadar::sfcw_radar_miso_cc's
      * constructor is in a private implementation
-     * class. sfcwRadar::sfcw_radar_mimo_cc::make is the public interface for
+     * class. sfcwRadar::sfcw_radar_miso_cc::make is the public interface for
      * creating new instances.
      */
     static sptr make(bladerf_frequency start_freq,
@@ -51,14 +51,13 @@ public:
                      bool isChirp,
                      float chirp_bandwidth,
                      float ts_inc_send);
-
+    
     virtual int set_radar_tx_gain(bladerf_gain gain) = 0;
     virtual int set_radar_rx_gain(bladerf_gain gain) = 0;
-    virtual int set_ref_tx_gain(bladerf_gain gain) = 0;
     virtual int set_ref_rx_gain(bladerf_gain gain) = 0;
 };
 
 } // namespace sfcwRadar
 } // namespace gr
 
-#endif /* INCLUDED_SFCWRADAR_SFCW_RADAR_MIMO_CC_H */
+#endif /* INCLUDED_SFCWRADAR_SFCW_RADAR_MISO_CC_H */

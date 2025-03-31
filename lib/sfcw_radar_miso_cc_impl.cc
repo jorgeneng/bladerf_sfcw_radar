@@ -1,25 +1,23 @@
 /* -*- c++ -*- */
 /*
- * Author: Hui HUANG
- * Email: hui.huang@uni.lu
- *
- * Copyright 2025 SnT.
+ * Copyright 2025 snt.
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-#include "sfcw_radar_mimo_cc_impl.h"
+#include "sfcw_radar_miso_cc_impl.h"
 #include <gnuradio/io_signature.h>
 #include <volk/volk.h>
 #include <gnuradio/math.h>
 #include "misc.h"
 #include "bladerf_device.h"
 
+
 namespace gr {
 namespace sfcwRadar {
 
 using output_type = gr_complex;
-sfcw_radar_mimo_cc::sptr sfcw_radar_mimo_cc::make(bladerf_frequency start_freq,
+sfcw_radar_miso_cc::sptr sfcw_radar_miso_cc::make(bladerf_frequency start_freq,
                                                   int num_steps,
                                                   bladerf_frequency step_size,
                                                   int samp_rate,
@@ -38,7 +36,7 @@ sfcw_radar_mimo_cc::sptr sfcw_radar_mimo_cc::make(bladerf_frequency start_freq,
                                                   float chirp_bandwidth,
                                                   float ts_inc_send)
 {
-    return gnuradio::make_block_sptr<sfcw_radar_mimo_cc_impl>(start_freq,
+    return gnuradio::make_block_sptr<sfcw_radar_miso_cc_impl>(start_freq,
                                                               num_steps,
                                                               step_size,
                                                               samp_rate,
@@ -62,7 +60,7 @@ sfcw_radar_mimo_cc::sptr sfcw_radar_mimo_cc::make(bladerf_frequency start_freq,
 /*
  * The private constructor
  */
-sfcw_radar_mimo_cc_impl::sfcw_radar_mimo_cc_impl(bladerf_frequency start_freq,
+sfcw_radar_miso_cc_impl::sfcw_radar_miso_cc_impl(bladerf_frequency start_freq,
                                                  int num_steps,
                                                  bladerf_frequency step_size,
                                                  int samp_rate,
@@ -80,7 +78,7 @@ sfcw_radar_mimo_cc_impl::sfcw_radar_mimo_cc_impl(bladerf_frequency start_freq,
                                                  bool isChirp,
                                                  float chirp_bandwidth,
                                                  float ts_inc_send)
-    : gr::sync_block("sfcw_radar_mimo_cc",
+    : gr::sync_block("sfcw_radar_miso_cc",
                      gr::io_signature::make(0, 0, 0),
                      gr::io_signature::make(
                          NUM_RX_CHANNELS /* min outputs */, NUM_RX_CHANNELS /*max outputs */, sizeof(output_type)))
@@ -142,12 +140,7 @@ sfcw_radar_mimo_cc_impl::sfcw_radar_mimo_cc_impl(bladerf_frequency start_freq,
     d_scan = false;
     d_continuous_scan_flag = false;
 
-    usb_buffer_config buf_config;
-    buf_config.num_buffers = num_buffers;
-    buf_config.buffer_size = buffer_size;
-    buf_config.num_transfers = num_transfers;
-
-    bladeRF = new BladerfDevice();
+    bladeRF= new BladerfDevice();
 
     if(bladeRF->openDevice()){
         int status = 0;
@@ -159,11 +152,6 @@ sfcw_radar_mimo_cc_impl::sfcw_radar_mimo_cc_impl(bladerf_frequency start_freq,
         radar_tx_config.samplerate = d_samp_rate;
         radar_tx_config.gain = tx_gain;
 
-        //channel_config does not have pointer so this create a copy 
-        struct channel_config ref_tx_config = radar_tx_config;
-        ref_tx_config.channel = REF_TX;
-        ref_tx_config.gain = ref_gain;
-        
         struct channel_config radar_rx_config = radar_tx_config;
         radar_rx_config.channel = RADAR_RX;
         radar_rx_config.gain = rx_gain;
@@ -173,19 +161,17 @@ sfcw_radar_mimo_cc_impl::sfcw_radar_mimo_cc_impl(bladerf_frequency start_freq,
         ref_rx_config.channel = REF_RX;
         ref_rx_config.gain = ref_gain;
         //ref_rx_config.gain_mode = BLADERF_GAIN_AUTOMATIC;
-        
-        /**usb buffer configuration*/
+    
         usb_buffer_config buf_config;
         buf_config.num_buffers = num_buffers;
         buf_config.buffer_size = buffer_size;
         buf_config.num_transfers = num_transfers;
-        status = bladeRF->enable_channels(&radar_tx_config, &radar_rx_config, &ref_tx_config, &ref_rx_config, &buf_config, enable_biastee);
+        status = bladeRF->enable_channels(&radar_tx_config, &radar_rx_config, nullptr, &ref_rx_config, &buf_config, enable_biastee);
         if(status!=0){
             std::cerr << "Failed to enable rx channels" << std::endl;
             bladeRF->closeDevice();
             return;
         }
-
 
         //tx and rx channels all enabled, set quick tune
         frequency_plan_config frequency_plan;
@@ -205,7 +191,7 @@ sfcw_radar_mimo_cc_impl::sfcw_radar_mimo_cc_impl(bladerf_frequency start_freq,
     }
 }
 
-void sfcw_radar_mimo_cc_impl::init_sample_buffers(){
+void sfcw_radar_miso_cc_impl::init_sample_buffers(){
     /* Set up constraints */
     int const alignment_multiple = volk_get_alignment() / sizeof(gr_complex);
     set_alignment(std::max(1,alignment_multiple)); 
@@ -222,17 +208,15 @@ void sfcw_radar_mimo_cc_impl::init_sample_buffers(){
     _16icbuf_out = reinterpret_cast<int16_t *>(volk_malloc(2*NUM_RX_CHANNELS*d_recv_len*sizeof(int16_t), alignment));
 }
 
-void sfcw_radar_mimo_cc_impl::generate_cw_samples(){
+void sfcw_radar_miso_cc_impl::generate_cw_samples(){
     memset(_32fcbuf_in,0,d_burst_len*NUM_TX_CHANNELS*sizeof(gr_complex));
     for (size_t i=0;i<d_burst_len*NUM_TX_CHANNELS;i++){
         _32fcbuf_in[i] += d_pulse_amplitude*exp(d_phase);
-        _32fcbuf_in[i+1] += _32fcbuf_in[i];
-        i++;
         d_phase = gr_complex(0,std::fmod(imag(d_phase) + 2 * GR_M_PI * d_cw_frequency / (float)d_samp_rate,2*GR_M_PI));
     }
 }
 
-void sfcw_radar_mimo_cc_impl::generate_chirp_samples(){
+void sfcw_radar_miso_cc_impl::generate_chirp_samples(){
     float phase = 0;
     float f_inst = -d_chirp_bandwidth/2;
     float dt = 1/(float)d_samp_rate;
@@ -242,12 +226,11 @@ void sfcw_radar_mimo_cc_impl::generate_chirp_samples(){
         f_inst = -d_chirp_bandwidth/2 + d_chirp_bandwidth*i/(d_burst_len);
         phase = phase + 2 * M_PI * f_inst * dt;
         _32fcbuf_in[_32fcbuf_in_index] = d_pulse_amplitude * std::exp(std::complex<float>(0,phase));
-        _32fcbuf_in[_32fcbuf_in_index+1] = _32fcbuf_in[_32fcbuf_in_index];
-        _32fcbuf_in_index = _32fcbuf_in_index+2;
+        _32fcbuf_in_index = _32fcbuf_in_index+1;
     }
 }
 
-void sfcw_radar_mimo_cc_impl::handle_scan_msg(const pmt::pmt_t& msg){
+void sfcw_radar_miso_cc_impl::handle_scan_msg(const pmt::pmt_t& msg){
     std::cout << "received scan cmd" << std::endl;
     std::cout << pmt::cdr(msg) << std::endl;
     if ((pmt::to_long(pmt::cdr(msg)) == 1)){
@@ -262,7 +245,7 @@ void sfcw_radar_mimo_cc_impl::handle_scan_msg(const pmt::pmt_t& msg){
 /*
  * Our virtual destructor.
  */
-sfcw_radar_mimo_cc_impl::~sfcw_radar_mimo_cc_impl() {
+sfcw_radar_miso_cc_impl::~sfcw_radar_miso_cc_impl() {
     volk_free(_16icbuf_in);
     volk_free(_16icbuf_out);
     volk_free(_32fcbuf_in);
@@ -273,7 +256,7 @@ sfcw_radar_mimo_cc_impl::~sfcw_radar_mimo_cc_impl() {
     _32fcbuf_out = NULL;
 }
 
-int sfcw_radar_mimo_cc_impl::work(int noutput_items,
+int sfcw_radar_miso_cc_impl::work(int noutput_items,
                                   gr_vector_const_void_star& input_items,
                                   gr_vector_void_star& output_items)
 {
@@ -324,7 +307,7 @@ int sfcw_radar_mimo_cc_impl::work(int noutput_items,
             /**
              * Send a pulse and receive the echo
              * */
-            bladeRF->pulse(d_ts_inc_send, d_ts_inc_send, _16icbuf_in, d_burst_len*NUM_TX_CHANNELS, _16icbuf_out, d_recv_len*NUM_RX_CHANNELS);
+            //bladeRF->pulse(d_ts_inc_send, d_ts_inc_send, _16icbuf_in, d_burst_len*NUM_TX_CHANNELS, _16icbuf_out, d_recv_len*NUM_RX_CHANNELS);
 
             /**
             * process received samples
@@ -354,22 +337,17 @@ int sfcw_radar_mimo_cc_impl::work(int noutput_items,
     return d_num_steps*d_recv_len;
 }
 
-int sfcw_radar_mimo_cc_impl::set_radar_tx_gain(bladerf_gain gain){
+int sfcw_radar_miso_cc_impl::set_radar_tx_gain(bladerf_gain gain){
     int status = bladeRF->set_gain(gain, RADAR_TX);
     return status;
 }
 
-int sfcw_radar_mimo_cc_impl::set_ref_tx_gain(bladerf_gain gain){
-    int status = bladeRF->set_gain(gain, REF_TX);
-    return status;
-}
-
-int sfcw_radar_mimo_cc_impl::set_radar_rx_gain(bladerf_gain gain){
+int sfcw_radar_miso_cc_impl::set_radar_rx_gain(bladerf_gain gain){
     int status = bladeRF->set_gain(gain, RADAR_RX);
     return status;
 }
 
-int sfcw_radar_mimo_cc_impl::set_ref_rx_gain(bladerf_gain gain){
+int sfcw_radar_miso_cc_impl::set_ref_rx_gain(bladerf_gain gain){
     int status = bladeRF->set_gain(gain, REF_RX);
     return status;
 }

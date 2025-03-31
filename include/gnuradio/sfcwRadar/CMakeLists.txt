@@ -13,4 +13,4 @@ install(FILES api.h
     bladerfRadarMIMO.h
     bladerfRadarController_cc.h
     sfcw_radar_mimo_cc.h
-    DESTINATION include/gnuradio/sfcwRadar)
+    sfcw_radar_miso_cc.h DESTINATION include/gnuradio/sfcwRadar)

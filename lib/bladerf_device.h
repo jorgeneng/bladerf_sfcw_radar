@@ -24,13 +24,10 @@ public:
 
     /**
      * Class Constructor
-     * The Constructor only save the input parameters and initilize TX and RX metadata.
+     * The Constructor only initilize TX and RX metadata.
      * To open and initilize the attached device, @see openDevice() and @see enable_rx_channels()
-     * @param   buf_config  Configuration of the buffers on the host
-     * @param   enable_biastee  Whether biastees of TX (BT-100 power amplifier) and RX (BT-200 LNA) are connected. Note that here only a flag d_enable_biastee is set
-     * @param   frequency_plan  Configuration of the SFCW frequency plan, including start frequency, step size and number of steps
      * */
-    BladerfDevice(struct libbladeRF_buffer_config *buf_config, bool enable_biastee, struct frequency_plan_config *frequency_plan); 
+    BladerfDevice(); 
     
     /**
      * Class destructor
@@ -43,7 +40,7 @@ public:
      * Open bladeRF 2.0 device, if success, set tunning mode to BLADERF_TUNING_MODE_FPGA
      * @return true if bladeRF 2.0 is successfully opened
      * */
-    bool openDevice(); // Opens the BladeRF device
+    bool openDevice(); 
 
     /**
      * Close opened device
@@ -54,37 +51,31 @@ public:
     /**
      * Configure and enable the RX channels of the bladeRF 2.0 device.
      * Configure the frequency, gain, bandwidth, gain mode and sampling rate of the specified RX channels
-     * The function also enable biastee of RX channel for receiving radar echos if d_enable_biastee is set during class construction
+     * The function also enable biastee of RX channel for receiving radar echos if enable_biastee is set during class construction
      * @note User can enable only one RX channel to receive radar echos by setting ref_rx_config to nullptr
      *
      * @param  ref_rx_config    RX channel configurations for receiving reference signals. Set it to nullptr if no reference RX is required
      * @param   radar_rx_config     RX channel configurations for receiving radar echos
+     * @param   buf_config  use buffer configurations
+     * @param   enable_biastee  Whether biastees of TX (BT-100 power amplifier) and RX (BT-200 LNA) are connected. 
      * return 0 if success
      * */
-    int enable_rx_channels(struct channel_config *ref_rx_config, struct channel_config *radar_rx_config);
+    int enable_rx_channels(struct channel_config *ref_rx_config, struct channel_config *radar_rx_config, struct usb_buffer_config *buf_config, bool enable_biastee);
     
     /**
      * Configure and enable the TX channels of the bladeRF 2.0 device.
      * Configure the frequency, gain, bandwidth and sampling rate of the specified TX channels 
      * The TX channels are configured to use SC16 Q11 samples *with* metadata
-     * The biastee of the TX channel for transmitting radar pulses is enabled if d_enable_biastee is set during class construction
+     * The biastee of the TX channel for transmitting radar pulses is enabled if enable_biastee is set during class construction
      * @note User can enable only one TX channel to transmit radar pulse by setting ref_tx_config to nullptr
      *
      * @param   ref_tx_config   TX channel configurations for transmitting reference signals. Set it to nullptr if no reference TX is required
      * @param   radar_tx_config     TX channel configurations for transmitting radar pulses.
+     * @param   buf_config  use buffer configurations
+     * @param   enable_biastee  Whether biastees of TX (BT-100 power amplifier) and RX (BT-200 LNA) are connected. 
      * @return 0 if success
      * */
-    int enable_tx_channels(struct channel_config *ref_tx_config, struct channel_config *radar_tx_config);
-
-    /**
-     * Call this function if only on tx is used. The reference signal in this case is feed to the reference RX channel via a directional coupler
-     * The frequency, gain, bandwidth and sampling rate of the TX channel are configured as specified
-     * The TX channel is configured to use SC16 Q11 samples *with* metadata
-     * The biastee of the TX channel for transmitting radar pulses is enabled if d_enable_biastee is set during class construction
-     * @param   radar_tx_config     TX channel configurations for transmitting radar pulses.
-     * @return 0 if success
-     * */
-    int enable_single_tx_channel(struct channel_config *radar_tx_config);
+    int enable_tx_channels(struct channel_config *ref_tx_config, struct channel_config *radar_tx_config, struct usb_buffer_config *buf_config, bool enable_biastee);
 
     /**
      * Configure and enable TX and RX channels. It essentially call @see enable_rx_channels(), and @see enable_tx_channels() sequentially.
@@ -94,16 +85,21 @@ public:
      * @param   radar_rx_config     RX channel configurations for receiving radar echos
      * @param   ref_tx_config   TX channel configurations for transmitting reference signals. Set it to nullptr if no reference tx is needed
      * @param   ref_rx_config   RX channel configurations for receiving reference signals. Set it to nullptr if no reference rx is needed
+     * @param   buf_config  use buffer configurations
+     * @param   enable_biastee  Whether biastees of TX (BT-100 power amplifier) and RX (BT-200 LNA) are connected. 
      * @return 0 if success.
      * */
-    int enable_channels(struct channel_config *radar_tx_config, struct channel_config *radar_rx_config, struct channel_config *ref_tx_config, struct channel_config *ref_rx_config);
+    int enable_channels(struct channel_config *radar_tx_config, struct channel_config *radar_rx_config, 
+            struct channel_config *ref_tx_config, struct channel_config *ref_rx_config, 
+            struct usb_buffer_config *buf_config, bool enable_biastee);
     
     /**
      * set quick tune to provide faster frequency re-tuning.
      * This function gets tuning parameters of TX and RX channels for each frequency step, and store them into d_quick_tunes_tx and d_quick_tunes_rx, respectively.
+     * @param   frequency_plan  configurations of the frequency plan, including start frequency, num steps and step size
      * @return 0 if success
      * */
-    int set_quick_tune();
+    int set_quick_tune(struct frequency_plan_config *frequency_plan);
 
     /**
      * Tune RX channels to the specified frequency immediately
@@ -146,19 +142,7 @@ public:
 protected:
     struct bladerf_devinfo dev_info;
     bladerf* device; /**< Pointer to the BladeRF device */
-    /**
-     * libbladerf buffer setup
-     * */
-    size_t d_num_buffers = 8;
-    size_t d_buffer_size = 2048;
-    size_t d_num_transfers = 4;
     const unsigned int timeout_ms = 2000;
-
-    /**
-     * Flag to indicate if BT-100 and BT-200 are connected to the TX and RX ports, respectively.
-     * */
-    bool d_enable_biastee;
-
 
     /**
      * variables to save the sfcw frequency plan

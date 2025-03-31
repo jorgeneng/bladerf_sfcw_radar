@@ -13,23 +13,13 @@
 #include <cstring>
 #include <thread>
 
-BladerfDevice::BladerfDevice(struct libbladeRF_buffer_config *buf_config, bool enable_biastee, struct frequency_plan_config *frequency_plan) : device(nullptr) {
-    /**
-    * save input parameters
-    * */
-    d_num_buffers = buf_config->num_buffers;
-    d_buffer_size = buf_config->buffer_size;
-    d_num_transfers = buf_config->num_transfers;
-    d_enable_biastee = enable_biastee;
-    d_start_freq = frequency_plan->start_freq;
-    d_num_steps = frequency_plan->num_steps;
-    d_step_size = frequency_plan->step_size;
+BladerfDevice::BladerfDevice() : device(nullptr) {
     /**
      * Initialize tx and rx metadata
      * */
     memset(&d_rx_meta, 0, sizeof(d_rx_meta));
     memset(&d_tx_meta, 0, sizeof(d_tx_meta));
-    d_tx_meta.flags = BLADERF_META_FLAG_TX_BURST_START | BLADERF_META_FLAG_TX_BURST_END; //send as burst
+    d_tx_meta.flags = BLADERF_META_FLAG_TX_BURST_START | BLADERF_META_FLAG_TX_BURST_END; //send as burst_len
 }
 
 BladerfDevice::~BladerfDevice() {
@@ -130,10 +120,10 @@ int BladerfDevice::configure_channel(struct channel_config *c){
     return status; 
 }
 
-int BladerfDevice::enable_rx_channels(struct channel_config *ref_rx_config, struct channel_config *radar_rx_config){
+int BladerfDevice::enable_rx_channels(struct channel_config *ref_rx_config, struct channel_config *radar_rx_config, struct usb_buffer_config *buf_config, bool enable_biastee){
     
     if(device==nullptr){
-        std::cerr<<"enable_channels: Device is not available, open device first" << std::endl;
+        std::cerr<<"enable rx channels: Device is not available, open device first" << std::endl;
         return -1;
     }
     
@@ -179,7 +169,7 @@ int BladerfDevice::enable_rx_channels(struct channel_config *ref_rx_config, stru
     /**
      * Set bias tee of radar_rx_channel
      * */
-    status = bladerf_set_bias_tee(device, radar_rx_config->channel, d_enable_biastee);
+    status = bladerf_set_bias_tee(device, radar_rx_config->channel, enable_biastee);
     if(status != 0){
         std::cerr << "Set channel: " << radar_rx_config->channel << " bias tee failed" << std::endl;
     }else{
@@ -205,17 +195,17 @@ int BladerfDevice::enable_rx_channels(struct channel_config *ref_rx_config, stru
     * interface. SC16 Q11 samples *with* metadata are used. */
  
     status = bladerf_sync_config(device, rx_channel_layout, 
-                                 BLADERF_FORMAT_SC16_Q11_META, d_num_buffers, 
-                                 d_buffer_size, d_num_transfers,timeout_ms);
+                                 BLADERF_FORMAT_SC16_Q11_META, buf_config->num_buffers, 
+                                 buf_config->buffer_size, buf_config->num_transfers,timeout_ms);
 
     if (status != 0) {
         fprintf(stderr, "Failed to configure RX sync interface: %s\n",
         bladerf_strerror(status));
         return status;
     }else{
-        std::cout << "RX sync interface configured. num_buffers:  "<< d_num_buffers 
-            << ", buffer_size: " << d_buffer_size 
-            << ", num_transfers: " << d_num_transfers 
+        std::cout << "RX sync interface configured. num_buffers:  "<< buf_config->num_buffers 
+            << ", buffer_size: " << buf_config->buffer_size 
+            << ", num_transfers: " << buf_config->num_transfers 
             << ", timeout_ms: " << timeout_ms << std::endl;
     }
     
@@ -243,7 +233,7 @@ int BladerfDevice::enable_rx_channels(struct channel_config *ref_rx_config, stru
 }
 
 
-int BladerfDevice::enable_tx_channels(struct channel_config *ref_tx_config, struct channel_config *radar_tx_config){
+int BladerfDevice::enable_tx_channels(struct channel_config *ref_tx_config, struct channel_config *radar_tx_config, struct usb_buffer_config *buf_config, bool enable_biastee){
     if(device==nullptr){
         std::cerr<<"enable_tx_channels: Device is not available, open device first" << std::endl;
         return -1;
@@ -281,7 +271,7 @@ int BladerfDevice::enable_tx_channels(struct channel_config *ref_tx_config, stru
     /**
      * Set bias tee for RADAR_TX
      * */
-    status = bladerf_set_bias_tee(device, radar_tx_config->channel, d_enable_biastee);
+    status = bladerf_set_bias_tee(device, radar_tx_config->channel, enable_biastee);
     if(status != 0){
         std::cerr << "Set channel: " << radar_tx_config->channel << " bias tee failed" << std::endl;
     }else{
@@ -295,17 +285,17 @@ int BladerfDevice::enable_tx_channels(struct channel_config *ref_tx_config, stru
     * interface. SC16 Q11 samples *with* metadata are used. */
  
     status = bladerf_sync_config(device, tx_channel_layout, 
-                                 BLADERF_FORMAT_SC16_Q11_META, d_num_buffers, 
-                                 d_buffer_size, d_num_transfers,timeout_ms);
+                                 BLADERF_FORMAT_SC16_Q11_META, buf_config->num_buffers, 
+                                 buf_config->buffer_size, buf_config->num_transfers,timeout_ms);
 
     if (status != 0) {
         fprintf(stderr, "Failed to configure TX sync interface: %s\n",
         bladerf_strerror(status));
         return status;
     }else{
-        std::cout << "TX sync interface configured. num_buffers:  "<< d_num_buffers 
-            << ", buffer_size: " << d_buffer_size 
-            << ", num_transfers: " << d_num_transfers 
+        std::cout << "TX sync interface configured. num_buffers:  "<< buf_config->num_buffers 
+            << ", buffer_size: " << buf_config->buffer_size 
+            << ", num_transfers: " << buf_config->num_transfers 
             << ", timeout_ms: " << timeout_ms << std::endl;
     }
 
@@ -333,67 +323,9 @@ int BladerfDevice::enable_tx_channels(struct channel_config *ref_tx_config, stru
     return status;
 }
 
-
-int BladerfDevice::enable_single_tx_channel(struct channel_config *radar_tx_config){
-    if(device==nullptr){
-        std::cerr<<"enable_single_tx_channel: Device is not available, open device first" << std::endl;
-        return -1;
-    }
-
-    int status;
-    status = configure_channel(radar_tx_config);
-    if (status !=0){
-        std::cerr << "Channel " << radar_tx_config->channel << ": configure_channel failed" << std::endl;
-    }else{
-        std::cout << "Channel " << radar_tx_config->channel << ": configure_channel succed" << std::endl;
-    }
-    
-    /* Configure both the device's X2 TX channels for use with the
-    * synchronous
-    * interface. SC16 Q11 samples *with* metadata are used. */
- 
-    status = bladerf_sync_config(device, BLADERF_TX_X1, 
-                                 BLADERF_FORMAT_SC16_Q11_META, d_num_buffers, 
-                                 d_buffer_size, d_num_transfers,timeout_ms);
-
-    if (status != 0) {
-        fprintf(stderr, "Failed to configure TX sync interface: %s\n",
-        bladerf_strerror(status));
-        return status;
-    }else{
-        std::cout << "TX sync interface configured. num_buffers:  "<< d_num_buffers 
-            << ", buffer_size: " << d_buffer_size 
-            << ", num_transfers: " << d_num_transfers 
-            << ", timeout_ms: " << timeout_ms << std::endl;
-    }
-
-
-    /**
-     * Set bias tee for RADAR_TX
-     * */
-    status = bladerf_set_bias_tee(device, radar_tx_config->channel, d_enable_biastee);
-    if(status != 0){
-        std::cerr << "Set channel: " << radar_tx_config->channel << " bias tee failed" << std::endl;
-    }else{
-        bool is_bias_tee_enabled = false;
-        status = bladerf_get_bias_tee(device, radar_tx_config->channel, &is_bias_tee_enabled);
-        std::cout << "bias tee status of chennel " << radar_tx_config->channel << " :" << is_bias_tee_enabled << std::endl;
-    }
-
-    /**
-     * Enable the TX channel
-     * */
-    status = bladerf_enable_module(device, radar_tx_config->channel, true);
-    if (status != 0) {
-        std::cerr << "RADAR_TX enable failed" << std::endl;
-        return status;
-    }else{
-        std::cout << "RADAR_TX enalbed" << std::endl;
-    } 
-    return status;
-}
-
-int BladerfDevice::enable_channels(struct channel_config *radar_tx_config, struct channel_config *radar_rx_config, struct channel_config *ref_tx_config, struct channel_config *ref_rx_config){
+int BladerfDevice::enable_channels(struct channel_config *radar_tx_config, struct channel_config *radar_rx_config, 
+        struct channel_config *ref_tx_config, struct channel_config *ref_rx_config,
+        struct usb_buffer_config *buf_config, bool enable_biastee){
     
     if(device==nullptr){
         std::cerr<<"enable_channels: Device is not available, open device first" << std::endl;
@@ -408,30 +340,33 @@ int BladerfDevice::enable_channels(struct channel_config *radar_tx_config, struc
         std::cout << "only one RX channel will be enabled, the radar will work without reference signals" << std::endl;
     }
 
+
+
     int status;
-    status = enable_rx_channels(ref_rx_config, radar_rx_config);
+    status = enable_rx_channels(ref_rx_config, radar_rx_config, buf_config, enable_biastee);
     if(status!=0){
         closeDevice();
         device = nullptr;
         return status;
     }
 
-    status = enable_tx_channels(ref_tx_config, radar_tx_config);
+    status = enable_tx_channels(ref_tx_config, radar_tx_config, buf_config, enable_biastee);
     if(status!=0){
         closeDevice();
         device = nullptr;
         return status;
     }
     
+    std::cout << "TX and RX channels enabled" << std::endl;
     return status;
 }
 
-int BladerfDevice::set_quick_tune(){
+int BladerfDevice::set_quick_tune(struct frequency_plan_config *frequency_plan){
     int status;
-    d_quick_tunes_tx = new bladerf_quick_tune_info[d_num_steps];
-    d_quick_tunes_rx = new bladerf_quick_tune_info[d_num_steps]; 
-    bladerf_frequency freq = d_start_freq;
-    for (int i = 0; i < d_num_steps; i++){
+    d_quick_tunes_tx = new bladerf_quick_tune_info[frequency_plan->num_steps];
+    d_quick_tunes_rx = new bladerf_quick_tune_info[frequency_plan->num_steps]; 
+    bladerf_frequency freq = frequency_plan->start_freq;
+    for (int i = 0; i < frequency_plan->num_steps; i++){
         //std::cout << "set quick tune parameters for frequency: " << freq << std::endl;
         status = bladerf_set_frequency(device, BLADERF_TX, freq);
         if(status!=0){
@@ -456,8 +391,13 @@ int BladerfDevice::set_quick_tune(){
             std::cerr << "failed to get quick tune for RX" << std::endl;
             return status;
         }
-        freq = freq + d_step_size;
+        freq = freq + frequency_plan->step_size;
     }
+
+    //save frequency plan for future use
+    d_start_freq = frequency_plan->start_freq;
+    d_num_steps = frequency_plan->num_steps;
+    d_step_size = frequency_plan->step_size;
     return status;
 }
 

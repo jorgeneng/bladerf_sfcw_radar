@@ -27,7 +27,7 @@ list(APPEND sfcwRadar_python_files
     bladerfRadarMIMO_python.cc
     bladerfRadarController_cc_python.cc
     sfcw_radar_mimo_cc_python.cc
-    python_bindings.cc)
+    sfcw_radar_miso_cc_python.cc python_bindings.cc)
 
 gr_pybind_make_oot(sfcwRadar ../../.. gr::sfcwRadar "${sfcwRadar_python_files}")
 

@@ -37,7 +37,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: 2**9
+    value: 2**10
   states:
     bus_sink: false
     bus_source: false
@@ -115,18 +115,6 @@ blocks:
     coordinate: [944, 92.0]
     rotation: 0
     state: enabled
-- name: cw_amp
-  id: variable
-  parameters:
-    comment: ''
-    value: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1048, 12.0]
-    rotation: 0
-    state: enabled
 - name: cw_freq
   id: variable
   parameters:
@@ -201,6 +189,18 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [568, 12.0]
+    rotation: 0
+    state: enabled
+- name: pulse_amp
+  id: variable
+  parameters:
+    comment: ''
+    value: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1048, 12.0]
     rotation: 0
     state: enabled
 - name: recv_buf_len
@@ -1250,7 +1250,6 @@ blocks:
     burst_len: burst_len
     chirp_bandwidth: chirp_bandwidth
     comment: ''
-    cw_amplitude: cw_amp
     cw_frequency: cw_freq
     enable_biastee: 'True'
     isChirp: 'True'
@@ -1259,6 +1258,7 @@ blocks:
     num_buffers: '8'
     num_steps: num_steps
     num_transfers: '4'
+    pulse_amplitude: pulse_amp
     recv_buf_len: recv_buf_len
     ref_gain: ref_gain
     rx_gain: rx_gain
