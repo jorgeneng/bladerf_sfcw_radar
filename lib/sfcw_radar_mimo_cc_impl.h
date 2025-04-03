@@ -16,10 +16,10 @@
 #define NUM_TX_CHANNELS 2
 #define NUM_RX_CHANNELS 2
 
-#define RADAR_TX BLADERF_CHANNEL_TX(0) /**TX 0 will be used for transmitting radar pulse*/
-#define RADAR_RX BLADERF_CHANNEL_RX(0) /**RX 0 will be used for receiving radar echos*/
-#define REF_TX BLADERF_CHANNEL_TX(1) /**TX 1 will be used for transmitting referece signal*/
-#define REF_RX BLADERF_CHANNEL_RX(1) /**RX 1 will be used for receiving reference signal*/
+#define RADAR_TX BLADERF_CHANNEL_TX(0) /**< TX 0 will be used for transmitting radar pulse*/
+#define RADAR_RX BLADERF_CHANNEL_RX(0) /**< RX 0 will be used for receiving radar echos*/
+#define REF_TX BLADERF_CHANNEL_TX(1) /**< TX 1 will be used for transmitting referece signal*/
+#define REF_RX BLADERF_CHANNEL_RX(1) /**< RX 1 will be used for receiving reference signal*/
 
 #include <gnuradio/sfcwRadar/sfcw_radar_mimo_cc.h>
 #include <libbladeRF.h>
@@ -48,16 +48,16 @@ private:
      * single tone baseband signal
      * */
     float d_cw_frequency;
-    gr_complex d_phase = 0;
+    gr_complex d_phase = 0; /**< initial phase*/
     
     /**
      * chirp waveform
      * */
-    bool d_isChirp;
-    float d_chirp_bandwidth;
+    bool d_isChirp; /**< set true if using chirp as the waveform*/
+    float d_chirp_bandwidth; /**< in Hz*/
 
     /**
-     * sampling rate
+     * sampling rate in Hz
      * */
     int d_samp_rate;
 
@@ -148,24 +148,25 @@ public:
      * 1. Initialise sample buffers @see init_sample_buffers()
      * 2. Create an instance of BladerfDevice, and set it to use two TX and two RXs, one pair for radar channel, one pair for reference channel
      * 3. Provide frequency plan to the device to enable quick tune functionality
-     * @param   start_freq  The start frequency of the frequency plan
-     * @param   num_steps   Number of frequency steps
-     * @param   step_size   The interval between two consecutive frequencies
-     * @param   samp_rate   Sampling rate
-     * @param   rx_gain     The gain of the radar RX channel
-     * @param   tx_gain     The gain of the radar TX channel
-     * @param   ref_gain    The gain of the reference TX and RX channel
-     * @param   enable_biastee  Set the flag if BT-100 and BT-200 are connected with radar TX and radar RX channels
-     * @param   burst_len   Number of samples per pulse
-     * @param   recv_buf_len    Number of samples to receive from one RX channel. Prefer to be bigger than burst_len
-     * @param   num_buffers     Number of buffers to use in the underlying data stream
-     * @param   buffer_size     The size of the underlying steam buffers, in samples. Must be a multiple of 1024. Samples are only transferred when a buffer of this size is filled.
-     * @param   num_transfers   The number of active USB transfers that may be in-flight at any given time
-     * @param   pulse_amplitude    The amplitude of the transmitted pulse
-     * @param   cw_frequency    The baseband frequency of the single tone pulse
-     * @param   isChirp     Set this when using chirp waveform
-     * @param   chirp_bandwidth     Bandiwdth of chirp
-     * @param   ts_inc_send     After each frequency tunning, wait ts_inc_send ms before transmitting radar pulse and receiving radar echo. Note that the value depends on the processing power and the USB overhead of the host computer. It is recommand to be larger than 1.
+     * @param start_freq        The start frequency of the frequency plan in Hz
+     * @param num_steps         Number of frequency steps
+     * @param step_size         The gap between two consecutive frequencies in Hz
+     * @param samp_rate         Sampling rate in Hz
+     * @param rx_gain           The gain of the radar RX channel
+     * @param tx_gain           The gain of the radar TX channel
+     * @param ref_gain          The gain of the reference TX and RX channel
+     * @param enable_biastee    Set the flag if BT-100 and BT-200 are connected with radar TX and radar RX channels
+     * @param burst_len         Number of samples per pulse
+     * @param recv_buf_len      Number of samples to receive from one RX channel. Prefer to be bigger than burst_len
+     * @param num_buffers       Number of buffers to use in the underlying data stream
+     * @param buffer_size       The size of the underlying steam buffers, in samples. Must be a multiple of 1024. Samples are only transferred when a buffer of this size is filled.
+     * @param num_transfers     The number of active USB transfers that may be in-flight at any given time
+     * @param pulse_amplitude   The amplitude of the transmitted pulse
+     * @param cw_frequency      The baseband frequency of the single tone pulse
+     * @param isChirp           Set this when using chirp waveform
+     * @param chirp_bandwidth   Bandiwdth of chirp
+     * @param ts_inc_send       After each frequency tunning, wait ts_inc_send ms before transmitting radar pulse and receiving radar echo. 
+     * @note that ts_inc_send depends on the processing power and the USB overhead of the host computer. It is recommand to be larger than 1.
      * */
     sfcw_radar_mimo_cc_impl(bladerf_frequency start_freq,
                             int num_steps,
@@ -189,28 +190,28 @@ public:
     
     /**
      * Set gain for radar TX channel
-     * @param   gain    The expected gain
+     * @param gain    The expected gain
      * @return 0 if success
      * */
     int set_radar_tx_gain(bladerf_gain gain);
     
     /**
      * Set gain for reference TX channel
-     * @param   gain    The expected gain
+     * @param gain    The expected gain
      * @return 0 if success
      * */
     int set_ref_tx_gain(bladerf_gain gain);
     
     /**
      * Set gain for radar RX channel
-     * @param   gain    The expected gain
+     * @param gain    The expected gain
      * @return 0 if success
      * */
     int set_radar_rx_gain(bladerf_gain gain);
     
     /**
      * Set gain for reference RX channel
-     * @param   gain    The expected gain
+     * @param gain    The expected gain
      * @return 0 if success
      * */
     int set_ref_rx_gain(bladerf_gain gain);
@@ -223,7 +224,7 @@ public:
      * 3. generate subpulse samples, either single tone or chirp, and store them into _32fcbuf_in and then _16icbuf_in
      * 4. control bladeRF device to send subpulse and receive echos
      * 5. output received samples
-     * @return  d_num_steps*d_recv_len  number of samples per output port
+     * @return d_num_steps*d_recv_len  number of samples per output port
      * */
     int work(int noutput_items,
              gr_vector_const_void_star& input_items,

@@ -215,7 +215,16 @@ public:
     int set_ref_rx_gain(bladerf_gain gain);
 
 
-    // Where all the action really happens
+    /**
+     * Sweep the frequency, send pulse and receive echos for each frequency step
+     * Jobs include:
+     * 1. add newScan tag at the begining of the SFCW pulse, and step tag at the begining of each subpulse
+     * 2. tune LO of tx and rx channels to sweep the frequency
+     * 3. generate subpulse samples, either single tone or chirp, and store them into _32fcbuf_in and then _16icbuf_in
+     * 4. control bladeRF device to send subpulse and receive echos
+     * 5. output received samples
+     * @return d_num_steps*d_recv_len  number of samples per output port
+     * */
     int work(int noutput_items,
              gr_vector_const_void_star& input_items,
              gr_vector_void_star& output_items);

@@ -19,7 +19,7 @@ BladerfDevice::BladerfDevice() : device(nullptr) {
      * */
     memset(&d_rx_meta, 0, sizeof(d_rx_meta));
     memset(&d_tx_meta, 0, sizeof(d_tx_meta));
-    d_tx_meta.flags = BLADERF_META_FLAG_TX_BURST_START | BLADERF_META_FLAG_TX_BURST_END; //send as burst_len
+    d_tx_meta.flags = BLADERF_META_FLAG_TX_BURST_START | BLADERF_META_FLAG_TX_BURST_END; /**< send as burst_len*/
 }
 
 BladerfDevice::~BladerfDevice() {
@@ -131,10 +131,10 @@ int BladerfDevice::enable_rx_channels(struct channel_config *ref_rx_config, stru
     bladerf_channel_layout rx_channel_layout;
 
     if(ref_rx_config==nullptr){
-        //User does not provide reference RX configuration, only setup radar RX channel
+        std::cout << "ref_rx_config is nullptr, only setup radar RX channel " << std::endl;
         rx_channel_layout = BLADERF_RX_X1;
     }else{
-        //configure reference RX Channel
+        std::cout << "Will setup two RX channels, one for radar RX, one for reference RX" << std::endl;
         rx_channel_layout = BLADERF_RX_X2;
         status = configure_channel(ref_rx_config);
         if (status !=0){
@@ -162,6 +162,7 @@ int BladerfDevice::enable_rx_channels(struct channel_config *ref_rx_config, stru
     status = configure_channel(radar_rx_config);
     if (status !=0){
         std::cerr << "Channel " << radar_rx_config->channel << ": configure_channel failed" << std::endl;
+        return status;
     }else{
         std::cout << "Channel " << radar_rx_config->channel << ": configure_channel succed" << std::endl;
     }
@@ -172,6 +173,7 @@ int BladerfDevice::enable_rx_channels(struct channel_config *ref_rx_config, stru
     status = bladerf_set_bias_tee(device, radar_rx_config->channel, enable_biastee);
     if(status != 0){
         std::cerr << "Set channel: " << radar_rx_config->channel << " bias tee failed" << std::endl;
+        return status;
     }else{
         bool is_bias_tee_enabled = false;
         status = bladerf_get_bias_tee(device,radar_rx_config->channel, &is_bias_tee_enabled);
@@ -243,10 +245,10 @@ int BladerfDevice::enable_tx_channels(struct channel_config *ref_tx_config, stru
     bladerf_channel_layout tx_channel_layout;
 
     if(ref_tx_config == nullptr){
-        //Only radar tx will be configured and enabled
+        std::cout << "ref_tx_config is nullptr, only set up radar TX channel" << std::endl;
         tx_channel_layout = BLADERF_TX_X1;
     }else{
-        //Configure and enable both radar tx and reference tx channels
+        std::cout << "Will setup two TX channels, one for radar TX, one for reference TX" << std::endl;
         tx_channel_layout = BLADERF_TX_X2;
         status = configure_channel(ref_tx_config);
         if (status !=0){
@@ -274,6 +276,7 @@ int BladerfDevice::enable_tx_channels(struct channel_config *ref_tx_config, stru
     status = bladerf_set_bias_tee(device, radar_tx_config->channel, enable_biastee);
     if(status != 0){
         std::cerr << "Set channel: " << radar_tx_config->channel << " bias tee failed" << std::endl;
+        return status;
     }else{
         bool is_bias_tee_enabled = false;
         status = bladerf_get_bias_tee(device, radar_tx_config->channel, &is_bias_tee_enabled);
@@ -332,15 +335,10 @@ int BladerfDevice::enable_channels(struct channel_config *radar_tx_config, struc
         return -1;
     }
 
-    if(ref_tx_config==nullptr){
-        std::cout << "only one TX channel will be enabled, please make sure the coupler is connected with radar TX channel to generate reference signals" << std::endl;
+    if(radar_tx_config==nullptr||radar_rx_config==nullptr){
+        std::cerr << "Provide at least channel configurations for radar TX and radar RX channels" << std::endl;
+        return -1;
     }
-    
-    if(ref_rx_config==nullptr){
-        std::cout << "only one RX channel will be enabled, the radar will work without reference signals" << std::endl;
-    }
-
-
 
     int status;
     status = enable_rx_channels(ref_rx_config, radar_rx_config, buf_config, enable_biastee);

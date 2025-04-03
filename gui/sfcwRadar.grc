@@ -37,7 +37,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: 2**10
+    value: 2**8
   states:
     bus_sink: false
     bus_source: false
@@ -207,7 +207,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: burst_len+128
+    value: burst_len+64
   states:
     bus_sink: false
     bus_source: false
@@ -1246,7 +1246,7 @@ blocks:
   parameters:
     affinity: ''
     alias: ''
-    buffer_size: '2048'
+    buffer_size: '1024'
     burst_len: burst_len
     chirp_bandwidth: chirp_bandwidth
     comment: ''

@@ -12,7 +12,6 @@
 #include <gnuradio/io_signature.h>
 #include <volk/volk.h>
 #include <gnuradio/math.h>
-#include "misc.h"
 #include "bladerf_device.h"
 
 namespace gr {

@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO" kind="class" language="C++" prot="public">
+    <compoundname>gr::sfcwRadar::bladerfRadarMIMO</compoundname>
+    <basecompoundref prot="public" virt="virtual">tagged_stream_block</basecompoundref>
+    <derivedcompoundref refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl" prot="public" virt="non-virtual">gr::sfcwRadar::bladerfRadarMIMO_impl</derivedcompoundref>
+    <includes refid="bladerfRadarMIMO_8h" local="no">bladerfRadarMIMO.h</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO_1a3eb4f2d8a7dd23c885dad2a8368ea2e1" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO" kindref="compound">bladerfRadarMIMO</ref> &gt;</type>
+        <definition>typedef std::shared_ptr&lt;bladerfRadarMIMO&gt; gr::sfcwRadar::bladerfRadarMIMO::sptr</definition>
+        <argsstring></argsstring>
+        <name>sptr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/bladerfRadarMIMO.h" line="26" column="29" bodyfile="/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/bladerfRadarMIMO.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO_1a60886334add69a01c4094264b22ee83f" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO_1a3eb4f2d8a7dd23c885dad2a8368ea2e1" kindref="member">sptr</ref></type>
+        <definition>static sptr gr::sfcwRadar::bladerfRadarMIMO::make</definition>
+        <argsstring>(bladerf_frequency start_freq, int num_steps, bladerf_frequency freq_step, int samp_rate, bladerf_gain rx_gain, bladerf_gain tx_gain, bladerf_gain ref_gain, size_t burst_len, size_t num_buffers, size_t buffer_size, size_t num_transfers, float cw_amplitude, float cw_frequency)</argsstring>
+        <name>make</name>
+        <param>
+          <type>bladerf_frequency</type>
+          <declname>start_freq</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>num_steps</declname>
+        </param>
+        <param>
+          <type>bladerf_frequency</type>
+          <declname>freq_step</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>samp_rate</declname>
+        </param>
+        <param>
+          <type>bladerf_gain</type>
+          <declname>rx_gain</declname>
+        </param>
+        <param>
+          <type>bladerf_gain</type>
+          <declname>tx_gain</declname>
+        </param>
+        <param>
+          <type>bladerf_gain</type>
+          <declname>ref_gain</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>burst_len</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>num_buffers</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>buffer_size</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>num_transfers</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>cw_amplitude</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>cw_frequency</declname>
+        </param>
+        <briefdescription>
+<para>Return a shared_ptr to a new instance of <ref refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO" kindref="compound">sfcwRadar::bladerfRadarMIMO</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>To avoid accidental use of raw pointers, <ref refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO" kindref="compound">sfcwRadar::bladerfRadarMIMO</ref>&apos;s constructor is in a private implementation class. <ref refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO_1a60886334add69a01c4094264b22ee83f" kindref="member">sfcwRadar::bladerfRadarMIMO::make</ref> is the public interface for creating new instances. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/bladerfRadarMIMO.h" line="36" column="17"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>&lt;+description of block+&gt; </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>gr::sfcwRadar::bladerfRadarMIMO_impl</label>
+        <link refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO__impl"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>gr::tagged_stream_block</label>
+      </node>
+      <node id="1">
+        <label>gr::sfcwRadar::bladerfRadarMIMO</label>
+        <link refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>gr::tagged_stream_block</label>
+      </node>
+      <node id="1">
+        <label>gr::sfcwRadar::bladerfRadarMIMO</label>
+        <link refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/bladerfRadarMIMO.h" line="24" column="1" bodyfile="/home/hui/gr-sfcwRadar/include/gnuradio/sfcwRadar/bladerfRadarMIMO.h" bodystart="23" bodyend="49"/>
+    <listofallmembers>
+      <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO_1a60886334add69a01c4094264b22ee83f" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarMIMO</scope><name>make</name></member>
+      <member refid="classgr_1_1sfcwRadar_1_1bladerfRadarMIMO_1a3eb4f2d8a7dd23c885dad2a8368ea2e1" prot="public" virt="non-virtual"><scope>gr::sfcwRadar::bladerfRadarMIMO</scope><name>sptr</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

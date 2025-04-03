@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="structchannel__config" kind="struct" language="C++" prot="public">
+    <compoundname>channel_config</compoundname>
+    <includes refid="bladerf__device_8h" local="no">bladerf_device.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structchannel__config_1a6a71c880dcaec9807f09da7ccf6dfd41" prot="public" static="no" mutable="no">
+        <type>bladerf_channel</type>
+        <definition>bladerf_channel channel_config::channel</definition>
+        <argsstring></argsstring>
+        <name>channel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" line="19" column="21" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structchannel__config_1a8400f2edecff349da712535e09b42aaa" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int channel_config::frequency</definition>
+        <argsstring></argsstring>
+        <name>frequency</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" line="20" column="18" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structchannel__config_1a417f629f0f74ea6a8fabf994f1e78191" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int channel_config::bandwidth</definition>
+        <argsstring></argsstring>
+        <name>bandwidth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" line="21" column="18" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structchannel__config_1ad6fe986f494298bd49130d8e7324b8e7" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int channel_config::samplerate</definition>
+        <argsstring></argsstring>
+        <name>samplerate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" line="22" column="18" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structchannel__config_1a2b7705e454d897f62e2cf23b0a37f072" prot="public" static="no" mutable="no">
+        <type>bladerf_gain</type>
+        <definition>bladerf_gain channel_config::gain</definition>
+        <argsstring></argsstring>
+        <name>gain</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" line="23" column="18" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structchannel__config_1ad1c1b031c8b0cbe7d0f1dbcd97693aad" prot="public" static="no" mutable="no">
+        <type>bladerf_gain_mode</type>
+        <definition>bladerf_gain_mode channel_config::gain_mode</definition>
+        <argsstring></argsstring>
+        <name>gain_mode</name>
+        <initializer>= BLADERF_GAIN_MANUAL</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" line="24" column="23" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" line="18" column="21" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerf_device.h" bodystart="18" bodyend="25"/>
+    <listofallmembers>
+      <member refid="structchannel__config_1a417f629f0f74ea6a8fabf994f1e78191" prot="public" virt="non-virtual"><scope>channel_config</scope><name>bandwidth</name></member>
+      <member refid="structchannel__config_1a6a71c880dcaec9807f09da7ccf6dfd41" prot="public" virt="non-virtual"><scope>channel_config</scope><name>channel</name></member>
+      <member refid="structchannel__config_1a8400f2edecff349da712535e09b42aaa" prot="public" virt="non-virtual"><scope>channel_config</scope><name>frequency</name></member>
+      <member refid="structchannel__config_1a2b7705e454d897f62e2cf23b0a37f072" prot="public" virt="non-virtual"><scope>channel_config</scope><name>gain</name></member>
+      <member refid="structchannel__config_1ad1c1b031c8b0cbe7d0f1dbcd97693aad" prot="public" virt="non-virtual"><scope>channel_config</scope><name>gain_mode</name></member>
+      <member refid="structchannel__config_1ad6fe986f494298bd49130d8e7324b8e7" prot="public" virt="non-virtual"><scope>channel_config</scope><name>samplerate</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

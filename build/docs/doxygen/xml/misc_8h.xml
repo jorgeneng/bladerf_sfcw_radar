@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="misc_8h" kind="file" language="C++">
+    <compoundname>misc.h</compoundname>
+    <includes local="no">libbladeRF.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>misc.h</label>
+        <link refid="misc_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>libbladeRF.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="structchannel__config" prot="public">channel_config</innerclass>
+    <innerclass refid="structbladerf__quick__tune__info" prot="public">bladerf_quick_tune_info</innerclass>
+    <innerclass refid="structusb__buffer__config" prot="public">usb_buffer_config</innerclass>
+    <innerclass refid="structfrequency__plan__config" prot="public">frequency_plan_config</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/hui/gr-sfcwRadar/lib/misc.h"/>
+  </compounddef>
+</doxygen>
