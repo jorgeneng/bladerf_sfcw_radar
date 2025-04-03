@@ -449,7 +449,7 @@ void BladerfDevice::recv(){
     if (status != 0){
         std::cerr << "receiving failed: " << bladerf_strerror(status) << std::endl;
     }else if (d_rx_meta.status & BLADERF_META_STATUS_OVERRUN){
-       std::cerr << "Overrun detected in scheduled RX. Number of samples read is: " << d_rx_meta.actual_count << std::endl;
+        std::cerr << "Overrun detected in scheduled RX. Number of samples read is: " << d_rx_meta.actual_count << std::endl;
     }
 }
 
@@ -465,19 +465,18 @@ int BladerfDevice::pulse(float d_ts_inc_send, float d_ts_inc_recv, int16_t *samp
     /**
      * Make sure the flags of tx and rx are correct
      * */
-    d_tx_meta.flags = BLADERF_META_FLAG_TX_BURST_START | BLADERF_META_FLAG_TX_BURST_END;
-    d_rx_meta.flags = 0;
+    d_tx_meta.flags = BLADERF_META_FLAG_TX_BURST_START | BLADERF_META_FLAG_TX_BURST_END;// | BLADERF_META_FLAG_TX_NOW;// | BLADERF_META_FLAG_TX_UPDATE_TIMESTAMP;
+    d_rx_meta.flags = 0;//BLADERF_META_FLAG_RX_NOW;
 
     /**
      * Get current FPGA time stamp of the device.
      * */
-    int status = bladerf_get_timestamp(device, BLADERF_TX, &d_tx_meta.timestamp);
+    int status = bladerf_get_timestamp(device, BLADERF_RX, &d_rx_meta.timestamp);
     if (status != 0) {
-        fprintf(stderr, "Failed to get current TX timestamp: %s\n", bladerf_strerror(status));
+        fprintf(stderr, "Failed to get current RX timestamp: %s\n", bladerf_strerror(status));
         return -1;
     }
-    
-    d_rx_meta.timestamp = d_tx_meta.timestamp;
+    d_tx_meta.timestamp = d_rx_meta.timestamp;
     //schedule tx and tx in the future
     d_tx_meta.timestamp += d_ts_inc_send;
     d_rx_meta.timestamp += d_ts_inc_recv;

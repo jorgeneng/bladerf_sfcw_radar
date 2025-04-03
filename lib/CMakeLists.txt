@@ -14,7 +14,7 @@ list(APPEND sfcwRadar_sources
     bladerf_device.cc
     bladerfRadarMIMO_impl.cc
     bladerfRadarController_cc_impl.cc
-    sfcw_radar_mimo_cc_impl.cc
+    sfcw_radar_cc_impl.cc
     sfcw_radar_miso_cc_impl.cc )
 
 set(sfcwRadar_sources

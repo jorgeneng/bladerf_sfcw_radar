@@ -13,5 +13,5 @@ install(FILES
     sfcwRadar_matchedFilter.block.yml
     sfcwRadar_findPeak.block.yml
     sfcwRadar_rawSamplesSink.block.yml
-    sfcwRadar_sfcw_radar_mimo_cc.block.yml
+    sfcwRadar_sfcw_radar_cc.block.yml
     sfcwRadar_sfcw_radar_miso_cc.block.yml DESTINATION share/gnuradio/grc/blocks)

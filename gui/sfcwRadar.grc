@@ -37,7 +37,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: 2**8
+    value: 2**9
   states:
     bus_sink: false
     bus_source: false
@@ -1241,6 +1241,39 @@ blocks:
     coordinate: [832, 572.0]
     rotation: 0
     state: disabled
+- name: sfcwRadar_sfcw_radar_cc_0
+  id: sfcwRadar_sfcw_radar_cc
+  parameters:
+    affinity: ''
+    alias: ''
+    buffer_size: '2048'
+    burst_len: burst_len
+    chirp_bandwidth: int(chirp_bandwidth)
+    comment: ''
+    cw_frequency: cw_freq
+    enable_biastee: 'True'
+    isChirp: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_buffers: '8'
+    num_steps: num_steps
+    num_transfers: '4'
+    pulse_amplitude: pulse_amp
+    recv_buf_len: recv_buf_len
+    ref_gain: ref_gain
+    rx_gain: rx_gain
+    samp_rate: int(samp_rate)
+    start_freq: int(start_freq)
+    step_size: int(freq_step)
+    ts_inc_send: '1'
+    tx_gain: tx_gain
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [232, 212.0]
+    rotation: 0
+    state: enabled
 - name: sfcwRadar_sfcw_radar_mimo_cc_0
   id: sfcwRadar_sfcw_radar_mimo_cc
   parameters:
@@ -1300,8 +1333,10 @@ connections:
 - [low_pass_filter_0_0, '0', qtgui_freq_sink_x_0, '1']
 - [low_pass_filter_0_0, '0', qtgui_time_sink_x_1, '1']
 - [scan_cont, pressed, sfcwRadar_bladerfRadarController_cc_0, scan]
+- [scan_cont, pressed, sfcwRadar_sfcw_radar_cc_0, scan]
 - [scan_cont, pressed, sfcwRadar_sfcw_radar_mimo_cc_0, scan]
 - [scan_once, pressed, sfcwRadar_bladerfRadarController_cc_0, scan]
+- [scan_once, pressed, sfcwRadar_sfcw_radar_cc_0, scan]
 - [scan_once, pressed, sfcwRadar_sfcw_radar_mimo_cc_0, scan]
 - [sfcwRadar_bladerfRadarController_cc_0, '0', blocks_stream_to_vector_1_0_0, '0']
 - [sfcwRadar_bladerfRadarController_cc_0, '0', low_pass_filter_0, '0']
@@ -1312,6 +1347,8 @@ connections:
 - [sfcwRadar_findPeak_0, '0', blocks_complex_to_arg_1, '0']
 - [sfcwRadar_findPeak_0, '0', blocks_stream_to_vector_0, '0']
 - [sfcwRadar_matchedFilter_0, '0', sfcwRadar_findPeak_0, '0']
+- [sfcwRadar_sfcw_radar_cc_0, '0', low_pass_filter_0, '0']
+- [sfcwRadar_sfcw_radar_cc_0, '1', low_pass_filter_0_0, '0']
 - [sfcwRadar_sfcw_radar_mimo_cc_0, '0', low_pass_filter_0, '0']
 - [sfcwRadar_sfcw_radar_mimo_cc_0, '1', low_pass_filter_0_0, '0']
 

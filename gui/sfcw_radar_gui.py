@@ -63,7 +63,7 @@ class sfcw_radar_gui(gr.top_block, Qt.QWidget):
         ##################################################
         # Variables
         ##################################################
-        self.burst_len = burst_len = 2**8
+        self.burst_len = burst_len = 2**9
         self.recv_buf_len = recv_buf_len = burst_len+64
         self.chirp_bandwidth = chirp_bandwidth = 1e6
         self.tx_gain = tx_gain = 20
@@ -124,7 +124,7 @@ class sfcw_radar_gui(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(1, 2):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self.sfcwRadar_sfcw_radar_mimo_cc_0 = sfcwRadar.sfcw_radar_mimo_cc(int(start_freq), num_steps, int(freq_step), int(samp_rate), rx_gain, tx_gain, ref_gain, True, burst_len, recv_buf_len, 8, 1024, 4, pulse_amp, cw_freq, True, chirp_bandwidth, 1)
+        self.sfcwRadar_sfcw_radar_cc_0 = sfcwRadar.sfcw_radar_cc(int(start_freq), num_steps, int(freq_step), int(samp_rate), rx_gain, tx_gain, ref_gain, True, burst_len, recv_buf_len, 8, 2048, 4, pulse_amp, cw_freq, True, int(chirp_bandwidth), 1)
         self.sfcwRadar_matchedFilter_0 = sfcwRadar.matchedFilter((int(mf_size/lp_dec)))
         self.sfcwRadar_findPeak_0 = sfcwRadar.findPeak((int(mf_size/lp_dec)))
         self.scan_once = _scan_once_toggle_button = qtgui.MsgPushButton('scan_once', '',1,"default","default")
@@ -327,8 +327,8 @@ class sfcw_radar_gui(gr.top_block, Qt.QWidget):
         ##################################################
         # Connections
         ##################################################
-        self.msg_connect((self.scan_cont, 'pressed'), (self.sfcwRadar_sfcw_radar_mimo_cc_0, 'scan'))
-        self.msg_connect((self.scan_once, 'pressed'), (self.sfcwRadar_sfcw_radar_mimo_cc_0, 'scan'))
+        self.msg_connect((self.scan_cont, 'pressed'), (self.sfcwRadar_sfcw_radar_cc_0, 'scan'))
+        self.msg_connect((self.scan_once, 'pressed'), (self.sfcwRadar_sfcw_radar_cc_0, 'scan'))
         self.connect((self.blocks_complex_to_mag_squared_0, 0), (self.qtgui_time_raster_sink_x_0, 0))
         self.connect((self.blocks_complex_to_mag_squared_0, 0), (self.qtgui_time_sink_x_1_0_0, 0))
         self.connect((self.blocks_stream_to_vector_0, 0), (self.fft_vxx_0, 0))
@@ -342,8 +342,8 @@ class sfcw_radar_gui(gr.top_block, Qt.QWidget):
         self.connect((self.low_pass_filter_0_0, 0), (self.qtgui_time_sink_x_1, 1))
         self.connect((self.sfcwRadar_findPeak_0, 0), (self.blocks_stream_to_vector_0, 0))
         self.connect((self.sfcwRadar_matchedFilter_0, 0), (self.sfcwRadar_findPeak_0, 0))
-        self.connect((self.sfcwRadar_sfcw_radar_mimo_cc_0, 0), (self.low_pass_filter_0, 0))
-        self.connect((self.sfcwRadar_sfcw_radar_mimo_cc_0, 1), (self.low_pass_filter_0_0, 0))
+        self.connect((self.sfcwRadar_sfcw_radar_cc_0, 0), (self.low_pass_filter_0, 0))
+        self.connect((self.sfcwRadar_sfcw_radar_cc_0, 1), (self.low_pass_filter_0_0, 0))
 
 
     def closeEvent(self, event):
@@ -381,7 +381,7 @@ class sfcw_radar_gui(gr.top_block, Qt.QWidget):
 
     def set_tx_gain(self, tx_gain):
         self.tx_gain = tx_gain
-        self.sfcwRadar_sfcw_radar_mimo_cc_0.set_radar_tx_gain(self.tx_gain)
+        self.sfcwRadar_sfcw_radar_cc_0.set_radar_tx_gain(self.tx_gain)
 
     def get_transition_width(self):
         return self.transition_width
@@ -419,15 +419,15 @@ class sfcw_radar_gui(gr.top_block, Qt.QWidget):
 
     def set_rx_gain(self, rx_gain):
         self.rx_gain = rx_gain
-        self.sfcwRadar_sfcw_radar_mimo_cc_0.set_radar_rx_gain(self.rx_gain)
+        self.sfcwRadar_sfcw_radar_cc_0.set_radar_rx_gain(self.rx_gain)
 
     def get_ref_gain(self):
         return self.ref_gain
 
     def set_ref_gain(self, ref_gain):
         self.ref_gain = ref_gain
-        self.sfcwRadar_sfcw_radar_mimo_cc_0.set_ref_tx_gain(self.ref_gain)
-        self.sfcwRadar_sfcw_radar_mimo_cc_0.set_ref_rx_gain(self.ref_gain)
+        self.sfcwRadar_sfcw_radar_cc_0.set_ref_tx_gain(self.ref_gain)
+        self.sfcwRadar_sfcw_radar_cc_0.set_ref_rx_gain(self.ref_gain)
 
     def get_pulse_amp(self):
         return self.pulse_amp
