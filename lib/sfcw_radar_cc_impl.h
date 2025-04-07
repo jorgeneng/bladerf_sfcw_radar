@@ -2,6 +2,7 @@
 /*
  * Author: Hui HUANG
  * Email: hui.huang@uni.lu
+ * Date: 04/2025
  *
  * Copyright 2025 SnT.
  *
@@ -104,6 +105,8 @@ private:
     int16_t *_16icbuf_out;              /**< raw samples from bladeRF */
     gr_complex *_32fcbuf_out;           /**< buffer to store raw samples in 32 float*/
 
+    gr_complex *_32fc_samples;          /**< buffer to store pulse samples in 32 float, the size is equal to d_burst_len*sizeof(gr_complex)*/
+
     /* Scaling factor used when converting from int16_t to float */
     const float SCALING_FACTOR = 2048.0f; 
     
@@ -119,27 +122,39 @@ private:
     void handle_scan_msg(const pmt::pmt_t& msg);
     
     /**
-     * Initialise _16icbuf_in, _32fcbuf_in, _16icbuf_out, _32fcbuf_out
+     * Initialise _16icbuf_in, _32fcbuf_in, _16icbuf_out, _32fcbuf_out and _32fc_samples
      * The size of _16icbuf_in: 2 * NUM_TX_CHANNELS * d_burst_len * sizeof(int16_t)
-     * The size of _16icbuf_out: 2 * NUM_TX_CHANNELS * d_burst_len * sizeof(int16_t)
+     * The size of _16icbuf_out: 2 * NUM_TX_CHANNELS * d_recv_len * sizeof(int16_t)
      * The size of _32fcbuf_in: NUM_TX_CHANNELS * d_burst_len * sizeof(gr_complex)
-     * The size of _32fcbuf_out: NUM_TX_CHANNELS * d_burst_len * sizeof(gr_complex)
+     * The size of _32fcbuf_out: NUM_TX_CHANNELS * d_recv_len * sizeof(gr_complex)
+     * The size of _32fc_samples: d_burst_len * sizeof(gr_complex)
+     * Then pulse samples are generated and stored to _32fc_samples, based on the choice of waveform
+     * @see fill_tx_buffer() is called after that
      * */
     void init_sample_buffers();
     
     /**
-     * Generate single tone samples, and store them to _32fcbuf_in
+     * Generate single tone samples, and store them to _32fc_samples
      * The samples to be transmitted via the two TX channels are interleaved
      * */
-    void generate_cw_samples();
+    void generate_pure_tone_samples();
+    //void generate_cw_samples();
     
     /**
-     * Generate chirp samples, and store them to _32fcbuf_in
+     * Generate chirp samples, and store them to _32fc_samples
      * The chirp is defined by d_chirp_bandwidth, d_burst_len and d_samp_rate 
      * The amplitude is defined by d_pulse_amplitude
      * The samples to be transmitted via the two TX channels are interleaved
      * */
     void generate_chirp_samples();
+
+    /**
+     * Copy the content in _32fc_samples to _32fcbuf_in.
+     * If NUM_TX_CHANNELS = 2, the size of _32fcbuf_in is twice as _32fc_samples. The content will be interleaved. 
+     * e.g., _32fcbuf_in[2*i] = _32fcbuf_in[2*i+1] = _32fc_samples
+     * Finally convert _32fcbuf_in to _16icbuf_in
+     * */
+    void fill_tx_buffer();
 
 public:
     /**
@@ -221,9 +236,8 @@ public:
      * Jobs include:
      * 1. add newScan tag at the begining of the SFCW pulse, and step tag at the begining of each subpulse
      * 2. tune LO of tx and rx channels to sweep the frequency
-     * 3. generate subpulse samples, either single tone or chirp, and store them into _32fcbuf_in and then _16icbuf_in
-     * 4. control bladeRF device to send subpulse and receive echos
-     * 5. output received samples
+     * 3. control bladeRF device to send subpulse in _16icbuf_in and receive echos
+     * 4. output received samples
      * @return d_num_steps*d_recv_len  number of samples per output port
      * */
     int work(int noutput_items,

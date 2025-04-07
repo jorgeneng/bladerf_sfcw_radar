@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="bladerfRadarController__cc__impl_8h" kind="file" language="C++">
+    <compoundname>bladerfRadarController_cc_impl.h</compoundname>
+    <includes refid="bladerfRadarController__cc_8h" local="no">gnuradio/sfcwRadar/bladerfRadarController_cc.h</includes>
+    <includes local="no">libbladeRF.h</includes>
+    <includes local="no">chrono</includes>
+    <incdepgraph>
+      <node id="5">
+        <label>gnuradio/sync_block.h</label>
+      </node>
+      <node id="4">
+        <label>gnuradio/attributes.h</label>
+      </node>
+      <node id="1">
+        <label>bladerfRadarController_cc_impl.h</label>
+        <link refid="bladerfRadarController__cc__impl_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>gnuradio/sfcwRadar/bladerfRadarController_cc.h</label>
+        <link refid="bladerfRadarController__cc_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>gnuradio/sfcwRadar/api.h</label>
+        <link refid="api_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>chrono</label>
+      </node>
+      <node id="6">
+        <label>libbladeRF.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="structgr_1_1sfcwRadar_1_1channel__config" prot="public">gr::sfcwRadar::channel_config</innerclass>
+    <innerclass refid="structgr_1_1sfcwRadar_1_1bladerf__quick__tune__info" prot="public">gr::sfcwRadar::bladerf_quick_tune_info</innerclass>
+    <innerclass refid="classgr_1_1sfcwRadar_1_1bladerfRadarController__cc__impl" prot="public">gr::sfcwRadar::bladerfRadarController_cc_impl</innerclass>
+    <innernamespace refid="namespacegr">gr</innernamespace>
+    <innernamespace refid="namespacegr_1_1sfcwRadar">gr::sfcwRadar</innernamespace>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="bladerfRadarController__cc__impl_8h_1a90c71eedfd7f8c9832875485d788c0c2" prot="public" static="no">
+        <name>RADAR_TX</name>
+        <initializer>BLADERF_CHANNEL_TX(0)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="15" column="9" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="bladerfRadarController__cc__impl_8h_1a0b9270b92998459da0b9728189469d5d" prot="public" static="no">
+        <name>RADAR_RX</name>
+        <initializer>BLADERF_CHANNEL_RX(1)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="16" column="9" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="bladerfRadarController__cc__impl_8h_1a830d78185fc2516952cda7fca9688b95" prot="public" static="no">
+        <name>REF_TX</name>
+        <initializer>BLADERF_CHANNEL_TX(1)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="17" column="9" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="bladerfRadarController__cc__impl_8h_1ac14dabd93cc979a7bd782a31f93ca228" prot="public" static="no">
+        <name>REF_RX</name>
+        <initializer>BLADERF_CHANNEL_RX(0)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" line="18" column="9" bodyfile="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/hui/gr-sfcwRadar/lib/bladerfRadarController_cc_impl.h"/>
+  </compounddef>
+</doxygen>

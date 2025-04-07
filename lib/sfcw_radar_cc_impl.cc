@@ -2,6 +2,7 @@
 /*
  * Author: Hui HUANG
  * Email: hui.huang@uni.lu
+ * Date: 04/2025
  *
  * Copyright 2025 SnT.
  *
@@ -141,11 +142,6 @@ sfcw_radar_cc_impl::sfcw_radar_cc_impl(bladerf_frequency start_freq,
     d_scan = false;
     d_continuous_scan_flag = false;
 
-    usb_buffer_config buf_config;
-    buf_config.num_buffers = num_buffers;
-    buf_config.buffer_size = buffer_size;
-    buf_config.num_transfers = num_transfers;
-
     bladeRF = new BladerfDevice();
 
     if(bladeRF->openDevice()){
@@ -178,7 +174,11 @@ sfcw_radar_cc_impl::sfcw_radar_cc_impl(bladerf_frequency start_freq,
         buf_config.num_buffers = num_buffers;
         buf_config.buffer_size = buffer_size;
         buf_config.num_transfers = num_transfers;
-        status = bladeRF->enable_channels(&radar_tx_config, &radar_rx_config, &ref_tx_config, &ref_rx_config, &buf_config, enable_biastee);
+        if(NUM_TX_CHANNELS==1){
+            status = bladeRF->enable_channels(&radar_tx_config, &radar_rx_config, nullptr, &ref_rx_config, &buf_config, enable_biastee);
+        }else{
+            status = bladeRF->enable_channels(&radar_tx_config, &radar_rx_config, &ref_tx_config, &ref_rx_config, &buf_config, enable_biastee);
+        }
         if(status!=0){
             std::cerr << "Failed to enable rx channels" << std::endl;
             bladeRF->closeDevice();
@@ -219,9 +219,17 @@ void sfcw_radar_cc_impl::init_sample_buffers(){
 
     _32fcbuf_out = reinterpret_cast<gr_complex *>(volk_malloc(NUM_RX_CHANNELS*d_recv_len*sizeof(gr_complex), alignment));
     _16icbuf_out = reinterpret_cast<int16_t *>(volk_malloc(2*NUM_RX_CHANNELS*d_recv_len*sizeof(int16_t), alignment));
+    
+    _32fc_samples  = reinterpret_cast<gr_complex *>(volk_malloc(d_burst_len*sizeof(gr_complex), alignment));
+
+    if(d_isChirp){
+        generate_chirp_samples();
+    }else{
+        generate_pure_tone_samples();
+    }
 }
 
-void sfcw_radar_cc_impl::generate_cw_samples(){
+/*void sfcw_radar_cc_impl::generate_cw_samples(){
     memset(_32fcbuf_in,0,d_burst_len*NUM_TX_CHANNELS*sizeof(gr_complex));
     for (size_t i=0;i<d_burst_len*NUM_TX_CHANNELS;i++){
         _32fcbuf_in[i] += d_pulse_amplitude*exp(d_phase);
@@ -229,9 +237,42 @@ void sfcw_radar_cc_impl::generate_cw_samples(){
         i++;
         d_phase = gr_complex(0,std::fmod(imag(d_phase) + 2 * GR_M_PI * d_cw_frequency / (float)d_samp_rate,2*GR_M_PI));
     }
+}*/
+
+void sfcw_radar_cc_impl::generate_pure_tone_samples(){
+    for (size_t i=0; i<d_burst_len; i++){
+        _32fc_samples[i] += d_pulse_amplitude*exp(d_phase);
+        d_phase = gr_complex(0,std::fmod(imag(d_phase) + 2 * GR_M_PI * d_cw_frequency / (float)d_samp_rate,2*GR_M_PI));
+    }
+    fill_tx_buffer();   
 }
 
 void sfcw_radar_cc_impl::generate_chirp_samples(){
+    float phase = 0;
+    float f_inst = -d_chirp_bandwidth/2;
+    float dt = 1/(float)d_samp_rate;
+    for (size_t i=0; i<d_burst_len;i++){
+        f_inst = -d_chirp_bandwidth/2 + d_chirp_bandwidth*i/(d_burst_len);
+        phase = phase + 2 * M_PI * f_inst * dt;
+        _32fc_samples[i] = d_pulse_amplitude * std::exp(std::complex<float>(0,phase));
+    }
+    fill_tx_buffer();   
+}
+
+void sfcw_radar_cc_impl::fill_tx_buffer(){
+    if(NUM_TX_CHANNELS == 1){
+        memcpy(_32fcbuf_in, _32fc_samples, d_burst_len*sizeof(gr_complex));
+    }else if(NUM_TX_CHANNELS == 2){
+        for (size_t i=0; i<d_burst_len; i++){
+            _32fcbuf_in[2*i] = _32fc_samples[i];
+            _32fcbuf_in[2*i + 1] = _32fc_samples[i];
+        }
+    }
+    volk_32f_s32f_convert_16i(_16icbuf_in, reinterpret_cast<float const *>(_32fcbuf_in),
+                            SCALING_FACTOR, 2*NUM_TX_CHANNELS*d_burst_len);
+}
+
+/*void sfcw_radar_cc_impl::generate_chirp_samples(){
     float phase = 0;
     float f_inst = -d_chirp_bandwidth/2;
     float dt = 1/(float)d_samp_rate;
@@ -244,7 +285,7 @@ void sfcw_radar_cc_impl::generate_chirp_samples(){
         _32fcbuf_in[_32fcbuf_in_index+1] = _32fcbuf_in[_32fcbuf_in_index];
         _32fcbuf_in_index = _32fcbuf_in_index+2;
     }
-}
+}*/
 
 void sfcw_radar_cc_impl::handle_scan_msg(const pmt::pmt_t& msg){
     std::cout << "received scan cmd" << std::endl;
@@ -306,19 +347,19 @@ int sfcw_radar_cc_impl::work(int noutput_items,
             /**
              * Generate pulse samples, the generated samples for two TXs are stored in _32fcbuf_in
              * */
-            if (d_isChirp){
+            /*if (d_isChirp){
                 //Chirp pulse
                 generate_chirp_samples();
             }else{
                 //Single tone pulse
                 generate_cw_samples();
-            }
+            }*/
             /** 
              * convert floating point to fixed point and scale
              * input_items is gr_complex (2x float), for 2 TXs, so num_points is 2*2*d_burst_len
              * */
-            volk_32f_s32f_convert_16i(_16icbuf_in, reinterpret_cast<float const *>(_32fcbuf_in),
-                            SCALING_FACTOR, 2*NUM_TX_CHANNELS*d_burst_len);
+            //volk_32f_s32f_convert_16i(_16icbuf_in, reinterpret_cast<float const *>(_32fcbuf_in),
+            //                SCALING_FACTOR, 2*NUM_TX_CHANNELS*d_burst_len);
             
             /**
              * Send a pulse and receive the echo
