@@ -14,4 +14,4 @@ install(FILES
     sfcwRadar_findPeak.block.yml
     sfcwRadar_rawSamplesSink.block.yml
     sfcwRadar_sfcw_radar_cc.block.yml
-    DESTINATION share/gnuradio/grc/blocks)
+    sfcwRadar_channelResponseExtractor.block.yml DESTINATION share/gnuradio/grc/blocks)

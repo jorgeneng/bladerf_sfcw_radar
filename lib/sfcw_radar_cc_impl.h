@@ -25,6 +25,7 @@
 #include <gnuradio/sfcwRadar/sfcw_radar_cc.h>
 #include <libbladeRF.h>
 #include <chrono>
+#include <random>
 #include "bladerf_device.h"
 
 namespace gr {
@@ -115,6 +116,12 @@ private:
      * */
     std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
     std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+
+    // --- Additions for Phase Dithering ---
+    bool d_phase_dithering_enabled;
+    std::vector<gr_complex> d_dithering_phases;
+    std::default_random_engine d_random_generator;
+    std::uniform_real_distribution<float> d_uniform_dist; 
     
     /**
      * set d_scan to true when a "scan" message is received

@@ -6,7 +6,7 @@
 #
 # GNU Radio Python Flow Graph
 # Title: Not titled yet
-# GNU Radio version: v3.10.9.2-39-gcf065ee5
+# GNU Radio version: 3.10.12.0
 
 from PyQt5 import Qt
 from gnuradio import qtgui
@@ -17,14 +17,18 @@ from gnuradio import fft
 from gnuradio.fft import window
 from gnuradio import filter
 from gnuradio.filter import firdes
-from gnuradio import gr
-import sys
-import signal
-from PyQt5 import Qt
-from argparse import ArgumentParser
-from gnuradio.eng_arg import eng_float, intx
 from gnuradio import sfcwRadar
 import sip
+import threading
+from gnuradio import gr
+from gnuradio.filter import firdes
+from gnuradio.fft import window
+import sys
+import signal
+from argparse import ArgumentParser
+from gnuradio.eng_arg import eng_float, intx
+from gnuradio import eng_notation
+
 
 
 
@@ -51,7 +55,7 @@ class sfcw_radar_gui(gr.top_block, Qt.QWidget):
         self.top_grid_layout = Qt.QGridLayout()
         self.top_layout.addLayout(self.top_grid_layout)
 
-        self.settings = Qt.QSettings("GNU Radio", "sfcw_radar_gui")
+        self.settings = Qt.QSettings("gnuradio/flowgraphs", "sfcw_radar_gui")
 
         try:
             geometry = self.settings.value("geometry")
@@ -59,17 +63,17 @@ class sfcw_radar_gui(gr.top_block, Qt.QWidget):
                 self.restoreGeometry(geometry)
         except BaseException as exc:
             print(f"Qt GUI: Could not restore geometry: {str(exc)}", file=sys.stderr)
+        self.flowgraph_started = threading.Event()
 
         ##################################################
         # Variables
         ##################################################
-        self.burst_len = burst_len = 2**9
-        self.recv_buf_len = recv_buf_len = burst_len+64
-        self.chirp_bandwidth = chirp_bandwidth = 1e6
+        self.burst_len = burst_len = 2**10
+        self.recv_buf_len = recv_buf_len = burst_len
+        self.chirp_bandwidth = chirp_bandwidth = 2e6
         self.tx_gain = tx_gain = 20
-        self.transition_width = transition_width = chirp_bandwidth
+        self.transition_width = transition_width = chirp_bandwidth/2
         self.start_freq = start_freq = 1e9
-        self.scale = scale = 0
         self.samp_rate = samp_rate = 5e6
         self.rx_gain = rx_gain = 20
         self.ref_gain = ref_gain = 20
@@ -77,10 +81,11 @@ class sfcw_radar_gui(gr.top_block, Qt.QWidget):
         self.num_steps = num_steps = 128
         self.mf_size = mf_size = recv_buf_len
         self.lp_dec = lp_dec = 1
+        self.isChirp = isChirp = False
         self.freq_step = freq_step = 10e6
-        self.file_prefix = file_prefix = '0'
+        self.file_prefix = file_prefix = '/home/hui/bladerf_sfcw_radar/data/test_channel_extractor'
         self.cw_freq = cw_freq = 100e3
-        self.cut_off = cut_off = chirp_bandwidth
+        self.cut_off = cut_off = chirp_bandwidth*1.2
 
         ##################################################
         # Blocks
@@ -93,16 +98,13 @@ class sfcw_radar_gui(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(0, 1):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self._transition_width_range = qtgui.Range(0, chirp_bandwidth, 1, chirp_bandwidth, 200)
+        self._transition_width_range = qtgui.Range(0, chirp_bandwidth, 1, chirp_bandwidth/2, 200)
         self._transition_width_win = qtgui.RangeWidget(self._transition_width_range, self.set_transition_width, "'transition_width'", "eng", float, QtCore.Qt.Horizontal)
         self.top_grid_layout.addWidget(self._transition_width_win, 1, 2, 1, 1)
         for r in range(1, 2):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(2, 3):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self._scale_range = qtgui.Range(0, 1, 0.01, 0, 200)
-        self._scale_win = qtgui.RangeWidget(self._scale_range, self.set_scale, "B-scan scale", "counter_slider", float, QtCore.Qt.Horizontal)
-        self.top_layout.addWidget(self._scale_win)
         self._rx_gain_range = qtgui.Range(0, 60, 1, 20, 200)
         self._rx_gain_win = qtgui.RangeWidget(self._rx_gain_range, self.set_rx_gain, "'rx_gain'", "eng", int, QtCore.Qt.Horizontal)
         self.top_grid_layout.addWidget(self._rx_gain_win, 2, 0, 1, 1)
@@ -117,16 +119,27 @@ class sfcw_radar_gui(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(1, 2):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self._cut_off_range = qtgui.Range(0, chirp_bandwidth*2, 1, chirp_bandwidth, 200)
+        self._file_prefix_tool_bar = Qt.QToolBar(self)
+        self._file_prefix_tool_bar.addWidget(Qt.QLabel("'file_prefix'" + ": "))
+        self._file_prefix_line_edit = Qt.QLineEdit(str(self.file_prefix))
+        self._file_prefix_tool_bar.addWidget(self._file_prefix_line_edit)
+        self._file_prefix_line_edit.editingFinished.connect(
+            lambda: self.set_file_prefix(str(str(self._file_prefix_line_edit.text()))))
+        self.top_grid_layout.addWidget(self._file_prefix_tool_bar, 2, 2, 1, 1)
+        for r in range(2, 3):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(2, 3):
+            self.top_grid_layout.setColumnStretch(c, 1)
+        self._cut_off_range = qtgui.Range(0, chirp_bandwidth*2, 1, chirp_bandwidth*1.2, 200)
         self._cut_off_win = qtgui.RangeWidget(self._cut_off_range, self.set_cut_off, "'cut_off'", "eng", float, QtCore.Qt.Horizontal)
         self.top_grid_layout.addWidget(self._cut_off_win, 2, 1, 1, 1)
         for r in range(2, 3):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(1, 2):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self.sfcwRadar_sfcw_radar_cc_0 = sfcwRadar.sfcw_radar_cc(int(start_freq), num_steps, int(freq_step), int(samp_rate), rx_gain, tx_gain, ref_gain, True, burst_len, recv_buf_len, 8, 2048, 4, pulse_amp, cw_freq, True, int(chirp_bandwidth), 1)
-        self.sfcwRadar_matchedFilter_0 = sfcwRadar.matchedFilter((int(mf_size/lp_dec)))
-        self.sfcwRadar_findPeak_0 = sfcwRadar.findPeak((int(mf_size/lp_dec)))
+        self.sfcwRadar_sfcw_radar_cc_0 = sfcwRadar.sfcw_radar_cc(int(start_freq), num_steps, int(freq_step), int(samp_rate), rx_gain, tx_gain, ref_gain, False, burst_len, recv_buf_len, 8, 2048, 4, pulse_amp, cw_freq, isChirp, int(chirp_bandwidth), 1)
+        self.sfcwRadar_rawSamplesSink_0 = sfcwRadar.rawSamplesSink(file_prefix, int(start_freq), num_steps, int(samp_rate), rx_gain, tx_gain, ref_gain, False, burst_len, recv_buf_len, pulse_amp, cw_freq, isChirp, chirp_bandwidth)
+        self.sfcwRadar_channelResponseExtractor_0 = sfcwRadar.channelResponseExtractor(recv_buf_len, int(chirp_bandwidth), int(samp_rate), isChirp)
         self.scan_once = _scan_once_toggle_button = qtgui.MsgPushButton('scan_once', '',1,"default","default")
         self.scan_once = _scan_once_toggle_button
 
@@ -246,47 +259,6 @@ class sfcw_radar_gui(gr.top_block, Qt.QWidget):
 
         self._qtgui_time_sink_x_1_win = sip.wrapinstance(self.qtgui_time_sink_x_1.qwidget(), Qt.QWidget)
         self.top_layout.addWidget(self._qtgui_time_sink_x_1_win)
-        self.qtgui_time_raster_sink_x_0 = qtgui.time_raster_sink_f(
-            samp_rate,
-            15,
-            num_steps,
-            [scale],
-            [],
-            "B-Scan",
-            1,
-            None
-        )
-
-        self.qtgui_time_raster_sink_x_0.set_update_time(0.1)
-        self.qtgui_time_raster_sink_x_0.set_intensity_range(0, 1)
-        self.qtgui_time_raster_sink_x_0.enable_grid(True)
-        self.qtgui_time_raster_sink_x_0.enable_axis_labels(True)
-        self.qtgui_time_raster_sink_x_0.set_x_label("")
-        self.qtgui_time_raster_sink_x_0.set_x_range(0.0, 0.0)
-        self.qtgui_time_raster_sink_x_0.set_y_label("")
-        self.qtgui_time_raster_sink_x_0.set_y_range(0.0, 0.0)
-
-        labels = ['', '', '', '', '',
-            '', '', '', '', '']
-        colors = [0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0]
-        alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
-            1.0, 1.0, 1.0, 1.0, 1.0]
-
-        for i in range(1):
-            if len(labels[i]) == 0:
-                self.qtgui_time_raster_sink_x_0.set_line_label(i, "Data {0}".format(i))
-            else:
-                self.qtgui_time_raster_sink_x_0.set_line_label(i, labels[i])
-            self.qtgui_time_raster_sink_x_0.set_color_map(i, colors[i])
-            self.qtgui_time_raster_sink_x_0.set_line_alpha(i, alphas[i])
-
-        self._qtgui_time_raster_sink_x_0_win = sip.wrapinstance(self.qtgui_time_raster_sink_x_0.qwidget(), Qt.QWidget)
-        self.top_grid_layout.addWidget(self._qtgui_time_raster_sink_x_0_win, 0, 2, 1, 2)
-        for r in range(0, 1):
-            self.top_grid_layout.setRowStretch(r, 1)
-        for c in range(2, 4):
-            self.top_grid_layout.setColumnStretch(c, 1)
         self.low_pass_filter_0_0 = filter.fir_filter_ccf(
             lp_dec,
             firdes.low_pass(
@@ -305,22 +277,14 @@ class sfcw_radar_gui(gr.top_block, Qt.QWidget):
                 transition_width,
                 window.WIN_HAMMING,
                 6.76))
-        self._file_prefix_tool_bar = Qt.QToolBar(self)
-        self._file_prefix_tool_bar.addWidget(Qt.QLabel("'file_prefix'" + ": "))
-        self._file_prefix_line_edit = Qt.QLineEdit(str(self.file_prefix))
-        self._file_prefix_tool_bar.addWidget(self._file_prefix_line_edit)
-        self._file_prefix_line_edit.editingFinished.connect(
-            lambda: self.set_file_prefix(str(str(self._file_prefix_line_edit.text()))))
-        self.top_grid_layout.addWidget(self._file_prefix_tool_bar, 2, 2, 1, 1)
-        for r in range(2, 3):
-            self.top_grid_layout.setRowStretch(r, 1)
-        for c in range(2, 3):
-            self.top_grid_layout.setColumnStretch(c, 1)
         self.fft_vxx_0 = fft.fft_vcc(num_steps, False, window.blackmanharris(num_steps), True, 1)
         self.blocks_vector_to_stream_0 = blocks.vector_to_stream(gr.sizeof_gr_complex*1, num_steps)
-        self.blocks_stream_to_vector_1_0 = blocks.stream_to_vector(gr.sizeof_gr_complex*1, (int(mf_size/lp_dec)))
-        self.blocks_stream_to_vector_1 = blocks.stream_to_vector(gr.sizeof_gr_complex*1, (int(mf_size/lp_dec)))
-        self.blocks_stream_to_vector_0 = blocks.stream_to_vector(gr.sizeof_gr_complex*1, num_steps)
+        self.blocks_stream_to_vector_1_0_1_1 = blocks.stream_to_vector(gr.sizeof_gr_complex*1, recv_buf_len)
+        self.blocks_stream_to_vector_1_0_1_0 = blocks.stream_to_vector(gr.sizeof_gr_complex*1, num_steps)
+        self.blocks_stream_to_vector_1_0_1 = blocks.stream_to_vector(gr.sizeof_gr_complex*1, (recv_buf_len*num_steps))
+        self.blocks_stream_to_vector_1_0_0_0 = blocks.stream_to_vector(gr.sizeof_gr_complex*1, recv_buf_len)
+        self.blocks_stream_to_vector_1_0_0 = blocks.stream_to_vector(gr.sizeof_gr_complex*1, (recv_buf_len*num_steps))
+        self.blocks_nlog10_ff_0_0 = blocks.nlog10_ff(10, 1, 0)
         self.blocks_complex_to_mag_squared_0 = blocks.complex_to_mag_squared(1)
 
 
@@ -329,25 +293,28 @@ class sfcw_radar_gui(gr.top_block, Qt.QWidget):
         ##################################################
         self.msg_connect((self.scan_cont, 'pressed'), (self.sfcwRadar_sfcw_radar_cc_0, 'scan'))
         self.msg_connect((self.scan_once, 'pressed'), (self.sfcwRadar_sfcw_radar_cc_0, 'scan'))
-        self.connect((self.blocks_complex_to_mag_squared_0, 0), (self.qtgui_time_raster_sink_x_0, 0))
-        self.connect((self.blocks_complex_to_mag_squared_0, 0), (self.qtgui_time_sink_x_1_0_0, 0))
-        self.connect((self.blocks_stream_to_vector_0, 0), (self.fft_vxx_0, 0))
-        self.connect((self.blocks_stream_to_vector_1, 0), (self.sfcwRadar_matchedFilter_0, 0))
-        self.connect((self.blocks_stream_to_vector_1_0, 0), (self.sfcwRadar_matchedFilter_0, 1))
+        self.connect((self.blocks_complex_to_mag_squared_0, 0), (self.blocks_nlog10_ff_0_0, 0))
+        self.connect((self.blocks_nlog10_ff_0_0, 0), (self.qtgui_time_sink_x_1_0_0, 0))
+        self.connect((self.blocks_stream_to_vector_1_0_0, 0), (self.sfcwRadar_rawSamplesSink_0, 0))
+        self.connect((self.blocks_stream_to_vector_1_0_0_0, 0), (self.sfcwRadar_channelResponseExtractor_0, 0))
+        self.connect((self.blocks_stream_to_vector_1_0_1, 0), (self.sfcwRadar_rawSamplesSink_0, 1))
+        self.connect((self.blocks_stream_to_vector_1_0_1_0, 0), (self.fft_vxx_0, 0))
+        self.connect((self.blocks_stream_to_vector_1_0_1_1, 0), (self.sfcwRadar_channelResponseExtractor_0, 1))
         self.connect((self.blocks_vector_to_stream_0, 0), (self.blocks_complex_to_mag_squared_0, 0))
         self.connect((self.fft_vxx_0, 0), (self.blocks_vector_to_stream_0, 0))
-        self.connect((self.low_pass_filter_0, 0), (self.blocks_stream_to_vector_1, 0))
         self.connect((self.low_pass_filter_0, 0), (self.qtgui_time_sink_x_1, 0))
-        self.connect((self.low_pass_filter_0_0, 0), (self.blocks_stream_to_vector_1_0, 0))
         self.connect((self.low_pass_filter_0_0, 0), (self.qtgui_time_sink_x_1, 1))
-        self.connect((self.sfcwRadar_findPeak_0, 0), (self.blocks_stream_to_vector_0, 0))
-        self.connect((self.sfcwRadar_matchedFilter_0, 0), (self.sfcwRadar_findPeak_0, 0))
+        self.connect((self.sfcwRadar_channelResponseExtractor_0, 0), (self.blocks_stream_to_vector_1_0_1_0, 0))
+        self.connect((self.sfcwRadar_sfcw_radar_cc_0, 0), (self.blocks_stream_to_vector_1_0_0, 0))
+        self.connect((self.sfcwRadar_sfcw_radar_cc_0, 0), (self.blocks_stream_to_vector_1_0_0_0, 0))
+        self.connect((self.sfcwRadar_sfcw_radar_cc_0, 1), (self.blocks_stream_to_vector_1_0_1, 0))
+        self.connect((self.sfcwRadar_sfcw_radar_cc_0, 1), (self.blocks_stream_to_vector_1_0_1_1, 0))
         self.connect((self.sfcwRadar_sfcw_radar_cc_0, 0), (self.low_pass_filter_0, 0))
         self.connect((self.sfcwRadar_sfcw_radar_cc_0, 1), (self.low_pass_filter_0_0, 0))
 
 
     def closeEvent(self, event):
-        self.settings = Qt.QSettings("GNU Radio", "sfcw_radar_gui")
+        self.settings = Qt.QSettings("gnuradio/flowgraphs", "sfcw_radar_gui")
         self.settings.setValue("geometry", self.saveGeometry())
         self.stop()
         self.wait()
@@ -359,7 +326,7 @@ class sfcw_radar_gui(gr.top_block, Qt.QWidget):
 
     def set_burst_len(self, burst_len):
         self.burst_len = burst_len
-        self.set_recv_buf_len(self.burst_len+64)
+        self.set_recv_buf_len(self.burst_len)
 
     def get_recv_buf_len(self):
         return self.recv_buf_len
@@ -373,8 +340,8 @@ class sfcw_radar_gui(gr.top_block, Qt.QWidget):
 
     def set_chirp_bandwidth(self, chirp_bandwidth):
         self.chirp_bandwidth = chirp_bandwidth
-        self.set_cut_off(self.chirp_bandwidth)
-        self.set_transition_width(self.chirp_bandwidth)
+        self.set_cut_off(self.chirp_bandwidth*1.2)
+        self.set_transition_width(self.chirp_bandwidth/2)
 
     def get_tx_gain(self):
         return self.tx_gain
@@ -396,13 +363,6 @@ class sfcw_radar_gui(gr.top_block, Qt.QWidget):
 
     def set_start_freq(self, start_freq):
         self.start_freq = start_freq
-
-    def get_scale(self):
-        return self.scale
-
-    def set_scale(self, scale):
-        self.scale = scale
-        self.qtgui_time_raster_sink_x_0.set_multiplier([self.scale])
 
     def get_samp_rate(self):
         return self.samp_rate
@@ -440,7 +400,7 @@ class sfcw_radar_gui(gr.top_block, Qt.QWidget):
 
     def set_num_steps(self, num_steps):
         self.num_steps = num_steps
-        self.qtgui_time_raster_sink_x_0.set_num_cols(self.num_steps)
+        self.fft_vxx_0.set_window(window.blackmanharris(self.num_steps))
 
     def get_mf_size(self):
         return self.mf_size
@@ -454,6 +414,12 @@ class sfcw_radar_gui(gr.top_block, Qt.QWidget):
     def set_lp_dec(self, lp_dec):
         self.lp_dec = lp_dec
 
+    def get_isChirp(self):
+        return self.isChirp
+
+    def set_isChirp(self, isChirp):
+        self.isChirp = isChirp
+
     def get_freq_step(self):
         return self.freq_step
 
@@ -466,6 +432,7 @@ class sfcw_radar_gui(gr.top_block, Qt.QWidget):
     def set_file_prefix(self, file_prefix):
         self.file_prefix = file_prefix
         Qt.QMetaObject.invokeMethod(self._file_prefix_line_edit, "setText", Qt.Q_ARG("QString", str(self.file_prefix)))
+        self.sfcwRadar_rawSamplesSink_0.set_file_prefix(self.file_prefix)
 
     def get_cw_freq(self):
         return self.cw_freq
@@ -491,6 +458,7 @@ def main(top_block_cls=sfcw_radar_gui, options=None):
     tb = top_block_cls()
 
     tb.start()
+    tb.flowgraph_started.set()
 
     tb.show()
 

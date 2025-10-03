@@ -126,6 +126,18 @@ sfcw_radar_cc_impl::sfcw_radar_cc_impl(bladerf_frequency start_freq,
     d_ts_inc_send = (uint64_t)(d_samp_rate * ts_inc_send)/1000;
     
     init_sample_buffers();
+
+    // --- Initialize Phase Dithering ---
+    d_phase_dithering_enabled = false; // Or make this a parameter
+    if (d_phase_dithering_enabled) {
+        std::cout << "Phase dithering is enabled." << std::endl;
+        d_uniform_dist = std::uniform_real_distribution<float>(0.0, 2.0 * M_PI);
+        d_dithering_phases.resize(d_num_steps);
+        for (int i = 0; i < d_num_steps; ++i) {
+            float random_phase = d_uniform_dist(d_random_generator);
+            d_dithering_phases[i] = std::exp(std::complex<float>(0, random_phase));
+        }
+    } 
     
     /**
      * Set input/ouput contrains based on the d_recv_len
@@ -343,6 +355,20 @@ int sfcw_radar_cc_impl::work(int noutput_items,
              * */
             bladeRF->tune_tx(i);
             bladeRF->tune_rx(i);
+
+            // --- Apply Phase Dithering to TX buffer ---
+            if (d_phase_dithering_enabled) {
+                // Apply phase shift to the pre-generated waveform
+                for (size_t j = 0; j < d_burst_len; ++j) {
+                    _32fcbuf_in[2*j] = _32fc_samples[j] * d_dithering_phases[i];
+                    _32fcbuf_in[2*j + 1] = _32fc_samples[j] * d_dithering_phases[i];
+                }
+                // Convert to int16_t format for the SDR
+                volk_32f_s32f_convert_16i(_16icbuf_in, reinterpret_cast<float const *>(_32fcbuf_in),
+                                    SCALING_FACTOR, 2 * NUM_TX_CHANNELS * d_burst_len);
+            } else {
+                // If dithering is off, the original _16icbuf_in is already filled.
+            } 
             
             /**
              * Generate pulse samples, the generated samples for two TXs are stored in _32fcbuf_in
@@ -371,6 +397,14 @@ int sfcw_radar_cc_impl::work(int noutput_items,
             * */
             volk_16i_s32f_convert_32f(reinterpret_cast<float *>(_32fcbuf_out), _16icbuf_out,
                             SCALING_FACTOR, 2*NUM_RX_CHANNELS*d_recv_len);
+
+            // --- Invert Phase Dithering on RX buffer ---
+            if (d_phase_dithering_enabled) {
+                gr_complex inverse_phase = std::conj(d_dithering_phases[i]);
+                // Apply the inverse phase shift to the received complex samples
+                //volk_32fc_x2_multiply_32fc(_32fcbuf_out, _32fcbuf_out, inverse_phase, d_recv_len * NUM_RX_CHANNELS);
+                volk_32fc_s32fc_multiply_32fc(_32fcbuf_out, _32fcbuf_out, inverse_phase, d_recv_len * NUM_RX_CHANNELS); 
+            } 
 
             // we need to deinterleave the multiplex as we copy
             gr_complex const *deint_in = _32fcbuf_out;

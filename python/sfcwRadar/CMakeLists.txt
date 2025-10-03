@@ -26,7 +26,7 @@ gr_python_install(FILES
     matchedFilter.py
     findPeak.py
     rawSamplesSink.py
-    DESTINATION ${GR_PYTHON_DIR}/gnuradio/sfcwRadar)
+    channelResponseExtractor.py DESTINATION ${GR_PYTHON_DIR}/gnuradio/sfcwRadar)
 
 ########################################################################
 # Handle the unit tests

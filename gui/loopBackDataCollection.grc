@@ -1,0 +1,1244 @@
+options:
+  parameters:
+    alias: ''
+    author: ''
+    catch_exceptions: 'True'
+    comment: ''
+    copyright: ''
+    description: ''
+    gen_linking: dynamic
+    generate_options: qt_gui
+    generator_class_name: PythonQtGuiGenerator
+    generator_module: gnuradio.grc.workflows.python_qt_gui
+    hier_block_src_path: '.:'
+    id: sfcw_radar_gui
+    max_nouts: '0'
+    output_language: python
+    qt_qss_theme: ''
+    realtime_scheduling: ''
+    run: 'True'
+    run_command: '{python} -u {filename}'
+    thread_safe_setters: ''
+    title: Not titled yet
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 8]
+    rotation: 0
+    state: enabled
+
+blocks:
+- name: burst_len
+  id: variable
+  parameters:
+    comment: ''
+    value: 2**10
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [288, 12.0]
+    rotation: 0
+    state: enabled
+- name: calibration_off
+  id: variable_qtgui_entry
+  parameters:
+    comment: ''
+    entry_signal: editingFinished
+    gui_hint: ''
+    label: calibration_off
+    type: int
+    value: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1456, 540.0]
+    rotation: 0
+    state: disabled
+- name: chirp_bandwidth
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: 3,4,1,1
+    label: ''
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: '1'
+    stop: samp_rate/4
+    value: 1e6
+    widget: eng
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [824, 92.0]
+    rotation: 0
+    state: disabled
+- name: chirp_bandwidth
+  id: variable
+  parameters:
+    comment: ''
+    value: 2e6
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1136, 12.0]
+    rotation: 0
+    state: enabled
+- name: cut_off
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: 2,1,1,1
+    label: ''
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: '1'
+    stop: chirp_bandwidth*2
+    value: chirp_bandwidth*1.2
+    widget: eng
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [944, 92.0]
+    rotation: 0
+    state: enabled
+- name: cw_freq
+  id: variable
+  parameters:
+    comment: ''
+    value: 100e3
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [952, 12.0]
+    rotation: 0
+    state: enabled
+- name: file_prefix
+  id: variable_qtgui_entry
+  parameters:
+    comment: ''
+    entry_signal: editingFinished
+    gui_hint: 2,2,1,1
+    label: ''
+    type: string
+    value: /home/hui/bladerf_sfcw_radar/data/test_channel_extractor
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1232, 108.0]
+    rotation: 0
+    state: enabled
+- name: freq_step
+  id: variable
+  parameters:
+    comment: ''
+    value: 10e6
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [768, 12.0]
+    rotation: 0
+    state: enabled
+- name: isChirp
+  id: variable
+  parameters:
+    comment: ''
+    value: 'False'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1288, 16.0]
+    rotation: 0
+    state: enabled
+- name: lp_dec
+  id: variable
+  parameters:
+    comment: ''
+    value: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [424, 12.0]
+    rotation: 0
+    state: enabled
+- name: mf_size
+  id: variable
+  parameters:
+    comment: ''
+    value: recv_buf_len
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [856, 12.0]
+    rotation: 0
+    state: enabled
+- name: num_steps
+  id: variable
+  parameters:
+    comment: ''
+    value: '128'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [568, 12.0]
+    rotation: 0
+    state: enabled
+- name: pulse_amp
+  id: variable
+  parameters:
+    comment: ''
+    value: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1048, 12.0]
+    rotation: 0
+    state: enabled
+- name: recv_buf_len
+  id: variable
+  parameters:
+    comment: ''
+    value: burst_len
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [288, 76.0]
+    rotation: 0
+    state: enabled
+- name: ref_gain
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: 1,1,1,1
+    label: ''
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: int
+    start: '0'
+    step: '1'
+    stop: '60'
+    value: '20'
+    widget: eng
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [672, 92.0]
+    rotation: 0
+    state: enabled
+- name: rx_gain
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: 2,0,1,1
+    label: ''
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: int
+    start: '0'
+    step: '1'
+    stop: '60'
+    value: '20'
+    widget: eng
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [544, 84.0]
+    rotation: 0
+    state: enabled
+- name: samp_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: 5e6
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [184, 12]
+    rotation: 0
+    state: enabled
+- name: start_freq
+  id: variable
+  parameters:
+    comment: ''
+    value: 1e9
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [672, 12.0]
+    rotation: 0
+    state: enabled
+- name: transition_width
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: 1,2,1,1
+    label: ''
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: '1'
+    stop: chirp_bandwidth
+    value: chirp_bandwidth/2
+    widget: eng
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1072, 92.0]
+    rotation: 0
+    state: enabled
+- name: tx_gain
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: 1,0,1,1
+    label: ''
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: int
+    start: '0'
+    step: '1'
+    stop: '60'
+    value: '20'
+    widget: eng
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [400, 84.0]
+    rotation: 0
+    state: enabled
+- name: blocks_complex_to_arg_1
+  id: blocks_complex_to_arg
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1136, 304.0]
+    rotation: 0
+    state: disabled
+- name: blocks_complex_to_arg_1_0
+  id: blocks_complex_to_arg
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    vlen: num_steps
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1416, 656.0]
+    rotation: 0
+    state: disabled
+- name: blocks_complex_to_mag_squared_0
+  id: blocks_complex_to_mag_squared
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1544, 552.0]
+    rotation: 0
+    state: enabled
+- name: blocks_nlog10_ff_0_0
+  id: blocks_nlog10_ff
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    k: '0'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    n: '10'
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1728, 536.0]
+    rotation: 0
+    state: enabled
+- name: blocks_stream_to_vector_1_0_0
+  id: blocks_stream_to_vector
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_items: recv_buf_len*num_steps
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [808, 240.0]
+    rotation: 0
+    state: enabled
+- name: blocks_stream_to_vector_1_0_0_0
+  id: blocks_stream_to_vector
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_items: recv_buf_len
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [688, 632.0]
+    rotation: 0
+    state: enabled
+- name: blocks_stream_to_vector_1_0_1
+  id: blocks_stream_to_vector
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_items: recv_buf_len*num_steps
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [808, 288.0]
+    rotation: 0
+    state: enabled
+- name: blocks_stream_to_vector_1_0_1_0
+  id: blocks_stream_to_vector
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_items: num_steps
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1160, 560.0]
+    rotation: 0
+    state: enabled
+- name: blocks_stream_to_vector_1_0_1_1
+  id: blocks_stream_to_vector
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_items: recv_buf_len
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [688, 712.0]
+    rotation: 0
+    state: enabled
+- name: blocks_vector_to_stream_0
+  id: blocks_vector_to_stream
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_items: num_steps
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1544, 472.0]
+    rotation: 0
+    state: enabled
+- name: blocks_vector_to_stream_1
+  id: blocks_vector_to_stream
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_items: num_steps
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1504, 752.0]
+    rotation: 0
+    state: disabled
+- name: fft_vxx_0
+  id: fft_vxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    fft_size: num_steps
+    forward: 'False'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    nthreads: '1'
+    shift: 'True'
+    type: complex
+    window: window.blackmanharris(num_steps)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1296, 624.0]
+    rotation: 0
+    state: enabled
+- name: low_pass_filter_0
+  id: low_pass_filter
+  parameters:
+    affinity: ''
+    alias: ''
+    beta: '6.76'
+    comment: ''
+    cutoff_freq: cut_off
+    decim: lp_dec
+    gain: '1'
+    interp: '1'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samp_rate: samp_rate
+    type: fir_filter_ccf
+    width: transition_width
+    win: window.WIN_HAMMING
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [480, 164.0]
+    rotation: 0
+    state: enabled
+- name: low_pass_filter_0_0
+  id: low_pass_filter
+  parameters:
+    affinity: ''
+    alias: ''
+    beta: '6.76'
+    comment: ''
+    cutoff_freq: cut_off
+    decim: lp_dec
+    gain: '1'
+    interp: '1'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samp_rate: samp_rate
+    type: fir_filter_ccf
+    width: transition_width
+    win: window.WIN_HAMMING
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [480, 452.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_freq_sink_x_0
+  id: qtgui_freq_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    average: '1.0'
+    axislabels: 'True'
+    bw: samp_rate
+    color1: '"blue"'
+    color10: '"dark blue"'
+    color2: '"red"'
+    color3: '"green"'
+    color4: '"black"'
+    color5: '"cyan"'
+    color6: '"magenta"'
+    color7: '"yellow"'
+    color8: '"dark red"'
+    color9: '"dark green"'
+    comment: ''
+    ctrlpanel: 'False'
+    fc: '0'
+    fftsize: '1024'
+    freqhalf: 'True'
+    grid: 'False'
+    gui_hint: ''
+    label: Relative Gain
+    label1: ''
+    label10: ''''''
+    label2: ''''''
+    label3: ''''''
+    label4: ''''''
+    label5: ''''''
+    label6: ''''''
+    label7: ''''''
+    label8: ''''''
+    label9: ''''''
+    legend: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: '""'
+    nconnections: '2'
+    norm_window: 'False'
+    showports: 'False'
+    tr_chan: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_tag: '""'
+    type: complex
+    units: dB
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    wintype: window.WIN_HAMMING
+    ymax: '10'
+    ymin: '-140'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [616, 828.0]
+    rotation: 0
+    state: disabled
+- name: qtgui_time_sink_x_1
+  id: qtgui_time_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    axislabels: 'True'
+    color1: blue
+    color10: dark blue
+    color2: red
+    color3: cyan
+    color4: black
+    color5: cyan
+    color6: magenta
+    color7: yellow
+    color8: dark red
+    color9: dark green
+    comment: ''
+    ctrlpanel: 'False'
+    entags: 'True'
+    grid: 'False'
+    gui_hint: ''
+    label1: out0_real
+    label10: Signal 10
+    label2: out0_imag
+    label3: out1_real
+    label4: out1_imag
+    label5: Signal 5
+    label6: Signal 6
+    label7: Signal 7
+    label8: Signal 8
+    label9: Signal 9
+    legend: 'True'
+    marker1: '-1'
+    marker10: '-1'
+    marker2: '-1'
+    marker3: '-1'
+    marker4: '-1'
+    marker5: '-1'
+    marker6: '-1'
+    marker7: '-1'
+    marker8: '-1'
+    marker9: '-1'
+    name: '"Reference/Echo signals in time domain"'
+    nconnections: '2'
+    size: int(recv_buf_len*num_steps/lp_dec)
+    srate: samp_rate
+    stemplot: 'False'
+    style1: '1'
+    style10: '1'
+    style2: '1'
+    style3: '1'
+    style4: '2'
+    style5: '1'
+    style6: '1'
+    style7: '1'
+    style8: '1'
+    style9: '1'
+    tr_chan: '0'
+    tr_delay: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: complex
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    ylabel: Amplitude
+    ymax: '1'
+    ymin: '-1'
+    yunit: '""'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [664, 332.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_time_sink_x_1_0_0
+  id: qtgui_time_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    axislabels: 'True'
+    color1: blue
+    color10: dark blue
+    color2: red
+    color3: green
+    color4: black
+    color5: cyan
+    color6: magenta
+    color7: yellow
+    color8: dark red
+    color9: dark green
+    comment: ''
+    ctrlpanel: 'True'
+    entags: 'True'
+    grid: 'True'
+    gui_hint: 0,0,1,2
+    label1: Signal 1
+    label10: Signal 10
+    label2: Signal 2
+    label3: Signal 3
+    label4: Signal 4
+    label5: Signal 5
+    label6: Signal 6
+    label7: Signal 7
+    label8: Signal 8
+    label9: Signal 9
+    legend: 'True'
+    marker1: '-1'
+    marker10: '-1'
+    marker2: '-1'
+    marker3: '-1'
+    marker4: '-1'
+    marker5: '-1'
+    marker6: '-1'
+    marker7: '-1'
+    marker8: '-1'
+    marker9: '-1'
+    name: '"Range profile(A-Scan)"'
+    nconnections: '1'
+    size: num_steps
+    srate: samp_rate
+    stemplot: 'False'
+    style1: '1'
+    style10: '1'
+    style2: '1'
+    style3: '1'
+    style4: '1'
+    style5: '1'
+    style6: '1'
+    style7: '1'
+    style8: '1'
+    style9: '1'
+    tr_chan: '0'
+    tr_delay: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: float
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    ylabel: Amplitude
+    ymax: '1'
+    ymin: '0'
+    yunit: '""'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1776, 376.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_time_sink_x_2
+  id: qtgui_time_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    axislabels: 'True'
+    color1: blue
+    color10: dark blue
+    color2: red
+    color3: green
+    color4: black
+    color5: cyan
+    color6: magenta
+    color7: yellow
+    color8: dark red
+    color9: dark green
+    comment: ''
+    ctrlpanel: 'False'
+    entags: 'True'
+    grid: 'False'
+    gui_hint: ''
+    label1: Signal 1
+    label10: Signal 10
+    label2: Signal 2
+    label3: Signal 3
+    label4: Signal 4
+    label5: Signal 5
+    label6: Signal 6
+    label7: Signal 7
+    label8: Signal 8
+    label9: Signal 9
+    legend: 'True'
+    marker1: '-1'
+    marker10: '-1'
+    marker2: '-1'
+    marker3: '-1'
+    marker4: '-1'
+    marker5: '-1'
+    marker6: '-1'
+    marker7: '-1'
+    marker8: '-1'
+    marker9: '-1'
+    name: '"Phase of each frequency step"'
+    nconnections: '1'
+    size: num_steps
+    srate: samp_rate
+    stemplot: 'False'
+    style1: '1'
+    style10: '1'
+    style2: '1'
+    style3: '1'
+    style4: '1'
+    style5: '1'
+    style6: '1'
+    style7: '1'
+    style8: '1'
+    style9: '1'
+    tr_chan: '0'
+    tr_delay: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: float
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    ylabel: Phase
+    ymax: '4'
+    ymin: '-4'
+    yunit: '""'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1328, 244.0]
+    rotation: 0
+    state: disabled
+- name: scan_cont
+  id: variable_qtgui_msg_push_button
+  parameters:
+    comment: ''
+    gui_hint: 1,3,1,1
+    label: ''
+    msgName: ''
+    relBackgroundColor: default
+    relFontColor: default
+    type: int
+    value: '2'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [132.0, 112]
+    rotation: 270
+    state: enabled
+- name: scan_once
+  id: variable_qtgui_msg_push_button
+  parameters:
+    comment: ''
+    gui_hint: 2,3,1,1
+    label: ''
+    msgName: ''
+    relBackgroundColor: default
+    relFontColor: default
+    type: int
+    value: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [132.0, 472]
+    rotation: 90
+    state: enabled
+- name: sfcwRadar_bladerfRadarController_cc_0
+  id: sfcwRadar_bladerfRadarController_cc
+  parameters:
+    affinity: ''
+    alias: ''
+    buffer_size: '2048'
+    burst_len: burst_len
+    chirp_bandwidth: chirp_bandwidth
+    comment: ''
+    cw_amplitude: cw_amp
+    cw_frequency: cw_freq
+    enable_biastee: 'True'
+    isChirp: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_buffers: '8'
+    num_steps: num_steps
+    num_transfers: '4'
+    recv_buf_len: recv_buf_len
+    ref_gain: ref_gain
+    rx_gain: rx_gain
+    samp_rate: int(samp_rate)
+    start_freq: int(start_freq)
+    step_size: int(freq_step)
+    ts_inc_recv: '0'
+    ts_inc_send: '1'
+    tx_gain: tx_gain
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [232, 588.0]
+    rotation: 0
+    state: disabled
+- name: sfcwRadar_calibration_0
+  id: sfcwRadar_calibration
+  parameters:
+    affinity: ''
+    alias: ''
+    cal_fileName: cal_1.npy
+    comment: ''
+    isOff: calibration_off
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_steps: num_steps
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1368, 428.0]
+    rotation: 0
+    state: disabled
+- name: sfcwRadar_channelResponseExtractor_0
+  id: sfcwRadar_channelResponseExtractor
+  parameters:
+    affinity: ''
+    alias: ''
+    burst_len: recv_buf_len
+    chirp_bandwidth: int(chirp_bandwidth)
+    comment: ''
+    isChirp: isChirp
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samp_rate: int(samp_rate)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1056, 696.0]
+    rotation: 0
+    state: enabled
+- name: sfcwRadar_rangeProfileSink_1
+  id: sfcwRadar_rangeProfileSink
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    num_steps: num_steps
+    prefix: scan
+    server_ip: localhost
+    server_port: '9999'
+    upload_to_server: 'False'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1120, 1028.0]
+    rotation: 0
+    state: disabled
+- name: sfcwRadar_rangeProfileSink_1_0
+  id: sfcwRadar_rangeProfileSink
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    num_steps: num_steps
+    prefix: cal
+    server_ip: localhost
+    server_port: '9999'
+    upload_to_server: 'False'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1416, 316.0]
+    rotation: 0
+    state: disabled
+- name: sfcwRadar_rawSamplesSink_0
+  id: sfcwRadar_rawSamplesSink
+  parameters:
+    affinity: ''
+    alias: ''
+    burst_len: burst_len
+    chirp_bandwidth: chirp_bandwidth
+    comment: ''
+    cw_amplitude: pulse_amp
+    cw_frequency: cw_freq
+    enable_biastee: 'False'
+    file_prefix: file_prefix
+    isChirp: isChirp
+    num_steps: num_steps
+    recv_buf_len: recv_buf_len
+    ref_gain: ref_gain
+    rx_gain: rx_gain
+    samp_rate: int(samp_rate)
+    start_freq: int(start_freq)
+    tx_gain: tx_gain
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1096, 216.0]
+    rotation: 0
+    state: enabled
+- name: sfcwRadar_sfcw_radar_cc_0
+  id: sfcwRadar_sfcw_radar_cc
+  parameters:
+    affinity: ''
+    alias: ''
+    buffer_size: '2048'
+    burst_len: burst_len
+    chirp_bandwidth: int(chirp_bandwidth)
+    comment: ''
+    cw_frequency: cw_freq
+    enable_biastee: 'False'
+    isChirp: isChirp
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_buffers: '8'
+    num_steps: num_steps
+    num_transfers: '4'
+    pulse_amplitude: pulse_amp
+    recv_buf_len: recv_buf_len
+    ref_gain: ref_gain
+    rx_gain: rx_gain
+    samp_rate: int(samp_rate)
+    start_freq: int(start_freq)
+    step_size: int(freq_step)
+    ts_inc_send: '1'
+    tx_gain: tx_gain
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [232, 212.0]
+    rotation: 0
+    state: enabled
+- name: sfcwRadar_sfcw_radar_mimo_cc_0
+  id: sfcwRadar_sfcw_radar_mimo_cc
+  parameters:
+    affinity: ''
+    alias: ''
+    buffer_size: '1024'
+    burst_len: burst_len
+    chirp_bandwidth: chirp_bandwidth
+    comment: ''
+    cw_frequency: cw_freq
+    enable_biastee: 'True'
+    isChirp: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_buffers: '8'
+    num_steps: num_steps
+    num_transfers: '4'
+    pulse_amplitude: pulse_amp
+    recv_buf_len: recv_buf_len
+    ref_gain: ref_gain
+    rx_gain: rx_gain
+    samp_rate: int(samp_rate)
+    start_freq: int(start_freq)
+    step_size: int(freq_step)
+    ts_inc_send: '1'
+    tx_gain: tx_gain
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [216, 220.0]
+    rotation: 0
+    state: enabled
+
+connections:
+- [blocks_complex_to_arg_1, '0', qtgui_time_sink_x_2, '0']
+- [blocks_complex_to_arg_1_0, '0', blocks_vector_to_stream_1, '0']
+- [blocks_complex_to_mag_squared_0, '0', blocks_nlog10_ff_0_0, '0']
+- [blocks_nlog10_ff_0_0, '0', qtgui_time_sink_x_1_0_0, '0']
+- [blocks_stream_to_vector_1_0_0, '0', sfcwRadar_rawSamplesSink_0, '0']
+- [blocks_stream_to_vector_1_0_0_0, '0', sfcwRadar_channelResponseExtractor_0, '0']
+- [blocks_stream_to_vector_1_0_1, '0', sfcwRadar_rawSamplesSink_0, '1']
+- [blocks_stream_to_vector_1_0_1_0, '0', fft_vxx_0, '0']
+- [blocks_stream_to_vector_1_0_1_1, '0', sfcwRadar_channelResponseExtractor_0, '1']
+- [blocks_vector_to_stream_0, '0', blocks_complex_to_mag_squared_0, '0']
+- [blocks_vector_to_stream_1, '0', qtgui_time_sink_x_2, '0']
+- [fft_vxx_0, '0', blocks_vector_to_stream_0, '0']
+- [low_pass_filter_0, '0', qtgui_freq_sink_x_0, '0']
+- [low_pass_filter_0, '0', qtgui_time_sink_x_1, '0']
+- [low_pass_filter_0_0, '0', qtgui_freq_sink_x_0, '1']
+- [low_pass_filter_0_0, '0', qtgui_time_sink_x_1, '1']
+- [scan_cont, pressed, sfcwRadar_bladerfRadarController_cc_0, scan]
+- [scan_cont, pressed, sfcwRadar_sfcw_radar_cc_0, scan]
+- [scan_cont, pressed, sfcwRadar_sfcw_radar_mimo_cc_0, scan]
+- [scan_once, pressed, sfcwRadar_bladerfRadarController_cc_0, scan]
+- [scan_once, pressed, sfcwRadar_sfcw_radar_cc_0, scan]
+- [scan_once, pressed, sfcwRadar_sfcw_radar_mimo_cc_0, scan]
+- [sfcwRadar_bladerfRadarController_cc_0, '0', blocks_stream_to_vector_1_0_0, '0']
+- [sfcwRadar_bladerfRadarController_cc_0, '0', low_pass_filter_0, '0']
+- [sfcwRadar_bladerfRadarController_cc_0, '1', blocks_stream_to_vector_1_0_1, '0']
+- [sfcwRadar_bladerfRadarController_cc_0, '1', low_pass_filter_0_0, '0']
+- [sfcwRadar_calibration_0, '0', blocks_complex_to_arg_1_0, '0']
+- [sfcwRadar_channelResponseExtractor_0, '0', blocks_stream_to_vector_1_0_1_0, '0']
+- [sfcwRadar_sfcw_radar_cc_0, '0', blocks_stream_to_vector_1_0_0, '0']
+- [sfcwRadar_sfcw_radar_cc_0, '0', blocks_stream_to_vector_1_0_0_0, '0']
+- [sfcwRadar_sfcw_radar_cc_0, '0', low_pass_filter_0, '0']
+- [sfcwRadar_sfcw_radar_cc_0, '1', blocks_stream_to_vector_1_0_1, '0']
+- [sfcwRadar_sfcw_radar_cc_0, '1', blocks_stream_to_vector_1_0_1_1, '0']
+- [sfcwRadar_sfcw_radar_cc_0, '1', low_pass_filter_0_0, '0']
+- [sfcwRadar_sfcw_radar_mimo_cc_0, '0', low_pass_filter_0, '0']
+- [sfcwRadar_sfcw_radar_mimo_cc_0, '1', low_pass_filter_0_0, '0']
+
+metadata:
+  file_format: 1
+  grc_version: 3.10.12.0

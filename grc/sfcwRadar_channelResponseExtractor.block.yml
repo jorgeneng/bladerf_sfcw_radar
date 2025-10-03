@@ -1,0 +1,58 @@
+id: sfcwRadar_channelResponseExtractor
+label: channelResponseExtractor
+category: '[sfcwRadar]'
+
+templates:
+  imports: from gnuradio import sfcwRadar
+  make: sfcwRadar.channelResponseExtractor(${burst_len}, ${chirp_bandwidth}, ${samp_rate}, ${isChirp})
+
+#  Make one 'parameters' list entry for every parameter you want settable from the GUI.
+#     Keys include:
+#     * id (makes the value accessible as keyname, e.g. in the make entry)
+#     * label (label shown in the GUI)
+#     * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
+#     * default
+parameters:
+- id: burst_len
+  label: burst length
+  dtype: int
+  default: 1024
+
+- id: chirp_bandwidth
+  label: chirp bandwidth
+  dtype: int
+  default: 2e6
+
+- id: samp_rate
+  label: sampling rate
+  dtype: int
+  default: 10e6
+
+- id: isChirp
+  label: use chirp sub-pulse?
+  dtype: bool
+  default: True
+
+inputs:
+- label: rx
+  domain: stream
+  dtype: complex
+  vlen: ${burst_len} 
+- label: ref
+  domain: stream
+  dtype: complex
+  vlen: ${burst_len} 
+outputs:
+- label: out
+  domain: stream
+  dtype: complex
+  vlen: 1
+#- label: ...
+#  domain: ...
+#  dtype: ...
+#  vlen: ...
+#  optional: ...
+
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1
