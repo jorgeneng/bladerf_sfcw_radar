@@ -1,0 +1,1 @@
+{"start_freq": 2000000000, "num_steps": 128, "samp_rate": 5000000, "rx_gain": 30, "tx_gain": 30, "ref_gain": 30, "enable_biastee": false, "burst_len": 1024, "recv_buf_len": 1024, "cw_amplitude": 1, "cw_frequency": 100000.0, "isChirp": true, "chirp_bandwidth": 2000000.0}
