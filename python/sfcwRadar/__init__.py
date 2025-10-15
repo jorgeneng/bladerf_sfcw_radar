@@ -23,8 +23,8 @@ except ModuleNotFoundError:
 
 from .rangeProfileSink import rangeProfileSink
 from .calibration import calibration
-from .matchedFilter import matchedFilter
-from .findPeak import findPeak
+
+
 from .rawSamplesSink import rawSamplesSink
 from .channelResponseExtractor import channelResponseExtractor
 

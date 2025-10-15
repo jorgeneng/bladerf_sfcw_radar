@@ -23,8 +23,6 @@ gr_python_install(FILES
     __init__.py 
     rangeProfileSink.py
     calibration.py
-    matchedFilter.py
-    findPeak.py
     rawSamplesSink.py
     channelResponseExtractor.py DESTINATION ${GR_PYTHON_DIR}/gnuradio/sfcwRadar)
 

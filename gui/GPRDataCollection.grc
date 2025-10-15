@@ -94,7 +94,7 @@ blocks:
     gui_hint: 2,2,1,1
     label: ''
     type: string
-    value: /home/hui/bladerf_sfcw_radar/data/res_0
+    value: /home/hui/bladerf_sfcw_radar/data/GPR_ex/line_14/scan_0
   states:
     bus_sink: false
     bus_source: false
@@ -106,7 +106,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: 10e6
+    value: 20e6
   states:
     bus_sink: false
     bus_source: false
@@ -240,32 +240,11 @@ blocks:
     coordinate: [184, 12]
     rotation: 0
     state: enabled
-- name: scale
-  id: variable_qtgui_range
-  parameters:
-    comment: ''
-    gui_hint: ''
-    label: B-scan scale
-    min_len: '200'
-    orient: QtCore.Qt.Horizontal
-    rangeType: float
-    start: '0'
-    step: '0.01'
-    stop: '1'
-    value: '0'
-    widget: counter_slider
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1632, 280.0]
-    rotation: 0
-    state: enabled
 - name: start_freq
   id: variable
   parameters:
     comment: ''
-    value: 2e9
+    value: 1e9
   states:
     bus_sink: false
     bus_source: false
@@ -315,8 +294,8 @@ blocks:
     coordinate: [400, 84.0]
     rotation: 0
     state: enabled
-- name: blocks_complex_to_mag_squared_0
-  id: blocks_complex_to_mag_squared
+- name: blocks_complex_to_arg_1
+  id: blocks_complex_to_arg
   parameters:
     affinity: ''
     alias: ''
@@ -328,27 +307,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1392, 696.0]
+    coordinate: [1136, 304.0]
     rotation: 0
-    state: enabled
-- name: blocks_nlog10_ff_0_0
-  id: blocks_nlog10_ff
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    k: '0'
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    n: '10'
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1560, 496.0]
-    rotation: 0
-    state: enabled
+    state: disabled
 - name: blocks_stream_to_vector_1_0_0
   id: blocks_stream_to_vector
   parameters:
@@ -365,24 +326,6 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [808, 240.0]
-    rotation: 0
-    state: disabled
-- name: blocks_stream_to_vector_1_0_0_0
-  id: blocks_stream_to_vector
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    num_items: recv_buf_len
-    type: complex
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [688, 632.0]
     rotation: 0
     state: enabled
 - name: blocks_stream_to_vector_1_0_1
@@ -401,81 +344,6 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [808, 288.0]
-    rotation: 0
-    state: disabled
-- name: blocks_stream_to_vector_1_0_1_0
-  id: blocks_stream_to_vector
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    num_items: num_steps
-    type: complex
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [952, 536.0]
-    rotation: 0
-    state: enabled
-- name: blocks_stream_to_vector_1_0_1_1
-  id: blocks_stream_to_vector
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    num_items: recv_buf_len
-    type: complex
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [688, 712.0]
-    rotation: 0
-    state: enabled
-- name: blocks_vector_to_stream_0
-  id: blocks_vector_to_stream
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    num_items: num_steps
-    type: complex
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1344, 408.0]
-    rotation: 0
-    state: enabled
-- name: fft_vxx_0
-  id: fft_vxx
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    fft_size: num_steps
-    forward: 'False'
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    nthreads: '1'
-    shift: 'True'
-    type: complex
-    window: window.blackmanharris(num_steps)
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1184, 544.0]
     rotation: 0
     state: enabled
 - name: low_pass_filter_0
@@ -524,69 +392,6 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [480, 452.0]
-    rotation: 0
-    state: enabled
-- name: qtgui_time_raster_sink_x_0
-  id: qtgui_time_raster_sink_x
-  parameters:
-    affinity: ''
-    alias: ''
-    alpha1: '1.0'
-    alpha10: '1.0'
-    alpha2: '1.0'
-    alpha3: '1.0'
-    alpha4: '1.0'
-    alpha5: '1.0'
-    alpha6: '1.0'
-    alpha7: '1.0'
-    alpha8: '1.0'
-    alpha9: '1.0'
-    axislabels: 'True'
-    color1: '0'
-    color10: '0'
-    color2: '0'
-    color3: '0'
-    color4: '0'
-    color5: '0'
-    color6: '0'
-    color7: '0'
-    color8: '0'
-    color9: '0'
-    comment: ''
-    grid: 'True'
-    gui_hint: 0,2,1,2
-    label1: ''
-    label10: ''
-    label2: ''
-    label3: ''
-    label4: ''
-    label5: ''
-    label6: ''
-    label7: ''
-    label8: ''
-    label9: ''
-    mult: '[scale]'
-    name: '"B-Scan"'
-    ncols: num_steps
-    nconnections: '1'
-    nrows: '15'
-    offset: '[]'
-    samp_rate: samp_rate
-    type: float
-    update_time: '0.1'
-    x_end_value: '0.0'
-    x_label: '""'
-    x_start_value: '0.0'
-    y_end_value: '0.0'
-    y_label: '""'
-    y_start_value: '0.0'
-    zmax: '1'
-    zmin: '0'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1672, 664.0]
     rotation: 0
     state: enabled
 - name: qtgui_time_sink_x_1
@@ -683,104 +488,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [664, 344.0]
-    rotation: 0
-    state: enabled
-- name: qtgui_time_sink_x_1_0_0
-  id: qtgui_time_sink_x
-  parameters:
-    affinity: ''
-    alias: ''
-    alpha1: '1.0'
-    alpha10: '1.0'
-    alpha2: '1.0'
-    alpha3: '1.0'
-    alpha4: '1.0'
-    alpha5: '1.0'
-    alpha6: '1.0'
-    alpha7: '1.0'
-    alpha8: '1.0'
-    alpha9: '1.0'
-    autoscale: 'False'
-    axislabels: 'True'
-    color1: blue
-    color10: dark blue
-    color2: red
-    color3: green
-    color4: black
-    color5: cyan
-    color6: magenta
-    color7: yellow
-    color8: dark red
-    color9: dark green
-    comment: ''
-    ctrlpanel: 'True'
-    entags: 'True'
-    grid: 'True'
-    gui_hint: 0,0,1,2
-    label1: Signal 1
-    label10: Signal 10
-    label2: Signal 2
-    label3: Signal 3
-    label4: Signal 4
-    label5: Signal 5
-    label6: Signal 6
-    label7: Signal 7
-    label8: Signal 8
-    label9: Signal 9
-    legend: 'True'
-    marker1: '-1'
-    marker10: '-1'
-    marker2: '-1'
-    marker3: '-1'
-    marker4: '-1'
-    marker5: '-1'
-    marker6: '-1'
-    marker7: '-1'
-    marker8: '-1'
-    marker9: '-1'
-    name: '"Range profile(A-Scan)"'
-    nconnections: '1'
-    size: num_steps
-    srate: samp_rate
-    stemplot: 'False'
-    style1: '1'
-    style10: '1'
-    style2: '1'
-    style3: '1'
-    style4: '1'
-    style5: '1'
-    style6: '1'
-    style7: '1'
-    style8: '1'
-    style9: '1'
-    tr_chan: '0'
-    tr_delay: '0'
-    tr_level: '0.0'
-    tr_mode: qtgui.TRIG_MODE_FREE
-    tr_slope: qtgui.TRIG_SLOPE_POS
-    tr_tag: '""'
-    type: float
-    update_time: '0.10'
-    width1: '1'
-    width10: '1'
-    width2: '1'
-    width3: '1'
-    width4: '1'
-    width5: '1'
-    width6: '1'
-    width7: '1'
-    width8: '1'
-    width9: '1'
-    ylabel: Amplitude
-    ymax: '1'
-    ymin: '0'
-    yunit: '""'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1688, 440.0]
+    coordinate: [664, 332.0]
     rotation: 0
     state: enabled
 - name: scan_cont
@@ -819,25 +527,6 @@ blocks:
     coordinate: [132.0, 472]
     rotation: 90
     state: enabled
-- name: sfcwRadar_channelResponseExtractor_0
-  id: sfcwRadar_channelResponseExtractor
-  parameters:
-    affinity: ''
-    alias: ''
-    burst_len: recv_buf_len
-    chirp_bandwidth: int(chirp_bandwidth)
-    comment: ''
-    isChirp: isChirp
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    samp_rate: int(samp_rate)
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [888, 664.0]
-    rotation: 0
-    state: enabled
 - name: sfcwRadar_rawSamplesSink_0
   id: sfcwRadar_rawSamplesSink
   parameters:
@@ -862,9 +551,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1000, 208.0]
+    coordinate: [1128, 216.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: sfcwRadar_sfcw_radar_cc_0
   id: sfcwRadar_sfcw_radar_cc
   parameters:
@@ -875,7 +564,7 @@ blocks:
     chirp_bandwidth: int(chirp_bandwidth)
     comment: ''
     cw_frequency: cw_freq
-    enable_biastee: 'True'
+    enable_biastee: 'False'
     isChirp: isChirp
     maxoutbuf: '0'
     minoutbuf: '0'
@@ -900,26 +589,15 @@ blocks:
     state: enabled
 
 connections:
-- [blocks_complex_to_mag_squared_0, '0', blocks_nlog10_ff_0_0, '0']
-- [blocks_complex_to_mag_squared_0, '0', qtgui_time_raster_sink_x_0, '0']
-- [blocks_nlog10_ff_0_0, '0', qtgui_time_sink_x_1_0_0, '0']
 - [blocks_stream_to_vector_1_0_0, '0', sfcwRadar_rawSamplesSink_0, '0']
-- [blocks_stream_to_vector_1_0_0_0, '0', sfcwRadar_channelResponseExtractor_0, '0']
 - [blocks_stream_to_vector_1_0_1, '0', sfcwRadar_rawSamplesSink_0, '1']
-- [blocks_stream_to_vector_1_0_1_0, '0', fft_vxx_0, '0']
-- [blocks_stream_to_vector_1_0_1_1, '0', sfcwRadar_channelResponseExtractor_0, '1']
-- [blocks_vector_to_stream_0, '0', blocks_complex_to_mag_squared_0, '0']
-- [fft_vxx_0, '0', blocks_vector_to_stream_0, '0']
 - [low_pass_filter_0, '0', qtgui_time_sink_x_1, '0']
 - [low_pass_filter_0_0, '0', qtgui_time_sink_x_1, '1']
 - [scan_cont, pressed, sfcwRadar_sfcw_radar_cc_0, scan]
 - [scan_once, pressed, sfcwRadar_sfcw_radar_cc_0, scan]
-- [sfcwRadar_channelResponseExtractor_0, '0', blocks_stream_to_vector_1_0_1_0, '0']
 - [sfcwRadar_sfcw_radar_cc_0, '0', blocks_stream_to_vector_1_0_0, '0']
-- [sfcwRadar_sfcw_radar_cc_0, '0', blocks_stream_to_vector_1_0_0_0, '0']
 - [sfcwRadar_sfcw_radar_cc_0, '0', low_pass_filter_0, '0']
 - [sfcwRadar_sfcw_radar_cc_0, '1', blocks_stream_to_vector_1_0_1, '0']
-- [sfcwRadar_sfcw_radar_cc_0, '1', blocks_stream_to_vector_1_0_1_1, '0']
 - [sfcwRadar_sfcw_radar_cc_0, '1', low_pass_filter_0_0, '0']
 
 metadata:

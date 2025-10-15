@@ -50,7 +50,7 @@ public:
                      float cw_frequency,
                      bool isChirp,
                      float chirp_bandwidth,
-                     float ts_inc_send);
+                     float schedule_delay_ms);
 
     virtual int set_radar_tx_gain(bladerf_gain gain) = 0;
     virtual int set_radar_rx_gain(bladerf_gain gain) = 0;

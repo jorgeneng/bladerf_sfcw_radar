@@ -36,7 +36,7 @@ sfcw_radar_cc::sptr sfcw_radar_cc::make(bladerf_frequency start_freq,
                                                   float cw_frequency,
                                                   bool isChirp,
                                                   float chirp_bandwidth,
-                                                  float ts_inc_send)
+                                                  float schedule_delay_ms)
 {
     return gnuradio::make_block_sptr<sfcw_radar_cc_impl>(start_freq,
                                                               num_steps,
@@ -55,7 +55,7 @@ sfcw_radar_cc::sptr sfcw_radar_cc::make(bladerf_frequency start_freq,
                                                               cw_frequency,
                                                               isChirp,
                                                               chirp_bandwidth,
-                                                              ts_inc_send);
+                                                              schedule_delay_ms);
 }
 
 
@@ -79,7 +79,7 @@ sfcw_radar_cc_impl::sfcw_radar_cc_impl(bladerf_frequency start_freq,
                                                  float cw_frequency,
                                                  bool isChirp,
                                                  float chirp_bandwidth,
-                                                 float ts_inc_send)
+                                                 float schedule_delay_ms)
     : gr::sync_block("sfcw_radar_cc",
                      gr::io_signature::make(0, 0, 0),
                      gr::io_signature::make(
@@ -123,22 +123,10 @@ sfcw_radar_cc_impl::sfcw_radar_cc_impl(bladerf_frequency start_freq,
     /**
      * FPGA time steps to wait for transmission after frequency tunning
      * */
-    d_ts_inc_send = (uint64_t)(d_samp_rate * ts_inc_send)/1000;
+    d_ts_inc = (uint64_t)(d_samp_rate * schedule_delay_ms)/1000;
     
     init_sample_buffers();
 
-    // --- Initialize Phase Dithering ---
-    d_phase_dithering_enabled = false; // Or make this a parameter
-    if (d_phase_dithering_enabled) {
-        std::cout << "Phase dithering is enabled." << std::endl;
-        d_uniform_dist = std::uniform_real_distribution<float>(0.0, 2.0 * M_PI);
-        d_dithering_phases.resize(d_num_steps);
-        for (int i = 0; i < d_num_steps; ++i) {
-            float random_phase = d_uniform_dist(d_random_generator);
-            d_dithering_phases[i] = std::exp(std::complex<float>(0, random_phase));
-        }
-    } 
-    
     /**
      * Set input/ouput contrains based on the d_recv_len
      * */
@@ -356,30 +344,6 @@ int sfcw_radar_cc_impl::work(int noutput_items,
             bladeRF->tune_tx(i);
             bladeRF->tune_rx(i);
 
-            // --- Apply Phase Dithering to TX buffer ---
-            if (d_phase_dithering_enabled) {
-                // Apply phase shift to the pre-generated waveform
-                for (size_t j = 0; j < d_burst_len; ++j) {
-                    _32fcbuf_in[2*j] = _32fc_samples[j] * d_dithering_phases[i];
-                    _32fcbuf_in[2*j + 1] = _32fc_samples[j] * d_dithering_phases[i];
-                }
-                // Convert to int16_t format for the SDR
-                volk_32f_s32f_convert_16i(_16icbuf_in, reinterpret_cast<float const *>(_32fcbuf_in),
-                                    SCALING_FACTOR, 2 * NUM_TX_CHANNELS * d_burst_len);
-            } else {
-                // If dithering is off, the original _16icbuf_in is already filled.
-            } 
-            
-            /**
-             * Generate pulse samples, the generated samples for two TXs are stored in _32fcbuf_in
-             * */
-            /*if (d_isChirp){
-                //Chirp pulse
-                generate_chirp_samples();
-            }else{
-                //Single tone pulse
-                generate_cw_samples();
-            }*/
             /** 
              * convert floating point to fixed point and scale
              * input_items is gr_complex (2x float), for 2 TXs, so num_points is 2*2*d_burst_len
@@ -390,21 +354,13 @@ int sfcw_radar_cc_impl::work(int noutput_items,
             /**
              * Send a pulse and receive the echo
              * */
-            bladeRF->pulse(d_ts_inc_send, d_ts_inc_send, _16icbuf_in, d_burst_len*NUM_TX_CHANNELS, _16icbuf_out, d_recv_len*NUM_RX_CHANNELS);
+            bladeRF->pulse(d_ts_inc, d_ts_inc, _16icbuf_in, d_burst_len*NUM_TX_CHANNELS, _16icbuf_out, d_recv_len*NUM_RX_CHANNELS);
 
             /**
             * process received samples
             * */
             volk_16i_s32f_convert_32f(reinterpret_cast<float *>(_32fcbuf_out), _16icbuf_out,
                             SCALING_FACTOR, 2*NUM_RX_CHANNELS*d_recv_len);
-
-            // --- Invert Phase Dithering on RX buffer ---
-            if (d_phase_dithering_enabled) {
-                gr_complex inverse_phase = std::conj(d_dithering_phases[i]);
-                // Apply the inverse phase shift to the received complex samples
-                //volk_32fc_x2_multiply_32fc(_32fcbuf_out, _32fcbuf_out, inverse_phase, d_recv_len * NUM_RX_CHANNELS);
-                volk_32fc_s32fc_multiply_32fc(_32fcbuf_out, _32fcbuf_out, inverse_phase, d_recv_len * NUM_RX_CHANNELS); 
-            } 
 
             // we need to deinterleave the multiplex as we copy
             gr_complex const *deint_in = _32fcbuf_out;
@@ -422,6 +378,7 @@ int sfcw_radar_cc_impl::work(int noutput_items,
         if(d_continuous_scan_flag == false){
             d_scan = false;
         }
+        bladeRF->write_stats_to_file();
     }else{
         return 0;
     }

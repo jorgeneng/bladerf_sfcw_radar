@@ -24,8 +24,6 @@ include(GrPybind)
 # Python Bindings
 ########################################################################
 list(APPEND sfcwRadar_python_files
-    bladerfRadarMIMO_python.cc
-    bladerfRadarController_cc_python.cc
     sfcw_radar_cc_python.cc
     python_bindings.cc)
 

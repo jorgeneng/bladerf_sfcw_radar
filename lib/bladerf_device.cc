@@ -21,10 +21,49 @@ BladerfDevice::BladerfDevice() : device(nullptr) {
     memset(&d_rx_meta, 0, sizeof(d_rx_meta));
     memset(&d_tx_meta, 0, sizeof(d_tx_meta));
     d_tx_meta.flags = BLADERF_META_FLAG_TX_BURST_START | BLADERF_META_FLAG_TX_BURST_END; /**< send as burst_len*/
+
+    // Initialize atomic counters to zero
+    m_send_failures = 0;
+    m_recv_failures = 0;
+    m_tune_events = 0;
+
+    // Open the log file for writing, overwriting any previous content
+    m_log_file.open(m_log_filename, std::ios::out | std::ios::trunc);
+    if (m_log_file.is_open()) {
+        m_log_file << "send_failures,recv_failures,tune_events, error_rate" << std::endl;
+        //write_stats_to_file(); // Write initial zero values
+    } else {
+        std::cerr << "ERROR: Could not open log file: " << m_log_filename << std::endl;
+    } 
 }
 
 BladerfDevice::~BladerfDevice() {
     closeDevice(); 
+    // Close the log file when the object is destroyed
+    if (m_log_file.is_open()) {
+        m_log_file.close();
+    } 
+}
+
+// Helper function to write stats (add this new function)
+void BladerfDevice::write_stats_to_file() {
+    if (m_log_file.is_open()) {
+        // Seek to the beginning of the file to overwrite, or append
+        m_log_file.seekp(0); // Overwrite the file with the latest stats
+        m_log_file << "send_failures: " << m_send_failures << std::endl;
+        m_log_file << "past timestamp failures: " << m_recv_failures << std::endl;
+        m_log_file << "Overrun errors: " << m_recv_overrun << std::endl;
+        m_log_file << "number_tuning: " << m_tune_events << std::endl;
+        m_log_file << "past_timestamp_error_rate: " << (m_recv_failures)/(float)m_tune_events << std::endl;
+        m_log_file << "overrun_error_rate: " << (m_recv_overrun)/(float)m_tune_events << std::endl;
+        m_log_file << "tuning_time: " << d_tuning_time/m_tune_events << std::endl;
+        m_log_file << "pulse_time: " << d_tuning_time/m_tune_events << std::endl;
+        
+        std::cout << d_tuning_time << std::endl;
+        std::cout << d_pulse_time << std::endl;
+        std::cout << m_tune_events << std::endl;
+        m_log_file.flush(); // Ensure data is written immediately
+    }
 }
 
 bool BladerfDevice::openDevice() {
@@ -418,10 +457,16 @@ int BladerfDevice::tune_tx(int freq_index){
         std::cerr << "the input freq_index: "<< freq_index << " is out of range" <<std::endl;
         return -1;
     }
+
+    m_tune_events++; // Increment the tune counter
+    
+    std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
     int status = bladerf_schedule_retune(device, BLADERF_TX, BLADERF_RETUNE_NOW, 0, &d_quick_tunes_tx[freq_index].quick_tune);
     if(status != 0){
         std::cerr << "failed to tune RX: " << bladerf_strerror(status) << std::endl;
     }
+    std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+    d_tuning_time = d_tuning_time + std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count();
     return status;
 }
 
@@ -435,6 +480,7 @@ void BladerfDevice::send(){
 
     if (status != 0){
         std::cerr << "sending failed: " << bladerf_strerror(status) << std::endl;
+        m_send_failures++; // Increment on failure
     }
 }
 
@@ -449,12 +495,15 @@ void BladerfDevice::recv(){
 
     if (status != 0){
         std::cerr << "receiving failed: " << bladerf_strerror(status) << std::endl;
+        m_recv_failures++; // Increment on failure
     }else if (d_rx_meta.status & BLADERF_META_STATUS_OVERRUN){
         std::cerr << "Overrun detected in scheduled RX. Number of samples read is: " << d_rx_meta.actual_count << std::endl;
+        m_recv_overrun++; // Increment on failure
     }
 }
 
 int BladerfDevice::pulse(float d_ts_inc_send, float d_ts_inc_recv, int16_t *samples_to_send, unsigned int num_samples_to_send, int16_t *rec_buf, unsigned int num_samples_to_recv){
+    std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
     /**
      * Setup sending and receiving buf, guys who call this function are responsible for preparing buffers and samples.
      * */
@@ -477,6 +526,7 @@ int BladerfDevice::pulse(float d_ts_inc_send, float d_ts_inc_recv, int16_t *samp
         fprintf(stderr, "Failed to get current RX timestamp: %s\n", bladerf_strerror(status));
         return -1;
     }
+    
     d_tx_meta.timestamp = d_rx_meta.timestamp;
     //schedule tx and tx in the future
     d_tx_meta.timestamp += d_ts_inc_send;
@@ -489,6 +539,8 @@ int BladerfDevice::pulse(float d_ts_inc_send, float d_ts_inc_recv, int16_t *samp
     // Wait for threads to complete
     sendThread.join();
     recvThread.join();
+    std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+    d_pulse_time = d_pulse_time + std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count();
     return 0;
 }
 

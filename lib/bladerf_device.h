@@ -15,6 +15,8 @@
 #include <string>
 #include <libbladeRF.h> 
 #include <volk/volk.h>
+#include <atomic>  
+#include <fstream>  
 
 /**
  * configuration of TX/RX channel
@@ -180,6 +182,11 @@ public:
      * @return 0 if success
      * */
     int set_gain(bladerf_gain gain, bladerf_channel ch);
+    
+    /**
+     * Helper function to write the current stats to the log file.
+     * */
+    void write_stats_to_file(); 
 
 protected:
     struct bladerf_devinfo dev_info; /**< struct to store the device information*/
@@ -232,6 +239,19 @@ protected:
      * @note before call this function, make sure that _16icbuf_out and _16icbuf_out_num_samples are correctly set
      * */
     void recv();
+
+    // Atomic counters for thread-safe updates
+    std::atomic<int> m_send_failures=0;
+    std::atomic<int> m_recv_failures=0;
+    std::atomic<int> m_recv_overrun=0;
+    std::atomic<int> m_tune_events=0;
+
+    float d_tuning_time=0;
+    float d_pulse_time=0;
+
+    // File stream for logging
+    std::ofstream m_log_file;
+    std::string m_log_filename = "radar_stats.log"; // Default log filename
 };
 
 #endif // BLADERF_DEVICE_H

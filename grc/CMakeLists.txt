@@ -7,11 +7,7 @@
 #
 install(FILES
     sfcwRadar_rangeProfileSink.block.yml
-    sfcwRadar_bladerfRadarMIMO.block.yml
     sfcwRadar_calibration.block.yml
-    sfcwRadar_bladerfRadarController_cc.block.yml
-    sfcwRadar_matchedFilter.block.yml
-    sfcwRadar_findPeak.block.yml
     sfcwRadar_rawSamplesSink.block.yml
     sfcwRadar_sfcw_radar_cc.block.yml
     sfcwRadar_channelResponseExtractor.block.yml DESTINATION share/gnuradio/grc/blocks)

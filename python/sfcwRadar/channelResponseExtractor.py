@@ -119,3 +119,5 @@ class channelResponseExtractor(gr.sync_block):
             channel_out[i] = processing_function(echo_vectors[i], ref_vectors[i])
 
         return num_vectors
+
+
