@@ -26,4 +26,47 @@ Core Functionality of the radar controller includes:
 
 - Metadata Propagation: The controller attaches metadata to the output stream using GNU Radio's tagging system. Tags like "newScan" and "step" are added to the first sample of a new sweep and each new frequency step, respectively. This allows downstream processing blocks to perform operations like coherent integration with sample-level accuracy .   
 
+## Prerequisites
+- Gnuradio 3.10
+- python 3
+- cmake
+- libvolk
+- Boost
+- gcc > 9.3.0
+- gxx
+- libbladeRF 1.5.0
 
+## Installation
+- Clone this repository
+	```sh
+	git clone [https://github.com/tapparelj/gr-lora_sdr.git](https://github.com/huiyellow/bladerf_sfcw_radar.git)
+	```
+- Go to the cloned repository
+	```sh
+	cd bladerf_sfcw_radar/
+	```
+- To build the code, create an appropriate folder and go in it:
+	```sh
+	mkdir build
+	cd build
+	```
+- Run the main CMakeLists.txt
+	```sh
+	cmake ..
+	```
+- Finally compile the custom GNU Radio blocks composing the LoRa transceiver. Replacing \<X> with the number of core you want to use to speed up the compilation.
+	```sh
+	(sudo) make install -j<X>
+	```
+- if you installed as sudo run
+	```sh
+	sudo ldconfig 
+	```
+- Now you should be able to run some codes. For example, open the GNU Radio Companion user interface and check if the blocks of gr-lora_sdr are available on the blocks list (e.g. under LoRa_TX).
+	```sh
+	gnuradio-companion &
+	```
+
+ ## Usage
+- An example of the sfcw radar can be found in bladerf_sfcw_radar/gui/ (.grc).
+- The .grc files can be opened with gnuradio-companion to set the different transmission parameters.
