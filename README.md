@@ -16,13 +16,14 @@ The controller's architecture is built on a key design principle: the separation
 
 - sfcw_radar_cc Block: This is a GNU Radio synchronous source block (gr::sync_block) that contains the primary SFCW logic and state machine. It controls the entire frequency sweep by generating the appropriate waveform for each step (e.g., CW or LFM chirp), commanding frequency changes via the BladerfDevice instance, and processing the raw I/Q streams from the SDR. It de-interleaves the data from the two receive channels and passes the echo and reference streams to separate output ports for downstream processing in Python.   
 
-Core Functionality
-High Reconfigurability: The controller is highly configurable through parameters passed during its instantiation in a GNU Radio flowgraph or a Python script. Users can easily adjust the frequency plan, sample rate, gains, and sub-pulse waveform (CW or LFM chirp) . The class structure is also extensible, allowing for the easy implementation of custom waveforms.   
+Core Functionality of the radar controller includes:
 
-Fast Frequency Tuning: To minimize dead time between frequency steps, the system utilizes the bladeRF's quick tune mode. The hardware-specific tuning parameters for the entire frequency plan are pre-calculated and cached during initialization, allowing for near-instantaneous retuning during the sweep .   
+- High Reconfigurability: The controller is highly configurable through parameters passed during its instantiation in a GNU Radio flowgraph or a Python script. Users can easily adjust the frequency plan, sample rate, gains, and sub-pulse waveform (CW or LFM chirp) . The class structure is also extensible, allowing for the easy implementation of custom waveforms.   
 
-Multi-Threaded I/O for Full-Duplex Operation: Transmit and receive operations (bladerf_sync_tx and bladerf_sync_rx) are initiated in separate, concurrent threads. This leverages the bladeRF's full-duplex capability and ensures that the high-bandwidth data reception on the host side does not block the time-sensitive transmission commands, contributing to overall system stability .   
+- Fast Frequency Tuning: To minimize dead time between frequency steps, the system utilizes the bladeRF's quick tune mode. The hardware-specific tuning parameters for the entire frequency plan are pre-calculated and cached during initialization, allowing for near-instantaneous retuning during the sweep .   
 
-Metadata Propagation: The controller attaches metadata to the output stream using GNU Radio's tagging system. Tags like "newScan" and "step" are added to the first sample of a new sweep and each new frequency step, respectively. This allows downstream processing blocks to perform operations like coherent integration with sample-level accuracy .   
+- Multi-Threaded I/O for Full-Duplex Operation: Transmit and receive operations (bladerf_sync_tx and bladerf_sync_rx) are initiated in separate, concurrent threads. This leverages the bladeRF's full-duplex capability and ensures that the high-bandwidth data reception on the host side does not block the time-sensitive transmission commands, contributing to overall system stability .   
+
+- Metadata Propagation: The controller attaches metadata to the output stream using GNU Radio's tagging system. Tags like "newScan" and "step" are added to the first sample of a new sweep and each new frequency step, respectively. This allows downstream processing blocks to perform operations like coherent integration with sample-level accuracy .   
 
 
