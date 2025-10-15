@@ -67,6 +67,32 @@ Core Functionality of the radar controller includes:
 	gnuradio-companion &
 	```
 
+## Hardware configuration
+The SCORA radar system is constructed from commercially available components to ensure low cost, ease of replication, and a clear path for open-source distribution. A complete bill of materials (BOM) is provided as follows"   
+
+
+
+- The heart of the system is a Nuand bladeRF Micro A4, which serves as the central RF front-end and handles all RF operations. This device was selected for its affordability, wide continuous tuning range (47 MHz to 6 GHz), and full-duplex 2x2 MIMO capability.   
+
+
+
+- Host Computer: A standard laptop or single-board computer (SBC) provides the computational back-end, connecting to the bladeRF via a high-speed USB 3.0 interface to stream I/Q samples and run the control software.   
+
+
+
+- Antennas: Two RFSpace TSA600 Vivaldi antennas are used for transmission and reception. They are arranged in a pseudo-monostatic configuration to maximize isolation and minimize direct signal leakage.   
+
+
+
+- Optional Components: The system can be augmented with optional amplifiers to enhance performance. A power amplifier (e.g., BT100) can be added to the transmit path to increase range, and a low-noise amplifier (LNA) (e.g., BT200) can be added to the receive path to improve the signal-to-noise ratio (SNR).   
+
+# Reference Channel Implementation
+A crucial aspect of the hardware design is the reference signal path, which is created to compensate for the LO phase incoherence inherent in the SDR. This path can be configured in one of two ways:   
+
+- MIMO Loopback Configuration: If an external coupler is not used, the reference path can be created by directly connecting the second transmitter port (TX2) to the second receiver port (RX2) through an attenuator. In this mode, the control software configures the bladeRF to transmit an identical waveform from both TX1 and TX2 simultaneously. This approach minimizes hardware cost and complexity at the expense of increased data throughput from the host computer to the SDR. 
+
+- Directional Coupler Configuration: In this setup, a portion of the transmitted signal from TX1 is tapped off by an external directional coupler. This tapped reference signal is then passed through an attenuator and fed directly into the second receiver port (RX2). This configuration reduces the data load on the host computer, as only one waveform needs to be streamed to the SDR.   
+
  ## Usage
 - An example of the sfcw radar can be found in bladerf_sfcw_radar/gui/ (.grc).
 - The .grc files can be opened with gnuradio-companion to set the different transmission parameters.
