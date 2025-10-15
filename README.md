@@ -86,7 +86,7 @@ The SCORA radar system is constructed from commercially available components to 
 
 - Optional Components: The system can be augmented with optional amplifiers to enhance performance. A power amplifier (e.g., BT100) can be added to the transmit path to increase range, and a low-noise amplifier (LNA) (e.g., BT200) can be added to the receive path to improve the signal-to-noise ratio (SNR).   
 
-# Reference Channel Implementation
+## Reference Channel Implementation
 A crucial aspect of the hardware design is the reference signal path, which is created to compensate for the LO phase incoherence inherent in the SDR. This path can be configured in one of two ways:   
 
 - MIMO Loopback Configuration: If an external coupler is not used, the reference path can be created by directly connecting the second transmitter port (TX2) to the second receiver port (RX2) through an attenuator. In this mode, the control software configures the bladeRF to transmit an identical waveform from both TX1 and TX2 simultaneously. This approach minimizes hardware cost and complexity at the expense of increased data throughput from the host computer to the SDR. 
