@@ -131,7 +131,7 @@ add_subdirectory(include/gnuradio/sfcwRadar)
 add_subdirectory(lib)
 add_subdirectory(apps)
 add_subdirectory(examples)
-add_subdirectory(docs)
+#add_subdirectory(docs)
 # NOTE: manually update below to use GRC to generate C++ flowgraphs w/o python
 if(ENABLE_PYTHON)
     message(STATUS "PYTHON and GRC components are enabled")
